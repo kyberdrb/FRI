@@ -1,0 +1,340 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Public-Key Algorithms</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<a href="/adclick.html/CID=00000c5933d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?ACC_TIME%%" TARGET="_blank">
+<img src="http://mojofarm.sjc.mediaplex.com/adserver/banner_request/505-1403-1125?28199"></a>
+<!-- http://mojofarm.sjc.mediaplex.com/adserver/click_thru_request/505-1403-1125?28199 -->
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=19//-->
+<!--PAGES=461-463//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="../ch18/18-09.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="19-02.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<H2><A NAME="Heading1"></A><FONT COLOR="#000077">Chapter 19<BR>Public-Key Algorithms
+</FONT></H2>
+<H3><A NAME="Heading2"></A><FONT COLOR="#000077">19.1 Background</FONT></H3>
+<P>The concept of public-key cryptography was invented by Whitfield Diffie and Martin Hellman, and independently by Ralph Merkle. Their contribution to cryptography was the notion that keys could come in pairs&#151;an encryption key and a decryption key&#151;and that it could be infeasible to generate one key from the other (see Section 2.5). Diffie and Hellman first presented this concept at the 1976 National Computer Conference [495]; a few months later, their seminal paper &#147;New Directions in Cryptography&#148; was published [496]. (Due to a glacial publishing process, Merkle&#146;s first contribution to the field didn&#146;t appear until 1978 [1064].)
+</P>
+<P>Since 1976, numerous public-key cryptography algorithms have been proposed. Many of these are insecure. Of those still considered secure, many are impractical. Either they have too large a key or the ciphertext is much larger than the plaintext.</P>
+<P>Only a few algorithms are both secure and practical. These algorithms are generally based on one of the hard problems discussed in Section 11.2. Of these secure and practical public-key algorithms, some are only suitable for key distribution. Others are suitable for encryption (and by extension for key distribution). Still others are only useful for digital signatures. Only three algorithms work well for both encryption and digital signatures: RSA, ElGamal, and Rabin. All of these algorithms are slow. They encrypt and decrypt data much more slowly than symmetric algorithms; usually that&#146;s too slow to support bulk data encryption.</P>
+<P>Hybrid cryptosystems (see Section 2.5) speed things up: A symmetric algorithm with a random session key is used to encrypt the message, and a public-key algorithm is used to encrypt the random session key.</P>
+<P><FONT SIZE="+1"><B><I>Security of Public-Key Algorithms</I></B></FONT></P>
+<P>Since a cryptanalyst has access to the public key, he can always choose any message to encrypt. This means that a cryptanalyst, given <I>C</I> = <I>E</I><SUB>K</SUB>(<I>P</I>), can guess the value of <I>P</I> and easily check his guess. This is a serious problem if the number of possible plaintext messages is small enough to allow exhaustive search, but can be solved by padding messages with a string of random bits. This makes identical plaintext messages encrypt to different ciphertext messages. (For more about this concept, see Section 23.15.)</P>
+<P>This is especially important if a public-key algorithm is used to encrypt a session key. Eve can generate a database of all possible session keys encrypted with Bob&#146;s public key. Sure, this requires a large amount of time and memory, but for a 40-bit exportable key or a 56-bit DES key, it&#146;s a whole lot less time and memory than breaking Bob&#146;s public key. Once Eve has generated the database, she will have his key and can read his mail at will.</P>
+<P>Public-key algorithms are designed to resist chosen-plaintext attacks; their security is based both on the difficulty of deducing the secret key from the public key and the difficulty of deducing the plaintext from the ciphertext. However, most public-key algorithms are particularly susceptible to a chosen-ciphertext attack (see Section 1.1).</P>
+<P>In systems where the digital signature operation is the inverse of the encryption operation, this attack is impossible to prevent unless different keys are used for encryption and signatures.</P>
+<P>Consequently, it is important to look at the whole system and not just at the individual parts. Good public-key protocols are designed so that the various parties can&#146;t decrypt arbitrary messages generated by other parties&#151;the proof-of-identity protocols are a good example (see Section 5.2).</P>
+<H3><A NAME="Heading3"></A><FONT COLOR="#000077">19.2 Knapsack Algorithms</FONT></H3>
+<P>The first algorithm for generalized public-key encryption was the knapsack algorithm developed by Ralph Merkle and Martin Hellman [713, 1074]. It could only be used for encryption, although Adi Shamir later adapted the system for digital signatures [1413]. Knapsack algorithms get their security from the knapsack problem, an <B>NP-complete</B> problem. Although this algorithm was later found to be insecure, it is worth examining because it demonstrates how an <B>NP-complete</B> problem can be used for public-key cryptography.</P>
+<P>The knapsack problem is a simple one. Given a pile of items, each with different weights, is it possible to put some of those items into a knapsack so that the knapsack weighs a given amount? More formally: Given a set of values <I>M</I><SUB>1</SUB>, <I>M</I><SUB>2</SUB>,..., <I>M</I><SUB>n</SUB> <SUB>,</SUB> and a sum <I>S,</I> compute the values of <I>b</I><SUB>i</SUB> such that</P>
+<DL>
+<DD><I>S</I> = <I>b</I><SUB>1</SUB><I>M</I><SUB>1</SUB> &#43; <I>b</I><SUB>2</SUB><I>M</I><SUB>2</SUB> &#43; ...&#43; <I>b</I><SUB>n</SUB><I>M</I><SUB>n</SUB>
+</DL>
+<P>The values of <I>b</I><SUB>i</SUB> can be either zero or one. A one indicates that the item is in the knapsack; a zero indicates that it isn&#146;t.</P>
+<P>For example, the items might have weights of 1, 5, 6, 11, 14, and 20. You could pack a knapsack that weighs 22; use weights 5, 6, and 11. You could not pack a knapsack that weighs 24. In general, the time required to solve this problem seems to grow exponentially with the number of items in the pile.</P>
+<P>The idea behind the Merkle-Hellman knapsack algorithm is to encode a message as a solution to a series of knapsack problems. A block of plaintext equal in length to the number of items in the pile would select the items in the knapsack (plaintext bits corresponding to the <I>b</I> values), and the ciphertext would be the resulting sum. Figure 19.1 shows a plaintext encrypted with a sample knapsack problem.</P>
+<P>The trick is that there are actually two different knapsack problems, one solvable in linear time and the other believed not to be. The easy knapsack can be modified to create the hard knapsack. The public key is the hard knapsack, which can easily be used to encrypt but cannot be used to decrypt messages. The private key is the easy knapsack, which gives an easy way to decrypt messages. People who don&#146;t know the private key are forced to try to solve the hard knapsack problem.</P>
+<P><FONT SIZE="+1"><B><I>Superincreasing Knapsacks</I></B></FONT></P>
+<P>What is the easy knapsack problem? If the list of weights is a <B>superincreasing sequence</B>, then the resulting knapsack problem is easy to solve. A superincreasing sequence is a sequence in which every term is greater than the sum of all the previous terms. For example, {1, 3, 6, 13, 27, 52} is a superincreasing sequence, but {1, 3, 4, 9, 15, 25} is not.</P>
+<P>The solution to a <B>superincreasing knapsack</B> is easy to find. Take the total weight and compare it with the largest number in the sequence. If the total weight is less than the number, then it is not in the knapsack. If the total weight is greater than or equal to the number, then it is in the knapsack. Reduce the weight of the knapsack by the value and move to the next largest number in the sequence. Repeat until finished. If the total weight has been brought to zero, then there is a solution. If the total weight has not, there isn&#146;t.</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="../ch18/18-09.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="19-02.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

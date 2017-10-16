@@ -1,0 +1,359 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:One-Way Hash Functions</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000d0333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/newbent1.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=00000d0333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=18//-->
+<!--PAGES=457-459//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="18-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch19/19-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P><FONT SIZE="+1"><B><I>Bidirectional MAC</I></B></FONT></P>
+<P>This MAC produces a hash value twice the length of the block algorithm [978]. First, compute the CBC-MAC of the message. Then, compute the CBC-MAC of the message with the blocks in reverse order. The bidirectional MAC value is simply the concatenation of the two. Unfortunately, this construction is insecure [1097].
+</P>
+<P><FONT SIZE="+1"><B><I>Jueneman&#146;s Methods</I></B></FONT></P>
+<P>This MAC is also called a quadratic congruential manipulation detection code (QCMDC) [792, 789]. First, divide the message into m- bit blocks. Then:
+</P>
+<DL>
+<DD><I>H</I><SUB>0</SUB> = <I>I</I><SUB>H,</SUB> where <I>I</I><SUB>H</SUB> is the secret key
+<DD><I>H</I><SUB>i</SUB> = (<I>H</I><SUB>i- 1</SUB> &#43; <I>M</I><SUB>i</SUB>)2 mod <I>p,</I> where <I>p</I> is a prime less than 2<SUP>m </SUP>- 1 and &#43; denotes integer addition
+</DL>
+<P>Jueneman suggests <I>n</I> = 16 and <I>p</I> = 2<SUP>31</SUP> - 1. In [792] he also suggests that an additional key be used as <I>H</I><SUB>1,</SUB> with the actual message starting at <I>H</I><SUB>2</SUB>.</P>
+<P>Because of a variety of birthday-type attacks discovered in conjunction with Don Coppersmith, Jueneman suggested computing the QCMDC four times, using the result of one iteration as the IV for the next iteration, and then concatenating the results to obtain a 128-bit hash value [793]. This was further strengthened by doing the four iterations in parallel and cross-linking them [790, 791]. This scheme was broken by Coppersmith [376].</P>
+<P>Another variant [432, 434] replaced the addition operation with an XOR and used message blocks significantly smaller than <I>p. H</I><SUB>0</SUB> was also set, making it a keyless one-way hash function. After this scheme was attacked [612], it was strengthened as part of the European Open Shop Information-TeleTrust project [1221], quoted in CCITT X.509 [304], and adopted in ISO 10118 [764, 765]. Unfortunately, Coppersmith has broken this scheme as well [376]. There has been some research using exponents other than 2 [603], but none of it has been promising.</P>
+<P><FONT SIZE="+1"><B><I>RIPE-MAC</I></B></FONT></P>
+<P>RIPE-MAC was invented by Bart Preneel [1262] and adopted by the RIPE project [1305] (see Section 18.8). It is based on ISO 9797 [763], and uses DES as a block encryption function. RIPE-MAC has two flavors: one using normal DES, called RIPE-MAC1, and another using triple-DES for even greater security, called RIPE-MAC3. RIPE-MAC1 uses one DES encryption per 64-bit message block; RIPE-MAC3 uses three.
+</P>
+<P>The algorithm consists of three parts. First, the message is expanded to a length that is a multiple of 64 bits. Next, the expanded message is divided up into 64-bit blocks. A keyed compression function is used to hash these blocks, under the control of a secret key, into a single block of 64 bits. This is the step that uses either DES or triple-DES. Finally, the output of this compression is subjected to another DES-based encryption with a different key, derived from the key used in the compression. See [1305] for details.</P>
+<P><FONT SIZE="+1"><B><I>IBC-Hash</I></B></FONT></P>
+<P>IBC-Hash is another MAC adopted by the RIPE project [1305] (see Section 18.8). It is interesting because it is provably secure; the chance of successful attack can be quantified. Unfortunately, every message must be hashed with a different key. The chosen level of security puts constraints on the maximum message size that can be hashed&#151;something no other function in this chapter does. Given these considerations, the RIPE report recommends that IBC-Hash be used only for long, infrequently sent messages.
+</P>
+<P>The heart of the function is</P>
+<DL>
+<DD><I>h</I><SUB>i</SUB> = ((<I>M</I><SUB>i</SUB> mod <I>p</I>) &#43; <I>v</I> ) mod 2<SUB>n</SUB>
+</DL>
+<P>The secret key is the pair <I>p</I> and <I>v,</I> where <I>p</I> is an N- bit prime and <I>v</I> is a random number less than 2<SUP>n</SUP>. The Mi values are derived by a carefully specified padding procedure. The probabilities of breaking both the one-wayness and the collision-resistance can be quantified, and users can choose their security level by changing the parameters.</P>
+<P><FONT SIZE="+1"><B><I>One-Way Hash Function MAC</I></B></FONT></P>
+<P>A one-way hash function can also be used as a MAC [1537]. Assume Alice and Bob share a key <I>K,</I> and Alice wants to send Bob a MAC for message <I>M</I>. Alice concatenates <I>K</I> and <I>M,</I> and computes the one-way hash of the concatenation: <I>H</I> (<I>K,M</I> ). This hash is the MAC. Since Bob knows <I>K,</I> he can reproduce Alice&#146;s result. Mallory, who does not know <I>K,</I> can&#146;t.</P>
+<P>This method works with MD-strengthening techniques, but has serious problems. Mallory can always add new blocks to the end of the message and compute a valid MAC. This attack can be thwarted if you put the message length at the beginning, but Preneel is suspicious of this scheme [1265]. It is better to put the key at the end of the message, <I>H</I> (<I>M,K</I> ), but this has some problems as well [1265]. If <I>H</I> is one-way but not collision-free, Mallory can forge messages. Still better is <I>H</I> (<I>K,M,K</I> ), or <I>H</I> (<I>K</I><SUB>1</SUB><I>,M,K</I><SUB>2</SUB> ), where <I>K</I><SUB>1</SUB> and <I>K2</I> are different [1537]. Preneel is still suspicious [1265].</P>
+<P>The following constructions seem secure:</P>
+<DL>
+<DD><I>H</I> (<I>K</I><SUB>1</SUB>,H(<I>K</I><SUB>2</SUB>, <I>M</I>))
+<DD><I>H</I> (<I>K, H</I> (<I>K,M</I>))
+<DD><I>H</I> (<I>K,p,M,K</I> ), where <I>p</I> pads <I>K</I> to a full message block.
+</DL>
+<I><P><A NAME="Fig15"></A><A HREF="javascript:displayWindow('images/18-15.jpg',228,128 )"><IMG SRC="images/18-15t.jpg"></A>
+<BR><A HREF="javascript:displayWindow('images/18-15.jpg',228,128)"><FONT COLOR="#000077"><B>Figure 18.15</B></FONT></A>&nbsp;&nbsp;Stream cipher MAC.</I>
+</P>
+<P>The best approach is to concatenate at least 64 bits of the key with each message block. This makes the one-way hash function less efficient, because the message blocks are smaller, but it is much more secure [1265].
+</P>
+<P>Alternatively, use a one-way hash function and a symmetric algorithm. Hash the file, then encrypt the hash. This is more secure than first encrypting the file and then hashing the encrypted file, but it is vulnerable to the same attack as the <I>H</I> (<I>M,K</I> ) approach [1265].</P>
+<P><FONT SIZE="+1"><B><I>Stream Cipher MAC</I></B></FONT></P>
+<P>This MAC scheme uses stream ciphers (see Figure 18.15) [932]. A cryptographically secure pseudo-random-bit generator demultiplexes the message stream into two substreams. If the output bit of the bit generator <I>k</I><SUB>i</SUB>, is 1, then the current message bit <I>m</I><SUB>i</SUB>, is routed to the first substream; if the <I>k</I><SUB>i</SUB> is 0, the <I>mi</I> is routed to the second substream. The substreams are each fed into a different LFSR (see Section 16.2). The output of the MAC is simply the final states of the shift registers.</P>
+<P>Unfortunately, this method is not secure against small changes in the message [1523]. For example, if you alter the last bit of the message, then only 2 bits in the corresponding MAC value need to be altered to create a fake MAC; this can be done with reasonable probability. The author presents a more secure, and more complicated, alternative.</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="18-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch19/19-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

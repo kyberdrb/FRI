@@ -1,0 +1,374 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Public-Key Digital Signature Algorithms</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<a href="/adclick.html/CID=00000bf333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET="_blank">
+<IMG WIDTH=468 HEIGHT=60 SRC="http://ad.preferences.com/image;spacedesc=CES_EarthWeb_468x60_RunOfSite_Any&Random=28480"></a>
+<!--  http://ad.preferences.com/click;spacedesc=CES_EarthWeb_468x60_RunOfSite_Any&Random=28480 //-->
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=20//-->
+<!--PAGES=484-487//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="20-01.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="20-03.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>Let&#146;s look at the criticisms against DSA, one by one.
+</P>
+<DL>
+<DD><B>1.</B>&nbsp;&nbsp;DSA cannot be used for encryption or key distribution.
+<BR>True, but not the point of the standard. This is a signature standard. NIST should have a standard for public-key encryption. NIST is committing a grave injustice to the American people by not implementing a public-key encryption standard. It is suspicious that this proposed digital signature standard cannot be used for encryption. (As it turns out, though, it can&#151;see Section 23.3.) That does not mean that a signature standard is useless.
+<DD><B>2.</B>&nbsp;&nbsp;DSA was developed by the NSA, and there may be a trapdoor in the algorithm.
+<BR>Much of the initial comments were just paranoia: &#147;NIST&#146;s denial of information with no apparent justification does not inspire confidence in DSS, but intensifies concern that there is a hidden agenda, such as laying the groundwork for a national public-key cryptosystem that is in fact vulnerable to being broken by NIST and/or NSA&#148; [154]. One serious question about the security of DSA was raised by Arjen Lenstra and Stuart Haber at Bellcore. This will be discussed later.
+<DD><B>3.</B>&nbsp;&nbsp;DSA is slower than RSA [800].
+<BR>True, more or less. Signature generation speeds are the same, but signature verification can be 10 to 40 times slower with DSA. Key generation, however, is faster. But key generation is irrelevant; a user rarely does it. On the other hand, signature verification is the most common operation.
+<BR>The problem with this criticism is that there are many ways to play with the test parameters, depending on the results you want. Precomputations can speed up DSA signature generation, but don&#146;t always apply. Proponents of RSA use numbers optimized to make their calculations easier; proponents of DSA use their own optimizations. In any case, computers are getting faster all the time. While there is a speed difference, it will not be noticeable in most applications.
+<DD><B>4.</B>&nbsp;&nbsp;RSA is a <I>de facto</I> standard.
+<BR>Here are two examples of this complaint. From Robert Follett, the program director of standards at IBM [570]:
+<BLOCKQUOTE>
+<BR>IBM is concerned that NIST has proposed a standard with a different digital signature scheme rather than adopting the international standard. We have been convinced by users and user organizations that the international standards using RSA will be a prerequisite to the sales of security products in the very near future.
+</BLOCKQUOTE>
+<BR>From Les Shroyer, vice president and director, corporate MIS and telecommunications, at Motorola [1444]:
+<BLOCKQUOTE>
+<BR>We must have a single, robust, politically-accepted digital signature standard that is usable throughout the world, between both U.S. and non-U.S., and Motorola and non-Motorola entities. The lack of other viable digital signature technology for the last eight years has made RSA a de facto standard.... Motorola and many other companies... have committed millions of dollars to RSA. We have concern over the interoperability and support of two different standards, as that situation will lead to added costs, delays in deployment, and complication....
+</BLOCKQUOTE>
+<BR>Many companies wanted NIST to adopt the ISO 9796, the international digital signature standard that uses RSA [762]. While this is a valid complaint, it is not a sufficient justification to make it a standard. A royalty-free standard would better serve the U.S. public interest.
+<DD><B>5.</B>&nbsp;&nbsp;The DSA selection process was not public; sufficient time for analysis has not been provided.
+<BR>First NIST claimed that they designed the DSA; then they admitted that NSA helped them. Finally, they confirmed that NSA designed the algorithm. This worries many people; the NSA doesn&#146;t inspire trust. Even so, the algorithm is public and available for analysis; and NIST extended the time for analysis and comment.
+<DD><B>6.</B>&nbsp;&nbsp;DSA may infringe on other patents.
+<BR>It may. This will be discussed in the section on patent issues.
+<DD><B>7.</B>&nbsp;&nbsp;The key size is too small.
+<BR>This was the only valid criticism of DSS. The original implementation set the modulus at 512 bits [1149]. Since the algorithm gets its security from the difficulty of computing discrete logs in that modulus, this worried most cryptographers. There have since been advances in the problem of calculating discrete logarithms in a finite field, and 512 bits is too short for long-term security (see Section 7.2). According to Brian LaMacchia and Andrew Odlyzko, &#147;...even 512-bit primes appear to offer only marginal security...&#148; [934]. In response to this criticism, NIST made the key size variable, from 512 bits to 1024 bits. Not great, but better.
+</DL>
+<P>On May 19, 1994, the standard was finally issued [1154]. The issuing statement said [542]:
+</P>
+<BLOCKQUOTE><P>This standard is applicable to all Federal departments and agencies for the protection of unclassified information.... This standard shall be used in designing and implementing public-key based signature schemes which Federal departments and agencies operate or which are operated for them under contract. Adoption and use of this standard is available to private and commercial organizations.
+</P>
+</BLOCKQUOTE><P>Before you run out and implement this standard in your next product, read the section on patent issues below.
+</P>
+<P><FONT SIZE="+1"><B><I>Description of DSA</I></B></FONT></P>
+<P>DSA is a variant of the Schnorr and ElGamal signature algorithms, and is fully described in [1154]. The algorithm uses the following parameters:
+</P>
+<BLOCKQUOTE><P><I>p</I> = a prime number <I>L</I> bits long, when <I>L</I> ranges from 512 to 1024 and is a multiple of 64. (In the original standard, the size of <I>p</I> was fixed at 512 bits [1149]. This was the source of much criticism and was changed by NIST [1154].)</P>
+<P><I>q</I> = a 160-bit prime factor of <I>p</I> &#150; 1.</P>
+<P><I>g</I> = <I>h</I><SUP>(<I>p</I>-1)/<I>q</I></SUP> mod <I>p</I>, where <I>h</I> is any number less than <I>p</I> &#150; 1 such that <I>h</I><SUP>(<I>p</I> - 1)/<I>q</I></SUP> mod <I>p</I> is greater than 1.</P>
+<P>x = a number less than <I>q</I>.</P>
+<P><I>y</I> = <I>g<SUP>x</I></SUP> mod <I>p</I>.</P>
+</BLOCKQUOTE><P>The algorithm also makes use of a one-way hash function: <I>H</I>(<I>m</I>). The standard specifies the Secure Hash Algorithm, discussed in Section 18.7.</P>
+<P>The first three parameters, <I>p, q</I>, and <I>g</I>, are public and can be common across a network of users. The private key is <I>x</I>; the public key is <I>y</I>.</P>
+<P>To sign a message, <I>m</I>:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice generates a random number, <I>k</I>, less than <I>q</I>.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice generates
+<DL>
+<DD><I>r</I> = (<I>g<SUP>k</I></SUP> mod <I>p</I>) mod <I>q</I>
+<DD><I>s</I> = (<I>k</I><SUP>-1</SUP> (<I>H</I>(<I>m</I>) &#43; <I>xr</I>)) mod <I>q</I>
+</DL>
+<BR>The parameters <I>r</I> and <I>s</I> are her signature; she sends these to Bob.
+<DD><B>(3)</B>&nbsp;&nbsp;Bob verifies the signature by computing
+<DL>
+<DD><I>w</I> = <I>s</I><SUP>-1</SUP> mod <I>q</I>
+<DD><I>u</I><SUB>1</SUB> = (<I>H</I>(<I>m</I>) * <I>w</I>) mod <I>q</I>
+<DD><I>u</I><SUB>2</SUB> = (<I>rw</I>) mod <I>q</I>
+<DD><I>v</I> = ((<I>g<SUP>u</I><SMALL>1</SMALL></SUP> * <I>y<SUP>u</I><SMALL>2</SMALL></SUP>) mod <I>p</I>) mod <I>q</I>
+</DL>
+<BR>If <I>v</I> = <I>r</I>, then the signature is verified.
+</DL>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="20-01.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="20-03.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

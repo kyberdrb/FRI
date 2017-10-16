@@ -1,0 +1,374 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Basic Protocols</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<a href="/adclick.html/CID=00000b8333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET="_blank">
+<img src="http://ad.preferences.com/image;spacedesc=NonStop_EarthWeb_468x60_ITDecisionMaker_Any&time=25814"></a>
+<!-- http://ad.preferences.com/click;spacedesc=NonStop_EarthWeb_468x60_ITDecisionMaker_Any&time=25814 -->
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=03//-->
+<!--PAGES=054-056//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="03-03.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="03-05.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>It is foolish to encrypt arbitrary strings&#151;not only those sent by untrusted third parties, but under any circumstances at all. Attacks similar to the one discussed in Section 19.3 can be mounted. Secure proof-of-identity protocols take the following, more complicated, form:
+</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice performs a computation based on some random numbers and her private key and sends the result to the host.
+<DD><B>(2)</B>&nbsp;&nbsp;The host sends Alice a different random number.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice makes some computation based on the random numbers (both the ones she generated and the one she received from the host) and her private key, and sends the result to the host.
+<DD><B>(4)</B>&nbsp;&nbsp;The host does some computation on the various numbers received from Alice and her public key to verify that she knows her private key.
+<DD><B>(5)</B>&nbsp;&nbsp;If she does, her identity is verified.
+</DL>
+<P>If Alice does not trust the host any more than the host trusts Alice, then Alice will require the host to prove its identity in the same manner.
+</P>
+<P>Step (1) might seem unnecessary and confusing, but it is required to prevent attacks against the protocol. Sections 21.1 and 21.2 mathematically describe several algorithms and protocols for proving identity. See also [935].</P>
+<P><FONT SIZE="+1"><B><I>Mutual Authentication Using the Interlock Protocol</I></B></FONT></P>
+<P>Alice and Bob are two users who want to authenticate each other. Each of them has a password that the other knows: Alice has <I>P</I><SUB>A</SUB> and Bob has <I>P</I><SUB>B</SUB>. Here&#146;s a protocol that will <I>not</I> work:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice and Bob trade public keys.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice encrypts <I>P</I><SUB>A</SUB> with Bob&#146;s public key and sends it to him.
+<DD><B>(3)</B>&nbsp;&nbsp;Bob encrypts <I>P</I><SUB>B</SUB> with Alice&#146;s public key and sends it to her.
+<DD><B>(4)</B>&nbsp;&nbsp;Alice decrypts what she received in step (2) and verifies that it is correct.
+<DD><B>(5)</B>&nbsp;&nbsp;Bob decrypts what he received in step (3) and verifies that it is correct.
+</DL>
+<P>Mallory can launch a successful man-in-the-middle attack (see Section 3.1):
+</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice and Bob trade public keys. Mallory intercepts both messages. He substitutes his public key for Bob&#146;s and sends it to Alice. Then he substitutes his public key for Alice&#146;s and sends it to Bob.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice encrypts <I>P</I><SUB>A</SUB> with &#147;Bob&#146;s&#148; public key and sends it to him. Mallory intercepts the message, decrypts <I>P</I><SUB>A</SUB> with his private key, re-encrypts it with Bob&#146;s public key and sends it on to him.
+<DD><B>(3)</B>&nbsp;&nbsp;Bob encrypts <I>P</I><SUB>B</SUB> with &#147;Alice&#146;s&#148; public key and sends it to her. Mallory intercepts the message, decrypts <I>P</I><SUB>B</SUB> with his private key, re-encrypts it with Alice&#146;s public key, and sends it on to her.
+<DD><B>(4)</B>&nbsp;&nbsp;Alice decrypts <I>P</I><SUB>B</SUB> and verifies that it is correct.
+<DD><B>(5)</B>&nbsp;&nbsp;Bob decrypts <I>P</I><SUB>A</SUB> and verifies that it is correct.
+</DL>
+<P>Alice and Bob see nothing different. However, Mallory knows both <I>P</I><SUB>A</SUB> and <I>P</I><SUB>B</SUB>.</P>
+<P>Donald Davies and Wyn Price describe how the interlock protocol (described in Section 3.1) can defeat this attack [435]. Steve Bellovin and Michael Merritt discuss ways to attack this protocol [110]. If Alice is a user and Bob is a host, Mallory can pretend to be Bob, complete the beginning steps of the protocol with Alice, and then drop the connection. True artistry demands Mallory do this by simulating line noise or network failure, but the final result is that Mallory has Alice&#146;s password. He can then connect with Bob and complete the protocol, thus getting Bob&#146;s password, too.</P>
+<P>The protocol can be modified so that Bob gives his password before Alice, under the assumption that the user&#146;s password is much more sensitive than the host&#146;s password. This falls to a more complicated attack, also described in [110].</P>
+<P><FONT SIZE="+1"><B><I>SKID</I></B></FONT></P>
+<P>SKID2 and SKID3 are symmetric cryptography identification protocols developed for RACE&#146;s RIPE project [1305] (See Section 25.7). They use a MAC (see Section 2.4) to provide security and both assume that both Alice and Bob share a secret key, <I>K</I>.</P>
+<P>SKID2 allows Bob to prove his identity to Alice. Here&#146;s the protocol:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses a random number, <I>R</I><SUB>A</SUB>. (The RIPE document specifies a 64-bit number). She sends it to Bob.
+<DD><B>(2)</B>&nbsp;&nbsp;Bob chooses a random number, <I>R</I><SUB>B</SUB>. (The RIPE document specifies a 64-bit number). He sends Alice:
+<DL>
+<DD><I>R</I><SUB>B</SUB>,H<SUB>K</SUB>(<I>R</I><SUB>A</SUB>,RB,<SUB>B</SUB>)
+</DL>
+<BR><I>H</I><SUB>K</SUB> is the MAC. (The RIPE document suggests the RIPE-MAC function&#151;see Section 18.14.) <I>B</I> is Bob&#146;s name.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice computes <I>H</I><SUB>K</SUB>(<I>R</I><SUB>A</SUB>,<I>R</I><SUB>B</SUB>,B) and compares it with what she received from Bob. If the results are identical, then Alice knows that she is communicating with Bob.
+</DL>
+<P>SKID3 provides mutual authentication between Alice and Bob. Steps (1) through (3) are identical to SKID2, and then the protocol proceeds with:
+</P>
+<DL>
+<DD><B>(4)</B>&nbsp;&nbsp;Alice sends Bob:
+<DL>
+<DD><I>H</I><SUB>K</SUB>(<I>R</I><SUB>B</SUB>,A)
+</DL>
+<BR><I>A</I> is Alice&#146;s name.
+<DD><B>(5)</B>&nbsp;&nbsp;Bob computes <I>H</I><SUB>K</SUB>(<I>R</I><SUB>B</SUB>,<I>A</I>), and compares it with what he received from Alice. If the results are identical, then Bob knows that he is communicating with Alice.
+</DL>
+<P>This protocol is not secure against a man-in-the-middle attack. In general, a man-in-the-middle attack can defeat any protocol that doesn&#146;t involve a secret of some kind.
+</P>
+<P><FONT SIZE="+1"><B><I>Message Authentication</I></B></FONT></P>
+<P>When Bob receives a message from Alice, how does he know it is authentic? If Alice signed her message, this is easy. Alice&#146;s digital signature is enough to convince anyone that the message is authentic.
+</P>
+<P>Symmetric cryptography provides some authentication. When Bob receives a message from Alice encrypted in their shared key, he knows it is from Alice. No one else knows their key. However, Bob has no way of convincing a third party of this fact. Bob can&#146;t show the message to Trent and convince him that it came from Alice. Trent can be convinced that the message came from either Alice or Bob (since no one else shared their secret key), but he has no way of knowing which one.</P>
+<P>If the message is unencrypted, Alice could also use a MAC. This also convinces Bob that the message is authentic, but has the same problems as symmetric cryptography solutions.</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="03-03.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="03-05.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

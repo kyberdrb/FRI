@@ -1,0 +1,1538 @@
+#!/bin/sh
+#
+# Install Script for UNIX Acrobat Exchange and Reader v. 3.0
+#
+# Copyright (c)1995,1996, Adobe Systems Incorporated
+# All Rights Reserved
+#
+##########################################################################
+
+echoawk ()
+{
+  echo $* | awk '{ printf "%s", $0 }'
+}
+
+echon ()
+{
+  echo -n "$*"
+}
+
+echoc ()
+{
+  echo "${*}\c"
+}
+
+##########################################################################
+
+yesno()
+{
+  msg="$1"
+  def="$2"
+  while true ; do
+    echo " "
+    $echonl "$msg"
+    read answer
+    if [ "$answer" ] ; then
+      case "$answer" in
+        y|Y|yes|YES)
+          return 0
+          ;;
+        n|N|no|NO)
+          return 1
+          ;;
+        *)
+          echo " "
+          echo "ERROR: Invalid response, expected \"yes\" or \"no\"."
+          continue
+          ;;
+      esac
+    else
+      return $def
+    fi
+  done
+}
+
+OutputLicense ()
+{
+  if [ -z "$1" ] ; then
+    return
+  fi
+
+  if [ ! -f "$1" ] ; then
+    echo " "
+    echo "ERROR: Cannot find license file ... aborting"
+    echo " "
+    exit 1
+  fi
+
+  if [ -z "$PAGER" ] || [ "`type $PAGER`" = "$PAGER not found" ] ; then
+    if [ "`type more`" != "more not found" ] ; then
+      command=more
+    elif [ "`type pg`" != "pg not found" ] ; then
+      command=pg
+    else
+      command=cat
+    fi
+  else
+    command="$PAGER"
+  fi
+
+  echo " "
+  $command "$1"
+
+  answer=
+  while [ -z "$answer" ] ; do
+    echo " "
+    echo " "
+    echo "To accept the terms and conditions of this agreement enter \"accept\"."
+    echo "To decline the terms and conditions of this agreement enter \"decline\"."
+    echo " "
+    $echonl "Do you accept the terms and conditions of this license agreement? "
+    read answer
+    ucanswer=`echo "${answer}" | tr '[a-z]' '[A-Z]'`
+    case "$ucanswer" in
+    ACCEPT)
+      ;;
+    DECLINE)
+      echo " "
+      echo "License not accepted ... aborting installation"
+      echo " "
+      exit 1
+      ;;
+    *)
+      echo " "
+      echo "ERROR: Invalid response, expected \"accept\" or \"decline\" ... try again"
+      answer=
+      ;;
+    esac
+  done
+}
+
+PrintRequiredFree()
+{
+  total=0
+  for i in $* ; do
+    if [ "$i" -a -f "$i" ] ; then
+        if [ `uname -s` = "Linux" ] ; then
+          size=`ls -lLn "$i" | ( read perm links owner group size date ; echo $size )`
+        else
+          size=`ls -lLon "$i" | ( read perm links owner size date ; echo $size )`
+        fi
+      if [ "$size" ] ; then
+        total=`expr $total + $size`
+      fi
+    fi
+  done
+
+  megs=`expr $total / 1048576 + 1`
+
+  echo " "
+  echo "This installation requires ${megs}MB of free disk space."
+}
+
+FilterPathName ()
+{
+  newpathname="$1"
+  case "$newpathname" in
+    ~*)
+      if [ -f /bin/csh -a -x /bin/csh ] ; then
+        newpathname=`/bin/csh -c "echo $newpathname"`
+      fi
+      ;;
+    ../*|./*)
+      newpathname=`pwd`/"${newpathname}"
+      ;;
+    *)
+      ;;
+  esac
+  eval newpathname=\"${newpathname}\"
+  echo "${newpathname}"
+}
+
+ExtractFiles ()
+{
+  ( cd "$1" ; tar xf "$2" )
+}
+
+InstallFiles ()
+{
+  msg="$1"
+  install="$2"
+  shift
+  shift
+
+  echo " "
+
+  for i in "$@" ; do
+    if [ "$i" ] ; then
+      if [ "$msg" ] ; then
+        $echonl "$msg"
+        msg=""
+      fi
+      ExtractFiles "$install" "$i"
+    fi
+  done
+
+  if [ -z "$msg" ] ; then
+    echo "Done"
+  fi
+}
+
+InstallBin()
+{
+  topdir="$1"
+  product="$2"
+
+  for i in "$topdir"/bin/*.sh ; do
+    if [ -f "$i" ] ; then
+      filename="$topdir"/bin/`basename "$i" .sh`
+
+      case "$product" in
+        Exchange|Reader)
+          replacement="$topdir"/"$product"
+          ;;
+        Distillr)
+          replacement="$topdir"
+          ;;
+        *)
+          echo "ERROR installing $filename, invalid product name"
+          ;;
+      esac
+
+      ed -s "$i" <<__EOF__
+        1,\$s@REPLACE_ME@$replacement@
+        w
+        q
+__EOF__
+      if [ $? != 0 ] ; then
+        echo "ERROR installing $filename"
+        continue
+      fi
+
+      chmod +x "$i"
+      if [ $? != 0 ] ; then
+        echo "ERROR installing $filename"
+        continue
+      fi
+
+      rm -f "$filename"
+      mv "$i" "$filename"
+      if [ $? != 0 ] ; then
+        echo "ERROR installing $filename"
+        continue
+      fi
+      if [ "$product" = "Exchange" ] ; then
+        if [ ! -f "$topdir/bin/acroread" ] ; then
+          ln -s "$topdir/bin/acroexch" "$topdir/bin/acroread"
+          if [ $? != 0 ] ; then
+            echo "ERROR installing Acrobat Reader symbolic link"
+          fi
+        fi
+      fi
+    fi
+  done
+}
+
+GetInstallDirectory ()
+{
+  if [ -z "$1" ] ; then
+    product=Acrobat
+  else
+    product="$1"
+  fi
+
+  var=$2
+
+  case "$product" in
+    Exchange) productName="Acrobat Exchange" ;;
+    Reader) productName="Acrobat Reader" ;;
+    Distillr) productName="Acrobat Distiller" ;;
+    *) productName="Acrobat" ;;
+  esac
+
+  defdir="/usr/local/Acrobat3"
+  case "$OSname" in
+    SunOS)
+      case "$OSrelease" in
+        4.1.3*|4.1.4*|4.1C) defdir="/usr/Acrobat3" ;;
+        5.*) defdir="/opt/Acrobat3" ;;
+      esac
+      ;;
+    HP-UX)
+      case "$OSrelease" in
+        *.09.*) defdir="/usr/Acrobat3" ;;
+        *.10.*) defdir="/opt/Acrobat3" ;;
+        *) defdir="/opt/Acrobat3" ;;
+      esac
+      ;;
+    IRIX|IRIX64)
+      defdir="/opt/Acrobat3"
+      ;;
+    AIX)
+      defdir="/usr/lpp/Acrobat3"
+      ;;
+  esac
+
+  while [ -z "$InstallDir" ] ; do
+
+    InstallDir="$defdir"
+
+    echo " "
+    $echonl "Enter installation directory for Acrobat ${Version} [${InstallDir}] "
+    read answer
+    case "$answer" in
+      "")
+        ;;
+      *)
+        InstallDir="$answer"
+        ;;
+    esac
+
+    InstallDir=`FilterPathName "$InstallDir"`
+
+    if [ ! -d "$InstallDir" ] ; then
+      echo " "
+      echo "Directory \"$InstallDir\" does not exist."
+      $echonl "Do you want to create it now? [y] "
+      read answer
+      if [ "$answer" ] ; then
+        case "$answer" in
+          y|Y|yes|YES)
+            ;;
+          n|N|no|NO)
+            InstallDir=""
+            continue
+            ;;
+          *)
+            echo " "
+            echo "ERROR: Invalid response, expected \"yes\" or \"no\"."
+            continue
+            ;;
+        esac
+      fi
+
+      mkdir -p "$InstallDir"/"$product"
+
+      if [ ! -d "$InstallDir" ] ; then
+        echo " "
+        echo "ERROR: Cannot make directory \"$InstallDir\"."
+        InstallDir=""
+        continue;
+      fi
+    fi
+
+    if ( echo foo > "$InstallDir"/AcroWriteTest ) 2> /dev/null ; then
+      rm -f "$InstallDir"/AcroWriteTest
+      break
+    else
+      echo " "
+      echo "ERROR: Cannot write to directory \"$InstallDir\"."
+      InstallDir=""
+      continue
+    fi
+  done
+
+  eval $var=\"$InstallDir\"
+}
+
+CheckSerialNumber()
+{
+  p1="^[a-zA-Z]\{3\}[0-9]\{3\}[a-zA-Z0-9]\{2\}[0-9]\{6\}-[0-9]\{3\}$"
+  p2="^[a-zA-Z]\{3\}[0-9]\{3\}[a-zA-Z0-9]\{2\}[0-9]\{6\}-[0-9]\{3\}-[0-9]\{3\}$"
+
+  if [ `expr "$1" : "$p1"` != 0 ] \
+  || [ `expr "$1" : "$p2"` != 0 ] ; then
+    return 0
+  fi
+
+  return 1
+}
+
+GetSerialNumber()
+{
+  dir="$2"
+  file="$2/${1}Data"
+
+  if [ -z "$AcroSerNum" ] ; then
+    while true ; do
+      echo " "
+      $echonl "Enter product serial number: "
+      read AcroSerNum
+      if CheckSerialNumber "$AcroSerNum" ; then
+        break
+      fi
+      echo " "
+      echo "ERROR: Invalid serial number ... try again"
+    done
+  fi
+
+  if [ -z "$AcroCompName" ] ; then
+    echo " "
+    $echonl "Enter company name: "
+    read AcroCompName
+  fi
+
+  if [ ! -d "$dir" ] ; then
+    mkdir -p "$dir"
+  fi
+
+  rm -f "$file"
+  echo "serialNumber:$AcroSerNum" > "$file"
+  echo "companyName:$AcroCompName" >> "$file"
+}
+
+GetDistRes()
+{
+  if [ -f "$1" ] ; then
+    DoDistRes="remove"
+    return
+  fi
+  DoDistRes="modify"
+  echo ""
+  echo "Enter a colon-separated path of directories where the application"
+  echo "should search for PostScript Resources, such as fonts, at your site."
+  echo "The following recommended directories are included automatically and"
+  echo "need not be specified."
+  echo ""
+  echo "   $2:$3"
+  echo ""
+  echo "Enter additional directories separated by a colon."
+  $echonl "[Press Return to accept the recommended directories]: "
+  read answer
+  if [ "$answer" ] ; then
+    DistRes="$2:$answer:$3"
+  else
+    DistRes="$2:$3"
+  fi
+}
+
+GetDistLog()
+{
+  if [ -f "$1" ] ; then
+    DoDistLog="remove"
+    return
+  fi
+  DoDistLog="modify"
+  echo ""
+  echo "Enter a default directory for the Acrobat Distiller Daemon log"
+  $echonl "and config files such as /tmp or "'$HOME'" [$2]: "
+  read answer
+   if [ "$answer" ] ; then
+    DistLog="$answer"
+  else
+    DistLog="$2"
+  fi
+}
+
+ModifyDistCustom()
+{
+  filename="$3"
+  modfile="$filename".sh
+  replace="$2"
+  if [ "$1" = "remove" ] ; then
+    rm -f $modfile
+    return
+  fi
+  ed -s "$modfile" <<__EOF__
+        1,\$s@REPLACE_ME@$replace@
+        w
+        q
+__EOF__
+  if [ $? != 0 ] ; then echo "ERROR installing $filename"; fi
+  mv "$modfile" "$filename"
+  if [ $? != 0 ] ; then echo "ERROR installing $filename"; fi
+}
+
+InstallDistiller()
+{
+  DistConfig="$1"
+  DistPlatformTar="$2"
+
+  OutputLicense "$AcroLicense"
+  AcroLicense=""
+
+  PrintRequiredFree "$DistTar" "$DistPlatformTar"
+
+  if [ -z "$DistInstallDir" ] ; then
+    GetInstallDirectory Distillr DistInstallDir
+  fi
+
+  GetSerialNumber Distillr "$DistInstallDir/Distillr/$DistConfig"
+
+  GetDistRes    "$DistInstallDir/Distillr/Xtras/ACRO_RES_DIR"  '$HOME/psres' \
+    '$ACRO_TOPLEVEL_DIR/$ACRO_PRODUCT/Xtras:$ACRO_TOPLEVEL_DIR/Fonts:/usr/psres'
+  GetDistLog    "$DistInstallDir/Distillr/Xtras/Distill.upr" "/tmp"
+
+  InstallFiles "Installing platform independent files ... " \
+    "$DistInstallDir" "$DistTar"
+  InstallFiles "Installing platform dependent files ... " \
+    "$DistInstallDir" \
+    "$DistPlatformTar"
+
+  InstallBin "$DistInstallDir" Distillr
+  ModifyDistCustom "$DoDistRes" "$DistRes" \
+                   "$DistInstallDir/Distillr/Xtras/ACRO_RES_DIR"
+  ModifyDistCustom "$DoDistLog" "$DistLog" \
+                   "$DistInstallDir/Distillr/Xtras/Distill.upr"
+  DistTar=""
+}
+
+InstallReader()
+{
+  ReadConfig="$1"
+  ReadPlatformTar="$2"
+  SearchPlatformTar="$3"
+  CustomPlatformTar="$4"
+
+  OutputLicense "$ReadLicense"
+  ReadLicense=""
+
+  PrintRequiredFree "$ReadTar" "$SearchTar" "$CustomTar" \
+    "$ReadPlatformTar" "$SearchPlatformTar" "$CustomPlatformTar"
+
+  if [ -z "$ReadInstallDir" ] ; then
+    GetInstallDirectory Reader ReadInstallDir
+  fi
+
+  InstallFiles "Installing platform independent files ... " \
+    "$ReadInstallDir" "$ReadTar" "$SearchTar" "$CustomTar"
+  InstallFiles "Installing platform dependent files ... " \
+    "$ReadInstallDir" \
+    "$ReadPlatformTar" "$SearchPlatformTar" "$CustomPlatformTar"
+  InstallBin "$ReadInstallDir" Reader
+
+  ReadTar=""
+  SearchTar=""
+  CustomTar=""
+}
+
+
+InstallExchange()
+{
+  ExchConfig="$1"
+  ExchPlatformTar="$2"
+  SearchPlatformTar="$3"
+  CustomPlatformTar="$4"
+
+  OutputLicense "$AcroLicense"
+  AcroLicense=""
+
+  PrintRequiredFree "$ExchTar $SearchTar $CustomTar" \
+    "$ExchPlatformTar" "$SearchPlatformTar" "$CustomPlatformTar"
+
+  if [ -z "$ExchInstallDir" ] ; then
+    GetInstallDirectory Exchange ExchInstallDir
+  fi
+
+  GetSerialNumber AcroExch "$ExchInstallDir/Exchange/$ExchConfig"
+
+  InstallFiles "Installing platform independent files ... " \
+    "$ExchInstallDir" "$ExchTar" "$SearchTar" "$CustomTar"
+  InstallFiles "Installing platform dependent files ... " \
+    "$ExchInstallDir" \
+    "$ExchPlatformTar" "$SearchPlatformTar" "$CustomPlatformTar"
+  InstallBin "$ExchInstallDir" Exchange
+
+  ExchTar=""
+  SearchTar=""
+  CustomTar=""
+}
+
+##############################################################
+
+#
+# Initialization:
+#
+
+umask 022
+
+ScriptName=`basename $0`
+CurrentDirectory=`pwd`
+ScriptDirectory=`dirname $0`
+AcroSerNum=""
+AcroCompName=""
+case "${ScriptDirectory}" in
+  /*) ;;
+  .) ScriptDirectory="$CurrentDirectory" ;;
+  *) ScriptDirectory="$CurrentDirectory"/"$ScriptDirectory" ;;
+esac
+
+if [ "`type uname`" != "uname not found" ] ; then
+  OSname=`uname -s`
+  if [ "$OSname" = "AIX" ] ; then
+    OSrelease=`uname -a | ( read name host minor major foo ; echo $major.$minor )`
+  else
+    OSrelease=`uname -r`
+  fi
+else
+  OSname=unknown
+  OSrelease=unknown
+fi
+
+if [ `echo "x\c"` = "x" ] ; then
+  echonl=echoc
+else
+  echonl=echon
+fi
+
+Version=3.01
+
+#
+# Get the filenames:
+#
+
+for i in ${ScriptDirectory}/* ${ScriptDirectory}/../COMMON/* ; do
+  if [ -f "$i" ] ; then
+    case $i in
+      */licread.txt*|*/LICREAD.TXT*)
+        ReadLicense="$i"
+        ;;
+      */licacro.txt*|*/LICACRO.TXT*)
+        AcroLicense="$i"
+        ;;
+      */read.tar*|*/READ.TAR*)
+        ReadTar="$i"
+        ;;
+      */exch.tar*|*/EXCH.TAR*)
+        ExchTar="$i"
+        ;;
+      */search.tar*|*/SEARCH.TAR*)
+        SearchTar="$i"
+        ;;
+      */custom.tar*|*/CUSTOM.TAR*)
+        CustomTar="$i"
+        ;;
+      */dist.tar*|*/DIST.TAR*)
+        DistTar="$i"
+        ;;
+      */ssole.tar*|*/SSOLE.TAR*)
+        ExchSparcSolarisTar="$i"
+        ;;
+      */ssolr.tar*|*/SSOLR.TAR*)
+        ReadSparcSolarisTar="$i"
+        ;;
+      */ssols.tar*|*/SSOLS.TAR*)
+        SearchSparcSolarisTar="$i"
+        ;;
+      */ssolc.tar*|*/SSOLC.TAR*)
+        CustomSparcSolarisTar="$i"
+        ;;
+      */ssold.tar*|*/SSOLD.TAR*)
+        DistSparcSolarisTar="$i"
+        ;;
+      */ssune.tar*|*/SSUNE.TAR*)
+        ExchSparcSunTar="$i"
+        ;;
+      */ssunr.tar*|*/SSUNR.TAR*)
+        ReadSparcSunTar="$i"
+        ;;
+      */ssuns.tar*|*/SSUNS.TAR*)
+        SearchSparcSunTar="$i"
+        ;;
+      */ssunc.tar*|*/SSUNC.TAR*)
+        CustomSparcSunTar="$i"
+        ;;
+      */ssund.tar*|*/SSUND.TAR*)
+        DistSparcSunTar="$i"
+        ;;
+      */hpuxe.tar*|*/HPUXE.TAR*)
+        ExchHppaHpuxTar="$i"
+        ;;
+      */hpuxr.tar*|*/HPUXR.TAR*)
+        ReadHppaHpuxTar="$i"
+        ;;
+      */hpuxs.tar*|*/HPUXS.TAR*)
+        SearchHppaHpuxTar="$i"
+        ;;
+      */hpuxc.tar*|*/HPUXC.TAR*)
+        CustomHppaHpuxTar="$i"
+        ;;
+      */hpuxd.tar*|*/HPUXD.TAR*)
+        DistHppaHpuxTar="$i"
+        ;;
+      */aixe.tar*|*/AIXE.TAR*)
+        ExchRS6000AIXTar="$i"
+        ;;
+      */aixr.tar*|*/AIXR.TAR*)
+        ReadRS6000AIXTar="$i"
+        ;;
+      */aixs.tar*|*/AIXS.TAR*)
+        SearchRS6000AIXTar="$i"
+        ;;
+      */aixc.tar*|*/AIXC.TAR*)
+        CustomRS6000AIXTar="$i"
+        ;;
+      */aixd.tar*|*/AIXD.TAR*)
+        DistRS6000AIXTar="$i"
+        ;;
+      */irixe.tar*|*/IRIXE.TAR*)
+        ExchMIPSIrixTar="$i"
+        ;;
+      */irixr.tar*|*/IRIXR.TAR*)
+        ReadMIPSIrixTar="$i"
+        ;;
+      */irixs.tar*|*/IRIXS.TAR*)
+        SearchMIPSIrixTar="$i"
+        ;;
+      */irixc.tar*|*/IRIXC.TAR*)
+        CustomMIPSIrixTar="$i"
+        ;;
+      */irixd.tar*|*/IRIXD.TAR*)
+        DistMIPSIrixTar="$i"
+        ;;
+      */aosfe.tar*|*/AOSFE.TAR*)
+        ExchAlphaOSFTar="$i"
+        ;;
+      */aosfr.tar*|*/AOSFR.TAR*)
+        ReadAlphaOSFTar="$i"
+        ;;
+      */aosfs.tar*|*/AOSFS.TAR*)
+        SearchAlphaOSFTar="$i"
+        ;;
+      */aosfc.tar*|*/AOSFC.TAR*)
+        CustomAlphaOSFTar="$i"
+        ;;
+      */aosfd.tar*|*/AOSFD.TAR*)
+        DistAlphaOSFTar="$i"
+        ;;
+      */ibsdie.tar*|*/IBSDIE.TAR*)
+        ExchIntelBSDITar="$i"
+        ;;
+      */ibsdir.tar*|*/IBSDIR.TAR*)
+        ReadIntelBSDITar="$i"
+        ;;
+      */ibsdis.tar*|*/IBSDIS.TAR*)
+        SearchIntelBSDITar="$i"
+        ;;
+      */ibsdic.tar*|*/IBSDIC.TAR*)
+        CustomIntelBSDITar="$i"
+        ;;
+      */ibsdid.tar*|*/IBSDID.TAR*)
+        DistIntelBSDITar="$i"
+        ;;
+      */ilinxe.tar*|*/ILINXE.TAR*)
+        ExchIntelLinuxTar="$i"
+        ;;
+      */ilinxr.tar*|*/ILINXR.TAR*)
+        ReadIntelLinuxTar="$i"
+        ;;
+      */ilinxs.tar*|*/ILINXS.TAR*)
+        SearchIntelLinuxTar="$i"
+        ;;
+      */ilinxc.tar*|*/ILINXC.TAR*)
+        CustomIntelLinuxTar="$i"
+        ;;
+      */ilinxd.tar*|*/ILINXD.TAR*)
+        DistIntelLinuxTar="$i"
+        ;;
+      */isole.tar*|*/ISOLE.TAR*)
+        ExchIntelSolarisTar="$i"
+        ;;
+      */isolr.tar*|*/ISOLR.TAR*)
+        ReadIntelSolarisTar="$i"
+        ;;
+      */isols.tar*|*/ISOLS.TAR*)
+        SearchIntelSolarisTar="$i"
+        ;;
+      */isolc.tar*|*/ISOLC.TAR*)
+        CustomIntelSolarisTar="$i"
+        ;;
+      */isold.tar*|*/ISOLD.TAR*)
+        DistIntelSolarisTar="$i"
+        ;;
+      */psole.tar*|*/PSOLE.TAR*)
+        ExchPPCSolarisTar="$i"
+        ;;
+      */psolr.tar*|*/PSOLR.TAR*)
+        ReadPPCSolarisTar="$i"
+        ;;
+      */psols.tar*|*/PSOLS.TAR*)
+        SearchPPCSolarisTar="$i"
+        ;;
+      */psolc.tar*|*/PSOLC.TAR*)
+        CustomPPCSolarisTar="$i"
+        ;;
+      */psold.tar*|*/PSOLD.TAR*)
+        DistPPCSolarisTar="$i"
+        ;;
+    esac
+  fi
+done
+
+
+#
+# Validate the configurations:
+#
+
+NumConfigs=0
+
+if [ "$ExchTar" -a "$DistTar" -a "$AcroLicense" ] ; then
+  if [ "$ExchSparcSolarisTar" -a "$DistSparcSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroSparcSolarisNum=$NumConfigs
+  fi
+  if [ "$ExchSparcSunTar" -a "$DistSparcSunTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroSparcSunNum=$NumConfigs
+  fi
+  if [ "$ExchHppaHpuxTar" -a "$DistHppaHpuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroHppaHpuxNum=$NumConfigs
+  fi
+  if [ "$ExchRS6000AIXTar" -a "$DistRS6000AIXTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroRS6000AIXNum=$NumConfigs
+  fi
+  if [ "$ExchMIPSIrixTar" -a "$DistMIPSIrixTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroMIPSIrixNum=$NumConfigs
+  fi
+  if [ "$ExchAlphaOSFTar" -a "$DistAlphaOSFTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroAlphaOSFNum=$NumConfigs
+  fi
+  if [ "$ExchIntelBSDITar" -a "$DistIntelBSDITar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroIntelBSDINum=$NumConfigs
+  fi
+  if [ "$ExchIntelLinuxTar" -a "$DistIntelLinuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroIntelLinuxNum=$NumConfigs
+  fi
+  if [ "$ExchIntelSolarisTar" -a "$DistIntelSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroIntelSolarisNum=$NumConfigs
+  fi
+  if [ "$ExchPPCSolarisTar" -a "$DistPPCSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    AcroPPCSolarisNum=$NumConfigs
+  fi
+fi
+
+if [ "$ExchTar" -a "$AcroLicense" ] ; then
+  if [ "$ExchSparcSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchSparcSolarisNum=$NumConfigs
+  fi
+  if [ "$ExchSparcSunTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchSparcSunNum=$NumConfigs
+  fi
+  if [ "$ExchHppaHpuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchHppaHpuxNum=$NumConfigs
+  fi
+  if [ "$ExchMIPSIrixTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchMIPSIrixNum=$NumConfigs
+  fi
+  if [ "$ExchRS6000AIXTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchRS6000AIXNum=$NumConfigs
+  fi
+  if [ "$ExchAlphaOSFTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchAlphaOSFNum=$NumConfigs
+  fi
+  if [ "$ExchIntelBSDITar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchIntelBSDINum=$NumConfigs
+  fi
+  if [ "$ExchIntelLinuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchIntelLinuxNum=$NumConfigs
+  fi
+  if [ "$ExchIntelSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchIntelSolarisNum=$NumConfigs
+  fi
+  if [ "$ExchPPCSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ExchPPCSolarisNum=$NumConfigs
+  fi
+fi
+
+if [ "$ReadTar" -a "$ReadLicense" ] ; then
+  if [ "$ReadSparcSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadSparcSolarisNum=$NumConfigs
+  fi
+  if [ "$ReadSparcSunTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadSparcSunNum=$NumConfigs
+  fi
+  if [ "$ReadHppaHpuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadHppaHpuxNum=$NumConfigs
+  fi
+  if [ "$ReadMIPSIrixTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadMIPSIrixNum=$NumConfigs
+  fi
+  if [ "$ReadRS6000AIXTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadRS6000AIXNum=$NumConfigs
+  fi
+  if [ "$ReadAlphaOSFTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadAlphaOSFNum=$NumConfigs
+  fi
+  if [ "$ReadIntelBSDITar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadIntelBSDINum=$NumConfigs
+  fi
+  if [ "$ReadIntelLinuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadIntelLinuxNum=$NumConfigs
+  fi
+  if [ "$ReadIntelSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadIntelSolarisNum=$NumConfigs
+  fi
+  if [ "$ReadPPCSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    ReadPPCSolarisNum=$NumConfigs
+  fi
+fi
+
+if [ "$DistTar" -a "$AcroLicense" ] ; then
+  if [ "$DistSparcSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistSparcSolarisNum=$NumConfigs
+  fi
+  if [ "$DistSparcSunTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistSparcSunNum=$NumConfigs
+  fi
+  if [ "$DistHppaHpuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistHppaHpuxNum=$NumConfigs
+  fi
+  if [ "$DistRS6000AIXTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistRS6000AIXNum=$NumConfigs
+  fi
+  if [ "$DistMIPSIrixTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistMIPSIrixNum=$NumConfigs
+  fi
+  if [ "$DistAlphaOSFTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistAlphaOSFNum=$NumConfigs
+  fi
+  if [ "$DistIntelBSDITar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistIntelBSDINum=$NumConfigs
+  fi
+  if [ "$DistIntelLinuxTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistIntelLinuxNum=$NumConfigs
+  fi
+  if [ "$DistIntelSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistIntelSolarisNum=$NumConfigs
+  fi
+  if [ "$DistPPCSolarisTar" ] ; then
+    NumConfigs=`expr $NumConfigs + 1`
+    DistPPCSolarisNum=$NumConfigs
+  fi
+fi
+
+if [ "$NumConfigs" = "0" ] ; then
+  echo " "
+  echo "ERROR: No configurations found ... aborting"
+  echo " "
+  exit 1
+elif [ "$NumConfigs" = "1" ] ; then
+  SingleConfig=true
+fi
+
+NumConfigs=`expr $NumConfigs + 1`
+ExitNum=$NumConfigs
+
+
+#
+# Check if there is a configuration supported by this OS.
+#
+
+case "$OSname" in
+  SunOS)
+    case "$OSrelease" in
+      4.1.3*|4.1.4*|4.1C)
+        AcroDefaultNum="$AcroSparcSunNum"
+        ExchDefaultNum="$ExchSparcSunNum"
+        ReadDefaultNum="$ReadSparcSunNum"
+        DistDefaultNum="$DistSparcSunNum"
+        DefaultName="SPARC/SunOS 4.1.3 and later"
+        ;;
+      5.1|5.1.*|5.2|5.2.*)
+        ;;
+      5.*)
+        MachArch=`uname -p`
+        case "$MachArch" in
+          sparc)
+            AcroDefaultNum="$AcroSparcSolarisNum"
+            ExchDefaultNum="$ExchSparcSolarisNum"
+            ReadDefaultNum="$ReadSparcSolarisNum"
+            DistDefaultNum="$DistSparcSolarisNum"
+            DefaultName="SPARC/Solaris 2.x"
+            ;;
+          intel)
+            AcroDefaultNum="$AcroIntelSolarisNum"
+            ExchDefaultNum="$ExchIntelSolarisNum"
+            ReadDefaultNum="$ReadIntelSolarisNum"
+            DistDefaultNum="$DistIntelSolarisNum"
+            DefaultName="Intel/Solaris 2.x"
+            ;;
+          ppc)
+            AcroDefaultNum="$AcroPPCSolarisNum"
+            ExchDefaultNum="$ExchPPCSolarisNum"
+            ReadDefaultNum="$ReadPPCSolarisNum"
+            DistDefaultNum="$DistPPCSolarisNum"
+            DefaultName="PPC/Solaris 2.x"
+            ;;
+        esac
+        ;;
+    esac
+    ;;
+  HP-UX)
+    case "$OSrelease" in
+      *.09.*|*.10.*)
+        AcroDefaultNum="$AcroHppaHpuxNum"
+        ExchDefaultNum="$ExchHppaHpuxNum"
+        ReadDefaultNum="$ReadHppaHpuxNum"
+        DistDefaultNum="$DistHppaHpuxNum"
+        DefaultName="HP-UX"
+        ;;
+    esac
+    ;;
+  AIX)
+    case "$OSrelease" in
+      4.1|4.2)
+        AcroDefaultNum="$AcroRS6000AIXNum"
+        ExchDefaultNum="$ExchRS6000AIXNum"
+        ReadDefaultNum="$ReadRS6000AIXNum"
+        DistDefaultNum="$DistRS6000AIXNum"
+        DefaultName="AIX"
+      ;;
+    esac
+    ;;
+  IRIX|IRIX64)
+    case "$OSrelease" in
+      5.3|6.*)
+        AcroDefaultNum="$AcroIPSIrixNum"
+        ExchDefaultNum="$ExchMIPSIrixNum"
+        ReadDefaultNum="$ReadMIPSIrixNum"
+        DistDefaultNum="$DistMIPSIrixNum"
+        DefaultName="MIPS/IRIX"
+      ;;
+    esac
+    ;;
+  OSF1)
+    AcroDefaultNum="$AcroAlphaOSFNum"
+    ExchDefaultNum="$ExchAlphaOSFNum"
+    ReadDefaultNum="$ReadAlphaOSFNum"
+    DistDefaultNum="$DistAlphaOSFNum"
+    DefaultName="DEC Alpha/OSF1"
+    ;;
+  BSDI)
+    AcroDefaultNum="$AcroIntelBSDINum"
+    ExchDefaultNum="$ExchIntelBSDINum"
+    ReadDefaultNum="$ReadIntelBSDINum"
+    DistDefaultNum="$DistIntelBSDINum"
+    DefaultName="Intel/BSDI"
+    ;;
+  Linux)
+    AcroDefaultNum="$AcroIntelLinuxNum"
+    ExchDefaultNum="$ExchIntelLinuxNum"
+    ReadDefaultNum="$ReadIntelLinuxNum"
+    DistDefaultNum="$DistIntelLinuxNum"
+    DefaultName="Intel/Linux"
+    ;;
+esac
+
+if [ -z "$ExchDefaultNum" -a -z "$ReadDefaultNum" -a -z "$DistDefaultNum" ] ; then
+  echo ""
+  echo "WARNING: The chosen configuration will not run on your current platform ($OSname/$OSrelease)."
+  if yesno "Continue installation? [n] " 1 ; then
+    :
+  else
+    exit 1
+  fi
+fi
+
+
+#
+# If multiple confurations, get the default configuration
+#
+
+if [ -z "$SingleConfig" ] ; then
+  if [ "$AcroDefaultNum" ] ; then
+    if yesno "Install default configuration, Acrobat ${Version} for $DefaultName? [y] " 0 ; then
+      DefaultConfig="$AcroDefaultNum"
+    fi
+  elif [ "$ExchDefaultNum" ] ; then
+    if yesno "Install default configuration, Acrobat Exchange ${Version} for $DefaultName? [y] " 0 ; then
+      DefaultConfig="$ExchDefaultNum"
+    fi
+  elif [ "$ReadDefaultNum" ] ; then
+    if yesno "Install default configuration, Acrobat Reader ${Version} for $DefaultName? [y] " 0 ; then
+      DefaultConfig="$ReadDefaultNum"
+    fi
+  elif [ "$DistDefaultNum" ] ; then
+    if yesno "Install default configuration, Acrobat Distiller ${Version} for $DefaultName? [yes] " 0 ; then
+      DefaultConfig="$DistDefaultNum"
+    fi
+  fi
+fi
+
+
+#
+# If a single configuration available the loop will be executed once
+# otherwise it will ask for each configuration to install
+#
+
+while [ "$NumConfigs" -gt 1 ] ; do
+
+  #
+  # If multiple configuration ask for which to install
+  #
+
+  if [ "$SingleConfig" ] ; then
+
+    ConfigNum=1
+
+  elif [ "$DefaultConfig" ] ; then
+
+    ConfigNum="$DefaultConfig"
+
+  else
+
+    #
+    # Display multiple configurations
+    #
+
+    echo " "
+    echo "The following configurations are available for installation:"
+    echo " "
+
+    if [ "$AcroSparcSolarisNum" ] ; then
+      echo "  ${AcroSparcSolarisNum}. Acrobat ${Version} for SPARC/Solaris 2.x"
+    fi
+    if [ "$AcroSparcSunNum" ] ; then
+      echo "  ${AcroSparcSunNum}. Acrobat ${Version} for SPARC/SunOS 4.1.3"
+    fi
+    if [ "$AcroHppaHpuxNum" ] ; then
+      echo "  ${AcroHppaHpuxNum}. Acrobat ${Version} for HP-UX"
+    fi
+    if [ "$AcroRS6000AIXNum" ] ; then
+      echo "  ${AcroRS6000AIXNum}. Acrobat ${Version} for AIX"
+    fi
+    if [ "$AcroMIPSIrixNum" ] ; then
+      echo "  ${AcroMIPSIrixNum}. Acrobat ${Version} for IRIX"
+    fi
+    if [ "$AcroAlphaOSFNum" ] ; then
+      echo "  ${AcroAlphaOSFNum}. Acrobat ${Version} for Alpha/OSF1"
+    fi
+    if [ "$AcroIntelBSDINum" ] ; then
+      echo "  ${AcroIntelBSDINum}. Acrobat ${Version} for Intel/BSDI"
+    fi
+    if [ "$AcroIntelLinuxNum" ] ; then
+      echo "  ${AcroIntelLinuxNum}. Acrobat ${Version} for Intel/Linux"
+    fi
+    if [ "$AcroIntelSolarisNum" ] ; then
+      echo "  ${AcroIntelSolarisNum}. Acrobat ${Version} for Intel/Solaris 2.x"
+    fi
+    if [ "$AcroPPCSolarisNum" ] ; then
+      echo "  ${AcroPPCSolarisNum}. Acrobat ${Version} for PPC/Solaris 2.x"
+    fi
+    if [ "$ExchSparcSolarisNum" ] ; then
+      echo "  ${ExchSparcSolarisNum}. Acrobat Exchange ${Version} for SPARC/Solaris 2.x"
+    fi
+    if [ "$ExchSparcSunNum" ] ; then
+      echo "  ${ExchSparcSunNum}. Acrobat Exchange ${Version} for SPARC/SunOS 4.1.3 and later"
+    fi
+    if [ "$ExchHppaHpuxNum" ] ; then
+      echo "  ${ExchHppaHpuxNum}. Acrobat Exchange ${Version} for HP-UX"
+    fi
+    if [ "$ExchMIPSIrixNum" ] ; then
+      echo "  ${ExchMIPSIrixNum}. Acrobat Exchange ${Version} for IRIX 5.3/6.x"
+    fi
+    if [ "$ExchRS6000AIXNum" ] ; then
+      echo "  ${ExchRS6000AIXNum}. Acrobat Exchange ${Version} for AIX 4.x"
+    fi
+    if [ "$ExchAlphaOSFNum" ] ; then
+      echo "  ${ExchAlphaOSFNum}. Acrobat Exchange ${Version} for DEC Alpha/OSF1"
+    fi
+    if [ "$ExchIntelBSDINum" ] ; then
+      echo "  ${ExchIntelBSDINum}. Acrobat Exchange ${Version} for Intel/BSDI"
+    fi
+    if [ "$ExchIntelLinuxNum" ] ; then
+      echo "  ${ExchIntelLinuxNum}. Acrobat Exchange ${Version} for Intel/Linux"
+    fi
+    if [ "$ExchIntelSolarisNum" ] ; then
+      echo "  ${ExchIntelSolarisNum}. Acrobat Exchange ${Version} for Intel/Solaris 2.x"
+    fi
+    if [ "$ExchPPCSolarisNum" ] ; then
+      echo "  ${ExchPPCSolarisNum}. Acrobat Exchange ${Version} for PPC/Solaris 2.x"
+    fi
+
+    if [ "$ReadSparcSolarisNum" ] ; then
+        echo "  ${ReadSparcSolarisNum}. Acrobat Reader ${Version} for SPARC/Solaris 2.x"
+    fi
+    if [ "$ReadSparcSunNum" ] ; then
+        echo "  ${ReadSparcSunNum}. Acrobat Reader ${Version} for SPARC/SunOS 4.1.3 and later"
+    fi
+    if [ "$ReadHppaHpuxNum" ] ; then
+        echo "  ${ReadHppaHpuxNum}. Acrobat Reader ${Version} for HP-UX"
+    fi
+    if [ "$ReadMIPSIrixNum" ] ; then
+      echo "  ${ReadMIPSIrixNum}. Acrobat Reader ${Version} for IRIX 5.3/6.x"
+    fi
+    if [ "$ReadRS6000AIXNum" ] ; then
+      echo "  ${ReadRS6000AIXNum}. Acrobat Reader ${Version} for AIX 4.x"
+    fi
+    if [ "$ReadAlphaOSFNum" ] ; then
+      echo "  ${ReadAlphaOSFNum}. Acrobat Reader ${Version} for DEC Alpha/OSF1"
+    fi
+    if [ "$ReadIntelBSDINum" ] ; then
+      echo "  ${ReadIntelBSDINum}. Acrobat Reader ${Version} for Intel/BSDI"
+    fi
+    if [ "$ReadIntelLinuxNum" ] ; then
+      echo "  ${ReadIntelLinuxNum}. Acrobat Reader ${Version} for Intel/Linux"
+    fi
+    if [ "$ReadIntelSolarisNum" ] ; then
+      echo "  ${ReadIntelSolarisNum}. Acrobat Reader ${Version} for Intel/Solaris 2.x"
+    fi
+    if [ "$ReadPPCSolarisNum" ] ; then
+      echo "  ${ReadPPCSolarisNum}. Acrobat Reader ${Version} for PPC/Solaris 2.x"
+    fi
+
+    if [ "$DistSparcSolarisNum" ] ; then
+        echo "  ${DistSparcSolarisNum}. Acrobat Distiller ${Version} for SPARC/Solaris 2.x"
+    fi
+    if [ "$DistSparcSunNum" ] ; then
+        echo "  ${DistSparcSunNum}. Acrobat Distiller ${Version} for SPARC/SunOS 4.1.3 and later"
+    fi
+    if [ "$DistHppaHpuxNum" ] ; then
+        echo "  ${DistHppaHpuxNum}. Acrobat Distiller ${Version} for HP-UX"
+    fi
+    if [ "$DistMIPSIrixNum" ] ; then
+      echo "  ${DistMIPSIrixNum}. Acrobat Distiller ${Version} for IRIX 5.3/6.x"
+    fi
+    if [ "$DistRS6000AIXNum" ] ; then
+      echo "  ${DistRS6000AIXNum}. Acrobat Distiller ${Version} for AIX 4.x"
+    fi
+    if [ "$DistAlphaOSFNum" ] ; then
+      echo "  ${DistAlphaOSFNum}. Acrobat Distiller ${Version} for DEC Alpha/OSF1"
+    fi
+    if [ "$DistIntelBSDINum" ] ; then
+      echo "  ${DistIntelBSDINum}. Acrobat Distiller ${Version} for Intel/BSDI"
+    fi
+    if [ "$DistIntelLinuxNum" ] ; then
+      echo "  ${DistIntelLinuxNum}. Acrobat Distiller ${Version} for Intel/Linux"
+    fi
+    if [ "$DistIntelSolarisNum" ] ; then
+      echo "  ${DistIntelSolarisNum}. Acrobat Distiller ${Version} for Intel/Solaris"
+    fi
+    if [ "$DistPPCSolarisNum" ] ; then
+      echo "  ${DistPPCSolarisNum}. Acrobat Distiller ${Version} for Power PC/Solaris"
+    fi
+
+    if [ "$ExitNum" ] ; then
+        echo "  ${ExitNum}. Exit Acrobat installation"
+    fi
+
+    echo " "
+    $echonl "Enter the configuration number to install: "
+    read ConfigNum
+
+  fi
+
+
+  #
+  # Install the configuration
+  #
+
+  if [ -z "$ConfigNum" ] ; then
+
+    echo " "
+    echo "ERROR: Invalid response ... try again"
+    continue
+
+  elif [ "$ConfigNum" = "$AcroSparcSolarisNum" ] ; then
+    InstallExchange sparcsolaris "$ExchSparcSolarisTar" \
+      "$SearchSparcSolarisTar" "$CustomSparcSolarisTar"
+    InstallDistiller sparcsolaris "$DistSparcSolarisTar"
+    DistSparcSolarisTar=""
+    ExchSparcSolarisTar=""
+    AcroSparcSolarisTar=""
+
+  elif [ "$ConfigNum" = "$AcroSparcSunNum" ] ; then
+    InstallExchange sparcsun "$ExchSparcSunTar" \
+      "$SearchSparcSunTar" "$CustomSparcSunTar"
+    InstallDistiller sparcsun "$DistSparcSunTar"
+    DistSparcSunTar=""
+    ExchSparcSunTar=""
+    AcroSparcSunTar=""
+
+  elif [ "$ConfigNum" = "$AcroHppaHpuxNum" ] ; then
+    InstallExchange hppahpux "$ExchHppaHpuxTar" \
+      "$SearchHppaHpuxTar" "$CustomHppaHpuxTar"
+    InstallDistiller hppahpux "$DistHppaHpuxTar"
+    DistHppaHpuxTar=""
+    ExchHppaHpuxTar=""
+    AcroHppaHpuxTar=""
+
+  elif [ "$ConfigNum" = "$AcroRS6000AIXNum" ] ; then
+    InstallExchange rs6000aix "$ExchRS6000AIXTar" \
+      "$SearchRS6000AIXTar" "$CustomRS6000AIXTar"
+    InstallDistiller rs6000aix "$DistRS6000AIXTar"
+    DistRS6000AIXTar=""
+    ExchRS6000AIXTar=""
+    AcroRS6000AIXTar=""
+
+  elif [ "$ConfigNum" = "$AcroMIPSIrixNum" ] ; then
+    InstallExchange mipsirix "$ExchMIPSIrixTar" \
+      "$SearchMIPSIrixTar" "$CustomMIPSIrixTar"
+    InstallDistiller mipsirix "$DistMIPSIrixTar"
+    DistMIPSIrixTar=""
+    ExchMIPSIrixTar=""
+    AcroMIPSIrixTar=""
+
+  elif [ "$ConfigNum" = "$AcroAlphaOSFNum" ] ; then
+    InstallExchange alphaosf "$ExchAlphaOSFTar" \
+      "$SearchAlphaOSFTar" "$CustomAlphaOSFTar"
+    InstallDistiller alphaosf "$DistAlphaOSFTar"
+    DistAlphaOSFTar=""
+    ExchAlphaOSFTar=""
+    AcroAlphaOSFTar=""
+
+  elif [ "$ConfigNum" = "$AcroIntelBSDINum" ] ; then
+    InstallExchange intelbsdi "$ExchIntelBSDITar" \
+      "$SearchIntelBSDITar" "$CustomIntelBSDITar"
+    InstallDistiller intelbsdi "$DistIntelBSDITar"
+    DistIntelBSDITar=""
+    ExchIntelBSDITar=""
+    AcroIntelBSDITar=""
+
+  elif [ "$ConfigNum" = "$AcroIntelLinuxNum" ] ; then
+    InstallExchange intellinux "$ExchIntelLinuxTar" \
+      "$SearchIntelLinuxTar" "$CustomIntelLinuxTar"
+    InstallDistiller intellinux "$DistIntelLinuxTar"
+    DistIntelLinuxTar=""
+    ExchIntelLinuxTar=""
+    AcroIntelLinuxTar=""
+
+  elif [ "$ConfigNum" = "$AcroIntelSolarisNum" ] ; then
+    InstallExchange intelsolaris "$ExchIntelSolarisTar" \
+      "$SearchIntelSolarisTar" "$CustomIntelSolarisTar"
+    InstallDistiller intelsolaris "$DistIntelSolarisTar"
+    DistIntelSolarisTar=""
+    ExchIntelSolarisTar=""
+    AcroIntelSolarisTar=""
+
+  elif [ "$ConfigNum" = "$AcroPPCSolarisNum" ] ; then
+    InstallExchange ppcsolaris "$ExchPPCSolarisTar" \
+      "$SearchPPCSolarisTar" "$CustomPPCSolarisTar"
+    InstallDistiller ppcsolaris "$DistPPCSolarisTar"
+    DistPPCSolarisTar=""
+    ExchPPCSolarisTar=""
+    AcroPPCSolarisTar=""
+
+  elif [ "$ConfigNum" = "$ExchSparcSolarisNum" ] ; then
+
+    InstallExchange sparcsolaris "$ExchSparcSolarisTar" \
+      "$SearchSparcSolarisTar" "$CustomSparcSolarisTar"
+    ExchSparcSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ReadSparcSolarisNum" ] ; then
+
+    InstallReader sparcsolaris "$ReadSparcSolarisTar" \
+      "$SearchSparcSolarisTar" "$CustomSparcSolarisTar"
+    ReadSparcSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ExchSparcSunNum" ] ; then
+
+    InstallExchange sparcsun "$ExchSparcSunTar" \
+      "$SearchSparcSunTar" "$CustomSparcSunTar"
+    ExchSparcSunNum=""
+
+  elif [ "$ConfigNum" = "$ReadSparcSunNum" ] ; then
+
+    InstallReader sparcsun "$ReadSparcSunTar" \
+      "$SearchSparcSunTar" "$CustomSparcSunTar"
+    ReadSparcSunNum=""
+
+  elif [ "$ConfigNum" = "$ExchHppaHpuxNum" ] ; then
+
+    InstallExchange hppahpux "$ExchHppaHpuxTar" \
+      "$SearchHppaHpuxTar" "$CustomHppaHpuxTar"
+    ExchHppaHpuxNum=""
+
+  elif [ "$ConfigNum" = "$ReadHppaHpuxNum" ] ; then
+
+    InstallReader hppahpux "$ReadHppaHpuxTar" \
+      "$SearchHppaHpuxTar" "$CustomHppaHpuxTar"
+    ReadHppaHpuxNum=""
+
+  elif [ "$ConfigNum" = "$ExchMIPSIrixNum" ] ; then
+
+    InstallExchange mipsirix "$ExchMIPSIrixTar" \
+      "$SearchMIPSIrixTar" "$CustomMIPSIrixTar"
+    ExchMIPSIrixNum=""
+
+  elif [ "$ConfigNum" = "$ReadMIPSIrixNum" ] ; then
+
+    InstallReader mipsirix "$ReadMIPSIrixTar" \
+      "$SearchMIPSIrixTar" "$CustomMIPSIrixTar"
+    ReadMIPSIrixNum=""
+
+  elif [ "$ConfigNum" = "$ExchRS6000AIXNum" ] ; then
+
+    InstallExchange rs6000aix "$ExchRS6000AIXTar" \
+      "$SearchRS6000AIXTar" "$CustomRS6000AIXTar"
+    ExchRS6000AIXNum=""
+
+  elif [ "$ConfigNum" = "$ReadRS6000AIXNum" ] ; then
+
+    InstallReader rs6000aix "$ReadRS6000AIXTar" \
+      "$SearchRS6000AIXTar" "$CustomRS6000AIXTar"
+    ReadRS6000AIXNum=""
+
+  elif [ "$ConfigNum" = "$ExchAlphaOSFNum" ] ; then
+
+    InstallExchange alphaosf "$ExchAlphaOSFTar" \
+      "$SearchAlphaOSFTar" "$CustomAlphaOSFTar"
+    ExchAlphaOSFNum=""
+
+  elif [ "$ConfigNum" = "$ReadAlphaOSFNum" ] ; then
+
+    InstallReader alphaosf "$ReadAlphaOSFTar" \
+      "$SearchAlphaOSFTar" "$CustomAlphaOSFTar"
+    ReadAlphaOSFNum=""
+
+  elif [ "$ConfigNum" = "$ExchIntelBSDINum" ] ; then
+
+    InstallExchange intelbsdi "$ExchIntelBSDITar" \
+      "$SearchIntelBSDITar" "$CustomIntelBSDITar"
+    ExchIntelBSDINum=""
+
+  elif [ "$ConfigNum" = "$ReadIntelBSDINum" ] ; then
+
+    InstallReader intelbsdi "$ReadIntelBSDITar" \
+      "$SearchIntelBSDITar" "$CustomIntelBSDITar"
+    ReadIntelBSDINum=""
+
+  elif [ "$ConfigNum" = "$ExchIntelLinuxNum" ] ; then
+
+    InstallExchange intellinux "$ExchIntelLinuxTar" \
+      "$SearchIntelLinuxTar" "$CustomIntelLinuxTar"
+    ExchIntelLinuxNum=""
+
+  elif [ "$ConfigNum" = "$ReadIntelLinuxNum" ] ; then
+
+    InstallReader intellinux "$ReadIntelLinuxTar" \
+      "$SearchIntelLinuxTar" "$CustomIntelLinuxTar"
+    ReadIntelLinuxNum=""
+
+  elif [ "$ConfigNum" = "$ExchIntelSolarisNum" ] ; then
+
+    InstallExchange intelsolaris "$ExchIntelSolarisTar" \
+      "$SearchIntelSolarisTar" "$CustomIntelSolarisTar"
+    ExchIntelSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ReadIntelSolarisNum" ] ; then
+
+    InstallReader intelsolaris "$ReadIntelSolarisTar" \
+      "$SearchIntelSolarisTar" "$CustomIntelSolarisTar"
+    ReadIntelSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ExchPPCSolarisNum" ] ; then
+
+    InstallExchange ppcsolaris "$ExchPPCSolarisTar" \
+      "$SearchPPCSolarisTar" "$CustomPPCSolarisTar"
+    ExchPPCSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ReadPPCSolarisNum" ] ; then
+
+    InstallReader ppcsolaris "$ReadPPCSolarisTar" \
+      "$SearchPPCSolarisTar" "$CustomPPCSolarisTar"
+    ReadPPCSolarisNum=""
+
+  elif [ "$ConfigNum" = "$DistSparcSunNum" ] ; then
+    InstallDistiller sparcsun "$DistSparcSunTar"
+    DistSparcSunNum=""
+
+  elif [ "$ConfigNum" = "$DistSparcSolarisNum" ] ; then
+
+    InstallDistiller sparcsolaris "$DistSparcSolarisTar"
+    DistSparcSolarisNum=""
+
+  elif [ "$ConfigNum" = "$DistHppaHpuxNum" ] ; then
+
+    InstallDistiller hppahpux "$DistHppaHpuxTar"
+    DistHppaHpuxNum=""
+
+  elif [ "$ConfigNum" = "$DistRS6000AIXNum" ] ; then
+
+    InstallDistiller rs6000aix "$DistRS6000AIXTar"
+    DistRS6000AIXNum=""
+
+  elif [ "$ConfigNum" = "$DistMIPSIrixNum" ] ; then
+
+    InstallDistiller mipsirix "$DistMIPSIrixTar"
+    DistMIPSIrixNum=""
+
+  elif [ "$ConfigNum" = "$DistAlphaOSFNum" ] ; then
+
+    InstallDistiller alphaosf "$DistAlphaOSFTar"
+    DistAlphaOSFNum=""
+
+  elif [ "$ConfigNum" = "$DistIntelBSDINum" ] ; then
+
+    InstallDistiller intelbsdi "$DistIntelBSDITar"
+    DistIntelBSDINum=""
+
+  elif [ "$ConfigNum" = "$DistIntelLinuxNum" ] ; then
+
+    InstallDistiller intellinux "$DistIntelLinuxTar"
+    DistIntelLinuxNum=""
+
+  elif [ "$ConfigNum" = "$DistIntelSolarisNum" ] ; then
+
+    InstallDistiller intelsolaris "$DistIntelSolarisTar"
+    DistIntelSolarisNum=""
+
+  elif [ "$ConfigNum" = "$DistPPCSolarisNum" ] ; then
+
+    InstallDistiller ppcsolaris "$DistPPCSolarisTar"
+    DistPPCSolarisNum=""
+
+  elif [ "$ConfigNum" = "$ExitNum" ] ; then
+
+    break
+
+  else
+
+    echo " "
+    echo "ERROR: Invalid response ... try again"
+    continue
+
+  fi
+
+  if [ "$DefaultConfig" ] ; then
+    break;
+  fi
+
+  if [ -z "$MultipleInstall" ] ; then
+    break;
+  fi
+
+  NumConfigs=`expr $NumConfigs - 1`
+
+done
+
+
+echo " "
+exit 0

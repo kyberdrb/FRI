@@ -1,0 +1,479 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Special Algorithms for Protocols</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+
+<HTML>
+<head>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+
+<!--
+function jumpurl(form)
+{
+  location = form.URL.options[form.URL.selectedIndex].value;
+  return true;
+};
+//-->
+
+</SCRIPT>
+</head>
+<BODY>
+<TABLE width=468 height=60>
+  <TR>
+    <TD>
+        <TABLE>
+  <TR>
+    <TD><IMG SRC="http://adimages.earthweb.com/images/ads/house/dtm_salary/dtm_html.gif" BORDER=0 WIDTH=332 HEIGHT=60></TD>
+    <TD width=168 height=60 align=center valign=bottom><font face="verdana,
+helvetica" size=1>
+<FORM ACTION="">
+<SELECT NAME="URL" SIZE="1" onchange="jumpurl(this.form);">
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,1">Basic</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_basic.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,2">C/C++</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_c.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,3">HTML</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_html.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,4">Java</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_java.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,5">SQL</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_sql.html -->
+
+</SELECT>
+<A HREF="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,6" TARGET="_blank"><font face="verdana,helvetica" size=2>GO</A>
+<!-- http://www.datamation.com/index.html -->
+
+</FORM>
+        </TD>
+  </TR>
+</TABLE>
+        </TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>
+
+
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=23//-->
+<!--PAGES=548-551//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="23-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="23-10.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>Carol&#146;s public key is <I>e,</I> her private key is <I>d,</I> and the RSA modulus is <I>n.</I></P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice and Bob agree on a random <I>k</I> and an <I>m</I> such that
+<DL>
+<DD><I>km</I> &#8801; <I>e</I> (mod <I>n</I>)
+</DL>
+<BR>They should choose the numbers randomly, using a coin-flip protocol to generate <I>k</I> and then computing <I>m.</I> If both <I>k</I> and <I>m</I> are greater than 3, the protocol continues. Otherwise, they choose again.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice and Bob generate a random ciphertext, <I>C.</I> Again, they should use a coin-flip protocol.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice, using Carol&#146;s private key, computes
+<DL>
+<DD><I>M</I> = <I>C<SUP>d</SUP></I> mod <I>n</I>
+</DL>
+</DL>
+<P>She then computes
+</P>
+<DL>
+<DD><I>X</I> = <I>M<SUP>k</SUP></I> mod <I>n</I>
+</DL>
+<DL>
+<BR>and sends <I>X</I> to Bob.
+<DD><B>(4)</B>&nbsp;&nbsp;Bob confirms that <I>X<SUP>m</SUP></I> mod <I>n</I> = <I>C.</I> If it does, he believes Alice.
+</DL>
+<P>A similar protocol can be used to demonstrate the ability to break a discrete logarithm problem [888].
+</P>
+<P><FONT SIZE="+1"><B><I>Zero-Knowledge Proof that <I>n</I> Is a Blum Integer
+</I></B></FONT></P>
+<P>There are no known truly practical zero-knowledge proofs that <I>n</I> =<I>pq,</I> where <I>p</I> and <I>q</I> are primes congruent to 3 modulo 4. However, if you allow <I>n</I> to be of the form <I>p<SUP>r</SUP>q<SUP>s</SUP>,</I> where <I>r</I> and <I>s</I> are odd, then the properties which make Blum integers useful in cryptography still hold. And there exists a zero-knowledge proof that <I>n</I> is of that form.</P>
+<P>Assume Alice knows the factorization of the Blum integer <I>n,</I> where <I>n</I> is of the form previously discussed. Here&#146;s how she can prove to Bob that <I>n</I> is of that form [660].</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice sends Bob a number <I>u</I> which has a Jacobi symbol -1 modulo <I>n.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Alice and Bob jointly agree on random bits: <I>b</I><SUB>1</SUB> , <I>b</I><SUB>2</SUB> ,  ..., <I>b</I><SUB>k</SUB>.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice and Bob jointly agree on random numbers: <I>x</I><SUB>1</SUB> , <I>x</I><SUB>2</SUB> ,  ..., <I>x</I><SUB>k</SUB>.
+<DD><B>(4)</B>&nbsp;&nbsp;For each <I>i</I> = <I>1, 2,...,</I> <I>k,</I> Alice sends Bob a square root modulo <I>n,</I> of one of the four numbers: <I>x</I><SUB>i</SUB>, <I>-x</I><SUB>i</SUB>, <I>ux</I><SUB>i</SUB>, <I>-ux</I><SUB>i</SUB>. The square root must have the Jacobi symbol <I>b</I><SUB>i</SUB>.
+</DL>
+<P>The odds of Alice successfully cheating are one in 2<SUP>k</SUP>.</P>
+<H3><A NAME="Heading13"></A><FONT COLOR="#000077">23.12 Blind Signatures</FONT></H3>
+<P>The notion of blind signatures (see Section 5.3) was invented by David Chaum [317,323], who also invented their first implementation [318]. It uses the RSA algorithm.
+</P>
+<P>Bob has a public key, <I>e,</I> a private key, <I>d,</I> and a public modulus, <I>n.</I> Alice wants Bob to sign message <I>m</I> blindly.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses a random value, <I>k,</I> between 1 and <I>n.</I> Then she blinds <I>m</I> by computing
+<DL>
+<DD><I>t</I> = <I>mk<SUP>e</SUP></I> mod <I>n</I>
+</DL>
+<DD><B>(2)</B>&nbsp;&nbsp;Bob signs <I>t</I>
+<DL>
+<DD><I>t<SUP>d</SUP></I> = (<I>mk<SUP>e</SUP></I>)<SUP>d</SUP>  mod <I>n</I>
+</DL>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice unblinds <I>t<SUP>d</SUP></I> by computing
+<DL>
+<DD><I>s</I> = <I>t<SUP>d</SUP></I>/<I>k</I> mod <I>n</I>
+</DL>
+<DD><B>(4)</B>&nbsp;&nbsp;And the result is
+<DL>
+<DD><I>s</I> = <I>m<SUP>d</SUP></I> mod <I>n</I>
+</DL>
+<BR>This can easily be shown
+<DL>
+<DD><I>t<SUP>d</SUP></I> &#8801; (<I>mk<SUP>e</SUP></I>)<SUP>d</SUP>  &#8801; <I>m<SUP>d</SUP>k</I> (mod <I>n</I>), so <I>t<SUP>d</SUP></I>/<I>k</I> = <I>m<SUP>d</SUP>k</I>/<I>k</I> &#8801; <I>m<SUP>d</SUP></I> (mod <I>n</I>).
+</DL>
+</DL>
+<P>Chaum invented a family of more complicated blind signature algorithms in [320,324], called blind unanticipated signatures. These signatures are more complex in construction, but more flexible.
+</P>
+<H3><A NAME="Heading14"></A><FONT COLOR="#000077">23.13 Oblivious Transfer</FONT></H3>
+<P>In this protocol by Michael Rabin [1286], Alice has a 50 percent chance of sending Bob two primes, <I>p,</I> and <I>q.</I> Alice will not know whether the transfer is successful. (See Section 5.5.) (This protocol can be used to send Bob any message with a 50 percent success rate if <I>p</I> and <I>q</I> reveal an RSA private key.)</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice sends Bob the product of the two primes: <I>n</I> = <I>pq.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Bob chooses a random <I>x</I> less than <I>n,</I> such that <I>x</I> is relatively prime to <I>n.</I> He sends Alice:
+<DL>
+<DD><I>a</I> = <I>x<SUP>2</SUP></I> mod <I>n</I>
+</DL>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice, knowing <I>p</I> and <I>q,</I> computes the four roots of <I>a: x, n</I> - <I>x, y,</I> and <I>n</I> - <I>y.</I> She chooses one of these roots at random and sends it to Bob.
+<DD><B>(4)</B>&nbsp;&nbsp;If Bob receives <I>y</I> or <I>n</I> - <I>y,</I> he can compute the greatest common divisor of <I>x</I> &#43; <I>y</I> and <I>n,</I> which is either <I>p</I> or <I>q.</I> Then, of course, <I>n</I>/<I>p</I> = <I>q.</I>
+<BR>If Bob receives <I>x</I> or <I>n</I> - <I>x,</I> he can&#146;t compute anything.
+</DL>
+<P>This protocol may have a weakness: It might be the case that Bob can compute a number <I>a</I> such that given the square root of <I>a</I> you can calculate a factor of <I>n</I> all the time.</P>
+<H3><A NAME="Heading15"></A><FONT COLOR="#000077">23.14 Secure Multiparty Computation</FONT></H3>
+<P>This protocol is from [1373]. Alice knows the integer <I>i;</I> Bob knows the integer <I>j.</I> Alice and Bob together wish to know whether <I>i</I> &#8804; <I>j</I> or if <I>i</I> &gt <I>j,</I> but neither Alice nor Bob wish to reveal the integer each knows. This special case of secure multiparty computation (see Section 6.2) is sometimes known as <B>Yao&#146;s millionaire problem</B> [1627].</P>
+<P>For this example, assume that <I>i</I> and <I>j</I> range from 1 to 100. Bob has a public key and a private key.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses a large random number, <I>x,</I> and encrypts it in Bob&#146;s public key.
+<DL>
+<DD><I>c</I> = <I>E</I><SUB>B</SUB>(<I>x</I>)
+</DL>
+<DD><B>(2)</B>&nbsp;&nbsp;Alice computes <I>c</I> - <I>i</I> and sends the result to Bob.
+<DD><B>(3)</B>&nbsp;&nbsp;Bob computes the following 100 numbers:
+<DL>
+<DD><I>y</I><SUB>u</SUB> = <I>D</I><SUB>B</SUB>(<I>c</I> - <I>i</I> &#43; <I>u</I>), for 1 &#8804; <I>u</I> &#8804; 100
+</DL>
+<BR><I>D</I><SUB>B</SUB> is the decryption algorithm with Bob&#146;s private key.
+<BR>He chooses a large random prime, <I>p.</I> (The size of <I>p</I> should be somewhat smaller than <I>x.</I> Bob doesn&#146;t know <I>x,</I> but Alice could easily tell him the size of <I>x.</I>) He then computes the following 100 numbers:
+<DL>
+<DD><I>z</I><SUB>u</SUB> = (<I>y</I><SUB>u</SUB> mod <I>p</I>), for 1 &#8804; <I>u</I> &#8804; 100
+</DL>
+<BR>He then verifies that, for all <I>u</I> &#8800; <I>v</I>
+<DL>
+<DD>|<I>z</I><SUB>u</SUB> - <I>z</I><SUB>v</SUB>| &#8805; 2
+</DL>
+<BR>and that for all <I>u</I>
+<DL>
+<DD>0 &lt <I>z</I><SUB>u</SUB> &lt <I>p</I> - 1
+</DL>
+<BR>If this is not true, Bob chooses another prime and tries again.
+<DD><B>(4)</B>&nbsp;&nbsp;Bob sends Alice this sequence of numbers in this exact order:
+<DL>
+<DD><I>z</I><SUB>1</SUB> , <I>z</I><SUB>2</SUB> ,  ..., <I>z</I><SUB>j</SUB>, <I>z</I><SUB>j&#43;1</SUB> &#43; 1, <I>z</I><SUB>j&#43;2</SUB> &#43; 1,..., <I>z</I><SUB>100</SUB> &#43; 1, <I>p</I>
+</DL>
+<DD><B>(5)</B>&nbsp;&nbsp;Alice checks whether the <I>i</I>th number in the sequence is congruent to <I>x</I> mod <I>p.</I> If it is, she concludes that <I>i</I> &#8804; <I>j.</I> If it is not, she concludes that <I>i</I> &gt <I>j.</I>
+<DD><B>(6)</B>&nbsp;&nbsp;Alice tells Bob the conclusion.
+</DL>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="23-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="23-10.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

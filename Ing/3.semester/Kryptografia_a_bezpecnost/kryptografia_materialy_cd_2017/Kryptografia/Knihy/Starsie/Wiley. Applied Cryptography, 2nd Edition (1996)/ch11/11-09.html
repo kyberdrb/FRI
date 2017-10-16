@@ -1,0 +1,418 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Mathematical Background</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=000009b933d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/Iaxf-001.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=000009b933d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=11//-->
+<!--PAGES=252-254//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-10.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P><FONT SIZE="+1"><B><I>Jacobi Symbol</I></B></FONT></P>
+<P>The <B>Jacobi symbol</B>, written J(<I>a,n</I>), is a generalization of the Legendre symbol to composite moduli; it is defined for any integer <I>a</I> and any odd integer <I>n.</I> The function shows up in primality testing. The Jacobi symbol is a function on the set of reduced residues of the divisors of <I>n</I> and can be calculated by several formulas [1412]. This is one method:</P>
+<DL>
+<DD>Definition 1: J(<I>a,n</I>) is only defined if <I>n</I> is odd.
+<DD>Definition 2: J(0<I>,n</I>) = 0.
+<DD>Definition 3: If <I>n</I> is prime, then the Jacobi symbol J(<I>a,n</I>) = 0 if <I>n</I> divides <I>a</I>.
+<DD>Definition 4: If <I>n</I> is prime, then the Jacobi symbol J(<I>a,n</I>) = 1 if <I>a</I> is a quadratic residue modulo <I>n.</I>
+<DD>Definition 5: If <I>n</I> is prime, then the Jacobi symbol J(<I>a,n</I>) = - 1 if <I>a</I> is a quadratic nonresidue modulo <I>n</I>.
+<DD>Definition 6: If <I>n</I> is composite, then the Jacobi symbol J(<I>a,n</I>) = J(<I>a,p</I><SUB><SMALL>1</SMALL></SUB>) *...* J(<I>a,p<SUB><SMALL>m</I></SMALL></SUB>), where <I>p<SUB><SMALL>1</I></SMALL></SUB>...<I>p<SUB><SMALL>m</I></SMALL></SUB> is the prime factorization of <I>n</I>.
+</DL>
+<P>The following algorithm computes the Jacobi symbol recursively:
+</P>
+<DL>
+<DD>Rule 1: J(1,<I>n</I>) = 1
+<DD>Rule 2: J(<I>a*b,n</I>) = J(<I>a,n</I>)*J(<I>b,n</I>)
+<DD>Rule 3: J(2,<I>n</I>) = 1 if (<I>n</I><SUP><SMALL>2</SMALL></SUP> - 1)/8 is even, and - 1 otherwise
+<DD>Rule 4: J(<I>a,n</I>) = J((<I>a</I> mod <I>n</I>),<I>n</I>)
+<DD>Rule 5: J(<I>a,b</I><SUB><SMALL>1</SMALL></SUB>*<I>b</I><SUB><SMALL>2</SMALL></SUB>) = J(<I>a,b</I><SUB><SMALL>1</SMALL></SUB>)*J(<I>a,b</I><SUB><SMALL>2</SMALL></SUB>)
+<DD>Rule 6: If the greatest common divisor of <I>a</I> and <I>b</I> = 1, and <I>a</I> and <I>b</I> are odd:
+<DD>Rule 6a: J(<I>a,b</I>) = J(<I>b,a</I>) if (<I>a</I> - 1)(<I>b</I> - 1)/4 is even
+<DD>Rule 6b: J(<I>a,b</I>) = - J(<I>b,a</I>) if (<I>a-</I>1)(<I>b-</I>1)/4 is odd
+</DL>
+<P>Here is the algorithm in C:
+</P>
+<!-- CODE //-->
+<PRE>
+    /* This algorithm computes the Jacobi symbol recursively */
+    int jacobi(int a, int b)
+    {
+    int g;
+        assert(odd(b));
+        if (a &gt= b) a %= b;       /* by Rule 4 */
+        if (a == 0) return 0;       /* by Definition 2 */
+        if (a == 1) return 1;       /* by Rule 1 */
+        if (a &lt 0)
+    	if (((b-1)/2 % 2 == 0)
+    	    return jacobi(-a,b);
+    	else
+    	    return -jacobi(-a,b);
+        if (a % 2 == 0) /* a is even */
+    	if (((b*b - 1)/8) % 2 == 0)
+    	    return &#43;jacobi(a/2, b)
+    	else
+    	    return -jacobi(a/2, b) /* by Rule 3 and Rule 2 */
+        g = gcd(a,b);
+        assert(odd(a)); /* this is guaranteed by the (a % 2 == 0)
+    test */
+        if (g == a) /* a exactly divides b */
+    	return 0; /* by Rules 5 and 4, and Definition 2 */
+        else if (g != 1)
+    	return jacobi(g,b) * jacobi(a/g, b); /* by Rule 2 */
+        else if (((a-1)*(b-1)/4) % 2 == 0)
+    	return &#43;jacobi(b,a);    /* by Rule 6a */
+        else
+    	return -jacobi(b,a);    /* by Rule 6b */
+    }
+</PRE>
+<!-- END CODE //-->
+<P>If <I>n</I> is known to be prime beforehand, simply compute <I>a<SUP><SMALL>((n-1)/2)</SMALL></SUP></I> mod <I>n</I> instead of running the previous algorithm; in this case J(<I>a,n</I>) is equivalent to the Legendre symbol.</P>
+<P>The Jacobi symbol cannot be used to determine whether <I>a</I> is a quadratic residue mod <I>n</I> (unless <I>n</I> is prime, of course). Note that, if J(<I>a,n</I>) = 1 and <I>n</I> is composite, it is not necessarily true that <I>a</I> is a quadratic residue modulo <I>n</I>. For example:</P>
+<DL>
+<DD>J(7, 143) = J(7, 11)*J(7, 13) = (- 1)(- 1) = 1
+</DL>
+<P>However, there is no integer <I>x</I> such that <I>x<SUP><SMALL>2</SMALL></SUP></I> &#8801; 7 (mod 143).</P>
+<P><FONT SIZE="+1"><B><I>Blum Integers</I></B></FONT></P>
+<P>If <I>p</I> and <I>q</I> are two primes, and both are congruent to 3 modulo 4, then <I>n</I> = <I>pq</I> is sometimes called a <B>Blum integer</B>. If <I>n</I> is a Blum integer, each quadratic residue has exactly four square roots, one of which is also a square; this is the principal square root. For example, the principal square root of 139 mod 437 is 24. The other three square roots are 185, 252, and 413.</P>
+<P><FONT SIZE="+1"><B><I>Generators</I></B></FONT></P>
+<P>If <I>p</I> is a prime, and <I>g</I> is less than <I>p</I>, then <I>g</I> is a <B>generator</B> mod <I>p</I> if</P>
+<DL>
+<DD>for each <I>b</I> from 1 to <I>p</I> - 1, there exists some <I>a</I> where <I>g<SUP><SMALL>a</SMALL></SUP></I> &#8801; b (mod <I>p</I>).
+</DL>
+<P>Another way of saying this is that <I>g</I> is <B>primitive</B> with respect to <I>p.</I></P>
+<P>For example, if <I>p</I> = 11, 2 is a generator mod 11:</P>
+<DL>
+<DD>2<SUP><SMALL>10</SMALL></SUP> = 1024 &#8801; 1 (mod 11)
+<DD>2<SUP><SMALL>1</SMALL></SUP> = 2 &#8801; 2 (mod 11)
+<DD>2<SUP><SMALL>8</SMALL></SUP> = 256 &#8801; 3 (mod 11)
+<DD>2<SUP><SMALL>2</SMALL></SUP> = 4 &#8801; 4 (mod 11)
+<DD>2<SUP><SMALL>4</SMALL></SUP> = 16 &#8801; 5 (mod 11)
+<DD>2<SUP><SMALL>9</SMALL></SUP> = 512 &#8801; 6 (mod 11)
+<DD>2<SUP><SMALL>7</SMALL></SUP> = 128 &#8801; 7 (mod 11)
+<DD>2<SUP><SMALL>3</SMALL></SUP> = 8 &#8801; 8 (mod 11)
+<DD>2<SUP><SMALL>6</SMALL></SUP> = 64 &#8801; 9 (mod 11)
+<DD>2<SUP><SMALL>5</SMALL></SUP> = 32 &#8801; 10 (mod 11)
+</DL>
+<P>Every number from 1 to 10 can be expressed as 2a (mod <I>p</I>).</P>
+<P>For <I>p</I> = 11, the generators are 2, 6, 7, and 8. The other numbers are not generators. For example, 3 is not a generator because there is no solution to</P>
+<DL>
+<DD>3<SUP><SMALL><I>a</I></SMALL></SUP> = 2 (mod 11)
+</DL>
+<P>In general, testing whether a given number is a generator is not an easy problem. It is easy, however, if you know the factorization of <I>p</I> - 1. Let <I>q<SUB><SMALL>1</SMALL></SUB></I>, <I>q<SUB><SMALL>2</SMALL></SUB>,...</I>, <I>q<SUB><SMALL>n</SMALL></SUB></I> be the distinct prime factors of <I>p</I> - 1. To test whether a number <I>g</I> is a generator mod <I>p</I>, calculate</P>
+<DL>
+<DD>g<SUP>(<I>p-</I> 1)/<I>q</I></SUP> mod <I>p</I>
+</DL>
+<P>for all values of <I>q</I> = <I>q</I><SUB><SMALL>1</SMALL></SUB>, <I>q<SUB><SMALL>2</SMALL></SUB>,...</I>, <I>q<SUB><SMALL>n</SMALL></SUB></I>.</P>
+<P>If that number equals 1 for some value of <I>q</I>, then <I>g</I> is not a generator. If that value does not equal 1 for any values of <I>q</I>, then <I>g</I> is a generator.</P>
+<P>For example, let <I>p</I> = 11. The prime factors of <I>p</I> - <I></I> 1 = 10 are 2 and 5. To test whether 2 is a generator:</P>
+<DL>
+<DD>2<SUP><SMALL>(11- 1)/5</SMALL></SUP> (mod 11) = 4
+<DD>2<SUP><SMALL>(11- 1)/2</SMALL></SUP> (mod 11) = 10
+</DL>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-08.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-10.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

@@ -1,0 +1,392 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Identification Schemes</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=0000098f33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/datamation_house_altgif.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=0000098f33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=21//-->
+<!--PAGES=505-507//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="21-01.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="21-03.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P><FONT SIZE="+1"><B><I>An Example</I></B></FONT></P>
+<P>Let&#146;s look at this protocol in action with small numbers.
+</P>
+<P>If <I>n</I> = 35 (the two primes are 5 and 7), then the possible quadratic residues are:</P>
+<DL>
+<DD>1: <I>x</I><SUP>2</SUP> &#8801; 1 (mod 35) has the solutions: <I>x</I> = 1, 6, 29, or 34.
+<DD>4: <I>x</I><SUP>2</SUP> &#8801; 4 (mod 35) has the solutions: <I>x</I> = 2, 12, 23, or 33.
+<DD>9: <I>x</I><SUP>2</SUP> &#8801; 9 (mod 35) has the solutions: <I>x</I> = 3, 17, 18, or 32.
+<DD>11: <I>x</I><SUP>2</SUP> &#8801; 11 (mod 35) has the solutions: <I>x</I> = 9, 16, 19, or 26.
+<DD>14: <I>x</I><SUP>2</SUP> &#8801; 14 (mod 35) has the solutions: <I>x</I> = 7 or 28.
+<DD>15: <I>x</I><SUP>2</SUP> &#8801; 15 (mod 35) has the solutions: <I>x</I> = 15 or 20.
+<DD>16: <I>x</I><SUP>2</SUP> &#8801; 16 (mod 35) has the solutions: <I>x</I> = 4, 11, 24, or 31.
+<DD>21: <I>x</I><SUP>2</SUP> &#8801; 21 (mod 35) has the solutions: <I>x</I> = 14 or 21.
+<DD>25: <I>x</I><SUP>2</SUP> &#8801; 25 (mod 35) has the solutions: <I>x</I> = 5 or 30.
+<DD>29: <I>x</I><SUP>2</SUP> &#8801; 29 (mod 35) has the solutions: <I>x</I> = 8, 13, 22 or 27.
+<DD>30: <I>x</I><SUP>2</SUP> &#8801; 30 (mod 35) has the solutions: <I>x</I> = 10 or 25.
+</DL>
+<P>The inverses (mod 35) and their square roots are:
+</P>
+<TABLE WIDTH="50%"><TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT"><I>v</I>
+<TD ALIGN="LEFT"><I>v</I><SUP>-1</SUP>
+<TD ALIGN="LEFT"><I>s</I> = sqrt (<I>v</I><SUP>-1</SUP>)
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">1
+<TD ALIGN="LEFT">1
+<TD ALIGN="LEFT">1
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">4
+<TD ALIGN="LEFT">9
+<TD ALIGN="LEFT">3
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">9
+<TD ALIGN="LEFT">4
+<TD ALIGN="LEFT">2
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">11
+<TD ALIGN="LEFT">16
+<TD ALIGN="LEFT">4
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">16
+<TD ALIGN="LEFT">11
+<TD ALIGN="LEFT">9
+<TR>
+<TD WIDTH="10%">
+<TD ALIGN="LEFT">29
+<TD ALIGN="LEFT">29
+<TD ALIGN="LEFT">8
+</TABLE>
+<P>Note that 14, 15, 21, 25, and 30 do not have inverses mod 35, because they are not relatively prime to 35. This makes sense, because there should be (5 - 1) * (7 - 1)/4 quadratic residues mod 35 relatively prime to 35: That is gcd(<I>x,</I>35) = 1 (see Section 11.3).</P>
+<P>So, Peggy gets the public key consisting of <I>k</I> = 4 values: {4,11,16,29}. The corresponding private key is {3,4,9,8}. Here&#146;s one round of the protocol.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Peggy chooses a random <I>r</I> = 16, computes 16<SUP>2</SUP> mod 35 = 11, and sends it to Victor.
+<DD><B>(2)</B>&nbsp;&nbsp;Victor sends Peggy a random binary string {1,1,0,1}.
+<DD><B>(3)</B>&nbsp;&nbsp;Peggy computes 16 * ((3<SUP>1</SUP>) * (4<SUP>1</SUP>) * (9<SUP>0</SUP>) * (8<SUP>1</SUP>)) mod 35 = 31 and sends it to Victor.
+<DD><B>(4)</B>&nbsp;&nbsp;Victor verifies that 3<SUP>12</SUP> * ((4<SUP>1</SUP>) * (11<SUP>1</SUP>) * (16<SUP>0</SUP>) * (29<SUP>1</SUP>)) mod 35 = 11.
+</DL>
+<P>Peggy and Victor repeat the protocol <I>t</I> times, each time with a different random <I>r,</I> until Victor is satisfied.</P>
+<P>With small values like these, there&#146;s no real security. But when <I>n</I> is 512 bits long or more, Victor cannot learn anything about Peggy&#146;s secret key except the fact that she knows it.</P>
+<P><FONT SIZE="+1"><B><I>Enhancements</I></B></FONT></P>
+<P>It is possible to embed identification information into the protocol. Assume that <I>I</I> is a binary string representing Peggy&#146;s identification: her name, address, social security number, hat size, preferred brand of soft drink, and other personal information. Use a one-way hash function <I>H</I>(<I>x</I>) to compute <I>H</I>(<I>I,j</I>), where <I>j</I> is a small number concatenated onto <I>I.</I> Find a set of <I>j</I>s where <I>H</I>(<I>I,j</I>) is a quadratic residue mod <I>n.</I> These <I>H</I>(<I>I,j</I>)s become <I>v</I><SUB>1,</SUB> <I>v</I><SUB>2,...,</SUB> <I>v</I><SUB>k</SUB> (the <I>j</I>s need not be quadratic residues). Peggy&#146;s public key is now <I>I</I> and the list of <I>j</I>s. She sends <I>I</I> and the list of <I>j</I>s to Victor before step (1) of the protocol (or perhaps Victor downloads them from a public bulletin board someplace), and Victor generates <I>v</I><SUB>1,</SUB> <I>v</I><SUB>2,...,</SUB> <I>v</I><SUB>k</SUB> from <I>H</I>(<I>I,j</I>).</P>
+<P>Now, after Victor successfully completes the protocol with Peggy, he is assured that Trent, who knows the factorization of the modulus, has certified the association between <I>I</I> and Peggy by giving her the square roots of the <I>v</I><SUB>i</SUB> derived from <I>I.</I> (See Section 5.2 for background information.)</P>
+<P>Feige, Fiat, and Shamir include the following implementation remarks [544,545]:</P>
+<BLOCKQUOTE><P>For nonperfect hash functions, it may be advisable to randomize <I>I</I> by concatenating it with a long random string, <I>R.</I> This string is chosen by the arbitrator and is revealed to Victor along with <I>I.</I></P>
+<P>In typical implementations, <I>k</I> should be between 1 and 18. Larger values of <I>k</I> can reduce the time and communication complexity by reducing the number of rounds.</P>
+<P>The value <I>n</I> should be at least 512 bits long. (Of course, there has been considerable progress in factoring since then.)</P>
+<P>If each user chooses his own <I>n</I> and publishes it in a public key file, they can dispense with the arbitrator. However, this RSA-like variant makes the scheme considerably less convenient.</P>
+</BLOCKQUOTE><P><FONT SIZE="+1"><B><I>Fiat-Shamir Signature Scheme</I></B></FONT></P>
+<P>Turning this identification scheme into a signature scheme is basically a matter of turning Victor into a hash function. The primary benefit of the Fiat-Shamir digital signature scheme over RSA is speed: Fiat-Shamir requires only 1 percent to 4 percent of the modular multiplications of RSA. For this protocol, we&#146;ll bring back Alice and Bob.
+</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="21-01.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="21-03.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

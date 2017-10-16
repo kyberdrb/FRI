@@ -1,0 +1,424 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Key-Exchange Algorithms</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<TABLE WIDTH=468 height=60 border=0 cellspacing=0 cellpadding=0>
+   <TR>
+     <TD>
+<TABLE border=0 cellspacing=0 cellpadding=0>
+   <TR>
+     <TD WIDTH=129 HEIGHT=60>
+        <A HREF="/adclick.html/CID=00000c0033d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET="_blank"><IMG SRC="http://adimages.earthweb.com/images/ads/house/dtm_salary/day_night4.gif" BORDER=0 WIDTH=129 HEIGHT=60></a></TD>
+     <TD WIDTH=339 HEIGHT=60><A HREF="/adclick.html/CID=00000c0033d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET="_blank"><IMG SRC="http://adimages.earthweb.com/images/ads/house/dtm_salary/rightside.gif" BORDER=0 WIDTH=339 
+HEIGHT=60></a></TD>
+   </TR>
+</TABLE>
+
+<!-- http://www.datamation.com/staff/survey/index.html  -->
+
+</TD>
+   </TR>
+</TABLE>
+</BODY>
+</HTML>
+
+
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=22//-->
+<!--PAGES=523-525//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="22-04.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch23/23-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>Another method is suggested in [352]. First, each listener shares a secret key with Alice, one that is larger than any possible encrypted message. All of those keys should be pairwise prime. She encrypts the message in a random key, <I>K.</I> Then, she computes a single integer, <I>R,</I> such that <I>R</I> modulo a secret key is congruent to <I>K</I> when that secret key is supposed to decrypt the message, and <I>R</I> modulo a secret key is otherwise congruent to zero.</P>
+<P>For example, if Alice wants the secret to be received by Bob, Carol, and Ellen, but not by Dave and Frank, she encrypts the message with <I>K</I> and then computes <I>R</I> such that</P>
+<DL>
+<DD><I>R</I>&#8801; <I>K</I>(mod <I>K</I><SUB>B</SUB>)
+<DD><I>R</I>&#8801; <I>K</I>(mod <I>K</I><SUB>C</SUB>)
+<DD><I>R</I>&#8801; 0 (mod <I>K</I><SUB>D</SUB>)
+<DD><I>R</I>&#8801; <I>K</I>(mod <I>K</I><SUB>E</SUB>)
+<DD><I>R</I>&#8801; 0 (mod <I>K</I><SUB>F</SUB>)
+</DL>
+<P>This is a straightforward algebra problem, one that Alice can solve easily. When listeners receive the broadcast, they compute the received key modulo their secret key. If they were intended to receive the message, they recover the key. Otherwise, they recover nothing.
+</P>
+<P>Yet a third way, using a threshold scheme (see Section 3.7), is suggested in [141]. Like the others, every potential receiver gets a secret key. This key is a shadow in a yet-uncreated threshold scheme. Alice saves some secret keys for herself, adding some randomness to the system. Let&#146;s say there are <I>k</I> people out there.</P>
+<P>Then, to broadcast <I>M,</I> Alice encrypts <I>M</I> with key <I>K</I> and does the following.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses a random number, <I>j.</I> This number serves to hide the number of recipients of the message. It doesn&#146;t have to be very large; it can be as small as 0.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice creates a (<I>k</I> + <I>j</I> + 1, 2<I>k</I> + <I>j</I> + 1) threshold scheme, with:
+<DL>
+<DD><I>K</I> as the secret.
+<DD>The secret keys of the intended recipients as shadows.
+<DD>The secret keys of nonrecipients not as shadows.
+<DD><I>j</I> randomly chosen shadows, not the same as any of the secret keys.
+</DL>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice broadcasts <I>k</I> + <I>j</I> randomly chosen shadows, none of which is any of the shadows listed in step (2).
+<DD><B>(4)</B>&nbsp;&nbsp;All listeners who receive the broadcast add their shadow to the <I>k</I> + <I>j</I> shadows they received. If adding their shadow allows them to calculate the secret, then they have recovered the key. If it does not, then they haven&#146;t.
+</DL>
+<P>Another approach can be found in [885,886,1194]. For yet another approach, see [1000].
+</P>
+<P><FONT SIZE="+1"><B><I>Conference Key Distribution</I></B></FONT></P>
+<P>This protocol allows a group of <I>n</I> users to agree on a secret key using only insecure channels. The group shares two large primes, <I>p</I> and <I>q,</I> and a generator <I>g</I> the same size as <I>q.</I></P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;User <I>i,</I> where i goes from 1 to <I>n,</I> chooses a random <I>r</I><SUB>i</SUB> less than <I>q,</I> and broadcasts
+<DL>
+<DD><I>z</I><SUB>i</SUB> = <I>g</I><SUP>r<SMALL><SMALL>i</SMALL></SMALL></SUP> mod <I>p</I>
+</DL>
+<DD><B>(2)</B>&nbsp;&nbsp;Every user verifies that <I>z</I><SUB>j</SUB><SUP>q</SUP>&#8801; 1 (mod <I>p</I>), for all <I>i</I> from 1 to <I>n.</I>
+<DD><B>(3)</B>&nbsp;&nbsp;User <I>i</I> broadcasts
+<DL>
+<DD><I>x</I><SUB>i</SUB> = (<I>z</I><SUB>i+1</SUB>/<I>z</I><SUB>i-1</SUB>)<SUP>r<SMALL><SMALL>i</SMALL></SMALL></SUP> mod <I>p</I>
+</DL>
+<DD><B>(4)</B>&nbsp;&nbsp;User <I>i</I> computes
+<DL>
+<DD><I>K</I> = (<I>z</I><SUB>i-1</SUB>)<SUP>nr<SMALL><SMALL>i</SMALL></SMALL></SUP> * <I>x</I><SUB>i</SUB><SUP>n-1</SUP> * <I>x</I><SUB>i</SUB>+1<SUP>n-2</SUP> *...* <I>x</I><SUB>i-2</SUB> mod <I>p</I>
+</DL>
+</DL>
+<P>All index computations in the above protocol&#151;<I>i</I> - 1, <I>i</I> - 2, and <I>i</I> + 1&#151;should be computed mod <I>n.</I> At the end of the protocol, all honest users have the same <I>K.</I> No one else gets anything. However, this protocol falls to a man-in-the-middle attack. Another protocol, not quite as pretty, is in [757].</P>
+<P><FONT SIZE="+1"><B><I>Tatebayashi-Matsuzaki-Newman</I></B></FONT></P>
+<P>This key distribution protocol is suitable for networks [1521]. Alice wants to generate a session key with Bob using Trent, the KDC. All parties know Trent&#146;s public key, <I>n.</I> Trent knows the two large primes that <I>n</I> factors to, and hence can easily take cube roots modulo <I>n.</I> A lot of the details are left out of the following protocol, but you get the idea.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses a random number, <I>r</I><SUB>A</SUB>, and sends Trent
+<DL>
+<DD><I>r</I><SUB>A</SUB><SUP>3</SUP> mod <I>n</I>
+</DL>
+<DD><B>(2)</B>&nbsp;&nbsp;Trent tells Bob that someone wants to exchange a key with him.
+<DD><B>(3)</B>&nbsp;&nbsp;Bob chooses a random number, <I>r</I><SUB>B</SUB>, and sends Trent
+<DL>
+<DD><I>r</I><SUB>B</SUB><SUP>3</SUP> mod <I>n</I>
+</DL>
+<DD><B>(4)</B>&nbsp;&nbsp;Trent uses his private key to recover <I>r</I><SUB>A</SUB> and <I>r</I><SUB>B</SUB>. He sends Alice
+<DL>
+<DD><I>r</I><SUB>A</SUB>&#8853; <I>r</I><SUB>B</SUB>
+</DL>
+<DD><B>(5)</B>&nbsp;&nbsp;Alice calculates
+<DL>
+<DD>(<I>r</I><SUB>A</SUB>&#8853; <I>r</I><SUB>B</SUB>) &#8853; <I>r</I><SUB>A</SUB> = <I>r</I><SUB>B</SUB>
+</DL>
+<BR>She uses this <I>r</I><SUB>B</SUB> to communicate securely with Bob.
+</DL>
+<P>This protocol looks good, but it has a horrible flaw. Carol can listen in on step (3) and use that information, with the help of an unsuspecting Trent and another malicious user (Dave), to recover <I>r</I><SUB>B</SUB> [1472].</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Carol chooses a random number, <I>r</I><SUB>C</SUB>, and sends Trent
+<DL>
+<DD><I>r</I><SUB>B</SUB><SUP>3</SUP><I>r</I><SUB>C</SUB><SUP>3</SUP> mod <I>n</I>
+</DL>
+<DD><B>(2)</B>&nbsp;&nbsp;Trent tells Dave that someone wants to exchange a key with him.
+<DD><B>(3)</B>&nbsp;&nbsp;Dave chooses a random number, <I>r</I><SUB>D</SUB>, and sends Trent
+<DL>
+<DD><I>r</I><SUB>D</SUB><SUP>3</SUP> mod <I>n</I>
+</DL>
+<DD><B>(4)</B>&nbsp;&nbsp;Trent uses his private key to recover <I>r</I><SUB>C</SUB> and <I>r</I><SUB>D</SUB>. He sends Carol
+<DL>
+<DD>(<I>r</I><SUB>B</SUB><I>r</I><SUB>C</SUB>) mod <SUP><I>n</I></SUP>&#8853; <I>r</I><SUB>D</SUB>
+</DL>
+<DD><B>(5)</B>&nbsp;&nbsp;Dave sends <I>r</I><SUB>D</SUB> to Carol.
+<DD><B>(6)</B>&nbsp;&nbsp;Carol uses <I>r</I><SUB>C</SUB> and <I>r</I><SUB>D</SUB> to recover <I>r</I><SUB>B</SUB>. She uses <I>r</I><SUB>B</SUB> to eavesdrop on Alice and Bob.
+</DL>
+<P>This is not good.
+</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="22-04.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch23/23-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

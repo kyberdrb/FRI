@@ -1,0 +1,381 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Identification Schemes</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000bf833d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/data_marqini1.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=00000bf833d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=21//-->
+<!--PAGES=509-512//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="21-03.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch22/22-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P><FONT SIZE="+1"><B><I>Guillou-Quisquater Signature Scheme</I></B></FONT></P>
+<P>This identification can be converted to a signature scheme, also suited for smart-card implementation [671,672].
+</P>
+<P>The public and private key setup is the same as before. Here&#146;s the protocol:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice picks a random integer <I>r,</I> such that <I>r</I> is between 1 and <I>n</I> - 1. She computes <I>T</I> = <I>r</I><SUP>v</SUP> mod <I>n.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Alice computes <I>d</I> = <I>H</I>(<I>M,T</I>), where <I>M</I> is the message being signed and <I>H</I>(<I>x</I>) is a one-way hash function. The <I>d</I> produced by the hash function must be between 0 and <I>v</I> - 1 [1280]. If the output of the hash function is not within this range, it must be reduced modulo <I>v.</I>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice computes <I>D</I> = <I>rB</I><SUP>d</SUP> mod <I>n.</I> The signature consists of the message, <I>M,</I> the two calculated values, <I>d</I> and <I>D,</I> and her credentials, <I>J.</I> She sends this signature to Bob.
+<DD><B>(4)</B>&nbsp;&nbsp;Bob computes <I>T</I>&#180; = <I>D</I><SUP>v</SUP><I>J</I><SUP>d</SUP> mod <I>n.</I> He then computes <I>d</I>&#180; = <I>H</I>(<I>M,T</I>&#180;). If <I>d</I> = <I>d</I>&#180;, then Alice must know <I>B</I> and the signature is valid.
+</DL>
+<P><FONT SIZE="+1"><B><I>Multiple Signatures</I></B></FONT></P>
+<P>What if many people want to sign the same document? The easy solution has each of them signing separately, but this signature scheme can do better than that. Here Alice and Bob sign the same document and Carol verifies the signatures, but any number of people can be involved in the signature process. As before, Alice and Bob have their own unique <I>J</I> and <I>B</I> values: (<I>J</I><SUB>A</SUB>, <I>B</I><SUB>A</SUB>) and (<I>J</I><SUB>B</SUB>, <I>B</I><SUB>B</SUB>). The values <I>n</I> and <I>v</I> are common to the system.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice picks a random integer, <I>r</I><SUB>A</SUB>, such that <I>r</I><SUB>A</SUB> is between 1 and <I>n</I> - 1. She computes <I>T</I><SUB>A</SUB> = <I>r</I><SUB>A</SUB><SUP>v</SUP> mod <I>n</I> and sends <I>T</I><SUB>A</SUB> to Bob.
+<DD><B>(2)</B>&nbsp;&nbsp;Bob picks a random integer, <I>r</I><SUB>B</SUB>, such that <I>r</I><SUB>B</SUB> is between 1 and <I>n</I> - 1. He computes <I>T</I><SUB>B</SUB> = <I>r</I><SUB>B</SUB><SUP>v</SUP> mod <I>n</I> and sends <I>T</I><SUB>B</SUB> to Alice.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice and Bob each compute <I>T</I> = (<I>T</I><SUB>A</SUB><I>T</I><SUB>B</SUB>) mod <I>n.</I>
+<DD><B>(4)</B>&nbsp;&nbsp;Alice and Bob each compute <I>d</I> = <I>H</I>(<I>M,T</I>), where <I>M</I> is the message being signed and <I>H</I>(<I>x</I>) is a one-way hash function. The <I>d</I> produced by the hash function must be between 0 and <I>v</I> - 1 [1280]. If the output of the hash function is not within this range, it must be reduced modulo <I>v.</I>
+<DD><B>(5)</B>&nbsp;&nbsp;Alice computes <I>D</I><SUB>A</SUB> = <I>r</I><SUB>A</SUB><I>B</I><SUB>A</SUB><SUP>d</SUP> mod <I>n</I> and sends <I>D</I><SUB>A</SUB> to Bob.
+<DD><B>(6)</B>&nbsp;&nbsp;Bob computes <I>D</I><SUB>B</SUB> = <I>r</I><SUB>B</SUB><I>B</I><SUB>B</SUB><SUP>d</SUP> mod <I>n</I> and sends <I>D</I><SUB>B</SUB> to Alice.
+<DD><B>(7)</B>&nbsp;&nbsp;Alice and Bob each compute <I>D</I> = <I>D</I><SUB>A</SUB><I>D</I><SUB>B</SUB> mod <I>n.</I> The signature consists of the message, <I>M,</I> the two calculated values, <I>d</I> and <I>D,</I> and both of their credentials: <I>J</I><SUB>A</SUB> and <I>J</I><SUB>B</SUB>.
+<DD><B>(8)</B>&nbsp;&nbsp;Carol computes <I>J</I> = <I>J</I><SUB>A</SUB><I>J</I><SUB>B</SUB> mod <I>n.</I>
+<DD><B>(9)</B>&nbsp;&nbsp;Carol computes <I>T</I>&#180; = <I>D</I><SUP>v</SUP><I>J</I><SUP>d</SUP> mod <I>n.</I> She then computes <I>d</I>&#180; = <I>H</I>(<I>M,T</I>&#180;). If <I>d</I> &#8801; <I>d</I>&#180;, then the multiple signature is valid.
+</DL>
+<P>This protocol can be extended to any number of people. For multiple people to sign, they all multiply their individual <I>T</I><SUB>i</SUB> values together in step (3), and their individual <I>D</I><SUB>i</SUB> values together in step (7). To verify a multiple signature, multiply all the signers <I>J</I><SUB>i</SUB> values together in step (8). Either all the signatures are valid or there is at least one invalid signature.</P>
+<H3><A NAME="Heading4"></A><FONT COLOR="#000077">21.3 Schnorr</FONT></H3>
+<P>Claus Schnorr&#146;s authentication and signature scheme [1396,1397] gets its security from the difficulty of calculating discrete logarithms. To generate a key pair, first choose two primes, <I>p</I> and <I>q,</I> such that <I>q</I> is a prime factor of <I>p</I> - 1. Then, choose an <I>a</I> not equal to 1, such that <I>a</I><SUP>q</SUP> &#8801; 1 (mod <I>p</I>). All these numbers can be common to a group of users and can be freely published.</P>
+<P>To generate a particular public-key/private-key key pair, choose a random number less than <I>q.</I> This is the private key, <I>s.</I> Then calculate <I>v</I> = <I>a</I><SUP>-s</SUP> mod <I>p.</I> This is the public key.</P>
+<P><FONT SIZE="+1"><B><I>Authentication Protocol</I></B></FONT></P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Peggy picks a random number, <I>r,</I> less than <I>q,</I> and computes <I>x</I> = <I>a</I><SUP>r</SUP> mod <I>p.</I> This is the preprocessing stage and can be done long before Victor is present.
+<DD><B>(2)</B>&nbsp;&nbsp;Peggy sends <I>x</I> to Victor.
+<DD><B>(3)</B>&nbsp;&nbsp;Victor sends Peggy a random number, <I>e,</I> between 0 and 2<SUP>t</SUP> - 1. (I&#146;ll discuss <I>t</I> in a moment.)
+<DD><B>(4)</B>&nbsp;&nbsp;Peggy computes <I>y</I> = (<I>r</I> &#43; <I>se</I>) mod <I>q</I> and sends <I>y</I> to Victor.
+<DD><B>(5)</B>&nbsp;&nbsp;Victor verifies that <I>x</I> = <I>a</I><SUP>y</SUP><I>v</I><SUP>e</SUP> mod <I>p.</I>
+</DL>
+<P>The security is based on the parameter <I>t.</I> The difficulty of breaking the algorithm is about 2<SUP>t</SUP>. Schnorr recommended that <I>p</I> be about 512 bits, <I>q</I> be about 140 bits, and <I>t</I> be 72.</P>
+<P><FONT SIZE="+1"><B><I>Digital Signature Protocol</I></B></FONT></P>
+<P>Schnorr can also be used as a digital signature protocol on a message, <I>M.</I> The public-key/private-key key pair is the same, but we&#146;re now adding a one-way hash function, <I>H</I>(<I>M</I>).</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice picks a random number, <I>r,</I> less than <I>q,</I> and computes <I>x</I> = <I>a</I><SUP>r</SUP> mod <I>p.</I> This computation is the preprocessing stage.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice concatenates <I>M</I> and <I>x,</I> and hashes the result:
+<DL>
+<DD><I>e</I> = <I>H</I>(<I>M,x</I>)
+</DL>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice computes <I>y</I> = (<I>r</I> &#43; <I>se</I>) mod <I>q.</I> The signature is <I>e</I> and <I>y;</I> she sends these to Bob.
+<DD><B>(4)</B>&nbsp;&nbsp;Bob computes <I>x</I><SUP>&#180;</SUP> = <I>a</I><SUP>y</SUP><I>v</I><SUP>e</SUP> mod <I>p.</I> He then confirms that the concatenation of <I>M</I> and <I>x</I><SUP>&#180;</SUP> hashes to <I>e.</I>
+<DL>
+<DD><I>e</I> = <I>H</I>(<I>M,x</I><SUP>&#180;</SUP>)
+<DD>If it does, he accepts the signature as valid.
+</DL>
+</DL>
+<P>In his paper, Schnorr cites these novel features of his algorithm:
+</P>
+<BLOCKQUOTE><P>Most of the computation for signature generation can be completed in a preprocessing stage, independent of the message being signed. Hence, it can be done during idle time and not affect the signature speed. An attack against this preprocessing stage is discussed in [475], but I don&#146;t think it&#146;s practical.
+</P>
+<P>For the same level of security, the length of signatures is less for Schnorr than for RSA. For example, with a 140-bit <I>q,</I> signatures are only 212-bits long, less than half the length of RSA signatures. Schnorr&#146;s signatures are also much shorter than ElGamal signatures.</P>
+</BLOCKQUOTE><P>Of course, practical considerations may make even fewer bits suitable for a given scheme: For example, an identification scheme where the cheater must perform an on-line attack in only a few seconds, versus a signature scheme where the cheater can calculate for years off-line to come up with a forgery.
+</P>
+<P>A modification of this algorithm, by Ernie Brickell and Kevin McCurley, enhances its security [265].</P>
+<P><FONT SIZE="+1"><B><I>Patents</I></B></FONT></P>
+<P>Schnorr is patented in the United States [1398] and in many other countries. In 1993, PKP acquired the worldwide rights to the patent (see Section 25.5). The U.S. patent expires on February 19, 2008.
+</P>
+<H3><A NAME="Heading5"></A><FONT COLOR="#000077">21.4 Converting Identification Schemes to Signature Schemes</FONT></H3>
+<P>There is a standard method of converting an identification scheme into a signature scheme: Replace Victor with a one-way hash function. The message is not hashed before it is signed; instead the hashing is incorporated into the signing algorithm. In principle, this can be done with any identification scheme.
+</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="21-03.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="../ch22/22-01.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

@@ -1,0 +1,365 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Mathematical Background</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=0000098e33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/datamation_house_altgif.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=0000098e33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=11//-->
+<!--PAGES=258-261//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-11.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-13.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>The wrong way to find primes is to generate random numbers and then try to factor them. The right way is to generate random numbers and test if they are prime. There are several probabilistic primality tests; tests that determine whether a number is prime with a given degree of confidence. Assuming this &#147;degree of confidence&#148; is large enough, these sorts of tests are good enough. I&#146;ve heard primes generated in this manner called &#147;industrial-grade primes&#148;: These are numbers that are probably prime with a controllably small chance of error.
+</P>
+<P>Assume a test is set to fail once in 2<SUP><SMALL>50</SMALL></SUP> tries. This means that there is a 1 in 10<SUP><SMALL>15</SMALL></SUP> chance that the test falsely indicates that a composite number is prime. (The test will never falsely indicate that a prime number is composite.) If for some reason you need more confidence that the number is prime, you can set the failure level even lower. On the other hand, if you consider that the odds of the number being composite are 300 million times less than the odds of winning top prize in a state lottery, you might not worry about it so much.</P>
+<P>Overviews of recent developments in the field can be found in [1256, 206]. Other important papers are [1490, 384, 11, 19, 626, 651, 911].</P>
+<P><FONT SIZE="+1"><B><I>Solovay-Strassen</I></B></FONT></P>
+<P>Robert Solovay and Volker Strassen developed a probabilistic primality testing algorithm [1490]. Their algorithm uses the Jacobi symbol to test if <I>p</I> is prime:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Choose a random number, <I>a</I>, less than <I>p.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;If the gcd(<I>a,p</I>) &#8800; 1, then <I>p</I> fails the test and is composite.
+<DD><B>(3)</B>&nbsp;&nbsp;Calculate <I>j</I> = a<SUP><SMALL>(<I>p-</I> 1)/2</SMALL></SUP> mod <I>p.</I>
+<DD><B>(4)</B>&nbsp;&nbsp;Calculate the Jacobi symbol J(<I>a,p</I>).
+<DD><B>(5)</B>&nbsp;&nbsp;If <I>j</I> &#8800; J(<I>a,p</I>), then <I>p</I> is definitely not prime.
+<DD><B>(6)</B>&nbsp;&nbsp;If <I>j</I> = J(<I>a,p</I>), then the likelihood that <I>p</I> is not prime is no more than 50 percent.
+</DL>
+<P>A number <I>a</I> that does not indicate that <I>p</I> is definitely not prime is called a <B>witness</B>. If <I>p</I> is composite, the odds of a random <I>a</I> being a witness is no less than 50 percent. Repeat this test <I>t</I> times, with <I>t</I> different random values for <I>a.</I> The odds of a composite number passing all <I>t</I> tests is no more than one in 2<SUP><SMALL>t</SMALL></SUP>.</P>
+<P><FONT SIZE="+1"><B><I>Lehmann</I></B></FONT></P>
+<P>Another, simpler, test was developed independently by Lehmann [945]. Here it tests if <I>p</I> is prime:</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Choose a random number <I>a</I> less than <I>p.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Calculate a<SUP><SMALL>(<I>p-</I> 1)/2</SMALL></SUP> mod <I>p.</I>
+<DD><B>(3)</B>&nbsp;&nbsp;If a<SUP><SMALL>(<I>p-</I> 1)/2</SMALL></SUP> &#8800; 1 or - 1 (mod <I>p</I>), then <I>p</I> is definitely not prime.
+<DD><B>(4)</B>&nbsp;&nbsp;If a<SUP><SMALL>(<I>p-</I> 1)/2</SMALL></SUP> &#8801; 1 or - 1 (mod <I>p</I>), then the likelihood that <I>p</I> is not prime is no more than 50 percent.
+</DL>
+<P>Again, the odds of a random <I>a</I> being a witness to <I>p</I> &#146;s compositeness is no less than 50 percent. Repeat this test <I>t</I> times. If the calculation equals 1 or -1, but does not always equal 1, then <I>p</I> is probably prime with an error rate of 1 in 2<SUP><SMALL>t</SMALL></SUP> .</P>
+<P><FONT SIZE="+1"><B><I>Rabin-Miller</I></B></FONT></P>
+<P>The algorithm everyone uses&#151;it&#146;s easy&#151;was developed by Michael Rabin, based in part on Gary Miller&#146;s ideas [1093, 1284]. Actually, this is a simplified version of the algorithm recommended in the DSS proposal [1149, 1154].
+</P>
+<P>Choose a random number, <I>p</I>, to test. Calculate <I>b</I>, where <I>b</I> is the number of times 2 divides <I>p</I> - <I></I> 1 (i.e., 2<SUP><SMALL>b</SMALL></SUP> is the largest power of 2 that divides <I>p</I> - 1). Then calculate <I>m</I>, such that <I>p</I> = 1 &#43; 2<SUP><SMALL>b</SMALL></SUP> *<I>m</I>.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Choose a random number, <I>a</I>, such that <I>a</I> is less than <I>p.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Set <I>j</I> = 0 and set <I>z</I> = a<SUP><SMALL>m</SMALL></SUP> mod <I>p.</I>
+<DD><B>(3)</B>&nbsp;&nbsp;If <I>z</I> = 1, or if <I>z</I> = p - 1, then <I>p</I> passes the test and may be prime.
+<DD><B>(4)</B>&nbsp;&nbsp;If <I>j</I> &gt 0 and <I>z</I> = 1, then <I>p</I> is not prime.
+<DD><B>(5)</B>&nbsp;&nbsp;Set <I>j</I> = j &#43; 1. If <I>j</I> &lt b and <I>z</I> &#8800; <I>p</I> - 1, set <I>z</I> = z<SUP><SMALL>2</SMALL></SUP> mod <I>p</I> and go back to step (4). If <I>z</I> = p - 1, then <I>p</I> passes the test and may be prime.
+<DD><B>(6)</B>&nbsp;&nbsp;If <I>j</I> = b and <I>z</I> &#8800; <I>p</I> - 1, then <I>p</I> is not prime.
+</DL>
+<P>The odds of a composite passing decreases faster with this test than with previous ones. Three-quarters of the possible values of <I>a</I> are guaranteed to be witnesses. This means that a composite number will slip through <I>t</I> tests no more than &#188;<SUP><SMALL>t</SMALL></SUP> of the time, where <I>t</I> is the number of iterations. Actually, these numbers are very pessimistic. For most random numbers, something like 99.9 percent of the possible <I>a</I> values are witnesses [96].</P>
+<P>There are even better estimations [417]. For <I>n-</I> bit candidate primes (where <I>n</I> is more than 100), the odds of error in one test are less than 1 in 4<I>n</I> 2<SUP><SMALL>(<I>k</I>/2)<SUP><SMALL>(1/2)</SMALL></SUP></SMALL></SUP>. And for a 256-bit <I>n</I>, the odds of error in six tests are less than 1 in 2<SUP><SMALL>51</SMALL></SUP> . More theory is in [418].</P>
+<P><FONT SIZE="+1"><B><I>Practical Considerations</I></B></FONT></P>
+<P>In real-world implementations, prime generation goes quickly.
+</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Generate a random <I>n-</I> bit number, <I>p.</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Set the high-order and low-order bit to 1. (The high-order bit ensures that the prime is of the required length and the low-order bit ensures that it is odd.)
+<DD><B>(3)</B>&nbsp;&nbsp;Check to make sure <I>p</I> is not divisible by any small primes: 3, 5, 7, 11, and so on. Many implementations test <I>p</I> for divisibility by all primes less than 256. The most efficient is to test for divisibility by all primes less than 2000 [949]. You can do this efficiently using a wheel [863].
+<DD><B>(4)</B>&nbsp;&nbsp;Perform the Rabin-Miller test for some random <I>a.</I> If <I>p</I> passes, generate another random <I>a</I> and go through the test again. Choose a small value of <I>a</I> to make the calculations go quicker. Do five tests [651]. (One might seem like enough, but do five.) If <I>p</I> fails one of the tests, generate another <I>p</I> and try again.
+</DL>
+<P>Another option is not to generate a random <I>p</I> each time, but to incrementally search through numbers starting at a random point until you find a prime.</P>
+<P>Step (3) is optional, but it is a good idea. Testing a random odd <I>p</I> to make sure it is not divisible by 3, 5, and 7 eliminates 54 percent of the odd numbers before you get to step (4). Testing against all primes less than 100 eliminates 76 percent of the odd numbers; testing against all primes less than 256 eliminates 80 percent. In general, the fraction of odd candidates that is not a multiple of any prime less than <I>n</I> is 1.12/ln <I>n.</I> The larger the <I>n</I> you test up to, the more precomputation is required before you get to the Rabin-Miller test.</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-11.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-13.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

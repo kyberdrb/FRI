@@ -1,0 +1,538 @@
+
+INSTALLING ADOBE ACROBAT READER 3.0
+====================================
+
+Welcome to Adobe Acrobat(R) Reader software--Version 3.0
+This guide tells you how to install Acrobat Reader on your Sun(R), HP,  
+Silicon Graphics(R), or IBM RISC System/6000(R) workstation.
+
+Acrobat Reader is part of the Adobe Acrobat family of software, which lets 
+you view, distribute, and print documents in Portable Document Format 
+(PDF)--regardless of the computer, operating system, fonts, or application 
+used to create the original file.  PDF files retain all the formatting, 
+fonts, and graphics of the original document, and virtually any 
+PostScript(TM) document can be converted into a PDF file.  PDF files can be 
+created using the Acrobat Distiller(TM) program; on Macintosh(R) and 
+Windows(R) systems, they can also be created using the Acrobat PDF Writer 
+printer driver.  On all platforms, you can use Acrobat Exchange to 
+enhance PDF files with links and bookmarks and to make PDF files display
+quicker over the World Wide Web.  
+
+To install Acrobat Reader on your workstation, you must be familiar with 
+basic UNIX commands. If you are not, please consult with your system 
+administrator before beginning this installation.
+
+
+About this guide
+----------------
+
+Before you begin using Acrobat Reader, be sure to read this guide for 
+installation instructions and other important information. This guide 
+contains the following information:
+
+* Instructions for installing the Acrobat Reader software
+
+* System administration information, such as how to move or remove the 
+  files
+  
+* Troubleshooting information
+
+
+About the Acrobat Reader software package
+-----------------------------------------
+
+The Acrobat Reader software package includes the Acrobat Reader program 
+file, associated files, and the following documents in online form:
+
+* "Acrobat Reader Online Guide" (READER.PDF), which explains how to use and 
+  customize the Acrobat Reader software
+  
+* This document (INSTGUID.TXT) which explains how to install the Acrobat Reader 
+  files
+
+* "Mapping file types" (MapTypes.pdf), which explains how Acrobat Reader uses 
+  MIME types to follow cross-document links 
+
+
+System requirements and limitations
+-----------------------------------
+
+To use Acrobat Reader software, you need the following minimum hardware and 
+software:
+
+If you're using a Sun SPARCstation(R):
+
+* SunOS(TM) 4.1.3 or later, or Solaris(R) 2.3, 2.4, or 2.5  operating system 
+  software (Acrobat Reader will not run under Solaris 2.0, 2.1, or 2.2.)
+  
+* OpenWindows(TM) (version 3.0 or later), Motif(TM) window manager (1.2.3 or 
+  later), OpenLook version 3.0, or Common Desktop Environment (CDE) 1.0
+  and above
+
+* 12 megabytes of available hard disk space 
+
+* A 32 megabyte machine
+
+
+If you're using an HP workstation:
+
+* 9000 series workstation model 700 or 800
+
+* HP-UX(TM) 9.0.3 or later operating system software 
+
+* X Window System(TM) X11R5 with HP-VUE or CDE 1.0
+
+* 12 megabytes of available hard disk space 
+
+* A 32 megabyte machine
+
+
+If you're using a Silicon Graphics workstation:
+
+* IRIX(TM) 5.3 or later operating system software
+
+* 12 megabytes of available hard disk space
+
+* A 32 megabyte of machine
+
+
+If you're using an IBM RS/6000 workstation:
+
+* AIX(R) 4.1 or later operating system
+
+* CDE 1.0 or Motif window manager
+
+* 12 megabytes of available hard disk space
+
+* A 32 megabyte machine
+
+
+Upgrading from Acrobat 2.1
+--------------------------
+
+The Acrobat Reader installation script installs the Reader files into a new 
+directory.  If you have an earlier version of the Reader software, it is 
+not removed automatically.  For more information on removing the files, see 
+"Removing Acrobat Reader Software."
+
+If you installed Acrobat 2.1 on your Silicon Graphics workstation, you can
+remove the Acrobat 2.1 software using the IRIX Software Manager.
+
+PREPARING FOR INSTALLATION
+==========================
+
+Before beginning the installation, decide where to install the Acrobat 
+Reader files.  The following sections describe the installation options.  
+Review these sections carefully before installing the software.
+
+
+Local versus network installation
+---------------------------------
+
+Determine whether a local (stand-alone workstation) or network 
+installation is more appropriate for your situation.  
+
+For local installation: A local installation guarantees access to the 
+software from a workstation and may significantly improve performance, 
+depending on how much activity there is on the network. To install Reader 
+on your workstation, you must have write permission to the directory where
+the Reader software is to be installed.
+
+For network installation: A network installation makes administrative and 
+maintenance tasks easier, particularly when many users want to access the 
+software concurrently. (The number of concurrent users on different 
+workstations is determined by how many licenses have been purchased and 
+installed.) It is easier to upgrade a single copy of software installed on 
+a server than to upgrade multiple copies installed on stand-alone 
+workstations.
+
+Note: Network installation should be performed by a system or network 
+administrator.
+
+If you perform a network installation, you will need to find appropriate 
+network locations for the installation directory. The software should be 
+installed on a network server machine with high reliability. In addition, 
+the installation files should be placed in a location that is remotely 
+mounted at the same location on all machines.
+
+
+Choosing an installation directory
+----------------------------------
+
+Locate a directory and verify that you have sufficient disk space (see
+"System Requirements and Limitations" for disk space requirements).
+The default location for installation of the Acrobat Reader software is 
+the following directory:
+
+* For SunOS and HP:  /usr/Acrobat3
+
+* For Solaris 2:  /opt/Acrobat3
+
+* For IRIX:  /opt/Acrobat3
+
+* For AIX:  /usr/lpp/Acrobat3
+
+If there is insufficient space in this partition, choose another directory 
+within a different partition.  Use the df command to determine the 
+available space within a file system partition containing a particular 
+directory.  Type df (or df -k) followed by the name of the directory in 
+which you want to install the software.  For example, on SunOS type the 
+following command:
+
+    # df /usr
+
+    Filesystem  kbytes    used     avail   capacity  Mounted on
+    /dev/sd0g   207295   98377     88189        53%        /usr
+
+There are 207,295 kilobytes (about 207 megabytes) in this partition and 
+about 88 megabytes available, which is enough disk space to install the 
+Acrobat Reader software. See your system documentation for more 
+information on the df command.
+
+
+INSTALLING THE ACROBAT READER SOFTWARE
+======================================
+
+Acrobat Reader software is distributed on CD-ROM or from the Adobe Web 
+site.  This section contains instructions for installing the software after 
+you have downloaded the Acrobat Reader files or mounted a CD-ROM containing
+the Acrobat Reader files.
+
+If you have downloaded the Acrobat Reader files from the Adobe Web site, 
+you must first uncompress and untar the files before beginning the 
+installation.  Instructions for downloading and uncompressing the files 
+are available on the Adobe Web site.
+
+
+The installation script prompts you to answer questions regarding the 
+installation, such as where you want to place the Reader files.  
+Reasonable default values are provided.  Press Return to select the 
+recommended defaults, or enter your own values.
+
+To run the installation script:
+
+1. Change to the directory containing the installation script.  If you are 
+   installing Acrobat Reader from a CD-ROM, change to the appropriate 
+   directory on the CD-ROM.
+
+2.  Start the installation script.  The filename of the script may be 
+    uppercase or lowercase depending on your system for example:
+
+     # ./install
+
+3.  Follow the instructions that appear on your screen.
+
+If you make a mistake, you can do either of the following: 
+
+*  Exit at different points in the procedure.
+
+*  Press the interrupt key sequence (Control+C on most UNIX systems) to 
+   cancel the installation.
+
+When the installation is complete, a message appears indicating that you 
+have installed the software successfully. Acrobat Reader is now installed. 
+
+
+Acrobat Reader-installed files
+------------------------------
+
+The installation script installs the following files and directories in
+the installation directory:
+
+* The bin directory contains the acroread launch script.
+
+* The Reader directory contains the help and ReadMe files and platform 
+  specific files.
+
+* The Fonts directory contains bundled fonts.
+
+* The Browsers directory contains the Netscape plug-in, if supported, and 
+  an example script for starting Acrobat within Netscape.
+
+
+Integrating icons into the OpenWindows desktop
+----------------------------------------------
+
+Acrobat Reader provides a script that integrates Acrobat Reader icons into 
+your OpenWindows desktop.  You can run this script as root or from your 
+login account.  If you are logged in as root, the icons are installed for 
+all users.  If you run the script as a normal user, the icons are installed 
+for your use only.
+
+To integrate icons into the desktop:
+
+1  In a UNIX shell window, as root, locate the acroread.deskinstall script:
+
+   # cd <installdir>/Reader/desktop/olwm
+
+2  Run the script:
+
+   # ./acroread.deskinstall
+
+3  Exit from OpenWindows, and log back on for the changes to take effect. 
+
+
+Creating links to the launch script
+-----------------------------------
+
+You should always start Acrobat Reader using its launch script. To make it 
+easier to use the script, you can create links to the launch script 
+directory. The following example creates a link in the /usr/bin 
+directory:
+
+    # ln -s /opt/Acrobat3/bin/acroread /usr/bin/acroread
+
+
+STARTING ACROBAT READER
+===========================
+
+Now that you have completed the installation procedure, you are ready to 
+start the Acrobat Reader application.  Always start the Reader application 
+by using its launch script.
+
+If you created symbolic links, and the alternative launch script directory 
+is in the search path set by the PATH environment variable, you can start 
+Acrobat Reader by typing the following:
+
+    % acroread
+
+If you did not create symbolic links to the launch scripts, type the 
+following command to start Acrobat Reader:
+
+    % <installdir>/bin/acroread
+
+To launch Acrobat Reader so that it appears as an icon on your desktop, 
+type the following command:
+
+    % acroread -iconic
+
+To view one or more files, give the filenames as command-line parameters.  
+For example, to view /share/docs/annual_report.pdf and 
+/user/bob/Schedule.pdf, type:
+
+    % acroread /share/docs/annual_report.pdf /user/bob/Schedule.pdf
+
+By default, only one Reader process can be running.  If you type acroread 
+<filename> when Reader is already running, the currently running version of 
+Reader becomes active and displays the specified file.
+
+If you prefer that a new version of Reader be launched each time you start 
+Reader, type the following command:
+
+    % acroread +useFrontEndProgram
+    
+For more information on Acrobat Reader command-line options, type 
+one of the following commands:
+
+    % acroread -help
+    % acroread -helpall
+    
+
+
+Converting PDF to PostScript
+----------------------------
+
+You can convert PDF files to level 1 or level 2 PostScript files from the 
+command line if you are running the X Window System.  Command-line printing 
+supports only the standard page size of 8.5 by 11 inches; it does not 
+support shrink-to-fit or scaling commands.  If your document contains 
+custom page sizes (such as 11 by 14 inches), open the file in Acrobat 
+Reader and then print it or use Acrobat Exchange which has enhanced
+command-line printing capabilities.
+
+To convert a PDF file by piping it into Reader and then sending the output 
+to a file, type the following:
+
+    % cat sample.pdf | acroread -toPostScript > sample.ps 
+
+To convert one or more PDF files, such as sample1.pdf and sample2.pdf, 
+into PostScript files and place these PostScript files into the directory 
+<dir>, type the following:
+
+ % acroread -toPostScript sample1.pdf sample2.pdf <dir>
+
+To convert a series of files expressed as both a PDF filename and a 
+corresponding PostScript filename (or pairs), type the following:
+
+    % acroread -toPostScript -pairs pdf_file_1 ps_file_1 ...
+
+To convert a PDF file to a level 2 PostScript file, type the following:
+
+    % acroread -toPostScript -level2 pdf_file_1
+
+
+Setting up Acrobat as an inline viewer for Netscape
+--------------------------------------------------
+
+Acrobat 3 contains an example script that starts Netscape and allows you 
+to view PDF files inline instead of using an Acrobat viewer as a helper 
+application. The example script is located in <installdir>/Browsers.
+
+Note: Since Netscape does not support plug-ins on an AIX workstation, you 
+cannot use the Acrobat plug-in or the Netscape script to view PDF file inline 
+on an AIX system.
+
+To run the Netscape script, change directory to <installdir>/Browsers 
+and type 
+
+    % ./netscape
+
+
+REMOVING ACROBAT READER SOFTWARE
+================================
+
+You can remove the Acrobat Reader software by manually deleting the files 
+and directories that were created during the installation procedure. 
+
+To remove Acrobat Reader:
+
+1.  Enter the following commands to remove Reader from the installation 
+    directory:
+
+    % cd <installdir>
+    % rm -rf Reader
+    % rm bin/acroread
+
+2.  To remove the symbolic link to the launch script, delete the file 
+    /usr/bin/acroread:
+
+    % cd /usr/bin
+    % rm acroread
+
+
+TROUBLESHOOTING
+===============
+
+This section describes Acrobat Reader error messages and provides general 
+troubleshooting information.
+ 
+
+Command to launch Acrobat Reader not found
+------------------------------------------
+
+Error message: acroread -command not found
+
+Cause: Either the Acrobat Reader launch script is not on your search path 
+or the launch script you are trying to execute is actually a symbolic link 
+to a file that does not exist.
+
+Solution: First, make sure your search path has been updated by typing the 
+following command:
+
+    % rehash
+    
+If the launch script still does not work, locate the file that executes 
+Acrobat Reader:
+
+    % ls -l acroread
+
+If the results indicate that acroread is actually a symbolic link to 
+another file (<file>), type the following:
+
+    % ls -l <file> 
+
+
+Permission denied to launch Acrobat Reader
+------------------------------------------
+
+Error message: acroread: Permission denied
+
+Cause: One or more files have their permissions set incorrectly. 
+
+Solution: Examine the permissions on the Reader launch script to make sure 
+you have proper execute privileges for <installdir>/bin/acroread.
+
+
+Netscape launches my Acrobat viewer as a helper application instead of 
+viewing PDF files inline
+----------------------------------------------------------------------
+
+Error: I set up Netscape to view PDF files inline, but my Acrobat viewer 
+still appears as a helper application.
+
+Solution: Perform the following tasks:
+
+1. Start your Netscape application.
+
+2. Choose General Preferences from the Options menu.
+
+3. In the General Preferences window that appears, click the Helpers tab.
+
+4. If necessary, scroll through the list and select application/pdf.
+
+5. Click Delete.
+
+6. Click OK.
+
+7. Click Save Options in the Options menu.
+
+8. Restart your Netscape application.
+
+
+
+
+
+
+1996 Adobe Systems Incorporated. All rights reserved.
+
+Adobe Acrobat Reader 3.0 Installation Guide for UNIX
+
+This manual, as well as the software described in it, is furnished under 
+license and may be used or copied only in accordance with the terms of 
+such license. The information in this manual is furnished for 
+informational use only, is subject to change without notice, and should 
+not be construed as a commitment by Adobe Systems Incorporated. Adobe 
+Systems Incorporated assumes no responsibility or liability for any errors 
+or inaccuracies that may appear in this manual.
+
+Except as permitted by such license, no part of this publication may be 
+reproduced, stored in a retrieval system, or transmitted, in any form or 
+by any means, electronic, mechanical, recording, or otherwise, without the 
+prior written permission of Adobe Systems Incorporated.
+
+Adobe, the Adobe logo, Acrobat, the Acrobat logo, Distiller, Adobe 
+Illustrator, and PostScript are trademarks of Adobe Systems Incorporated.  
+Macintosh is a registered trademark of Apple Computer, Inc.  HP is a 
+registered trademark and HP-UX is a trademark of Hewlett-Packard Company.  
+Motif is a trademark of Open Software Foundation, Inc.  Solaris is a 
+registered trademark of Sun Microsystems, Inc., which has not tested or 
+approved this product.  Sun and OpenWindows are trademarks of Sun 
+Microsystems, Inc.  SPARC is a registered trademark of SPARC International, 
+Inc.  SPARCstation is a registered trademark of SPARC International, Inc., 
+licensed exclusively to Sun Microsystems, Inc.  and is based upon an 
+architecture developed by Sun Microsystems, Inc.  IRIX is a registered 
+trademark of Silicon Graphics, Inc.  UNIX is a registered trademark in the 
+United States and other countries, licensed exclusively through X/Open 
+Company, Ltd.  AIX and IBM are registered trademarks, and RS/6000 is a 
+trademark of International Business Machines Corporation.  Windows is a 
+trademark of Microsoft Corporation.  X Window System is a trademark of the 
+Massachusetts Institute of Technology.  All other products or name brands 
+are trademarks of their respective holders.
+
+Contains an implementation of the LZW algorithm licensed under U.S. Patent 
+4,558,302.
+
+Written and designed at Adobe Systems Incorporated, 345 Park Avenue, 
+San Jose, CA 95110-2704, USA
+
+Adobe Systems Europe Limited, Adobe House, Edinburgh EH11 4DU, Scotland, 
+United Kingdom
+
+Adobe Systems Co., Ltd., Yebisu Garden Place Tower, 4-20-3 Ebisu, 
+Shibuya-ku, Tokyo 150, Japan
+
+For defense agencies: Restricted Rights Legend. Use, reproduction, or 
+disclosure is subject to restrictions set forth in subparagraph (c)(1)(ii) 
+of the Rights in Technical Data and Computer Software clause at 
+252.227-7013. 
+
+For civilian agencies: Restricted Rights Legend. Use, reproduction, or 
+disclosure is subject to restrictions set forth in subparagraphs (a) 
+through (d) of the commercial Computer Software Restricted Rights clause 
+at 52.227-19 and the limitations set forth in Adobe’s standard commercial 
+agreement for this software. Unpublished rights reserved under the 
+copyright laws of the United States.
+
+(10/96)
+
+

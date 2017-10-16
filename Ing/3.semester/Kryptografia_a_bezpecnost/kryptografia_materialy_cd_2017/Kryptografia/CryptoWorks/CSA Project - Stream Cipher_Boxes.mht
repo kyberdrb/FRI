@@ -1,0 +1,1306 @@
+From: <Saved by Windows Internet Explorer 7>
+Subject: CSA Project - Stream Cipher
+Date: Mon, 17 Aug 2009 13:46:45 +0200
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0014_01CA1F41.294EB600"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0014_01CA1F41.294EB600
+Content-Type: text/html;
+	charset="windows-1250"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://web.archive.org/web/20080128203619/csa.irde.to/scsboxesasterms.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>CSA Project - Stream Cipher</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1250"><!-- saved from =
+url=3D(0022)http://internet.e-mail -->
+<META content=3D"MSHTML 6.00.6000.16640" name=3DGENERATOR></HEAD>
+<BODY style=3D"BACKGROUND-IMAGE: url(/streamcipher/termsbg3.jpg)">
+<CENTER>
+<SCRIPT type=3Dtext/javascript><!--=0A=
+google_ad_client =3D "pub-5530401126063367";=0A=
+google_ad_width =3D 728;=0A=
+google_ad_height =3D 90;=0A=
+google_ad_format =3D "728x90_as";=0A=
+google_ad_channel =3D"1194730358";=0A=
+google_ad_type =3D "text_image";=0A=
+google_color_border =3D ["336699","000000","6699CC","B0E0E6"];=0A=
+google_color_bg =3D ["FFFFFF","F0F0F0","003366","FFFFFF"];=0A=
+google_color_link =3D ["0000FF","0000FF","FFFFFF","000000"];=0A=
+google_color_url =3D ["008000","008000","AECCEB","336699"];=0A=
+google_color_text =3D ["000000","000000","AECCEB","333333"];=0A=
+//--></SCRIPT>
+
+<SCRIPT src=3D"http://pagead2.googlesyndication.com/pagead/show_ads.js"=20
+type=3Dtext/javascript>=0A=
+</SCRIPT>
+</CENTER>
+<CENTER>
+<H1>Stream Cipher SBoxes as boolean terms</H1>(doing it the SIMD-way ;)=20
+)<BR><BR></CENTER><BR>This is another way to get the new values for =
+registers=20
+X,Y and Z in every round. Instead of reading out tables, the single bits =
+are=20
+directly calculated from the input bits. Before we can do this, we need =
+to split=20
+the 7 SBoxes with 2 output bits each into 14 SBoxes with only 1 output =
+bit each.=20
+You have to convert them by hand or copy it from some piece of =
+sourcecode where=20
+it has already been converted, so there's at least a single piece of =
+work left=20
+for you :)<BR>OK. In the first moment it might sound stupid to convert =
+tables=20
+with 32 entries and a good entropy into formulas. Why should one do =
+this?=20
+Reading out a table is much faster than doing 20 or more logic =
+operations for=20
+every single bit. Thats true if you process one (or two) (TS) bytes at =
+the same=20
+time.&nbsp; But if you're processing 8 bytes (or TSs) or even more at a =
+time,=20
+then it makes sense. The usual way would be to split your nice =
+'byte-package'=20
+into single pieces, read every S-Box out and put them togehter again. =
+The more=20
+bytes you process at one time, the more time consuming this process =
+becomes=20
+(linear growth). If you change the tables into equotations you keep the =
+number=20
+of needed commands constant, you can process 8 or 16 bytes at one time =
+and it=20
+does not take more commands or time (if your registers are big enough to =
+hold=20
+all the data). In this case ( 14&nbsp; 2^5 Bit 'big' SBoxes with 1 =
+output bit=20
+each) the speedup with 8 bytes processed at one time is about factor 3 =
+with the=20
+terms opposite to the usual tables.<BR>But lets have a=20
+look:<BR><BR>Explanation:<BR>a - e =3D Adressbits for the (no longer =
+used) SBoxes.=20
+a=3DMSB, e=3DLSB<BR>out&nbsp;&nbsp; =3D Output Bit<BR>* is the (old) =
+sign for logical=20
+AND<BR><BR>SBoxXa gives us the LS output bit from SBox X<BR>SBoxXb gives =
+us the=20
+MS output bit from SBox X<BR><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox1a<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b=
+&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c=
+&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c=
+&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nbsp;&nbsp;XO=
+R<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR=
+&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nb=
+sp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nb=
+sp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox1b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D</FONT></FONT><BR><FON=
+T=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbs=
+p;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</=
+FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbs=
+p;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbs=
+p;e&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbs=
+p;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbs=
+p;d&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbs=
+p;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;log.1&nbsp;)&nbsp;&nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbs=
+p;XOR</FONT></FONT><BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XOR</FONT></FONT><=
+BR><FONT=20
+face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, Arial"=20
+size=3D1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)=20
+</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox2a<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbs=
+p;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbs=
+p;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbs=
+p;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<B=
+R>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;(&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbs=
+p;&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbs=
+p;&nbsp;b&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbs=
+p;&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;)&nbs=
+p;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&nbsp;)&nbsp;&=
+nbsp;XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox2b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbs=
+p;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbs=
+p;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbs=
+p;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp=
+;b&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&=
+nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XO=
+R<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XO=
+R<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XO=
+R<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XO=
+R<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&=
+nbsp;)<BR><BR></FONT></FONT>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox3a<BR><FONT face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, =
+Arial"=20
+size=3D1><BR>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D<BR>&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*=
+&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)=
+&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nbsp;&=
+nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;(&nbsp;d&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox3b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;=
+d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;=
+c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;=
+c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;=
+XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;=
+)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;=
+&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&nbsp;)<BR>&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp=
+;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp=
+;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp=
+;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp=
+;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp=
+;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp=
+;c&nbsp;*&nbsp;&nbsp;d&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox4a<BR><FONT face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, =
+Arial"=20
+size=3D1><BR>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&n=
+bsp;a&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;&n=
+bsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;(&nbsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&n=
+bsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&n=
+bsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nb=
+sp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nb=
+sp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nb=
+sp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;c&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox4b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp=
+;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&nbsp;)&nbsp;&n=
+bsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;(&nbsp;a&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;)&nbsp;&nbsp;XOR=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<=
+BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;(&nbsp;a&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nb=
+sp;&nbsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;*&nb=
+sp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nb=
+sp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nb=
+sp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nb=
+sp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nb=
+sp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nb=
+sp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;)&nbsp;&nbsp;XOR</FONT><=
+/FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox5a<BR><FONT face=3D"Verdana, Arial" size=3D2><FONT face=3D"Verdana, =
+Arial"=20
+size=3D1><BR>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&n=
+bsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&n=
+bsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&n=
+bsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&n=
+bsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&n=
+bsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&n=
+bsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&n=
+bsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&n=
+bsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&n=
+bsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;(&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&n=
+bsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&n=
+bsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&n=
+bsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;e&nbsp;)</FONT></FONT><=
+BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox5b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;=
+b&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;=
+c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;=
+e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;=
+e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;=
+c&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;=
+e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;=
+XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;=
+XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;=
+e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;=
+)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;log.1&nbsp;)&n=
+bsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nb=
+sp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nb=
+sp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nb=
+sp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox6a<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp=
+;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp=
+;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp=
+;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp=
+;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp=
+;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp=
+;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;=
+XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;=
+XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox6b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbs=
+p;&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbs=
+p;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp=
+;a&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp=
+;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp=
+;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp=
+;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;e&nbsp;)</FONT></FO=
+NT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox7a<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+b&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;=
+d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;=
+e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;=
+)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;(&nbsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;e&nbsp;)&nbsp;=
+&nbsp;XOR&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;)=
+&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*=
+&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;*&nbsp;&nbsp;e&nbsp;)=
+<BR></FONT></FONT><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+SBox7b<BR><BR><FONT face=3D"Verdana, Arial" size=3D2><FONT =
+face=3D"Verdana, Arial"=20
+size=3D1>out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=3D&nbsp;&nbsp;<BR>&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;=
+d&nbsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;*&nbsp;&nbsp;d&nbsp;*&=
+nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;b&nbsp;)&nbsp;&nbsp;XOR<BR>&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&n=
+bsp;c&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;d&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;)&nbsp;&nbsp;XOR=
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&nbsp;)&nbsp;&nbsp;XOR=
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;c&nbsp;*&nbsp;&nbsp;d&n=
+bsp;*&nbsp;&nbsp;e&nbsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;d&nbsp;*&nbsp;&nbsp;e&n=
+bsp;)&nbsp;&nbsp;XOR<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;a&nbsp;*&nbsp;&nbsp;b&nbsp;*&nbsp;&nbsp;d&n=
+bsp;*&nbsp;&nbsp;e&nbsp;)</FONT></FONT><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+<BR>The terms were derived from the SBox tables using QMC 3.12 . If =
+there were=20
+no copy&amp;paste error, the terms should be correct ( I tested them, =
+the result=20
+of the calculation was correct). I also did you another 'little' favor =
+by=20
+optimizing the order of the terms for programming.<BR><BR>If anybody =
+knows how=20
+to optimize these things a bit further (if it is possible anyway), then =
+please=20
+drop us a line in <A=20
+href=3D"http://www.4freeboard.to/board/thread.php?threadid=3D20660&amp;si=
+d=3D">our=20
+thread.</A><BR><BR><BR>[gme] - May 2003<BR><BR><BR><A=20
+href=3D"http://csa.irde.to.wstub.archive.org/index.html">home</A>
+<SCRIPT language=3DJavascript>=0A=
+<!--=0A=
+=0A=
+// FILE ARCHIVED ON 20080128203619 AND RETRIEVED FROM THE=0A=
+// INTERNET ARCHIVE ON 20090817114615.=0A=
+// JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.=0A=
+// ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.=0A=
+// SECTION 108(a)(3)).=0A=
+=0A=
+   var sWayBackCGI =3D "http://web.archive.org/web/20080128203619/";=0A=
+=0A=
+   function xResolveUrl(url) {=0A=
+      var image =3D new Image();=0A=
+      image.src =3D url;=0A=
+      return image.src;=0A=
+   }=0A=
+   function xLateUrl(aCollection, sProp) {=0A=
+      var i =3D 0;=0A=
+      for(i =3D 0; i < aCollection.length; i++) {=0A=
+         var url =3D aCollection[i][sProp];         if (typeof(url) =
+=3D=3D "string") { =0A=
+          if (url.indexOf("mailto:") =3D=3D -1 &&=0A=
+             url.indexOf("javascript:") =3D=3D -1=0A=
+             && url.length > 0) {=0A=
+            if(url.indexOf("http") !=3D 0) {=0A=
+                url =3D xResolveUrl(url);=0A=
+            }=0A=
+            url =3D url.replace('.wstub.archive.org','');=0A=
+            aCollection[i][sProp] =3D sWayBackCGI + url;=0A=
+         }=0A=
+         }=0A=
+      }=0A=
+   }=0A=
+=0A=
+   xLateUrl(document.getElementsByTagName("IMG"),"src");=0A=
+   xLateUrl(document.getElementsByTagName("A"),"href");=0A=
+   xLateUrl(document.getElementsByTagName("AREA"),"href");=0A=
+   xLateUrl(document.getElementsByTagName("OBJECT"),"codebase");=0A=
+   xLateUrl(document.getElementsByTagName("OBJECT"),"data");=0A=
+   xLateUrl(document.getElementsByTagName("APPLET"),"codebase");=0A=
+   xLateUrl(document.getElementsByTagName("APPLET"),"archive");=0A=
+   xLateUrl(document.getElementsByTagName("EMBED"),"src");=0A=
+   xLateUrl(document.getElementsByTagName("BODY"),"background");=0A=
+   xLateUrl(document.getElementsByTagName("TD"),"background");=0A=
+   xLateUrl(document.getElementsByTagName("INPUT"),"src");=0A=
+   var forms =3D document.getElementsByTagName("FORM");=0A=
+   if (forms) {=0A=
+       var j =3D 0;=0A=
+       for (j =3D 0; j < forms.length; j++) {=0A=
+              f =3D forms[j];=0A=
+              if (typeof(f.action)  =3D=3D "string") {=0A=
+                 if(typeof(f.method)  =3D=3D "string") {=0A=
+                     if(typeof(f.method) !=3D "post") {=0A=
+                        f.action =3D sWayBackCGI + f.action;=0A=
+                     }=0A=
+                  }=0A=
+              }=0A=
+        }=0A=
+    }=0A=
+=0A=
+=0A=
+//-->=0A=
+</SCRIPT>
+ </BODY></HTML>
+
+------=_NextPart_000_0014_01CA1F41.294EB600
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://pagead2.googlesyndication.com/pagead/show_ads.js
+
+(function(){=0A=
+var i=3Dtrue,l=3Dnull,m=3Dfalse,aa=3D(new =
+Date).getTime(),ba=3Dfunction(a){var b=3D(new =
+Date).getTime()-aa,c=3D"&dtd=3D"+(b<1000?b:"M");return a+c};var =
+n=3Dthis,ca=3Dfunction(a,b,c){var d=3Da.split("."),e=3Dc||n;!(d[0]in =
+e)&&e.execScript&&e.execScript("var "+d[0]);for(var =
+f;d.length&&(f=3Dd.shift());)if(!d.length&&b!=3D=3Dundefined)e[f]=3Db;els=
+e e=3De[f]?e[f]:(e[f]=3D{})},o=3Dfunction(a){var b=3Dtypeof =
+a;if(b=3D=3D"object")if(a){if(a instanceof Array||!(a instanceof =
+Object)&&Object.prototype.toString.call(a)=3D=3D"[object Array]"||typeof =
+a.length=3D=3D"number"&&typeof a.splice!=3D"undefined"&&typeof =
+a.propertyIsEnumerable!=3D"undefined"&&!a.propertyIsEnumerable("splice"))=
+return"array";=0A=
+if(!(a instanceof =
+Object)&&(Object.prototype.toString.call(a)=3D=3D"[object =
+Function]"||typeof a.call!=3D"undefined"&&typeof =
+a.propertyIsEnumerable!=3D"undefined"&&!a.propertyIsEnumerable("call")))r=
+eturn"function"}else return"null";else if(b=3D=3D"function"&&typeof =
+a.call=3D=3D"undefined")return"object";return b},p=3Dfunction(a){return =
+o(a)=3D=3D"array"},da=3Dfunction(a){var b=3Do(a);return =
+b=3D=3D"array"||b=3D=3D"object"&&typeof =
+a.length=3D=3D"number"},ea=3Dfunction(a){return typeof =
+a=3D=3D"string"},fa=3Dfunction(a){var b=3Do(a);return b=3D=3D"object"||=0A=
+b=3D=3D"array"||b=3D=3D"function"};Math.floor(Math.random()*2147483648).t=
+oString(36);=0A=
+var ga=3Dfunction(a){var =
+b=3Do(a);if(b=3D=3D"object"||b=3D=3D"array"){if(a.clone)return =
+a.clone.call(a);var c=3Db=3D=3D"array"?[]:{};for(var d in =
+a)c[d]=3Dga(a[d]);return c}return a},ia=3Dfunction(a,b){var =
+c=3Da.u;if(arguments.length>2){var =
+d=3DArray.prototype.slice.call(arguments,2);c&&d.unshift.apply(d,c);c=3Dd=
+}b=3Da.w||b;a=3Da.v||a;var e,f=3Db||n;e=3Dc?function(){var =
+h=3DArray.prototype.slice.call(arguments);h.unshift.apply(h,c);return =
+a.apply(f,h)}:function(){return =
+a.apply(f,arguments)};e.u=3Dc;e.w=3Db;e.v=3Da;return =
+e},ja=3DDate.now||function(){return(new Date).getTime()},=0A=
+q=3Dfunction(a,b,c){ca(a,b,c)};function r(a,b){var =
+c=3DparseFloat(a);return isNaN(c)||c>1||c<0?b:c}function =
+ka(a,b){if(a=3D=3D"true")return i;if(a=3D=3D"false")return m;return =
+b}function s(a,b){var c=3D/^([\w-]+\.)+[\w-]{2,}(\:[0-9]+)?$/;return =
+c.test(a)?a:b};var =
+la=3D"pagead2.googlesyndication.com",ma=3D"googleads.g.doubleclick.net",n=
+a=3D"pubads.g.doubleclick.net",oa=3D"securepubads.g.doubleclick.net",pa=3D=
+"partner.googleadservices.com",t=3Ds("pagead2.googlesyndication.com",la),=
+ra=3Ds("googleads.g.doubleclick.net",ma),sa=3Ds("pagead2.googlesyndicatio=
+n.com",la);s("pubads.g.doubleclick.net",na);s("partner.googleadservices.c=
+om",pa);s("securepubads.g.doubleclick.net",oa);function u(a){return =
+typeof =
+encodeURIComponent=3D=3D"function"?encodeURIComponent(a):escape(a)}functi=
+on ta(a,b,c){var =
+d=3Ddocument.createElement("script");d.type=3D"text/javascript";if(b)d.on=
+load=3Db;if(c)d.id=3Dc;d.src=3Da;var =
+e=3Ddocument.getElementsByTagName("head")[0];if(!e)return =
+m;window.setTimeout(function(){e.appendChild(d)},0);return i}function =
+ua(a,b){a.google_image_requests||(a.google_image_requests=3D[]);var =
+c=3Dnew Image;c.src=3Db;a.google_image_requests.push(c)}=0A=
+function va(a){if(a in wa)return wa[a];return =
+wa[a]=3Dnavigator.userAgent.toLowerCase().indexOf(a)!=3D-1}var wa=3D{};=0A=
+function xa(){if(navigator.plugins&&navigator.mimeTypes.length){var =
+a=3Dnavigator.plugins["Shockwave Flash"];if(a&&a.description)return =
+a.description.replace(/([a-zA-Z]|\s)+/,"").replace(/(\s)+r/,".")}else =
+if(navigator.userAgent&&navigator.userAgent.indexOf("Windows =
+CE")>=3D0){for(var b=3D3,c=3D1;c;)try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash."+(b+1));b++}catch(d){c=3Dl}=
+return b.toString()}else if(va("msie")&&!window.opera){c=3Dl;try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash.7")}catch(e){b=3D=0A=
+0;try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash.6");b=3D6;c.AllowScriptAcces=
+s=3D"always"}catch(f){if(b=3D=3D6)return b.toString()}try{c=3Dnew =
+ActiveXObject("ShockwaveFlash.ShockwaveFlash")}catch(h){}}if(c){b=3Dc.Get=
+Variable("$version").split(" ")[1];return =
+b.replace(/,/g,".")}}return"0"}function ya(a){var =
+b=3Da.google_ad_format;if(b)return b.indexOf("_0ads")>0;return =
+a.google_ad_output!=3D"html"&&a.google_num_radlinks>0}function =
+v(a){return!!a&&a.indexOf("_sdo")!=3D-1}=0A=
+function w(a,b){var c=3DMath.random();if(c<b){var =
+d=3DMath.floor(c/b*a.length);return a[d]}return""};var =
+za=3D{google_ad_channel:"channel",google_ad_host:"host",google_ad_host_ch=
+annel:"h_ch",google_ad_host_tier_id:"ht_id",google_ad_section:"region",go=
+ogle_ad_type:"ad_type",google_adtest:"adtest",google_allow_expandable_ads=
+:"ea",google_alternate_ad_url:"alternate_ad_url",google_alternate_color:"=
+alt_color",google_bid:"bid",google_city:"gcs",google_color_bg:"color_bg",=
+google_color_border:"color_border",google_color_line:"color_line",google_=
+color_link:"color_link",google_color_text:"color_text",google_color_url:"=
+color_url",=0A=
+google_contents:"contents",google_country:"gl",google_cust_age:"cust_age"=
+,google_cust_ch:"cust_ch",google_cust_gender:"cust_gender",google_cust_id=
+:"cust_id",google_cust_interests:"cust_interests",google_cust_job:"cust_j=
+ob",google_cust_l:"cust_l",google_cust_lh:"cust_lh",google_cust_u_url:"cu=
+st_u_url",google_disable_video_autoplay:"disable_video_autoplay",google_e=
+d:"ed",google_encoding:"oe",google_feedback:"feedback_link",google_flash_=
+version:"flash",google_font_face:"f",google_font_size:"fs",google_hints:"=
+hints",=0A=
+google_kw:"kw",google_kw_type:"kw_type",google_language:"hl",google_page_=
+url:"url",google_referrer_url:"ref",google_region:"gr",google_reuse_color=
+s:"reuse_colors",google_safe:"adsafe",google_tag_info:"gut",google_target=
+ing:"targeting",google_ui_features:"ui",google_ui_version:"uiv",google_vi=
+deo_doc_id:"video_doc_id",google_video_product_type:"video_product_type"}=
+,Aa=3D{google_ad_client:"client",google_ad_format:"format",google_ad_outp=
+ut:"output",google_ad_callback:"callback",google_ad_height:"h",google_ad_=
+override:"google_ad_override",=0A=
+google_ad_slot:"slotname",google_ad_width:"w",google_ctr_threshold:"ctr_t=
+",google_image_size:"image_size",google_last_modified_time:"lmt",google_m=
+ax_num_ads:"num_ads",google_max_radlink_len:"max_radlink_len",google_num_=
+radlinks:"num_radlinks",google_num_radlinks_per_unit:"num_radlinks_per_un=
+it",google_only_ads_with_video:"only_ads_with_video",google_page_location=
+:"loc",google_rl_dest_url:"rl_dest_url",google_rl_filtering:"rl_filtering=
+",google_rl_mode:"rl_mode",google_rt:"rt",google_skip:"skip"},Da=3D=0A=
+{google_only_pyv_ads:"pyv",google_with_pyv_ads:"withpyv"};function =
+Ea(a,b){try{return a.top.document.URL=3D=3Db.URL}catch(c){}return =
+m}function Fa(a,b,c,d){var =
+e=3Dc||a.google_ad_width,f=3Dd||a.google_ad_height;if(Ea(a,b))return =
+m;var h=3Db.documentElement;if(e&&f){var =
+j=3D1,k=3D1;if(a.innerHeight){j=3Da.innerWidth;k=3Da.innerHeight}else =
+if(h&&h.clientHeight){j=3Dh.clientWidth;k=3Dh.clientHeight}else =
+if(b.body){j=3Db.body.clientWidth;k=3Db.body.clientHeight}if(k>2*f||j>2*e=
+)return m}return i}function Ga(a,b){for(var c in b)a["google_"+c]=3Db[c]}=0A=
+function Ha(a,b){if(!b)return a.URL;return a.referrer}function =
+Ia(a,b){if(!b&&a.google_referrer_url=3D=3Dl)return"0";else =
+if(b&&a.google_referrer_url=3D=3Dl)return"1";else =
+if(!b&&a.google_referrer_url!=3Dl)return"2";else =
+if(b&&a.google_referrer_url!=3Dl)return"3";return"4"}function =
+Ja(a,b,c,d){a.page_url=3DHa(c,d);a.page_location=3Dl}function =
+Ka(a,b,c,d){a.page_url=3Db.google_page_url;a.page_location=3DHa(c,d)||"EM=
+PTY"}=0A=
+function La(a,b){var =
+c=3D{},d=3DFa(a,b,a.google_ad_width,a.google_ad_height);c.iframing=3DIa(a=
+,d);a.google_page_url?Ka(c,a,b,d):Ja(c,a,b,d);c.last_modified_time=3Db.UR=
+L=3D=3Dc.page_url?Date.parse(b.lastModified)/1000:l;c.referrer_url=3Dd?a.=
+google_referrer_url:a.google_page_url&&a.google_referrer_url?a.google_ref=
+errer_url:b.referrer;return c}function Ma(a){var =
+b=3D{},c=3Da.URL.substring(a.URL.lastIndexOf("http"));b.iframing=3Dl;b.pa=
+ge_url=3Dc;b.page_location=3Da.URL;b.last_modified_time=3Dl;b.referrer_ur=
+l=3Dc;return b}=0A=
+function Na(a,b){var c=3DOa(a,b);Ga(a,c)}function Oa(a,b){var c;return =
+c=3Da.google_page_url=3D=3Dl&&Pa[b.domain]?Ma(b):La(a,b)}var =
+Pa=3D{};Pa["ad.yieldmanager.com"]=3Di;var =
+Qa=3Ddocument,Ra=3Dka("false",m),Sa=3Dka("false",m),Ta=3Dka("false",m);ka=
+("false",m);var y=3Dwindow;var Ua=3Dfunction(a,b,c){var =
+d=3Dia(b,n,a),e=3Dwindow.onerror;window.onerror=3Dd;try{c()}catch(f){var =
+h=3Df.toString(),j=3D"";if(f.fileName)j=3Df.fileName;var =
+k=3D-1;if(f.lineNumber)k=3Df.lineNumber;var g=3Dd(h,j,k);if(!g)throw =
+f;}window.onerror=3De};q("google_protectAndRun",Ua);=0A=
+var Wa=3Dfunction(a,b,c,d){if(Math.random()<0.01){var =
+e=3DQa,f=3D["http://",t,"/pagead/gen_204","?id=3Djserror","&cb=3D",Ra?1:0=
+,"&cd=3D",Sa?1:0,"&context=3D",u(a),"&msg=3D",u(b),"&file=3D",u(c),"&line=
+=3D",u(d.toString()),"&url=3D",u(e.URL.substring(0,512)),"&ref=3D",u(e.re=
+ferrer.substring(0,512))];f.push(Va());ua(y,f.join(""))}return!Ta};q("goo=
+gle_handleError",Wa);=0A=
+var Ya=3Dfunction(a){Xa|=3Da},Xa=3D0,Va=3Dfunction(){var =
+a=3D["&client=3D",u(y.google_ad_client),"&format=3D",u(y.google_ad_format=
+),"&slotname=3D",u(y.google_ad_slot),"&output=3D",u(y.google_ad_output),"=
+&ad_type=3D",u(y.google_ad_type)];return a.join("")};var =
+A=3D"",ab=3Dfunction(){if(window.google_ad_frameborder=3D=3Dl)window.goog=
+le_ad_frameborder=3D0;if(window.google_ad_output=3D=3Dl)window.google_ad_=
+output=3D"html";if(v(window.google_ad_format)){var =
+a=3Dwindow.google_ad_format.match(/^(\d+)x(\d+)_.*/);if(a){window.google_=
+ad_width=3DparseInt(a[1],10);window.google_ad_height=3DparseInt(a[2],10);=
+window.google_ad_output=3D"html"}}window.google_ad_format=3DZa(window.goo=
+gle_ad_format,window.google_ad_output,window.google_ad_width,window.googl=
+e_ad_height,window.google_ad_slot,=0A=
+!!window.google_override_format);A=3Dwindow.google_ad_client||"";window.g=
+oogle_ad_client=3D$a(window.google_ad_format,window.google_ad_client);Na(=
+window,document);if(window.google_num_slots_by_channel=3D=3Dl)window.goog=
+le_num_slots_by_channel=3D{};if(window.google_viewed_host_channels=3D=3Dl=
+)window.google_viewed_host_channels=3D{};if(window.google_num_slots_by_cl=
+ient=3D=3Dl)window.google_num_slots_by_client=3D{};if(window.google_prev_=
+ad_formats_by_region=3D=3Dl)window.google_prev_ad_formats_by_region=3D{};=
+if(window.google_prev_ad_slotnames_by_region=3D=3D=0A=
+l)window.google_prev_ad_slotnames_by_region=3D{};if(window.google_correla=
+tor=3D=3Dl)window.google_correlator=3D(new =
+Date).getTime();if(window.google_adslot_loaded=3D=3Dl)window.google_adslo=
+t_loaded=3D{};if(window.google_adContentsBySlot=3D=3Dl)window.google_adCo=
+ntentsBySlot=3D{};if(window.google_flash_version=3D=3Dl)window.google_fla=
+sh_version=3Dxa();if(window.google_new_domain_checked=3D=3Dl)window.googl=
+e_new_domain_checked=3D0;if(window.google_new_domain_enabled=3D=3Dl)windo=
+w.google_new_domain_enabled=3D0;if(!window.google_num_ad_slots)window.goo=
+gle_num_ad_slots=3D=0A=
+0;if(!window.google_num_0ad_slots)window.google_num_0ad_slots=3D0;if(!win=
+dow.google_num_sdo_slots)window.google_num_sdo_slots=3D0;window.google_ad=
+_section=3Dwindow.google_ad_section||window.google_ad_region||"";window.g=
+oogle_country=3Dwindow.google_country||window.google_gl||"";var b=3D(new =
+Date).getTime();if(p(window.google_color_bg))window.google_color_bg=3DC(w=
+indow.google_color_bg,b);if(p(window.google_color_text))window.google_col=
+or_text=3DC(window.google_color_text,b);if(p(window.google_color_link))wi=
+ndow.google_color_link=3D=0A=
+C(window.google_color_link,b);if(p(window.google_color_url))window.google=
+_color_url=3DC(window.google_color_url,b);if(p(window.google_color_border=
+))window.google_color_border=3DC(window.google_color_border,b);if(p(windo=
+w.google_color_line))window.google_color_line=3DC(window.google_color_lin=
+e,b)},bb=3Dfunction(a){var b;for(b in za)a[b]=3Dl;for(b in =
+Aa)a[b]=3Dl;for(b in =
+Da)a[b]=3Dl;a.google_container_id=3Dl;a.google_eids=3Dl;a.google_ad_regio=
+n=3Dl;a.google_gl=3Dl},C=3Dfunction(a,b){Ya(2);return =
+a[b%a.length]},$a=3Dfunction(a,=0A=
+b){if(!b)return"";b=3Db.toLowerCase();return =
+b=3Dv(a)?cb(b):db(b)},db=3Dfunction(a){if(a&&a.substring(0,3)!=3D"ca-")a=3D=
+"ca-"+a;return =
+a},cb=3Dfunction(a){if(a&&a.substring(0,9)!=3D"dist-aff-")a=3D"dist-aff-"=
++a;return =
+a},Za=3Dfunction(a,b,c,d,e,f){if(!a&&b=3D=3D"html")a=3Dc+"x"+d;return =
+a=3Deb(a,e,f)?a.toLowerCase():""},eb=3Dfunction(a,b,c){if(!a)return =
+m;if(!b)return i;return c};var D=3Ddocument,F=3Dnavigator,G=3Dwindow;=0A=
+function fb(){var a=3DD.cookie,b=3DMath.round((new =
+Date).getTime()/1000),c=3DG.google_analytics_domain_name,d=3Dtypeof =
+c=3D=3D"undefined"?gb("auto"):gb(c),e=3Da.indexOf("__utma=3D"+d+".")>-1,f=
+=3Da.indexOf("__utmb=3D"+d)>-1,h=3Da.indexOf("__utmc=3D"+d)>-1,j,k=3D{},g=
+=3D!!G&&!!G.gaGlobal;if(e){j=3Da.split("__utma=3D"+d+".")[1].split(";")[0=
+].split(".");k.sid=3Df&&h?j[3]+"":g&&G.gaGlobal.sid?G.gaGlobal.sid:b+"";k=
+.vid=3Dj[0]+"."+j[1];k.from_cookie=3Di}else{k.sid=3Dg&&G.gaGlobal.sid?G.g=
+aGlobal.sid:b+"";k.vid=3Dg&&G.gaGlobal.vid?G.gaGlobal.vid:(Math.round(Mat=
+h.random()*=0A=
+2147483647)^hb()&2147483647)+"."+b;k.from_cookie=3Dm}k.dh=3Dd;k.hid=3Dg&&=
+G.gaGlobal.hid?G.gaGlobal.hid:Math.round(Math.random()*2147483647);return=
+ G.gaGlobal=3Dk}=0A=
+function hb(){var =
+a=3DD.cookie?D.cookie:"",b=3DG.history.length,c,d,e=3D[F.appName,F.versio=
+n,F.language?F.language:F.browserLanguage,F.platform,F.userAgent,F.javaEn=
+abled()?1:0].join("");if(G.screen)e+=3DG.screen.width+"x"+G.screen.height=
++G.screen.colorDepth;else =
+if(G.java){d=3Djava.awt.Toolkit.getDefaultToolkit().getScreenSize();e+=3D=
+d.screen.width+"x"+d.screen.height}e+=3Da;e+=3DD.referrer?D.referrer:"";f=
+or(c=3De.length;b>0;)e+=3Db--^c++;return ib(e)}=0A=
+function ib(a){var =
+b=3D1,c=3D0,d,e;if(!(a=3D=3Dundefined||a=3D=3D"")){b=3D0;for(d=3Da.length=
+-1;d>=3D0;d--){e=3Da.charCodeAt(d);b=3D(b<<6&268435455)+e+(e<<14);c=3Db&2=
+66338304;b=3Dc!=3D0?b^c>>21:b}}return b}function =
+gb(a){if(!a||a=3D=3D""||a=3D=3D"none")return =
+1;if("auto"=3D=3Da){a=3DD.domain;if("www."=3D=3Da.substring(0,4))a=3Da.su=
+bstring(4,a.length)}return ib(a.toLowerCase())};var =
+jb=3D{google:1,googlegroups:1,gmail:1,googlemail:1,googleimages:1,googlep=
+rint:1};function kb(a){var =
+b=3Da.google_page_location||a.google_page_url;if(!b)return =
+m;b=3Db.toString();if(b.indexOf("http://")=3D=3D0)b=3Db.substring(7,b.len=
+gth);else =
+if(b.indexOf("https://")=3D=3D0)b=3Db.substring(8,b.length);var =
+c=3Db.indexOf("/");if(c=3D=3D-1)c=3Db.length;var =
+d=3Db.substring(0,c),e=3Dd.split("."),f=3Dm;if(e.length>=3D3)f=3De[e.leng=
+th-3]in jb;if(e.length>=3D2)f=3Df||e[e.length-2]in jb;return f}=0A=
+function lb(a,b,c){if(kb(a)){a.google_new_domain_checked=3D1;return =
+m}if(a.google_new_domain_checked=3D=3D0){var =
+d=3DMath.random();if(d<=3Dc){var =
+e=3D"http://"+ra+"/pagead/test_domain.js",f=3D"script";b.write("<"+f+' =
+src=3D"'+e+'"></'+f+">");a.google_new_domain_checked=3D1;return =
+i}}return m}function =
+mb(a){if(!kb(a)&&a.google_new_domain_enabled=3D=3D1)return"http://"+ra;re=
+turn"http://"+sa};document.URL&&(document.URL.indexOf("?google_debug")>0|=
+|document.URL.indexOf("&google_debug")>0);var nb=3Dfunction(a){return =
+a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},tb=3Dfunction(a,b){if(b)return =
+a.replace(ob,"&amp;").replace(pb,"&lt;").replace(qb,"&gt;").replace(rb,"&=
+quot;");else{if(!sb.test(a))return =
+a;if(a.indexOf("&")!=3D-1)a=3Da.replace(ob,"&amp;");if(a.indexOf("<")!=3D=
+-1)a=3Da.replace(pb,"&lt;");if(a.indexOf(">")!=3D-1)a=3Da.replace(qb,"&gt=
+;");if(a.indexOf('"')!=3D-1)a=3Da.replace(rb,"&quot;");return =
+a}},ob=3D/&/g,pb=3D/</g,qb=3D/>/g,rb=3D/\"/g,sb=3D/[&<>\"]/,zb=3Dfunction=
+(a){if(H(a,"&"))return"document"in n&&!H(a,"<")?=0A=
+ub(a):vb(a);return a},ub=3Dfunction(a){var =
+b=3Dn.document.createElement("a");b.innerHTML=3Da;b.normalize&&b.normaliz=
+e();a=3Db.firstChild.nodeValue;b.innerHTML=3D"";return =
+a},vb=3Dfunction(a){return =
+a.replace(/&([^;]+);/g,function(b,c){switch(c){case "amp":return"&";case =
+"lt":return"<";case "gt":return">";case =
+"quot":return'"';default:if(c.charAt(0)=3D=3D"#"){var =
+d=3DNumber("0"+c.substr(1));if(!isNaN(d))return =
+String.fromCharCode(d)}return b}})},Ab=3Dfunction(a,b){for(var =
+c=3Db.length,d=3D0;d<c;d++){var e=3Dc=3D=3D1?b:b.charAt(d);=0A=
+if(a.charAt(0)=3D=3De&&a.charAt(a.length-1)=3D=3De)return =
+a.substring(1,a.length-1)}return a},H=3Dfunction(a,b){return =
+a.indexOf(b)!=3D-1},Cb=3Dfunction(a,b){for(var =
+c=3D0,d=3Dnb(String(a)).split("."),e=3Dnb(String(b)).split("."),f=3DMath.=
+max(d.length,e.length),h=3D0;c=3D=3D0&&h<f;h++){var =
+j=3Dd[h]||"",k=3De[h]||"",g=3Dnew RegExp("(\\d*)(\\D*)","g"),z=3Dnew =
+RegExp("(\\d*)(\\D*)","g");do{var =
+E=3Dg.exec(j)||["","",""],B=3Dz.exec(k)||["","",""];if(E[0].length=3D=3D0=
+&&B[0].length=3D=3D0)break;var =
+X=3DE[1].length=3D=3D0?0:parseInt(E[1],10),qa=3DB[1].length=3D=3D=0A=
+0?0:parseInt(B[1],10);c=3DBb(X,qa)||Bb(E[2].length=3D=3D0,B[2].length=3D=3D=
+0)||Bb(E[2],B[2])}while(c=3D=3D0)}return =
+c},Bb=3Dfunction(a,b){if(a<b)return-1;else if(a>b)return 1;return =
+0};ja();var =
+I=3Dfunction(a){this.t=3Da;this.i=3D[];this.p=3Dthis.h=3D0;this.d=3D[];th=
+is.n=3Dm};I.prototype.s=3Dfunction(a,b){var =
+c=3Dthis.t[b],d=3Dthis.i;this.t[b]=3Dfunction(e){if(e&&e.length>0){var =
+f=3De.length>1?e[1].url:l;d.push([a,zb(e[0].url),f])}c(e)}};I.prototype.r=
+=3Dfunction(){this.h++};I.prototype.o=3Dfunction(){if(!this.n){ta("http:/=
+/"+t+"/pagead/osd.js");this.n=3Di}};I.prototype.j=3Dfunction(a){if(this.h=
+>0)for(var =
+b=3Ddocument.getElementsByTagName("iframe"),c=3D0;c<b.length;c++)b.item(c=
+).name=3D=3D"google_ads_frame"&&a(b.item(c),b.item(c).src)};=0A=
+I.prototype.k=3Dfunction(a){var b=3Dthis.i;if(b.length>0)for(var =
+c=3Ddocument.getElementsByTagName("a"),d=3Dfunction(g,z){return =
+g.innerHTML.indexOf(z)>0},e=3D0;e<c.length;e++)for(var =
+f=3D0;f<b.length;f++)if(c.item(e).href=3D=3Db[f][1]){var =
+h=3Dc.item(e).parentNode;if(b[f][2])for(var =
+j=3Dh,k=3D0;k<4;k++){if(d(j,b[f][2])){h=3Dj;break}j=3Dj.parentNode}a(h,b[=
+f][0]);b.splice(f,1);break}};I.prototype.e=3Dfunction(a){this.k(a);this.j=
+(a)};I.prototype.a=3Dfunction(a){this.p=3Da};I.prototype.g=3Dfunction(){r=
+eturn this.p};=0A=
+I.prototype.f=3Dfunction(){return =
+this.i.length+this.h};I.prototype.b=3Dfunction(a){this.d=3Da};I.prototype=
+.q=3Dfunction(a,b){if(this.d.length>0){for(var =
+c=3D0;c<this.d.length;c++)if(this.d[c]=3D=3Da)if(a=3D=3D"js")this.s(b,"go=
+ogle_ad_request_done");else a=3D=3D"html"&&this.r();this.o()}};var =
+Db=3Dfunction(){window.__google_ad_urls||(window.__google_ad_urls=3Dnew =
+I(window));return =
+window.__google_ad_urls};q("Goog_AdSense_getAdAdapterInstance",Db);q("Goo=
+g_AdSense_OsdAdapter",I);=0A=
+q("Goog_AdSense_OsdAdapter.prototype.numBlocks",I.prototype.f);q("Goog_Ad=
+Sense_OsdAdapter.prototype.findBlocks",I.prototype.e);q("Goog_AdSense_Osd=
+Adapter.prototype.getOsdMode",I.prototype.g);var =
+Eb=3Dfunction(a,b,c){if(a.forEach)a.forEach(b,c);else =
+if(Array.forEach)Array.forEach(a,b,c);else for(var =
+d=3Da.length,e=3Dea(a)?a.split(""):a,f=3D0;f<d;f++)f in =
+e&&b.call(c,e[f],f,a)},Fb=3Dfunction(a){if(p(a))return =
+a.concat();else{for(var =
+b=3D[],c=3D0,d=3Da.length;c<d;c++)b[c]=3Da[c];return b}};var =
+J=3Dfunction(a,b){this.x=3Da!=3D=3Dundefined?a:0;this.y=3Db!=3D=3Dundefin=
+ed?b:0};J.prototype.clone=3Dfunction(){return new =
+J(this.x,this.y)};J.prototype.toString=3Dfunction(){return"("+this.x+", =
+"+this.y+")"};var =
+K=3Dfunction(a,b){this.width=3Da;this.height=3Db};K.prototype.clone=3Dfun=
+ction(){return new =
+K(this.width,this.height)};K.prototype.toString=3Dfunction(){return"("+th=
+is.width+" x =
+"+this.height+")"};K.prototype.ceil=3Dfunction(){this.width=3DMath.ceil(t=
+his.width);this.height=3DMath.ceil(this.height);return =
+this};K.prototype.floor=3Dfunction(){this.width=3DMath.floor(this.width);=
+this.height=3DMath.floor(this.height);return this};=0A=
+K.prototype.round=3Dfunction(){this.width=3DMath.round(this.width);this.h=
+eight=3DMath.round(this.height);return =
+this};K.prototype.scale=3Dfunction(a){this.width*=3Da;this.height*=3Da;re=
+turn this};var Gb=3Dfunction(a,b,c){for(var d in =
+a)b.call(c,a[d],d,a)};var =
+L,Hb,Ib,Jb,Kb,Lb,Mb,Nb,Ob,Pb,Qb=3Dfunction(){return =
+n.navigator?n.navigator.userAgent:l},Rb=3Dfunction(){return =
+n.navigator},Sb=3Dfunction(){Lb=3DKb=3DJb=3DIb=3DHb=3DL=3Dm;var =
+a;if(a=3DQb()){var =
+b=3DRb();L=3Da.indexOf("Opera")=3D=3D0;Hb=3D!L&&a.indexOf("MSIE")!=3D-1;J=
+b=3D(Ib=3D!L&&a.indexOf("WebKit")!=3D-1)&&a.indexOf("Mobile")!=3D-1;Lb=3D=
+(Kb=3D!L&&!Ib&&b.product=3D=3D"Gecko")&&b.vendor=3D=3D"Camino"}};Sb();=0A=
+var M=3DL,N=3DHb,Tb=3DKb,O=3DIb,Ub=3DJb,Vb=3Dfunction(){var =
+a=3DRb();return =
+a&&a.platform||""},Wb=3DVb(),Xb=3Dfunction(){Mb=3DH(Wb,"Mac");Nb=3DH(Wb,"=
+Win");Ob=3DH(Wb,"Linux");Pb=3D!!Rb()&&H(Rb().appVersion||"","X11")};Xb();=0A=
+var Yb=3DMb,Zb=3DNb,$b=3DOb,ac=3Dfunction(){var =
+a=3D"",b;if(M&&n.opera){var c=3Dn.opera.version;a=3Dtypeof =
+c=3D=3D"function"?c():c}else{if(Tb)b=3D/rv\:([^\);]+)(\)|;)/;else =
+if(N)b=3D/MSIE\s+([^\);]+)(\)|;)/;else =
+if(O)b=3D/WebKit\/(\S+)/;if(b){var =
+d=3Db.exec(Qb());a=3Dd?d[1]:""}}return =
+a},bc=3Dac(),cc=3D{},P=3Dfunction(a){return =
+cc[a]||(cc[a]=3DCb(bc,a)>=3D0)};var dc;var ec=3Dfunction(a){return =
+ea(a)?document.getElementById(a):a},fc=3Dec,hc=3Dfunction(a,b){Gb(b,funct=
+ion(c,d){if(d=3D=3D"style")a.style.cssText=3Dc;else =
+if(d=3D=3D"class")a.className=3Dc;else =
+if(d=3D=3D"for")a.htmlFor=3Dc;else if(d in =
+gc)a.setAttribute(gc[d],c);else =
+a[d]=3Dc})},gc=3D{cellpadding:"cellPadding",cellspacing:"cellSpacing",col=
+span:"colSpan",rowspan:"rowSpan",valign:"vAlign",height:"height",width:"w=
+idth",usemap:"useMap",frameborder:"frameBorder",type:"type"},ic=3Dfunctio=
+n(a){var b=3Da.document;if(O&&!P("500")&&!Ub){if(typeof a.innerHeight=3D=3D=0A=
+"undefined")a=3Dwindow;var =
+c=3Da.innerHeight,d=3Da.document.documentElement.scrollHeight;if(a=3D=3Da=
+.top)if(d<c)c-=3D15;return new K(a.innerWidth,c)}var =
+e=3Db.compatMode=3D=3D"CSS1Compat"&&(!M||M&&P("9.50"))?b.documentElement:=
+b.body;return new K(e.clientWidth,e.clientHeight)},jc=3Dfunction(a){var =
+b=3D!O&&a.compatMode=3D=3D"CSS1Compat"?a.documentElement:a.body;return =
+new J(b.scrollLeft,b.scrollTop)},lc=3Dfunction(){return =
+kc(document,arguments)},kc=3Dfunction(a,b){var =
+c=3Db[0],d=3Db[1];if(N&&d&&(d.name||d.type)){var e=3D["<",c];d.name&&=0A=
+e.push(' name=3D"',tb(d.name),'"');if(d.type){e.push(' =
+type=3D"',tb(d.type),'"');d=3Dga(d);delete =
+d.type}e.push(">");c=3De.join("")}var =
+f=3Da.createElement(c);if(d)if(ea(d))f.className=3Dd;else =
+hc(f,d);if(b.length>2){function =
+h(g){if(g)f.appendChild(ea(g)?a.createTextNode(g):g)}for(var =
+j=3D2;j<b.length;j++){var =
+k=3Db[j];da(k)&&!(fa(k)&&k.nodeType>0)?Eb(mc(k)?Fb(k):k,h):h(k)}}return =
+f},nc=3Dfunction(a,b){a.appendChild(b)},oc=3Dfunction(a){return =
+a&&a.parentNode?a.parentNode.removeChild(a):l},pc=3Dfunction(a,b){var =
+c=3Db.parentNode;=0A=
+c&&c.replaceChild(a,b)},qc=3DO&&P("522"),rc=3Dfunction(a,b){if(typeof =
+a.contains!=3D"undefined"&&!qc&&b.nodeType=3D=3D1)return =
+a=3D=3Db||a.contains(b);if(typeof =
+a.compareDocumentPosition!=3D"undefined")return =
+a=3D=3Db||Boolean(a.compareDocumentPosition(b)&16);for(;b&&a!=3Db;)b=3Db.=
+parentNode;return b=3D=3Da},Q=3Dfunction(a){return =
+a.nodeType=3D=3D9?a:a.ownerDocument||a.document},mc=3Dfunction(a){if(a&&t=
+ypeof a.length=3D=3D"number")if(fa(a))return typeof =
+a.item=3D=3D"function"||typeof a.item=3D=3D"string";else =
+if(o(a)=3D=3D"function")return typeof a.item=3D=3D=0A=
+"function";return =
+m},R=3Dfunction(a){this.c=3Da||n.document||document};R.prototype.createEl=
+ement=3Dfunction(a){return =
+this.c.createElement(a)};R.prototype.createTextNode=3Dfunction(a){return =
+this.c.createTextNode(a)};R.prototype.m=3Dfunction(){return =
+this.c.compatMode=3D=3D"CSS1Compat"};R.prototype.l=3Dfunction(){return =
+jc(this.c)};R.prototype.appendChild=3Dnc;R.prototype.removeNode=3Doc;R.pr=
+ototype.replaceNode=3Dpc;R.prototype.contains=3Drc;var =
+sc,tc,uc,vc,wc,xc,yc=3Dfunction(){xc=3Dwc=3Dvc=3Duc=3Dtc=3Dsc=3Dm;var =
+a=3DQb();if(a)if(a.indexOf("Firefox")!=3D-1)sc=3Di;else =
+if(a.indexOf("Camino")!=3D-1)tc=3Di;else =
+if(a.indexOf("iPhone")!=3D-1||a.indexOf("iPod")!=3D-1)uc=3Di;else =
+if(a.indexOf("Android")!=3D-1)vc=3Di;else =
+if(a.indexOf("Chrome")!=3D-1)wc=3Di;else =
+if(a.indexOf("Safari")!=3D-1)xc=3Di};yc();var zc=3Dfunction(a,b){var =
+c=3DQ(a);if(c.defaultView&&c.defaultView.getComputedStyle){var =
+d=3Dc.defaultView.getComputedStyle(a,"");if(d)return d[b]}return =
+l},S=3Dfunction(a,b){return =
+zc(a,b)||(a.currentStyle?a.currentStyle[b]:l)||a.style[b]},Ac=3Dfunction(=
+a){var b;b=3Da?a.nodeType=3D=3D9?a:Q(a):document;if(N&&!(b?new =
+R(Q(b)):dc||(dc=3Dnew R)).m())return b.body;return =
+b.documentElement},Bc=3Dfunction(a){var =
+b=3Da.getBoundingClientRect();if(N){var =
+c=3Da.ownerDocument;b.left-=3Dc.documentElement.clientLeft+c.body.clientL=
+eft;=0A=
+b.top-=3Dc.documentElement.clientTop+c.body.clientTop}return =
+b},Cc=3Dfunction(a){if(N)return a.offsetParent;for(var =
+b=3DQ(a),c=3DS(a,"position"),d=3Dc=3D=3D"fixed"||c=3D=3D"absolute",e=3Da.=
+parentNode;e&&e!=3Db;e=3De.parentNode){c=3DS(e,"position");d=3Dd&&c=3D=3D=
+"static"&&e!=3Db.documentElement&&e!=3Db.body;if(!d&&(e.scrollWidth>e.cli=
+entWidth||e.scrollHeight>e.clientHeight||c=3D=3D"fixed"||c=3D=3D"absolute=
+"))return e}return l},Dc=3Dfunction(a){var =
+b,c=3DQ(a),d=3DS(a,"position"),e=3DTb&&c.getBoxObjectFor&&!a.getBoundingC=
+lientRect&&d=3D=3D"absolute"&&(b=3D=0A=
+c.getBoxObjectFor(a))&&(b.screenX<0||b.screenY<0),f=3Dnew =
+J(0,0),h=3DAc(c);if(a=3D=3Dh)return =
+f;if(a.getBoundingClientRect){b=3DBc(a);var j=3D(c?new =
+R(Q(c)):dc||(dc=3Dnew R)).l();f.x=3Db.left+j.x;f.y=3Db.top+j.y}else =
+if(c.getBoxObjectFor&&!e){b=3Dc.getBoxObjectFor(a);var =
+k=3Dc.getBoxObjectFor(h);f.x=3Db.screenX-k.screenX;f.y=3Db.screenY-k.scre=
+enY}else{var =
+g=3Da;do{f.x+=3Dg.offsetLeft;f.y+=3Dg.offsetTop;if(g!=3Da){f.x+=3Dg.clien=
+tLeft||0;f.y+=3Dg.clientTop||0}if(O&&S(g,"position")=3D=3D"fixed"){f.x+=3D=
+c.body.scrollLeft;f.y+=3Dc.body.scrollTop;=0A=
+break}g=3Dg.offsetParent}while(g&&g!=3Da);if(M||O&&d=3D=3D"absolute")f.y-=
+=3Dc.body.offsetTop;for(g=3Da;(g=3DCc(g))&&g!=3Dc.body&&g!=3Dh;){f.x-=3Dg=
+.scrollLeft;if(!M||g.tagName!=3D"TR")f.y-=3Dg.scrollTop}}return =
+f},Ec=3Dfunction(a,b,c,d){if(/^\d+px?$/.test(b))return =
+parseInt(b,10);else{var =
+e=3Da.style[c],f=3Da.runtimeStyle[c];a.runtimeStyle[c]=3Da.currentStyle[c=
+];a.style[c]=3Db;var =
+h=3Da.style[d];a.style[c]=3De;a.runtimeStyle[c]=3Df;return =
+h}},Fc=3Dfunction(a){var b=3DQ(a),c=3D"";if(b.createTextRange){var =
+d=3Db.body.createTextRange();d.moveToElementText(a);=0A=
+c=3Dd.queryCommandValue("FontName")}if(!c){c=3DS(a,"fontFamily");if(M&&$b=
+)c=3Dc.replace(/ \[[^\]]*\]/,"")}var =
+e=3Dc.split(",");if(e.length>1)c=3De[0];return =
+Ab(c,"\"'")},Gc=3Dfunction(a){var b=3Da.match(/[^\d]+$/);return =
+b&&b[0]||l},Hc=3D{cm:1,"in":1,mm:1,pc:1,pt:1},Ic=3D{em:1,ex:1},Jc=3Dfunct=
+ion(a){var b=3DS(a,"fontSize"),c=3DGc(b);if(b&&"px"=3D=3Dc)return =
+parseInt(b,10);if(N)if(c in Hc)return Ec(a,b,"left","pixelLeft");else =
+if(a.parentNode&&a.parentNode.nodeType=3D=3D1&&c in Ic){var =
+d=3Da.parentNode,e=3DS(d,"fontSize");return Ec(d,=0A=
+b=3D=3De?"1em":b,"left","pixelLeft")}var =
+f=3Dlc("span",{style:"visibility:hidden;position:absolute;line-height:0;p=
+adding:0;margin:0;border:0;height:1em;"});nc(a,f);b=3Df.offsetHeight;oc(f=
+);return b};var T=3D{};function Kc(a){if(a=3D=3D1)return =
+i;return!T[a]}function =
+U(a,b){if(a)if(b=3D=3D1)if(T[b])T[b]+=3D","+a;else T[b]=3Da;else =
+T[b]=3Da}function Lc(){var a=3D[];for(var b in T)a.push(T[b]);return =
+a.join(",")}function Mc(a,b){if(a&&a instanceof Array)for(var =
+c=3D0;c<a.length;c++)a[c]&&typeof a[c]=3D=3D"string"&&U(a[c],b)}var =
+Nc=3Dm;=0A=
+function Oc(a,b){var =
+c=3D"script";Nc=3DPc(a,b);if(!Nc)a.google_allow_expandable_ads=3Dm;var =
+d=3D!Qc();Nc&&d&&b.write("<"+c+' =
+src=3D"http://'+t+'/pagead/expansion_embed.js"></'+c+">");var =
+e=3Dlb(a,b,r("1",0.01)),f=3Dd||e;f&&va("msie")&&!window.opera?b.write("<"=
++c+' =
+src=3D"http://'+t+'/pagead/render_ads.js"></'+c+">"):b.write("<"+c+'>goog=
+le_protectAndRun("ads_core.google_render_ad", google_handleError, =
+google_render_ad);</'+c+">")}function V(a){return a!=3Dl?'"'+a+'"':'""'}=0A=
+var Rc=3Dfunction(a,b,c){var =
+d=3Dc.slice(-1)=3D=3D"?"?"":"&";return[c,d,a,"=3D",b.toString()].join("")=
+};function =
+W(a,b){if(a&&b)window.google_ad_url=3DRc(a,b,window.google_ad_url)}functi=
+on Y(a){var =
+b=3Dwindow,c=3Dza[a]||Aa[a]||Da[a]||l,d=3Db[a];W(c,d)}function =
+Z(a,b){b!=3Dl&&W(a,u(b))}function $(a){var =
+b=3Dwindow,c=3Dza[a]||Aa[a]||Da[a]||l,d=3Db[a];Z(c,d)}=0A=
+function Sc(a){var b=3Da.screen,c=3Dnavigator.javaEnabled(),d=3D-(new =
+Date).getTimezoneOffset();if(b){W("u_h",b.height);W("u_w",b.width);W("u_a=
+h",b.availHeight);W("u_aw",b.availWidth);W("u_cd",b.colorDepth)}W("u_tz",=
+d);W("u_his",a.history.length);W("u_java",c);navigator.plugins&&W("u_nplu=
+g",navigator.plugins.length);navigator.mimeTypes&&W("u_nmime",navigator.m=
+imeTypes.length)}function Tc(a){var =
+b=3D"google_unique_id";if(a[b])++a[b];else a[b]=3D1;return a[b]}=0A=
+function Uc(){var =
+a=3DN&&P("6"),b=3DTb&&P("1.8.1"),c=3DO&&P("525");if(Zb&&(a||b||c))return =
+i;else if(Yb&&(c||b))return i;else if($b&&b)return i;return m}function =
+Qc(){return(typeof ExpandableAdSlotFactory=3D=3D"function"||typeof =
+ExpandableAdSlotFactory=3D=3D"object")&&typeof =
+ExpandableAdSlotFactory.createIframe=3D=3D"function"}function =
+Pc(a,b){if(a.google_allow_expandable_ads=3D=3D=3Dm||!b.body||a.google_ad_=
+output!=3D"html"||Fa(a,b)||!Vc(a)||isNaN(a.google_ad_height)||isNaN(a.goo=
+gle_ad_width)||!Uc())return m;return i}=0A=
+function Vc(a){var b=3Da.google_ad_format;if(v(b))return =
+m;if(ya(a)&&!(b=3D=3D"468x15_0ads_al"))return m;return i}function =
+Wc(){var =
+a;if(y.google_ad_output=3D=3D"html"&&!(ya(y)||v(y.google_ad_format))&&Kc(=
+0)){var b=3D["6083035","6083034"];a=3Dw(b,r("0",0));U(a,0)}return =
+a=3D=3D"6083035"}=0A=
+function =
+Xc(a,b){if((a.google_unique_id||0)=3D=3D0&&a.google_ad_output=3D=3D"html"=
+&&document.body&&typeof =
+b.body.getBoundingClientRect=3D=3D"function")return =
+w(["36812001","36812002"],r("0.01",0));return""}=0A=
+function Yc(a){var =
+b=3D"";if((a.google_unique_id||0)=3D=3D0&&(a.google_ad_output=3D=3D"js"||=
+a.google_ad_output=3D=3D"html")){ya(a)||v(a.google_ad_format)||(b=3Dw(["3=
+6813001","36813002","36813003","36813004"],r("0.012",0)));if(b=3D=3D"")b=3D=
+w(["36813005","36813006"],r("0.008",0))}return b}=0A=
+function Zc(a,b){switch(a){case "36813002":b.a(1);b.b(["js"]);break;case =
+"36813003":b.a(1);b.b(["html"]);break;case =
+"36813004":b.a(2);b.b(["html","js"]);break;case =
+"36813006":b.a(0);b.b(["html","js"]);break}}function =
+$c(a){if(a.body)try{return ic(window)}catch(b){return new =
+K(-12245933,-12245933)}else return new K(-1,-1)}=0A=
+function ad(a,b,c,d){var =
+e=3DTc(a);c=3DRc("ifi",e,c);c=3Dc.substring(0,1992);c=3Dc.replace(/%\w?$/=
+,"");var =
+f=3D"script";if((a.google_ad_output=3D=3D"js"||a.google_ad_output=3D=3D"j=
+son_html")&&(a.google_ad_request_done||a.google_radlink_request_done))b.w=
+rite("<"+f+' language=3D"JavaScript1.1" =
+src=3D'+V(ba(c))+"></"+f+">");else =
+if(a.google_ad_output=3D=3D"html")if(Nc&&Qc()){var =
+h=3Da.google_container_id||d||l;a["google_expandable_ad_slot"+e]=3DExpand=
+ableAdSlotFactory.createIframe("google_ads_frame"+e,ba(c),a.google_ad_wid=
+th,a.google_ad_height,=0A=
+h)}else{var j=3D'<iframe name=3D"google_ads_frame" =
+width=3D'+V(a.google_ad_width)+" height=3D"+V(a.google_ad_height)+" =
+frameborder=3D"+V(a.google_ad_frameborder)+" src=3D"+V(ba(c))+' =
+marginwidth=3D"0" marginheight=3D"0" vspace=3D"0" hspace=3D"0" =
+allowtransparency=3D"true" =
+scrolling=3D"no"></iframe>';a.google_container_id?bd(a.google_container_i=
+d,b,j):b.write(j)}}function cd(a){bb(a)}=0A=
+function dd(a,b){var =
+c=3Daa,d=3Dwindow.google_ad_format,e=3Dmb(window);window.google_ad_url=3D=
+v(d)?e+"/pagead/sdo?":Wc()?e+"/pagead/render_iframe_ads.html#":e+"/pagead=
+/ads?";$("google_ad_client");Y("google_ad_host");Y("google_ad_host_tier_i=
+d");var =
+f=3Dwindow.google_num_slots_by_client,h=3Dwindow.google_num_slots_by_chan=
+nel,j=3Dwindow.google_prev_ad_formats_by_region,k=3Dwindow.google_prev_ad=
+_slotnames_by_region,g=3Dwindow.google_ad_section;if(v(d)){window.google_=
+num_sdo_slots+=3D1;if(window.google_num_sdo_slots>4)return m}else =
+if(ya(window)){window.google_num_0ad_slots+=3D=0A=
+1;if(window.google_num_0ad_slots>3)return =
+m}else{window.google_num_ad_slots+=3D1;if(window.google_num_slots_to_rota=
+te){Ya(1);j[g]=3Dl;k[g]=3Dl;if(window.google_num_slot_to_show=3D=3Dl)wind=
+ow.google_num_slot_to_show=3Dc%window.google_num_slots_to_rotate+1;if(win=
+dow.google_num_slot_to_show!=3Dwindow.google_num_ad_slots)return m}else =
+if(window.google_num_ad_slots>6&&g=3D=3D"")return =
+m}W("dt",aa);Y("google_language");Y("google_country");Y("google_region");=
+$("google_city");$("google_hints");Y("google_safe");Y("google_encoding");=0A=
+Y("google_last_modified_time");$("google_alternate_ad_url");Y("google_alt=
+ernate_color");Y("google_skip");Y("google_targeting");if(f[A])f[A]+=3D1;e=
+lse{f[A]=3D1;f.length+=3D1}if(j[g])if(!v(d)){Z("prev_fmts",j[g].toLowerCa=
+se());f.length>1&&W("slot",f[A])}k[g]&&Z("prev_slotnames",k[g].toLowerCas=
+e());if(d)v(d)||(j[g]=3Dj[g]?j[g]+","+d:d);else =
+if(window.google_ad_slot)k[g]=3Dk[g]?k[g]+","+window.google_ad_slot:windo=
+w.google_ad_slot;Y("google_max_num_ads");$("google_ad_output");Y("google_=
+adtest");Y("google_ad_callback");=0A=
+$("google_ad_format");Y("google_ad_slot");Z("correlator",window.google_co=
+rrelator);window.google_new_domain_checked=3D=3D1&&window.google_new_doma=
+in_enabled=3D=3D0&&W("dblk",1);$("google_ad_channel");if(window.google_ad=
+_channel){for(var =
+z=3D"",E=3Dwindow.google_ad_channel.split(ed),B=3D0;B<E.length;B++){var =
+X=3DE[B];if(h[X])z+=3DX+"+";else =
+h[X]=3D1}Z("pv_ch",z)}$("google_ad_host_channel");if(window.google_ad_hos=
+t_channel){var =
+qa=3Dfd(window.google_ad_host_channel,window.google_viewed_host_channels)=
+;Z("pv_h_ch",qa)}$("google_page_url");=0A=
+$("google_color_bg");$("google_color_text");$("google_color_link");$("goo=
+gle_color_url");$("google_color_border");$("google_color_line");window.go=
+ogle_reuse_colors?W("reuse_colors",1):W("reuse_colors",0);Y("google_font_=
+face");Y("google_font_size");Y("google_kw_type");$("google_kw");$("google=
+_contents");Y("google_num_radlinks");Y("google_max_radlink_len");Y("googl=
+e_rl_filtering");Y("google_rl_mode");Y("google_rt");$("google_rl_dest_url=
+");Y("google_num_radlinks_per_unit");Y("google_ad_type");Y("google_image_=
+size");=0A=
+Y("google_ad_section");Mc(window.google_eids,1);var =
+Ba;if(Kc(0)){Ba=3Dw(["36814001","36814002"],r("0.1",0));U(Ba,0)}Z("eid",L=
+c());var =
+wb=3Dwindow.google_allow_expandable_ads;if(wb!=3Dl)wb?W("ea","1"):W("ea",=
+"0");Ra&&W("cb",1);Sa&&W("cd",1);Y("google_feedback");$("google_referrer_=
+url");$("google_page_location");W("frm",window.google_iframing);Y("google=
+_bid");Y("google_ctr_threshold");Y("google_cust_age");Y("google_cust_gend=
+er");Y("google_cust_interests");Y("google_cust_id");Y("google_cust_job");=0A=
+Y("google_cust_u_url");Y("google_cust_l");Y("google_cust_lh");Y("google_c=
+ust_ch");Y("google_ed");Y("google_video_doc_id");Y("google_video_product_=
+type");$("google_ui_features");$("google_ui_version");$("google_tag_info"=
+);$("google_only_ads_with_video");$("google_only_pyv_ads");$("google_with=
+_pyv_ads");$("google_disable_video_autoplay");var =
+xb=3Dm;if(a){Z("dff",Fc(a));Z("dfs",Jc(a));var x;if(b)if(typeof =
+a.getBoundingClientRect=3D=3D"function"){var =
+yb=3Da.getBoundingClientRect();x=3D{x:yb.left,y:yb.top}}else{x=3D=0A=
+{};x.x=3D"-252738";x.y=3D"-252738"}else =
+try{x=3DDc(a)}catch(wd){x=3D{};x.x=3D"-252738";x.y=3D"-252738"}if(x){xb=3D=
+i;Z("adx",x.x);Z("ady",x.y)}}if(xb||Ba=3D=3D"36814002"){var =
+Ca=3D$c(document);if(Ca){Z("biw",Ca.width);Z("bih",Ca.height)}}var =
+ha=3Dfb();W("ga_vid",ha.vid);W("ga_sid",ha.sid);W("ga_hid",ha.hid);W("ga_=
+fc",ha.from_cookie);Z("ga_wpids",window.google_analytics_uacct);Y("google=
+_ad_override");Y("google_flash_version");W("w",window.google_ad_width||-1=
+);W("h",window.google_ad_height||-1);Sc(window);W("fu",Xa);return i}=0A=
+function fd(a,b){for(var =
+c=3Da.split("|"),d=3D-1,e=3D[],f=3D0;f<c.length;f++){var =
+h=3Dc[f].split(ed);b[f]||(b[f]=3D{});for(var =
+j=3D"",k=3D0;k<h.length;k++){var =
+g=3Dh[k];if(!(g=3D=3D""))if(b[f][g])j+=3D"+"+g;else =
+b[f][g]=3D1}j=3Dj.slice(1);e[f]=3Dj;if(j!=3D"")d=3Df}var =
+z=3D"";if(d>-1){for(f=3D0;f<d;f++)z+=3De[f]+"|";z+=3De[d]}return z}=0A=
+function gd(){var =
+a=3DDb(),b=3Dwindow.google_enable_osd,c=3D"";if(b=3D=3D=3Di){c=3D"3681300=
+6";Zc(c,a)}else =
+if(b!=3D=3Dm&&Kc(0)){c=3Dw(["68120011","68120021","68120031","68120041"],=
+r("0",0));if(c=3D=3D""){c=3DXc(window,document);if(c=3D=3D""){c=3DYc(wind=
+ow);c!=3D""&&Zc(c,a)}}}U(c,0);var d=3Dm,e=3Dm,f=3Dm;switch(c){case =
+"68120031":f=3Di;case "68120021":e=3Di;case "68120041":d=3Di;break;case =
+"36812002":if(!window.google_atf_included){window.google_atf_included=3Di=
+;ta("http://"+t+"/pagead/atf.js")}break}var h;if(d){var j=3D=0A=
+"google_temp_span";h=3Dwindow.google_container_id&&fc(window.google_conta=
+iner_id)||fc(j);if(!h&&!window.google_container_id){document.write("<span=
+ id=3D"+j+"></span>");h=3Dfc(j)}}var =
+k=3Dm;k=3De?dd(h,f):dd();h&&h.id=3D=3Dj&&oc(h);if(k){a.q(window.google_ad=
+_output,window.google_ad_url);ad(window,document,window.google_ad_url);cd=
+(window)}}function hd(a,b,c,d){var =
+e=3DWa(a,b,c,d);Oc(window,document);return e}function id(){ab()}=0A=
+function jd(a){for(var =
+b=3D{},c=3Da.split("?"),d=3Dc[c.length-1].split("&"),e=3D0;e<d.length;e++=
+){var =
+f=3Dd[e].split("=3D");if(f[0])try{b[f[0].toLowerCase()]=3Df.length>1?wind=
+ow.decodeURIComponent?decodeURIComponent(f[1].replace(/\+/g," =
+")):unescape(f[1]):""}catch(h){}}return b}function kd(){var =
+a=3Dwindow,b=3Djd(document.URL);if(b.google_ad_override){a.google_ad_over=
+ride=3Db.google_ad_override;a.google_adtest=3D"on"}}=0A=
+function bd(a,b,c){if(a){var =
+d=3Db.getElementById(a);if(d&&c&&c.length!=3D""){d.style.visibility=3D"vi=
+sible";d.innerHTML=3Dc}}}var ed=3D/[+, =
+]/;window.google_render_ad=3Dgd;var =
+ld=3D["30143070","30143071","30143075"],md=3Dtypeof =
+window.postMessage=3D=3D"function"||typeof =
+window.postMessage=3D=3D"object"||typeof =
+document.postMessage=3D=3D"function",od=3Dfunction(a,b){typeof =
+A1_googleCreateSlot=3D=3D"function"?A1_googleCreateSlot(a.google_ad_clien=
+t):nd(a,b)},qd=3Dfunction(){if(!pd())return m;return =
+i},rd=3Dfunction(a){if(v(a.google_ad_format))return m;var =
+b=3Da.google_ad_output;if(b&&b!=3D"html")return m;var =
+c=3Da.google_ad_client;if(typeof =
+c!=3D"string"||c.substring(0,4)!=3D"pub-"&&c.substring(0,7)!=3D"ca-pub-")=
+return m;=0A=
+return i},td=3Dfunction(a){if(typeof =
+a.google_a1_eid=3D=3D"string")return a.google_a1_eid;var =
+b=3Dr("0.001",0);a.google_a1_eid=3Dsd(ld,b);return =
+a.google_a1_eid},nd=3Dfunction(a,b){if(!a.google_included_a1_script){var =
+c=3D"script",d=3D"/pagead/show_ads_sra3.js?v\x3d1";b.write("<"+c+' =
+src=3D"http://'+t+d+'"></'+c+">");a.google_included_a1_script=3Di}},pd=3D=
+function(){if(N&&P("8"))return m;return md||!O},sd=3Dfunction(a,b){var =
+c=3DMath.random();if(c<b){var d=3DMath.floor(c/b*a.length);return =
+a[d]}return""};function =
+ud(){kd();Ua("show_ads.google_init_globals",hd,id);Oc(window,document)}fu=
+nction vd(){if(!qd(window)||!rd(window))ud();else =
+if(Ta&&window.google_use_a1=3D=3D=3Di)od(window,document);else{var =
+a=3Dtd(window);if(a){U(a,0);window.google_allow_expandable_ads=3Dm}!a||a=3D=
+=3D"30143070"?ud():od(window,document)}}Ua("show_ads.main",Wa,vd);=0A=
+})()=0A=
+
+------=_NextPart_000_0014_01CA1F41.294EB600--

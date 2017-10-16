@@ -1,0 +1,713 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Other Stream Ciphers and Real Random-Sequence Generators</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=0000098f33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/datamation_house_altgif.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=0000098f33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=17//-->
+<!--PAGES=408-410//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="17-04.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="17-06.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>
+</P>
+<TABLE WIDTH="100%"><TR>
+<TH CAPTION ALIGN="CENTER" COLSPAN="4">Table 17.2<BR>Tap Sequences for Maximal-length FCSRs
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" COLSPAN="4"><HR>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 6, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 24, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 59, 28, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 55, 53, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 7, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 25, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 59, 38, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 56, 9, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 8, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 25, 4, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 59, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 56, 51, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 13, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 25, 11, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 60, 49, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 57, 3, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 13, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 25, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 61, 51, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 57, 17, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 15, 6, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 27, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 63, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 57, 47, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 16, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 27, 16, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 63, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 58, 35, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 16, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 27, 22, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 63, 61, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 59, 46, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 16, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 28, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 60, 29, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 17, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 28, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 15, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 60, 41, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 19, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 29, 16, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 21, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 60, 45, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 19, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 29, 28, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 25, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 61, 17, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 19, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 31, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 25, 20, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 63, 20, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 19, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 32, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 29, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 65, 12, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 19, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 35, 29, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 29, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 65, 39, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 20, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 36, 7, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 30, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 65, 51, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 21, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 37, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 32, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 67, 5, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 21, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 37, 11, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 32, 27, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 67, 25, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 23, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 39, 4, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 33, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 67, 34, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 23, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 39, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 35, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 68, 5, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 25, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 41, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 35, 33, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 68, 19, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 25, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 41, 11, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 39, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 69, 17, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 27, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 41, 27, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 40, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 69, 36, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 29, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 43, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 41, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 70, 23, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 29, 20, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 43, 28, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 41, 27, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 71, 6, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 30, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 45, 28, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 41, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 71, 40, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 30, 7, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 45, 41, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 42, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 72, 53, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 31, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 47, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 43, 14, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 73, 32, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 31, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 47, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 44, 23, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 77, 27, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(32, 31, 30, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 47, 30, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 45, 41, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 77, 31, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">  
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 49, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 47, 36, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 77, 32, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 3, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 49, 20, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 49, 31, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 77, 33, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 14, 3, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 52, 29, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 51, 30, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 77, 71, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 15, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 53, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 53, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 78, 39, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 17, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 53, 43, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 53, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 79, 4, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 17, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 56, 39, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 53, 32, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 81, 80, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 17, 16, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 56, 45, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 53, 48, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 14, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 19, 2, 1)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 59, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 54, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 26, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 19, 18, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(64, 59, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 55, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 54, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 60, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 31, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 81, 55, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 105, 11, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 65, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 33, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 82, 67, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 105, 31, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 83, 78, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 35, 22, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 83, 60, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 105, 48, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 84, 65, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 37, 8, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 83, 61, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 107, 40, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 85, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 41, 12, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 83, 77, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 107, 62, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 85, 31, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 42, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 84, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128,, 107102, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 85, 76, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 43, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 84, 43, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 108, 35, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 85, 79, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 43, 42, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 85, 63, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 108, 73, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 86, 39, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 45, 17, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 87, 57, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 108, 75, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 86, 71, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 45, 27, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 87, 81, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 108, 89, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 87, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 49, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 89, 81, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 109, 11, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 87, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 51, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 90, 43, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128,, 109108, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 87, 45, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 54, 51, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 91, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 110, 23, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 88, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 55, 45, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 91, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 111, 61, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 88, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 56, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 91, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 113, 59, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 88, 43, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 56, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 92, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 114, 83, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 88, 79, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 56, 55, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 95, 94, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 115, 73, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 89, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 57, 21, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 96, 23, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128,, 117105, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 89, 51, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 57, 37, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 96, 61, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 119, 30, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 89, 69, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 59, 29, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 97, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128,, 119101, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 89, 87, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 59, 49, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 97, 68, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 9, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 92, 51, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 60, 57, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 97, 72, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 27, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 92, 71, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 61, 9, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 97, 75, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 37, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 93, 32, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 61, 23, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 41, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 93, 39, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 61, 52, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 14, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 79, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 94, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 63, 40, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 26, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 120, 81, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 95, 4, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 63, 62, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 54, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 121, 5, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 95, 16, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 67, 41, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 56, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 121, 67, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 95, 32, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 69, 33, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 99, 78, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 121, 95, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 95, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 71, 53, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 100, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 121, 96, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(96, 95, 45, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 72, 15, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 100, 39, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 123, 40, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 72, 41, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 101, 44, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 123, 78, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 5, 4, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 73, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 101, 97, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 124, 41, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 15, 4, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 73, 65, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 103, 46, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 124, 69, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 21, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 73, 67, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 104, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 124, 81, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 25, 5, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 75, 13, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 104, 19, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 125, 33, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 26, 11, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 80, 39, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 104, 35, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 125, 43, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 27, 25, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 80, 53, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 105, 7, 2)
+<TD VALIGN="TOP" ALIGN="LEFT">(128, 127, 121, 2)
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" COLSPAN="4"><HR>
+</TABLE>
+<I><P><A NAME="Fig5"></A><A HREF="javascript:displayWindow('images/17-05.jpg',238,158 )"><IMG SRC="images/17-05t.jpg"></A>
+<BR><A HREF="javascript:displayWindow('images/17-05.jpg',238,158)"><FONT COLOR="#000077"><B>Figure 17.5</B></FONT></A>&nbsp;&nbsp;Combining Generators.</I>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="17-04.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="17-06.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

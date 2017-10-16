@@ -1,0 +1,431 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Advanced Protocols</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+
+<HTML>
+<head>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+
+<!--
+function jumpurl(form)
+{
+  location = form.URL.options[form.URL.selectedIndex].value;
+  return true;
+};
+//-->
+
+</SCRIPT>
+</head>
+<BODY>
+<TABLE width=468 height=60>
+  <TR>
+    <TD>
+        <TABLE>
+  <TR>
+    <TD><IMG SRC="http://adimages.earthweb.com/images/ads/house/dtm_salary/dtm_html.gif" BORDER=0 WIDTH=332 HEIGHT=60></TD>
+    <TD width=168 height=60 align=center valign=bottom><font face="verdana,
+helvetica" size=1>
+<FORM ACTION="">
+<SELECT NAME="URL" SIZE="1" onchange="jumpurl(this.form);">
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,1">Basic</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_basic.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,2">C/C++</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_c.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,3">HTML</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_html.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,4">Java</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_java.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,5">SQL</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_sql.html -->
+
+</SELECT>
+<A HREF="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,6" TARGET="_blank"><font face="verdana,helvetica" size=2>GO</A>
+<!-- http://www.datamation.com/index.html -->
+
+</FORM>
+        </TD>
+  </TR>
+</TABLE>
+        </TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>
+
+
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=05//-->
+<!--PAGES=114-117//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="05-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="05-07.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>There is a trick that makes BOB&#146;s chance of cheating even smaller. In step (4), ALICE randomly chooses <I>n</I>/2 of the documents to challenge, and BOB sends her the appropriate blinding factors in step (5). In step (7), ALICE multiplies together all of the unchallenged documents and signs the mega-document. In step (8), BOB strips off all the blinding factors. ALICE&#146;s signature is acceptable only if it is a valid signature of the product of <I>n</I>/2 identical documents. To cheat BOB has to be able to guess exactly which subset ALICE will challenge; the odds are much smaller than the odds of guessing which one document ALICE won&#146;t challenge.</P>
+<P>BOB has another way to cheat. He can generate two different documents, one that ALICE is willing to sign and one that ALICE is not. Then he can find two different blinding factors that transform each document into the same blinded document. That way, if ALICE asks to examine the document, BOB gives her the blinding factor that transforms it into the benign document. If ALICE doesn&#146;t ask to see the document and signs it, he uses the blinding factor that transforms it into the malevolent document. While this is theoretically possible, the mathematics of the particular algorithms involved make the odds of BOB&#146;s being able to find such a pair negligibly small. In fact, it can be made as small as the odds of Bob being able to produce the signature on an arbitrary message himself. This issue is discussed further in Section 23.12.</P>
+<P><FONT SIZE="+1"><B><I>Patents</I></B></FONT></P>
+<P>Chaum has patents for several flavors of blind signatures (see Table 5.1).
+</P>
+<H3><A NAME="Heading5"></A><FONT COLOR="#000077">5.4 Identity-Based Public-Key Cryptography</FONT></H3>
+<P>Alice wants to send a secure message to Bob. She doesn&#146;t want to get his public key from a key server; she doesn&#146;t want to verify some trusted third party&#146;s signature on his public-key certificate; and she doesn&#146;t even want to store Bob&#146;s public key on her own computer. She just wants to send him a secure message.
+</P>
+<P><B>Identity-based cryptosystems</B>, sometimes called Non-Interactive Key Sharing (NIKS) systems, solve this problem [1422]. Bob&#146;s public key is based on his name and network address (or telephone number, or physical street address, or whatever). With normal public-key cryptography, Alice needs a signed certificate that associates Bob&#146;s public key with his identity. With identity-based cryptography, Bob&#146;s public key <I>is</I> his identity. This is a really cool idea, and about as ideal as you can get for a mail system: If Alice knows Bob&#146;s address, she can send him secure mail. It makes the cryptography about as transparent as possible.</P>
+<P>The system is based on Trent issuing private keys to users based on their identity. If Alice&#146;s private key is compromised, she has to change some aspect of her identity to get another one. A serious problem is designing a system in such a way that a collusion of dishonest users cannot forge a key.</P>
+<P>A lot of work has been done on the mathematics of these sorts of schemes&#151;most of it in Japan&#151;which turn out to be infuriatingly complicated to make secure. Many of the proposed solutions involve Trent choosing a random number for each user&#151;in my opinion this defeats the real point of the system. Some of the algorithms discussed in Chapters 19 and 20 can be identity-based. For details, algorithms, and cryptanalysis, see [191,1422,891,1022,1515,1202,1196,908,692,674,1131,1023,1516,1536,1544,63,<BR>1210,314,313,1545,1539,1543,933,1517,748,1228]. An algorithm that does not rely on any random numbers is [1035]. The system discussed in [1546,1547,1507] is insecure against a chosen-public-key attack; so is the system proposed as NIKS-TAS [1542,1540,1541,993,375,1538]. Honestly, nothing proposed so far is both practical and secure.</P>
+<TABLE WIDTH="100%"><TR>
+<TH CAPTION ALIGN="CENTER" COLSPAN="3">TABLE 5.1<BR>Chaum&#146;s Blind Signature Patents
+<TR>
+<TD COLSPAN="3"><HR>
+<TR>
+<TH WIDTH="25%" ALIGN="LEFT">U.S. PATENT #
+<TH WIDTH="15%" ALIGN="LEFT">DATE
+<TH WIDTH="60%" ALIGN="LEFT">TITLE
+<TR>
+<TD COLSPAN="3"><HR>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">4,759,063
+<TD VALIGN="TOP" ALIGN="LEFT">7/19/88
+<TD VALIGN="TOP" ALIGN="LEFT">Blind Signature Systems [323]
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">4,759,064
+<TD VALIGN="TOP" ALIGN="LEFT">7/19/88
+<TD VALIGN="TOP" ALIGN="LEFT">Blind Unanticipated Signature Systems [324]
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">4,914,698
+<TD VALIGN="TOP" ALIGN="LEFT">3/3/90
+<TD VALIGN="TOP" ALIGN="LEFT">One-Show Blind Signature Systems [326]
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">4,949,380
+<TD VALIGN="TOP" ALIGN="LEFT">8/14/90
+<TD VALIGN="TOP" ALIGN="LEFT">Returned-Value Blind Signature Systems [328]
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT">4,991,210
+<TD VALIGN="TOP" ALIGN="LEFT">2/5/91
+<TD VALIGN="TOP" ALIGN="LEFT">Unpredictable Blind Signature Systems [331]
+<TR>
+<TD COLSPAN="3"><HR>
+<TR>
+</TABLE>
+<H3><A NAME="Heading6"></A><FONT COLOR="#000077">5.5 Oblivious Transfer</FONT></H3>
+<P>Cryptographer Bob is desperately trying to factor a 500-bit number, <I>n</I>. He knows it&#146;s the product of five 100-bit numbers, but nothing more. (This is a problem. If he can&#146;t recover the key he&#146;ll have to work overtime and he&#146;ll miss his weekly mental poker game with Alice.)</P>
+<P>What do you know? Here comes Alice now:</P>
+<BLOCKQUOTE><P>&#147;I happen to know one factor of the number,&#148; she says, &#147;and I&#146;ll sell it to you for $100. That&#146;s a dollar a bit.&#148; To show she&#146;s serious, she uses a bit-commitment scheme and commits to each bit individually.
+</P>
+<P>Bob is interested, but has only $50. Alice is unwilling to lower her price and offers to sell Bob half the bits for half the price. &#147;It&#146;ll save you a considerable amount of work,&#148; she says.</P>
+<P>&#147;But how do I know that your number is actually a factor of <I>n?</I> If you show me the number and let me verify that it is a factor, then I will agree to your terms,&#148; says Bob.</P>
+<P>They are at an impasse. Alice cannot convince Bob that her number is a factor of <I>n</I> without revealing it, and Bob is unwilling to buy 50 bits of a number that could very well be worthless.</P>
+</BLOCKQUOTE><P>This story, stolen from Joe Kilian [831], introduces the concept of <B>oblivious transfer</B>. Alice transmits a group of messages to Bob. Bob receives some subset of those messages, but Alice has no idea which ones he receives. This doesn&#146;t completely solve the problem, however. After Bob has received a random half of the bits, Alice has to convince him that the bits she sent are part of a factor of <I>n</I>, using a zero-knowledge proof.</P>
+<P>In the following protocol, Alice will send Bob one of two messages. Bob will receive one, and Alice will not know which.</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice generates two public-key/private-key key pairs, or four keys in all. She sends both public keys to Bob.
+<DD><B>(2)</B>&nbsp;&nbsp;Bob chooses a key in a symmetric algorithm (DES, for example). He chooses one of Alice&#146;s public keys and encrypts his DES key with it. He sends the encrypted key to Alice without telling her which of her public keys he used to encrypt it.
+<DD><B>(3)</B>&nbsp;&nbsp;Alice decrypts Bob&#146;s key twice, once with each of her private keys. In one of the cases, she uses the correct key and successfully decrypts Bob&#146;s DES key. In the other case, she uses the wrong key and only manages to generate a meaningless pile of bits that nonetheless look like a random DES key. Since she does not know the correct plaintext, she has no idea which is which.
+<DD><B>(4)</B>&nbsp;&nbsp;Alice encrypts both of her messages, each with a different one of the DES keys she generated in the previous step (one real and one meaningless) and sends both of them to Bob.
+<DD><B>(5)</B>&nbsp;&nbsp;Bob gets one of Alice&#146;s messages encrypted with the proper DES key and the other one encrypted with the gibberish DES key. When Bob decrypts each of them with his DES key, he can read one of them; the other just looks like gibberish to him.
+</DL>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="05-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="05-07.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

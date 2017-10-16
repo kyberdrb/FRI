@@ -1,0 +1,116 @@
+From: <Saved by Windows Internet Explorer 7>
+Subject: CSA Project - Stream Cipher
+Date: Mon, 17 Aug 2009 13:49:06 +0200
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="windows-1250"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://web.archive.org/web/20080128203559/csa.irde.to/csagraphic/csagraphic.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>CSA Project - Stream Cipher</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1250"><!-- saved from =
+url=3D(0022)http://internet.e-mail -->
+<META content=3D"MSHTML 6.00.6000.16640" name=3DGENERATOR></HEAD>
+<BODY style=3D"BACKGROUND-IMAGE: url(../streamcipher/termsbg2.jpg)">
+<CENTER>
+<H1>graphic CSA illustratin by bvg</H1>
+<DIV style=3D"TEXT-ALIGN: left"><BR><BR><BR>
+<DIV style=3D"TEXT-ALIGN: center"><SPAN=20
+style=3D"TEXT-DECORATION: underline">Overview of CSA descrambling=20
+process:</SPAN><BR></DIV></DIV><BR></CENTER><IMG title=3D""=20
+style=3D"WIDTH: 777px; HEIGHT: 546px" alt=3Doverview src=3D""><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+<BR><BR>
+<DIV style=3D"TEXT-ALIGN: center"><SPAN=20
+style=3D"TEXT-DECORATION: underline">Streamcipher in=20
+Detail:</SPAN><BR></DIV><BR><IMG title=3D"" style=3D"WIDTH: 790px; =
+HEIGHT: 575px"=20
+alt=3DStreamcipher src=3D""><BR><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+<BR>
+<DIV style=3D"TEXT-ALIGN: center"><SPAN=20
+style=3D"TEXT-DECORATION: underline">Blockcipher in =
+Detail:<BR><BR><BR><IMG=20
+title=3D"" style=3D"WIDTH: 754px; HEIGHT: 541px" alt=3DBlockcipher=20
+src=3D""><BR></SPAN></DIV><BR><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+<BR>
+<DIV style=3D"TEXT-ALIGN: center"><SPAN=20
+style=3D"TEXT-DECORATION: underline">Datapath through the=20
+descrambler:</SPAN><BR></DIV><BR><BR><BR><IMG title=3D""=20
+style=3D"WIDTH: 784px; HEIGHT: 553px" alt=3D"Datapath through =
+descrambler"=20
+src=3D""><BR><BR><BR>
+<HR style=3D"WIDTH: 100%; HEIGHT: 2px">
+<BR>
+<DIV style=3D"TEXT-ALIGN: right"><FONT size=3D-1>(last change=20
+2003/08/16)</FONT></DIV><A=20
+href=3D"http://csa.irde.to.wstub.archive.org/csagraphic/index.html">home<=
+/A>
+<SCRIPT language=3DJavascript>=0A=
+<!--=0A=
+=0A=
+// FILE ARCHIVED ON 20080128203559 AND RETRIEVED FROM THE=0A=
+// INTERNET ARCHIVE ON 20090817114655.=0A=
+// JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.=0A=
+// ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.=0A=
+// SECTION 108(a)(3)).=0A=
+=0A=
+   var sWayBackCGI =3D "http://web.archive.org/web/20080128203559/";=0A=
+=0A=
+   function xResolveUrl(url) {=0A=
+      var image =3D new Image();=0A=
+      image.src =3D url;=0A=
+      return image.src;=0A=
+   }=0A=
+   function xLateUrl(aCollection, sProp) {=0A=
+      var i =3D 0;=0A=
+      for(i =3D 0; i < aCollection.length; i++) {=0A=
+         var url =3D aCollection[i][sProp];         if (typeof(url) =
+=3D=3D "string") { =0A=
+          if (url.indexOf("mailto:") =3D=3D -1 &&=0A=
+             url.indexOf("javascript:") =3D=3D -1=0A=
+             && url.length > 0) {=0A=
+            if(url.indexOf("http") !=3D 0) {=0A=
+                url =3D xResolveUrl(url);=0A=
+            }=0A=
+            url =3D url.replace('.wstub.archive.org','');=0A=
+            aCollection[i][sProp] =3D sWayBackCGI + url;=0A=
+         }=0A=
+         }=0A=
+      }=0A=
+   }=0A=
+=0A=
+   xLateUrl(document.getElementsByTagName("IMG"),"src");=0A=
+   xLateUrl(document.getElementsByTagName("A"),"href");=0A=
+   xLateUrl(document.getElementsByTagName("AREA"),"href");=0A=
+   xLateUrl(document.getElementsByTagName("OBJECT"),"codebase");=0A=
+   xLateUrl(document.getElementsByTagName("OBJECT"),"data");=0A=
+   xLateUrl(document.getElementsByTagName("APPLET"),"codebase");=0A=
+   xLateUrl(document.getElementsByTagName("APPLET"),"archive");=0A=
+   xLateUrl(document.getElementsByTagName("EMBED"),"src");=0A=
+   xLateUrl(document.getElementsByTagName("BODY"),"background");=0A=
+   xLateUrl(document.getElementsByTagName("TD"),"background");=0A=
+   xLateUrl(document.getElementsByTagName("INPUT"),"src");=0A=
+   var forms =3D document.getElementsByTagName("FORM");=0A=
+   if (forms) {=0A=
+       var j =3D 0;=0A=
+       for (j =3D 0; j < forms.length; j++) {=0A=
+              f =3D forms[j];=0A=
+              if (typeof(f.action)  =3D=3D "string") {=0A=
+                 if(typeof(f.method)  =3D=3D "string") {=0A=
+                     if(typeof(f.method) !=3D "post") {=0A=
+                        f.action =3D sWayBackCGI + f.action;=0A=
+                     }=0A=
+                  }=0A=
+              }=0A=
+        }=0A=
+    }=0A=
+=0A=
+=0A=
+//-->=0A=
+</SCRIPT>
+ </BODY></HTML>

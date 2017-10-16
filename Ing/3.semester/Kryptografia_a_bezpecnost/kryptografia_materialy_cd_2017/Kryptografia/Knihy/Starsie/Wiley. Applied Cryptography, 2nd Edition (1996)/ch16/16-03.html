@@ -1,0 +1,792 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Pseudo-Random-Sequence Generators and Stream Ciphers</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+
+<HTML>
+<head>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+
+<!--
+function jumpurl(form)
+{
+  location = form.URL.options[form.URL.selectedIndex].value;
+  return true;
+};
+//-->
+
+</SCRIPT>
+</head>
+<BODY>
+<TABLE width=468 height=60>
+  <TR>
+    <TD>
+        <TABLE>
+  <TR>
+    <TD><IMG SRC="http://adimages.earthweb.com/images/ads/house/dtm_salary/dtm_html.gif" BORDER=0 WIDTH=332 HEIGHT=60></TD>
+    <TD width=168 height=60 align=center valign=bottom><font face="verdana,
+helvetica" size=1>
+<FORM ACTION="">
+<SELECT NAME="URL" SIZE="1" onchange="jumpurl(this.form);">
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,1">Basic</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_basic.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,2">C/C++</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_c.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,3">HTML</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_html.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,4">Java</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_java.html -->
+
+<OPTION VALUE="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,5">SQL</OPTION>
+<!-- http://www.datamation.com/staff/survey/bylang_sql.html -->
+
+</SELECT>
+<A HREF="/adclick.html/CID=00000bff33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60?1,6" TARGET="_blank"><font face="verdana,helvetica" size=2>GO</A>
+<!-- http://www.datamation.com/index.html -->
+
+</FORM>
+        </TD>
+  </TR>
+</TABLE>
+        </TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>
+
+
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=16//-->
+<!--PAGES=374-377//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="16-02.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="16-04.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>In order for a particular LFSR to be a maximal-period LFSR, the polynomial formed from a tap sequence plus the constant 1 must be a primitive polynomial mod 2. The <B>degree</B> of the polynomial is the length of the shift register. A primitive polynomial of degree <I>n</I> is an irreducible polynomial that divides <I>x</I><SUP>2<SUP>n-1</SUP></SUP> &#43; 1, but not <I>x</I><SUP>d</SUP> &#43; 1 for any <I>d</I> that divides 2<SUP>n</SUP> - 1 (see Section 11.3). For the mathematical theory behind all this, consult [643,1649,1648].</P>
+<I><P><A NAME="Fig3"></A><A HREF="javascript:displayWindow('images/16-03.jpg',212,76 )"><IMG SRC="images/16-03t.jpg"></A>
+<BR><A HREF="javascript:displayWindow('images/16-03.jpg',212,76)"><FONT COLOR="#000077"><B>Figure 16.3</B></FONT></A>&nbsp;&nbsp;4-bit LFSR.</I>
+</P>
+<P>In general, there is no easy way to generate primitive polynomials mod 2 for a given degree. The easiest way is to choose a random polynomial and test whether it is primitive. This is complicated&#151;something like testing random numbers for primality&#151;but many mathematical software packages do this. See [970,971] for some methods.
+</P>
+<P>Table 16.2 lists some, but by no means all, primitive polynomials mod 2 of varying degrees [1583,643,1649,1648,1272,691]. For example, the listing (32, 7, 5, 3, 2, 1, 0) means that the following polynomial is primitive modulo 2:</P>
+<DL>
+<DD><I>x</I><SUP>32</SUP> &#43; <I>x</I><SUP>7</SUP> &#43; <I>x</I><SUP>5</SUP> &#43; <I>x</I><SUP>3</SUP> &#43; <I>x</I><SUP>2</SUP> &#43; <I>x</I> &#43; 1
+</DL>
+<P>It&#146;s easy to turn this into a maximal-period LFSR. The first number is the length of the LFSR. The last number is always 0 and can be ignored. All the numbers, except the 0, specify the tap sequence, counting from the left of the shift register. That is, low degree terms in the polynomial correspond to taps near the left-hand side of the register.
+</P>
+<P>To continue the example, the listing (32, 7, 5, 3, 2, 1, 0) means that if you take a 32-bit shift register and generate the new bit by XORing the thirty-second, seventh, fifth, third, second, and first bits together (see Figure 16.4), the resultant LFSR will be maximal length; it will cycle through 2<SUP>32</SUP> - 1 values before repeating.</P>
+<P>The C code for this LFSR looks like:</P>
+<!-- CODE //-->
+<PRE>
+int LFSR () {
+     static unsigned long ShiftRegister = 1;
+     /* Anything but 0. */
+     ShiftRegister = ((((ShiftRegister &gt&gt 31)
+                ^ (ShiftRegister &gt&gt 6)
+                ^ (ShiftRegister &gt&gt 4)
+                ^ (ShiftRegister &gt&gt 2)
+                ^ (ShiftRegister &gt&gt 1)
+                ^ ShiftRegister))
+                &amp 0&#215;00000001)
+                &lt&lt 31)
+                | (ShiftRegister &gt&gt 1) ;
+     return ShiftRegister &amp 0&#215;00000001;
+}
+</PRE>
+<!-- END CODE //-->
+<I><P><A NAME="Fig4"></A><A HREF="javascript:displayWindow('images/16-04.jpg',308,69 )"><IMG SRC="images/16-04t.jpg"></A>
+<BR><A HREF="javascript:displayWindow('images/16-04.jpg',308,69)"><FONT COLOR="#000077"><B>Figure 16.4</B></FONT></A>&nbsp;&nbsp;32-bit long maximal-length LFSR.</I>
+</P>
+<P>
+</P>
+<TABLE WIDTH="100%"><TH CAPTION ALIGN="CENTER" COLSPAN="4">Table 16.2<BR>Some Primitive Plynomials Mod 2
+<TR>
+<TD COLSPAN="4" ALIGN="LEFT"><HR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(36, 11, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(68, 9, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(97, 6, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(36, 6, 5, 4, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(68, 7, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(98, 11, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(37, 6, 4, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(69, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(98, 7, 4, 3, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(4, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(37, 5, 4, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(70, 5, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(99, 7, 5, 4, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(38, 6, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(71, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(100, 37, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(6, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(39, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(71, 5, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(100, 8, 7, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(7, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(40, 5, 4, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(72, 10, 9, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(101, 7, 6, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(7, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(41, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(72, 6, 4, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(102, 6 5 3 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(8, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(42, 7, 4, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(73, 25, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(103, 9, 9)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(9, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(42, 5, 4, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(73, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(104, 11, 10, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(10, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(43, 6, 4, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(74, 7, 4, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(105, 16, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(11, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(44, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(75, 6, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(106, 15, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(12, 6, 4, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(45, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(76, 5, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(107, 9, 7, 4, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(13, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(46, 8, 7, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(77, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(108, 31, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(14, 5, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(46, 8, 5, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(78, 7, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(109, 5, 4, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(15, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(47, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(79, 9, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(110, 6, 4, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(16, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(48, 9, 7, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(79, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(111, 10, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(17, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(48, 7, 5, 4, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(80, 9, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(111, 49, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(17, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(49, 9, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(80, 7, 5, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(113, 9, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(17, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(49, 6, 5, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(81, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(113, 15, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(18, 7, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(50, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(82, 9, 6, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(113, 30, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(18, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(51, 6, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(82, 8, 7, 6, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(114, 11, 2, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(19, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(52, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(83, 7, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(115, 8, 7, 5, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(20, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(53, 6, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(84, 13, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(116, 6, 5, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(21, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(54, 8, 6, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(84, 8, 7, 5, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(117, 5, 2, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(22, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(54, 6, 5, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(85, 8, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(118, 33, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(23, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(55, 24, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(86, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(119, 8, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(24, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(55, 6, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(87, 13, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(119, 45, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(25, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(56, 7, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(87, 7, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(120, 9, 6, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(26, 6, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(57, 7, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(88, 11, 9, 8, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(121, 18, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(27, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(57, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(88, 8, 5, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(122, 6, 2, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(28, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(58, 19, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(89, 38, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(123, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(29, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(58, 6, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(89, 51, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(124, 37, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(30, 6, 4, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(59, 7, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(89, 6, 5, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(125, 7, 6, 5, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(31, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(59, 6, 5, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(90, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(126, 7, 4, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(31, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(60, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(91, 8, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(127, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(31, 7, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(61, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(91, 7, 6, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(127, 7, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(31, 13, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(62, 6, 5, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(92, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(127, 63, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(32, 7, 6, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(63, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(93, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(128, 7, 2, 1, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(32, 7, 5, 3, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(64, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(94, 21, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(129, 5, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(33, 13, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(65, 18, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(94, 6, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(130, 3, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(33, 16, 4, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(65, 4, 3, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(95, 11, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(131, 8, 3, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(34, 8, 4, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(66, 9, 8, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(95, 6, 5, 4, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(132, 29, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(34, 7, 6, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(66, 8, 6, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(96, 10, 9, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(133, 9, 8, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(35, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(67, 5, 2, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(96, 7, 6, 4, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(134, 57, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(135, 11, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(152, 6, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(178, 87, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(270, 133, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(135, 16, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(153, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(183, 56, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(282, 35, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(135, 22, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(153, 8, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(194, 87, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(282, 43, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(136, 8, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(154, 9, 5, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(198, 65, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(286, 69, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(137, 21, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(155, 7, 5, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(201, 14, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(286, 73, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(138, 8, 7, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(156, 9, 5, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(201, 17, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(294, 61, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(139, 8, 5, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(157, 6, 5, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(201, 59, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(322, 67, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(140, 29, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(158, 8, 6, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(201, 79, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(333, 2, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(141, 13, 6, 1, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(159, 31, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(202, 55, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(350, 53, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(142, 21, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(159, 34, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(207, 43, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(366, 29, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(143, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(159, 40, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(212, 105, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(378, 43, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(144, 7, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(160, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(218, 11, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(378, 107, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(145, 52, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(161, 18, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(218, 15, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(390, 89, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(145, 69, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(161, 39, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(218, 71, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(462, 73, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(146, 5, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(161, 60, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(218, 83, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(521, 32, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(147, 11, 4, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(162, 8, 7, 4, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(225, 32, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(521, 48, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(148, 27, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(163, 7, 6, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(225, 74, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(521, 158, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(149, 10, 9, 7, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(164, 12, 6, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(225, 88, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(521, 168, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(150, 53, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(165, 9, 8, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(225, 97, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(607, 105, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 3, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(166, 10, 3, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(225, 109, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(607, 147, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 9, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(167, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(231, 26, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(607, 273, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 15, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(170, 23, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(231, 34, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(1279, 216, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 31, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(172, 2, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(234, 31, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(1279, 418, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 39, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(174, 13, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(234, 103, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(2281, 715, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 43, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(175, 6, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(236, 5, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(2281, 915, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 46, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(175, 16, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(250, 103, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(2281, 1029, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 51, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(175, 18, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(255, 52, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(3217, 67, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 63, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(175, 57, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(255, 56, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(3217, 576, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 66, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(177, 8, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(255, 82, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(4423, 271, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 67, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(177, 22, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(258, 83, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(9689, 84, 0)
+<TR>
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(151, 70, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(177, 88, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">(266, 47, 0)
+<TD WIDTH="25%" VALIGN="TOP" ALIGN="LEFT">
+<TR>
+<TD COLSPAN="4" ALIGN="LEFT"><HR>
+</TABLE>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="16-02.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="16-04.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

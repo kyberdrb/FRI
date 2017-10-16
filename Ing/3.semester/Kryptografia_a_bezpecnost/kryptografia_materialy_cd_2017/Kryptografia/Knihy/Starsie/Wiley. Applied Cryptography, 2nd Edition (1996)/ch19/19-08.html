@@ -1,0 +1,471 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Public-Key Algorithms</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000a6333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/wreckingball10k.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=00000a6333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=19//-->
+<!--PAGES=477-479//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="19-07.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="19-09.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>The solution is <I>b</I> = 3, and the signature is the pair: <I>a</I> = 6 and <I>b</I> = 3.</P>
+<TABLE WIDTH="75%"><TH CAPTION COLSPAN="2" ALIGN="CENTER">Table 19.5<BR>ElGamal Signatures
+<TR>
+<TD COLSPAN="2"><HR>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Public Key:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>p</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">prime (can be shared among a group of users)
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>g</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">&lt<I>p</I> (can be shared among a group of users)
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>y</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">= <I>g<SUP>x</I></SUP> mod <I>p</I>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">
+<TD ALING="LEFT"><B><I>Private Key:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>x</I>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">&lt<I>p</I>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Signing:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>k</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">choose at random, relatively prime to <I>p</I> - 1
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>a</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">(signature) = <I>g<SUP>k</I></SUP> mod <I>p</I>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>b</I>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">(signature) such that <I>M</I> = (<I>xa</I> &#43; <I>kb</I>) mod (<I>p</I> - 1)
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Verifying:</I></B>
+<TR>
+<TD COLSPAN="2" ALIGN="LEFT">Accept as valid if <I>y<SUP>a</SUP>a<SUP>b</SUP></I> mod <I>p</I> = <I>g<SUP>M</SUP></I> mod <I>p</I>
+<TR>
+<TD COLSPAN="2"><HR>
+</TABLE>
+<P>To verify a signature, confirm that
+</P>
+<DL>
+<DD><I>y<SUP>a</SUP>a<SUP>b</I></SUP> mod <I>p</I> = <I>g<SUP>M</I></SUP> mod <I>p</I>
+<DD>3<SUP>6</SUP> 6<SUP>3</SUP> mod 11 = 2<SUP>5</SUP> mod 11
+</DL>
+<P>A variant of ElGamal for signatures is in [1377]. Thomas Beth invented a variant of the ElGamal scheme suitable for proofs of identity [146]. There are variants for password authentication [312], and for key exchange [773]. And there are thousands more (see Section 20.4).
+</P>
+<P><FONT SIZE="+1"><B><I>ElGamal Encryption</I></B></FONT></P>
+<P>A modification of ElGamal can encrypt messages. To encrypt message <I>M</I>, first choose a random <I>k</I>, such that <I>k</I> is relatively prime to <I>p</I> - 1. Then compute</P>
+<DL>
+<DD><I>a</I> = <I>g<SUP>k</I></SUP> mod <I>p</I>
+<DD><I>b</I> = <I>y<SUP>k</SUP>M</I> mod <I>p</I>
+</DL>
+<P>The pair, <I>a</I> and <I>b</I>, is the ciphertext. Note that the ciphertext is twice the size of the plaintext.</P>
+<P>To decrypt <I>a</I> and <I>b</I>, compute</P>
+<DL>
+<DD><I>M</I> = <I>b</I>/<I>a<SUP>x</I></SUP> mod <I>p</I>
+</DL>
+<P>Since <I>a<SUP>x</SUP></I> &#8801; <I>g<SUP>kx</I></SUP> (mod <I>p</I>), and <I>b</I>/<I>a<SUP>x</I></SUP> &#8801; <I>y<SUP>k</SUP>M</I>/<I>a<SUP>x</I></SUP> &#8801; <I>g<SUP>xk</SUP>M/g<SUP>xk</I></SUP> &#8801; <I>M</I> (mod <I>p</I>), this all works (see Table 19.6). This is really the same as Diffie-Hellman key exchange (see Section 22.1), except that <I>y</I> is part of the key, and the encryption is multiplied by <I>y<SUP>k</I></SUP>.</P>
+<P><FONT SIZE="+1"><B><I>Speed</I></B></FONT></P>
+<P>Table 19.7 gives sample software speeds of ElGamal [918].
+</P>
+<TABLE WIDTH="75%"><TH CAPTION COLSPAN="2" ALIGN="CENTER">Table 19.6<BR>ElGamal Encryption
+<TR>
+<TD COLSPAN="2"><HR>
+<TR>
+<TD ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Public Key:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>p</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">prime (can be shared among a group of users)
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>g</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">&lt <I>p</I> (can be shared among a group of users)
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>y</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM"> = <I>g<SUP>x</I></SUP> mod <I>p</I>
+<TR>
+<TD ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Private Key:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>x</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">&lt <I>p</I>
+<TR>
+<TD ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Encrypting:</I></B>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>k</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">choose at random, relatively prime to <I>p</I> - 1.
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>a</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">(ciphertext) = <I>g<SUP>k</SUP></I> mod <I>p</I>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT"><I>b</I>
+<TD ALIGN="LEFT" VALIGN="BOTTOM">(ciphertext) = <I>y<SUP>k</SUP>M</I> mod <I>p</I>
+<TR>
+<TD ALIGN="LEFT">
+<TD ALIGN="LEFT"><B><I>Decrypting:</I></B>
+<TR>
+<TD COLSPAN="2" ALIGN="LEFT"><I>M</I> (plaintext) = <I>b</I>/<I>a<SUP>x</I></SUP> mod <I>p</I>
+<TR>
+<TD COLSPAN="2"><HR>
+</TABLE>
+<P><FONT SIZE="+1"><B><I>Patents</I></B></FONT></P>
+<P>ElGamal is unpatented. But, before you go ahead and implement the algorithm, realize that PKP feels that this algorithm is covered under the Diffie-Hellman patent [718]. However, the Diffie-Hellman patent will expire on April 29, 1997, making ElGamal the first public-key cryptography algorithm suitable for encryption and digital signatures unencumbered by patents in the United States. I can hardly wait.
+</P>
+<H3><A NAME="Heading8"></A><FONT COLOR="#000077">19.7 McEliece</FONT></H3>
+<P>In 1978 Robert McEliece developed a public-key cryptosystem based on algebraic coding theory [1041]. The algorithm makes use of the existence of a class of error-correcting codes, known as <B>Goppa codes</B>. His idea was to construct a Goppa code and disguise it as a general linear code. There is a fast algorithm for decoding Goppa codes, but the general problem of finding a code word of a given weight in a linear binary code is <B>NP-complete</B>. A good description of this algorithm can be found in [1233]; see also [1562]. Following is just a quick summary.</P>
+<P>Let <I>d</I><SUB>H</SUB>(<I>x,y</I>) denote the Hamming distance between <I>x</I> and <I>y</I>. The numbers <I>n, k</I>, and <I>t</I> are system parameters.</P>
+<P>The private key has three parts: <I>G&#146;</I> is a <I>k</I> * <I>n</I> generator matrix for a Goppa code that can correct <I>t</I> errors. <I>P</I> is an <I>n</I> * <I>n</I> permutation matrix. <I>S</I> is a <I>k</I> * <I>k</I> nonsingular matrix.</P>
+<P>The public key is a <I>k</I> * <I>n</I> matrix <I>G: G</I> = <I>SG&#146;P</I>.</P>
+<P>Plaintext messages are strings of <I>k</I> bits, in the form of <I>k</I>-element vectors over GF(2).</P>
+<P>To encrypt a message, choose a random <I>n</I>-element vector over GF(2), <I>z</I>, with Hamming distance less than or equal to <I>t</I>.</P>
+<DL>
+<DD><I>c</I> = <I>mG</I> &#43; <I>z</I>
+</DL>
+<P>To decrypt the ciphertext, first compute <I>c&#146;</I> = <I>cP<SUP>-1</I></SUP>. Then, using the decoding algorithm for the Goppa code, find <I>m&#146;</I> such that <I>d</I><SUB>H</SUB>(<I>m&#146; G, c&#146;</I>) is less than or equal to <I>t</I>. Finally, compute <I>m</I> = <I>m&#146;S</I><SUP>-1</SUP>.</P>
+<P>In his original paper, McEliece suggested that <I>n</I> = 1024, <I>t</I> = 50, and <I>k</I> = 524. These are the minimum values required for security.</P>
+<TABLE WIDTH="75%"><TH CAPTION COLSPAN="4" ALIGN="CENTER">Table 19.7<BR>ElGamal Speeds for Different<BR>Modulus Lengths with a 160-bit<BR>Exponent (on a SPARC II)
+<TR>
+<TD COLSPAN="4"><HR>
+<TR>
+<TH WIDTH="25%" VALIGN="BOTTOM" ALIGN="LEFT">
+<TH WIDTH="25%" VALIGN="BOTTOM" ALIGN="LEFT">512 bits
+<TH WIDTH="25%" VALIGN="BOTTOM" ALIGN="LEFT">768 bits
+<TH VALIGN="BOTTOM" ALIGN="LEFT">1024 bits
+<TR>
+<TD COLSPAN="4"><HR>
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">Encrypt
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.33 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.80 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">1.09 sec
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">Decrypt
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.24 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.58 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.77 sec
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">Sign
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.25 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.47 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">0.63 sec
+<TR>
+<TD VALIGN="BOTTOM" ALIGN="LEFT">Verify
+<TD VALIGN="BOTTOM" ALIGN="LEFT">1.37 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">5.12 sec
+<TD VALIGN="BOTTOM" ALIGN="LEFT">9.30 sec
+<TR>
+<TD COLSPAN="4"><HR>
+</TABLE>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="19-07.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="19-09.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

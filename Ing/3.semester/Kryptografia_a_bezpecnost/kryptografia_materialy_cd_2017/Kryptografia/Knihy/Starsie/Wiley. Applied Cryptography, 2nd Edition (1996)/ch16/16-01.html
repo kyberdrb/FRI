@@ -1,0 +1,577 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Pseudo-Random-Sequence Generators and Stream Ciphers</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=0000070a33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/odi2.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=0000070a33d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=16//-->
+<!--PAGES=369-371//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="../ch15/15-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="16-02.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<H2><A NAME="Heading1"></A><FONT COLOR="#000077">Chapter 16<BR>Pseudo-Random-Sequence Generators and Stream Ciphers
+</FONT></H2>
+<H3><A NAME="Heading2"></A><FONT COLOR="#000077">16.1 Linear Congruential Generators</FONT></H3>
+<P><B>Linear congruential generators</B> are pseudo-random-sequence generators of the form</P>
+<DL>
+<DD><I>X</I><SUB>n</SUB> = (<I>aX</I><SUB>n-1</SUB> &#43; <I>b</I>) mod <I>m</I>
+</DL>
+<P>in which <I>X</I><SUB>n</SUB> is the <I>n</I>th number of the sequence, and <I>X</I><SUB>n-1</SUB> is the previous number of the sequence. The variables <I>a, b</I>, and <I>m</I> are constants: <I>a</I> is the <B>multiplier</B>, <I>b</I> is the <B>increment</B>, and <I>m</I> is the modulus. The key, or seed, is the value of <I>X</I><SUB>0</SUB>.</P>
+<P>This generator has a period no greater than <I>m</I>. If <I>a, b</I>, and <I>m</I> are properly chosen, then the generator will be a <B>maximal period generator</B> (sometimes called maximal length) and have period of <I>m</I>. (For example, <I>b</I> should be relatively prime to <I>m</I>.) Details on choosing constants to ensure maximal period can be found in [863,942]. Another good article on linear congruential generators and their theory is [1446].</P>
+<P>Table 16.1, taken from [1272], gives a list of good constants for linear congruential generators. They all produce maximal period generators and even more important, pass the spectral test for randomness for dimensions 2, 3, 4, 5, and 6 [385,863]. They are organized by the largest product that does not overflow a specific word length.</P>
+<P>The advantage of linear congruential generators is that they are fast, requiring few operations per bit.</P>
+<P>Unfortunately, linear congruential generators cannot be used for cryptography; they are predictable. Linear congruential generators were first broken by Jim Reeds [1294,1295,1296] and then by Joan Boyar [1251]. She also broke quadratic generators:</P>
+<DL>
+<DD><I>X</I><SUB>n</SUB> = (<I>aX</I><SUB>n-1</SUB><SUP>2</SUP> &#43; <I>bX</I><SUB>n-1</SUB> &#43; <I>c</I>) mod <I>m</I>
+</DL>
+<P>and cubic generators:
+</P>
+<DL>
+<DD><I>X</I><SUB>n</SUB> = (<I>aX</I><SUB>n-1</SUB><SUP>3</SUP> &#43; <I>bX</I><SUB>n-1</SUB><SUP>2</SUP> &#43; <I>cX</I><SUB>n-1</SUB> &#43; <I>d</I>) mod <I>m</I>
+</DL>
+<P>Other researchers extended Boyar&#146;s work to break any polynomial congruential generator [923,899,900]. Truncated linear congruential generators were also broken [581,705,580], as were truncated linear congruential generators with unknown parameters [1500,212]. The preponderance of evidence is that congruential generators aren&#146;t useful for cryptography.
+</P>
+<TABLE WIDTH="100%"><TH COLSPAN="4" ALIGN="CENTER">Table 16.1<BR>Constants for Linear Congruential Generators
+<TR>
+<TH COLSPAN="4"><HR>
+<TR>
+<TH ALIGN="CENTER">Overflow At:
+<TH ALIGN="CENTER"><I>a</I>
+<TH ALIGN="CENTER"><I>b</I>
+<TH ALIGN="CENTER"><I>m</I>
+<TR>
+<TD COLSPAN="4"><HR>
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>20</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">106
+<TD ALIGN="CENTER" VALIGN="TOP">1283
+<TD ALIGN="CENTER" VALIGN="TOP">6075
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>21</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">211
+<TD ALIGN="CENTER" VALIGN="TOP"> 1663
+<TD ALIGN="CENTER" VALIGN="TOP">7875
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>22</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">421
+<TD ALIGN="CENTER" VALIGN="TOP"> 1663
+<TD ALIGN="CENTER" VALIGN="TOP">7875
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>23</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">430
+<TD ALIGN="CENTER" VALIGN="TOP">2531
+<TD ALIGN="CENTER" VALIGN="TOP">11979
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">936
+<TD ALIGN="CENTER" VALIGN="TOP"> 1399
+<TD ALIGN="CENTER" VALIGN="TOP">6655
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP"> 1366
+<TD ALIGN="CENTER" VALIGN="TOP">1283
+<TD ALIGN="CENTER" VALIGN="TOP">6075
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>24</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">171
+<TD ALIGN="CENTER" VALIGN="TOP">11213
+<TD ALIGN="CENTER" VALIGN="TOP">53125
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">859
+<TD ALIGN="CENTER" VALIGN="TOP">2531
+<TD ALIGN="CENTER" VALIGN="TOP">11979
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">419
+<TD ALIGN="CENTER" VALIGN="TOP">6173
+<TD ALIGN="CENTER" VALIGN="TOP">29282
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">967
+<TD ALIGN="CENTER" VALIGN="TOP">3041
+<TD ALIGN="CENTER" VALIGN="TOP">14406
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>25</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">141
+<TD ALIGN="CENTER" VALIGN="TOP">28411
+<TD ALIGN="CENTER" VALIGN="TOP">134456
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">625
+<TD ALIGN="CENTER" VALIGN="TOP">6571
+<TD ALIGN="CENTER" VALIGN="TOP">31104
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1541
+<TD ALIGN="CENTER" VALIGN="TOP">2957
+<TD ALIGN="CENTER" VALIGN="TOP">14000
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1741
+<TD ALIGN="CENTER" VALIGN="TOP">2731
+<TD ALIGN="CENTER" VALIGN="TOP">12960
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1291
+<TD ALIGN="CENTER" VALIGN="TOP">4621
+<TD ALIGN="CENTER" VALIGN="TOP">21870
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">205
+<TD ALIGN="CENTER" VALIGN="TOP">29573
+<TD ALIGN="CENTER" VALIGN="TOP">139968
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>26</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">421
+<TD ALIGN="CENTER" VALIGN="TOP">17117
+<TD ALIGN="CENTER" VALIGN="TOP">81000
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1255
+<TD ALIGN="CENTER" VALIGN="TOP">6173
+<TD ALIGN="CENTER" VALIGN="TOP">29282
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">281
+<TD ALIGN="CENTER" VALIGN="TOP">28411
+<TD ALIGN="CENTER" VALIGN="TOP">134456
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>27</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">1093
+<TD ALIGN="CENTER" VALIGN="TOP">18257
+<TD ALIGN="CENTER" VALIGN="TOP">86436
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">421
+<TD ALIGN="CENTER" VALIGN="TOP">54773
+<TD ALIGN="CENTER" VALIGN="TOP">259200
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1021
+<TD ALIGN="CENTER" VALIGN="TOP">24631
+<TD ALIGN="CENTER" VALIGN="TOP">116640
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1021
+<TD ALIGN="CENTER" VALIGN="TOP">25673
+<TD ALIGN="CENTER" VALIGN="TOP">121500
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>28</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">1277
+<TD ALIGN="CENTER" VALIGN="TOP">24749
+<TD ALIGN="CENTER" VALIGN="TOP">117128
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">741
+<TD ALIGN="CENTER" VALIGN="TOP">66037
+<TD ALIGN="CENTER" VALIGN="TOP">312500
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">2041
+<TD ALIGN="CENTER" VALIGN="TOP">25673
+<TD ALIGN="CENTER" VALIGN="TOP">121500
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>29</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">2311
+<TD ALIGN="CENTER" VALIGN="TOP">25367
+<TD ALIGN="CENTER" VALIGN="TOP">120050
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1807
+<TD ALIGN="CENTER" VALIGN="TOP">45289
+<TD ALIGN="CENTER" VALIGN="TOP">214326
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1597
+<TD ALIGN="CENTER" VALIGN="TOP">51749
+<TD ALIGN="CENTER" VALIGN="TOP">244944
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1861
+<TD ALIGN="CENTER" VALIGN="TOP">49297
+<TD ALIGN="CENTER" VALIGN="TOP">233280
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">2661
+<TD ALIGN="CENTER" VALIGN="TOP">36979
+<TD ALIGN="CENTER" VALIGN="TOP">175000
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">4081
+<TD ALIGN="CENTER" VALIGN="TOP">25673
+<TD ALIGN="CENTER" VALIGN="TOP">121500
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">3661
+<TD ALIGN="CENTER" VALIGN="TOP">30809
+<TD ALIGN="CENTER" VALIGN="TOP">145800
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>30</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">3877
+<TD ALIGN="CENTER" VALIGN="TOP">29573
+<TD ALIGN="CENTER" VALIGN="TOP">139968
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">3613
+<TD ALIGN="CENTER" VALIGN="TOP">45289
+<TD ALIGN="CENTER" VALIGN="TOP">214326
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">1366
+<TD ALIGN="CENTER" VALIGN="TOP">150889
+<TD ALIGN="CENTER" VALIGN="TOP">714025
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>31</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">8121
+<TD ALIGN="CENTER" VALIGN="TOP">28411
+<TD ALIGN="CENTER" VALIGN="TOP">134456
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">4561
+<TD ALIGN="CENTER" VALIGN="TOP">51349
+<TD ALIGN="CENTER" VALIGN="TOP">243000
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">7141
+<TD ALIGN="CENTER" VALIGN="TOP">54773
+<TD ALIGN="CENTER" VALIGN="TOP">259200
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>32</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">9301
+<TD ALIGN="CENTER" VALIGN="TOP">49297
+<TD ALIGN="CENTER" VALIGN="TOP">233280
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">4096
+<TD ALIGN="CENTER" VALIGN="TOP">150889
+<TD ALIGN="CENTER" VALIGN="TOP">714025
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>33</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">2416
+<TD ALIGN="CENTER" VALIGN="TOP">374441
+<TD ALIGN="CENTER" VALIGN="TOP">1771875
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>34</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">17221
+<TD ALIGN="CENTER" VALIGN="TOP">107839
+<TD ALIGN="CENTER" VALIGN="TOP">510300
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">
+<TD ALIGN="CENTER" VALIGN="TOP">36261
+<TD ALIGN="CENTER" VALIGN="TOP">66037
+<TD ALIGN="CENTER" VALIGN="TOP">312500
+<TR>
+<TD ALIGN="CENTER" VALIGN="TOP">2<SUP>35</SUP>
+<TD ALIGN="CENTER" VALIGN="TOP">84589
+<TD ALIGN="CENTER" VALIGN="TOP">45989
+<TD ALIGN="CENTER" VALIGN="TOP">217728
+<TR>
+<TD COLSPAN="4"><HR>
+</TABLE>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="../ch15/15-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="16-02.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

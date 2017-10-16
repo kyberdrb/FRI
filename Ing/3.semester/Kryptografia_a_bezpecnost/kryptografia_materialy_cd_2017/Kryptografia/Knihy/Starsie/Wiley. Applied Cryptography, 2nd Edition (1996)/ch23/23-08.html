@@ -1,0 +1,419 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Special Algorithms for Protocols</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000d2833d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/ethisethat.gif" 
+ALT="Click Here!" ></A>
+<BR><A HREF="/adclick.html/CID=00000d2833d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+Click Here!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=23//-->
+<!--PAGES=546-548//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="23-07.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="23-09.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>Unfortunately, a pair of dishonest parties can cheat. Alice and Carol, working together, can easily find out what secret Bob is getting: If they know the FBI of <I>C</I><SUB>b</SUB> and Bob&#146;s encryption algorithm, they can find <I>b</I> such that <I>C</I><SUB>b</SUB> has the right FBI. And Bob and Carol, working together, can easily get all the secrets from Alice.</P>
+<P>If you assume honest parties,there&#146;s an easier protocol [389].</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice encrypts all of the secrets with RSA and sends them to Bob:
+<I>C</I><SUB>i</SUB> = <I>S</I><SUB>i</SUB><SUP>e</SUP> mod <I>n</I>
+<DD><B>(2)</B>&nbsp;&nbsp;Bob chooses his secret <I>C</I><SUB>b</SUB>, picks a random <I>r,</I> and sends <I>C',</I> to Alice.
+<DL>
+<DD><I>C'</I> = <I>C</I><SUB>b</SUB>r<SUP>e</SUP> mod <I>n</I>
+</DL>
+<DD><B>(3)</B>&nbsp;&nbsp;Alice sends Bob <I>P'</I>.
+<DL>
+<DD><I>P'</I> = <I>C'<SUP>d</SUP></I> mod <I>n</I>
+</DL>
+<DD><B>(4)</B>&nbsp;&nbsp;Bob calculates <I>S</I><SUB>b</SUB>.
+</DL>
+<DL>
+<DD><I>S</I><SUB>b</SUB> = <I>P'r<SUP>-1</SUP></I> mod <I>n</I>
+</DL>
+<P>If the parties may be dishonest, Bob can prove in zero-knowledge that he knows some <I>r</I> such that <I>C'</I>=<I>C</I><SUB>b</SUB>r<SUP>e</SUP> mod <I>n</I> and keep <I>b</I> secret until Alice gives him <I>P'</I> in step (3) [246].</P>
+<H3><A NAME="Heading11"></A><FONT COLOR="#000077">23.10 Fair and Failsafe Cryptosystems</FONT></H3>
+<P><FONT SIZE="+1"><B>Fair Diffie-Hellman</B></FONT></P>
+<P>Fair cryptosystems are a way to do key escrowing in software (see Section 4.14). This example is from Silvio Micali [1084,1085]. It is patented [1086,1087].
+</P>
+<P>In the basic Diffie-Hellman scheme, a group of users share a prime, <I>p,</I> and a generator, <I>g.</I> Alice&#146;s private key is <I>s,</I> and her public key is <I>t</I> =<I>g<SUP>s</SUP></I> mod <I>p.</I></P>
+<P>Here&#146;s how to make Diffie-Hellman fair (this example uses five trustees).</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Alice chooses five integers, <I>s</I><SUB>1</SUB> , <I>s</I><SUB>2</SUB>, <I>s</I><SUB>3</SUB>, <I>s</I><SUB>4</SUB>, and <I>s</I><SUB>5</SUB>, each less than <I>p</I> - 1. Alice&#146;s private key is
+<DL>
+<DD><I>s</I> = (<I>s</I><SUB>1</SUB> &#43; <I>s</I><SUB>2</SUB> &#43; <I>s</I><SUB>3</SUB> &#43; <I>s</I><SUB>4</SUB> &#43; <I>s</I><SUB>5</SUB>) mod <I>p</I> - 1
+</DL>
+<BR>and her public key is
+<DL>
+<DD><I>t</I> = <I>g<SUP>s</SUP></I> mod <I>p</I>
+</DL>
+<BR>Alice also computes
+<DL>
+<DD><I>t</I><SUB>i</SUB> = <I>g<SUP>s<SMALL><SMALL>i</SMALL></SMALL></SUP></I> mod <I>p,</I> for <I>i</I> = 1 to 5
+</DL>
+<BR>Alice&#146;s public shares are <I>t</I><SUB>i</SUB>, and her private shares are <I>s</I><SUB>i</SUB>.
+<DD><B>(2)</B>&nbsp;&nbsp;Alice sends a private piece and corresponding public piece to each trustee. For example, she sends <I>s</I><SUB>1</SUB> and <I>t</I><SUB>1</SUB> to trustee 1. She sends <I>t</I> to the KDC.
+<DD><B>(3)</B>&nbsp;&nbsp;Each trustee verifies that
+<DL>
+<DD><I>t</I><SUB>i</SUB> = <I>g<SUP>s<SMALL><SMALL>i</SMALL></SMALL></SUP></I> mod <I>p</I>
+</DL>
+<BR>If it does, the trustee signs <I>t</I><SUB>i</SUB> and sends it to the KDC. The trustee stores <I>s</I><SUB>i</SUB> in a secure place.
+<DD><B>(4)</B>&nbsp;&nbsp;After receiving all five public pieces, the KDC verifies that
+<DL>
+<DD><I>t</I> = (<I>t</I><SUB>1</SUB> * <I>t</I><SUB>2</SUB> * <I>t</I><SUB>3</SUB> * <I>t</I><SUB>4</SUB> * <I>t</I><SUB>5</SUB>) mod <I>p</I>
+</DL>
+<BR>If it does, the KDC approves the public key.
+</DL>
+<P>At this point, the KDC knows that the trustees each have a valid piece, and that they can reconstruct the private key if required. However, neither the KDC nor any four of the trustees working together can reconstruct Alice&#146;s private key.
+</P>
+<P>Micali&#146;s papers [1084,1085] also contain a procedure for making RSA fair and for combining a threshold scheme with the fair cryptosystem, so that <I>m</I> out of <I>n</I> trustees can reconstruct the private key.</P>
+<P><FONT SIZE="+1"><B><I>Failsafe Diffie-Hellman</I></B></FONT></P>
+<P>Like the previous protocol, a group of users share a prime, <I>p,</I> and a generator, <I>g.</I> Alice&#146;s private key is <I>s,</I> and her public key is <I>t</I> =<I>g<SUP>s</SUP></I> mod <I>p.</I></P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;The KDC chooses a random number, <I>B,</I> between 0 and <I>p</I> - 2, and commits to <I>B</I> using a bit-commitment protocol (see Section 4.9).
+<DD><B>(2)</B>&nbsp;&nbsp;Alice chooses a random number, <I>A,</I> between 0 and <I>p</I> - 2. She sends <I>g<SUP>A</SUP></I> mod <I>p</I> to the KDC.
+<DD><B>(3)</B>&nbsp;&nbsp;The user &#147;shares&#148; <I>A</I> with each trustee using a verifiable secret-sharing scheme (see Section 3.7).
+<DD><B>(4)</B>&nbsp;&nbsp;The KDC reveals <I>B</I> to Alice.
+<DD><B>(5)</B>&nbsp;&nbsp;Alice verifies the commitment from step (1). Then she sets her public key as
+<DL>
+<DD><I>t</I> = (<I>g<SUP>A</SUP></I>)<I>g<SUP>B</SUP></I> mod <I>p</I>
+</DL>
+<BR>She sets her private key as
+</DL>
+<DL>
+<DD><I>s</I> = (<I>A</I> &#43; <I>B</I>) mod (<I>p</I> - 1)
+</DL>
+<P>The trustees can reconstruct <I>A.</I> Since the KDC knows <I>B,</I> this is enough to reconstruct <I>s.</I> And Alice cannot make use of any subliminal channels to send unauthorized information. This protocol, discussed in [946,833] is being patented.</P>
+<H3><A NAME="Heading12"></A><FONT COLOR="#000077">23.11 Zero-Knowledge Proofs of Knowledge</FONT></H3>
+<P><FONT SIZE="+1"><B>Zero-Knowledge Proof of a Discrete Logarithm</B></FONT></P>
+<P>Peggy wants to prove to Victor that she knows an <I>x</I> that satisfies</P>
+<DL>
+<DD><I>A<SUP>x</SUP></I> &#8801; <I>B</I> (mod <I>p</I>)
+</DL>
+<P>where <I>p</I> is a prime, and <I>x</I> is a random number relatively prime to <I>p</I> - 1. The numbers <I>A, B,</I> and <I>p</I> are public, and <I>x</I> is secret. Here&#146;s how Peggy can prove she knows <I>x</I> without revealing it (see Section 5.1) [338,337].</P>
+<DL>
+<DD><B>(1)</B>&nbsp;&nbsp;Peggy generates <I>t</I> random numbers, <I>r</I><SUB>1</SUB> , <I>r</I><SUB>2</SUB> ,  ..., <I>r</I><SUB>t</SUB>, where all <I>r</I><SUB>i</SUB> are less than <I>p</I> - 1.1
+<DD><B>(2)</B>&nbsp;&nbsp;Peggy computes <I>h</I><SUB>i</SUB> = <I>A<SUP>r<SMALL><SMALL>i</SMALL></SMALL></SUP></I> mod <I>p,</I> for all values of <I>i,</I> and sends them to Victor.
+<DD><B>(3)</B>&nbsp;&nbsp;Peggy and Victor engage in a coin-flipping protocol to generate <I>t</I> bits: <I>b</I><SUB>1</SUB>, <I>b</I><SUB>2</SUB> ,  ..., <I>b</I><SUB>t</SUB>.
+<DD><B>(4)</B>&nbsp;&nbsp;For all <I>t</I> bits, Peggy does one of the following:
+<DL>
+<DD><B>a)</B>&nbsp;&nbsp;If <I>b</I><SUB>i</SUB> = 0, she sends Victor <I>r</I><SUB>i</SUB>
+<DD><B>b)</B>&nbsp;&nbsp;If <I>b</I><SUB>i</SUB> = 1, she sends Victor <I>s</I><SUB>i</SUB> = (<I>r</I><SUB>i</SUB> - <I>r</I><SUB>j</SUB>) mod (<I>p</I> - 1), where <I>j</I> is the lowest value for which <I>b</I><SUB>j</SUB> = 1
+</DL>
+<DD><B>(5)</B>&nbsp;&nbsp;For all <I>t</I> bits, Victor confirms one of the following:
+<DL>
+<DD><B>a)</B>&nbsp;&nbsp;If <I>b</I><SUB>i</SUB> = 0, that <I>A<SUP>r<SMALL><SMALL>i</SMALL></SMALL></SUP></I> &#8801; <I>h</I><SUB>i</SUB> (mod <I>p</I>)
+<DD><B>b)</B>&nbsp;&nbsp;If <I>b</I><SUB>i</SUB> = 1, that <I>A<SUP>si</SUP></I> &#8801; <I>h</I><SUB>i</SUB>h<SUB>j</SUB><SUP>-1</SUP></I> (mod <I>p</I>)
+</DL>
+<DD><B>(6)</B>&nbsp;&nbsp;Peggy sends Victor <I>Z,</I> where
+<DL>
+<DD><I>Z</I> = (<I>x</I> - <I>r</I><SUB>j</SUB>) mod (<I>p</I> - 1)
+</DL>
+<DD><B>(7)</B>&nbsp;&nbsp;Victor confirms that
+<I>A<SUP>Z</SUP></I> &#8801; <I>Bh</I><SUB>j</SUB><SUP>-1</SUP> (mod <I>p</I>)
+</DL>
+<P>Peggy&#146;s probability of successfully cheating is 2<SUP>-t.</SUP></P>
+<P><FONT SIZE="+1"><B><I>Zero-Knowledge Proof of the Ability to Break RSA</I></B></FONT></P>
+<P>Alice knows Carol&#146;s private key. Maybe she has broken RSA; maybe she has broken into Carol&#146;s house and stolen the key. Alice wants to convince Bob that she knows Carol&#146;s key. However, she doesn&#146;t want to tell Bob the key or even decrypt one of Carol&#146;s messages for Bob. Here&#146;s a zero-knowledge protocol by which Alice convinces Bob that she knows Carol&#146;s private key [888].
+</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="23-07.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="23-09.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

@@ -1,0 +1,445 @@
+<HTML>
+<HEAD>
+<META name=vscategory content="Security Programming Languages">
+
+<META name=vsisbn content="0471128457">
+<META name=vstitle content="Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)">
+<META name=vsauthor content="Bruce Schneier">
+<META name=vsimprint  content="Wiley Computer Publishing ">
+<META name=vspublisher content="John Wiley & Sons, Inc.">
+<META name=vspubdate content="1/1/96">
+
+<TITLE>APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C:Mathematical Background</TITLE>
+<!-- BEGIN HEADER -->
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<SCRIPT>
+<!--
+function displayWindow(url, width, height) {
+        var Win = window.open(url,"displayWindow",'width=' + width +
+',height=' + height + ',resizable=1,scrollbars=yes');
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<body bgcolor="ffffff" link="#006666" alink="#006666" vlink="#006666">
+	<table width="640" border="0" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+		<td>
+
+<!--  Begin Ads ITKBAN.BOOKS //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000c7333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/powerfull.gif" 
+ALT="LYCOShop Now Open!" ></A>
+<BR><A HREF="/adclick.html/CID=00000c7333d6f71200000000/site=itknowledge/area=itk.books/aamsz=468x60" TARGET=_top>
+LYCOShop Now Open!
+</A></CENTER><BR>
+
+
+<!-- ITKBAN.BOOKS End Ads //--></td>
+		<td>
+
+<!--  Begin Ads ITKBAN //-->
+
+<CENTER><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+<IMG BORDER=0 SRC="http://adimages.earthweb.com/images/ads/160x60/compaq_dtm_sponsor.gif" 
+ALT="" ></A>
+<BR><A HREF="/adclick.html/CID=00000b452954e8a400000000/site=itknowledge/area=itk/aamsz=160x60/position=top" TARGET=_top>
+
+</A></CENTER><BR>
+
+
+<!-- ITKBAN End Ads //--></td>
+		</tr>
+		<tr><td height="1" colspan="2" bgcolor="#CCCCCC"><img src="/images/white.gif" border=0 alt=""></td></tr>
+	</TABLE>
+<!-- END HEADER -->
+<!-- BEGIN SUB HEADER -->
+	
+	<table bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0" width="100%">
+ 		
+		
+<!-- ITK LOGO Banner -->
+	
+	<tr>
+		<td align="left" valign="top" bgcolor="#FFFFFF"><script>
+function GetCookie (name)
+{
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen)
+   {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) {
+         var end = document.cookie.indexOf (";", j);
+         if (end == -1)
+            end = document.cookie.length;
+         return unescape(document.cookie.substring(j, end));
+      }
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+var m1='<IMG SRC="';
+var m2='/images/itk-logo.gif';
+var m3='" VSPACE="10" WIDTH=434 HEIGHT=58 ALT="ITKnowledge" border="0">';
+var gifstr=GetCookie("UsrType");
+if((gifstr!=0 )  && (gifstr!=null)) { m2=gifstr; }
+document.write(m1+m2+m3);
+</script>
+</td>
+	</tr>
+<!-- END of ITK LOGO Banner -->
+	
+<!-- ITK TOPNAV -->
+	
+	<tr>
+		<td align="left" valign="top" nowrap>
+<a href="/"><img src="/images/home1.gif" width=38 height=37 alt="home" border="0"></a>&nbsp;<a href="/pick-account.html"><img src="/images/accountinfo.gif" width=70 height=37 alt="account info" border="0"></a>&nbsp;<a href="/PSUser/usrreg.htm?AdminAction=InitAdd&Locale=en&URI=/"><img src="/images/subscribe2.gif" width=56 height=37 alt="subscribe" border="0" hspace="6"></a>&nbsp;<a href="/PSUser/psuserauth.htm?cmd=login&URI=/"><img src="/images/login1.gif" width=33 height=37 alt="login" hspace="5" border="0"></a>&nbsp;<a href="/search/"><img src="/images/search1.gif" width=43 height=37 alt="search" border="0" hspace="10"></a>&nbsp;<a href="/faq/faq.html"><img src="/images/faqs1.gif" width=40 height=37 alt="FAQ/help" border="0" hspace="0"></a>&nbsp;<a href="/sitemap.html"><img src="/images/sitemap1.gif" width=46 height=37 alt="site map" border="0" hspace="2"></a>&nbsp;<a href="/contactus.html"><img src="/images/contact1.gif" width=61 height=37 alt="contact us" border="0" hspace="4"></a><br>
+		<img src="/images/white.gif" width="1" height="5" alt="" border="0">
+</td>  
+		</tr>
+</table>
+
+
+<!-- END of ITK TOPNAV -->
+		
+	
+	
+<!-- begin of ITK left NAV -->
+
+<!-- BEGIN LEFT NAV -->
+
+	<table width=99% border="0" cellpadding="2" cellspacing="0">
+		<tr>
+		<td bgcolor="#ffffff" width=120 valign="top" rowspan=8>
+			
+			
+		<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+			<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+			<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+			<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+			<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+											
+			<img src="/images/search5.gif" width=115 height=27 alt="" border="0"><br>
+			<img src="/images/white.gif" width="1" height="5" alt="" border="0"><br>
+		<table width="116" height="135"  bgcolor="#e0e0e0" border="1" bordercolor="#006666" cellpadding="3" cellspacing="0">
+		<tr>
+		<td width="116">
+<input type="text" name="metaqueryText" value="" size="8">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+			<INPUT type="hidden" NAME="section_on" VALUE="on">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="metatags" style="font-size: 10; font-family: sans-serif;" size="1">
+			<option value="keyword" SELECTED>Keyword
+			<option value="vstitle">Title
+			<option value="vsauthor">Author
+			<option value="vsisbn">ISBN
+			<option value="vspublisher">Publisher
+			<option value="vsimprint">Imprint
+			</SELECT></font><br>
+
+			<input type="radio" name="ResultTemplate" value="itk-brief.hts" checked style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Brief</font>
+			<input type="radio" name="ResultTemplate" value="itk-full.hts" style="background-color: #e0e0e0;"><font face="arial, helvetica" color="#006666" size="1">Full</font><br>
+			<font face="arial, helvetica" size="1">
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/"><font color="#006666">Advanced</font></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/search/"><font color="#006666">Search</font></a><br>
+			<img src="/images/bullet.gif" width=5 height=5 hspace="5" alt="" border="0">&nbsp;<a href="/search/search-tips.html"><font color="#006666">Search Tips</font></a>
+			</font>
+</td>
+</tr>
+</table>
+	</form>
+<!-- BROWSE BY TOPIC -->
+		
+		<form action="" name="catlist">			
+		<img src="/images/browse5.gif" width=115 height=34 alt="" border="0">
+<table width="120" height="32" border="1" cellspacing="0" cellpadding="3" bordercolor="#006666" bgcolor="#e0e0e0">
+				<tr>
+				<td width="117" align="center">
+			<font face="Arial,helvetica" size="1">
+			<SELECT NAME="cat" onChange='top.location.href=this.options[selectedIndex].value;' style="font-size: 10; font-family: sans-serif;">
+			<option value="" selected>Please Select
+			<option value="">-----------
+			<option value="/reference/dir.components.html">Components
+			<option value="/reference/dir.contentmanagement.html">Content Mgt
+			<option value="/reference/dir.certification1.html">Certification
+			<option value="/reference/dir.databases.html">Databases
+			<option value="/reference/dir.enterprisemanagement1.html">Enterprise Mgt
+			<option value="/reference/dir.funandgames1.html">Fun/Games
+			<option value="/reference/dir.groupwareandcollaboration1.html">Groupware
+			<option value="/reference/dir.hardware1.html">Hardware
+			<option value="/reference/dir.intranetandextranetdevelopment1.html">Intranet Dev
+			<option value="/reference/dir.middleware.html">Middleware
+			<option value="/reference/dir.multimediaandgraphicdesign1.html">Multimedia
+			<option value="/reference/dir.networkservices1.html">Networks 
+			<option value="/reference/dir.operatingsystems.html">OS
+			<option value="/reference/dir.productivityapplications1.html">Prod Apps
+			<option value="/reference/dir.programminglanguages.html">Programming
+			<option value="/reference/dir.security1.html">Security	
+			<!-- <option value="/reference/dir.ewtraining1.html">Training Guides -->
+			<option value="/reference/dir.userinterfaces.html">UI
+			<option value="/reference/dir.webservices.html">Web Services
+			<option value="/reference/dir.webmasterskills1.html">Webmaster
+			<option value="/reference/dir.y2k1.html">Y2K
+			<option value="">-----------
+			<option value="/reference/whatsnew.html">New Titles
+			<option value="">-----------
+			<option value="/reference/dir.archive1.html">Free Archive		
+			</SELECT>
+			</font></td>
+	</tr>
+	</table>
+	</form>
+<!-- LEFT NAV SEARCH END -->
+
+		</td>
+		
+<!-- PUB PARTNERS END -->
+<!-- END LEFT NAV -->
+
+<td rowspan="8" align="right" valign="top"><img src="/images/iswbls.gif" width=1 height=400 alt="" border="0"></td>
+<td><img src="/images/white.gif" width="5" height="1" alt="" border="0"></td>
+<!-- end of ITK left NAV -->
+
+<!-- begin main content -->
+<td width="100%" valign="top" align="left">
+
+
+<!-- END SUB HEADER -->
+
+<!--Begin Content Column -->
+
+<FONT FACE="Arial,Helvetica" SIZE="-1">
+To access the contents, click the chapter and section titles.
+</FONT>
+<P>
+<B>Applied Cryptography, Second Edition: Protocols,  Algorthms, and Source Code in C (cloth)</B>
+<FONT SIZE="-1">
+<BR>
+<I>(Publisher: John Wiley & Sons, Inc.)</I>
+<BR>
+Author(s): Bruce Schneier
+<BR>
+ISBN: 0471128457
+<BR>
+Publication Date: 01/01/96
+</FONT>
+<P>
+<form name="Search" method="GET" action="http://search.earthweb.com/search97/search_redir.cgi">
+
+<INPUT TYPE="hidden" NAME="Action" VALUE="Search">
+<INPUT TYPE="hidden" NAME="SearchPage" VALUE="http://search.earthweb.com/search97/samples/forms/srchdemo.htm">
+<INPUT TYPE="hidden" NAME="Collection" VALUE="ITK">
+<INPUT TYPE="hidden" NAME="ResultTemplate" VALUE="itk-full.hts">
+<INPUT TYPE="hidden" NAME="ViewTemplate" VALUE="view.hts">
+
+<font face="arial, helvetica" size=2><b>Search this book:</b></font><br>
+<INPUT NAME="queryText" size=50 VALUE="">&nbsp;<input type="submit" name="submitbutton" value="Go!">
+<INPUT type=hidden NAME="section_on" VALUE="on">
+<INPUT type=hidden NAME="section" VALUE="http://www.itknowledge.com/reference/standard/0471128457/">
+
+</form>
+
+
+<!-- Empty Reference Subhead -->
+
+<!--ISBN=0471128457//-->
+<!--TITLE=APPLIED CRYPTOGRAPHY, SECOND EDITION: Protocols, Algorithms, and Source Code in C//-->
+<!--AUTHOR=Bruce Schneier//-->
+<!--PUBLISHER=Wiley Computer Publishing//-->
+<!--CHAPTER=11//-->
+<!--PAGES=243-246//-->
+<!--UNASSIGNED1//-->
+<!--UNASSIGNED2//-->
+
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-07.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR></P>
+<P>Computing <I>a<SUP><SMALL>x</SMALL></SUP></I> mod <I>n</I>, where <I>x</I> is not a power of 2, is only slightly harder. Binary notation expresses <I>x</I> as a sum of powers of 2: 25 is 11001 in binary, so 25 = 2<SUP><SMALL>4</SMALL></SUP> &#43; 2<SUP><SMALL>3</SMALL></SUP> &#43; 2<SUP><SMALL>0</SMALL></SUP>. So</P>
+<DL>
+<DD><I>a<SUP><SMALL>25</SMALL></SUP></I> mod <I>n</I> = (<I>a*a<SUP><SMALL>24</SMALL></SUP></I>) mod <I>n</I> = (<I>a*a<SUP><SMALL>8</SMALL></SUP>*a<SUP><SMALL>16</SMALL></SUP></I>) mod <I>n</I>
+<DD>= (a*((<I>a<SUP><SMALL>2</SMALL></SUP></I>)<SUP><SMALL>2</SMALL></SUP>)<SUP><SMALL>2</SMALL></SUP>*(((<I>a<SUP><SMALL>2</SMALL></SUP></I>)<SUP><SMALL>2</SMALL></SUP>)<SUP><SMALL>2</SMALL></SUP>)<SUP><SMALL>2</SMALL></SUP>) mod <I>n</I> = ((((<I>a<SUP><SMALL>2</SMALL></SUP>*a</I>)<SUP><SMALL>2</SMALL></SUP>)<SUP><SMALL>2</SMALL></SUP>)<SUP><SMALL>2</SMALL></SUP>*a) mod <I>n</I>
+</DL>
+<P>With judicious storing of intermediate results, you only need six multiplications:
+</P>
+<DL>
+<DD>(((((((<I>a<SUP><SMALL>2</SMALL></SUP></I> mod <I>n</I>)*a) mod <I>n</I>)<SUP><SMALL>2</SMALL></SUP> mod <I>n</I>)<SUP><SMALL>2</SMALL></SUP> mod <I>n</I>)<SUP><SMALL>2</SMALL></SUP> mod <I>n</I>)*a) mod <I>n</I>
+</DL>
+<P>This is called <B>addition chaining</B> [863], or the binary square and multiply method. It uses a simple and obvious addition chain based on the binary representation. In C, it looks like:</P>
+<!-- CODE //-->
+<PRE>
+    unsigned long qe2(unsigned long x, unsigned long y, unsigned long n) {
+    	unsigned long s,t,u;
+    	int i;
+    
+    	s = 1; t = x; u = y;
+    	while(u) {
+    		if(u&amp1) s = (s* t)%n;
+    		u&gt&gt=1;
+    		t = (t* t)%n;
+    	}
+    	return(s);
+    }
+</PRE>
+<!-- END CODE //-->
+<P>Another, recursive, algorithm is:
+</P>
+<!-- CODE //-->
+<PRE>
+    unsigned long fast_exp(unsigned long x, unsigned long y, unsigned long N) {
+    	unsigned long tmp;
+         if(y==1) return(x % N);
+         if ((y&amp1)==0) {
+    	       tmp = fast_exp(x,y/2,N);
+    	       return ((tmp* tmp)%N);
+         }
+         else {
+    	       tmp = fast_exp(x,(y-1)/2,N);
+    	       tmp = (tmp* tmp)%N;
+    	       tmp = (tmp* x)%N;
+    	       return (tmp);
+         }
+    }
+</PRE>
+<!-- END CODE //-->
+<P>This technique reduces the operation to, on the average, 1.5*k operations, if <I>k</I> is the length of the number <I>x</I> in bits. Finding the calculation with the fewest operations is a hard problem (it has been proven that the sequence must contain at least <I>k</I>- 1 operations), but it is not too hard to get the number of operations down to 1.1*k or better, as <I>k</I> grows.</P>
+<P>An efficient way to do modular reductions many times using the same <I>n</I> is <B>Montgomery&#146;s method</B> [1111]. Another method is called <B>Barrett&#146;s algorithm</B> [87]. The software performance of these two algorithms and the algorithm previously discussed is in [210]: The algorithm I&#146;ve discussed is the best choice for singular modular reductions; Barrett&#146;s algorithm is the best choice for small arguments; and Montgomery&#146;s method is the best choice for general modular exponentiations. (Montgomery&#146;s method can also take advantage of small exponents, using something called mixed arithmetic.)</P>
+<P>The inverse of exponentiation modulo <I>n</I> is calculating a <B>discrete logarithm</B> . I&#146;ll discuss this shortly.</P>
+<P><FONT SIZE="+1"><B><I>Prime Numbers</I></B></FONT></P>
+<P>A <B>prime</B> number is an integer greater than 1 whose only factors are 1 and itself: No other number evenly divides it. Two is a prime number. So are 73, 2521, 2365347734339, and 2<SUP><SMALL>756839</SMALL></SUP> - 1. There are an infinite number of primes. Cryptography, especially public-key cryptography, uses large primes (512 bits and even larger) often.</P>
+<P>Evangelos Kranakis wrote an excellent book on number theory, prime numbers, and their applications to cryptography [896]. Paulo Ribenboim wrote two excellent references on prime numbers in general [1307, 1308].</P>
+<P><FONT SIZE="+1"><B><I>Greatest Common Divisor</I></B></FONT></P>
+<P>Two numbers are <B>relatively prime</B> when they share no factors in common other than 1. In other words, if the <B>greatest common divisor</B> of <I>a</I> and <I>n</I> is equal to 1. This is written:</P>
+<DL>
+<DD>gcd(<I>a,n</I>) = 1
+</DL>
+<P>The numbers 15 and 28 are relatively prime, 15 and 27 are not, and 13 and 500 are. A prime number is relatively prime to all other numbers except its multiples.
+</P>
+<P>One way to compute the greatest common divisor of two numbers is with <B>Euclid&#146;s algorithm</B> . Euclid described the algorithm in his book, <I>Elements</I>, written around 300 B.C. He didn&#146;t invent it. Historians believe the algorithm could be 200 years older. It is the oldest nontrivial algorithm that has survived to the present day, and it is still a good one. Knuth describes the algorithm and some modern modifications [863].</P>
+<P>In C:</P>
+<!-- CODE //-->
+<PRE>
+    /* returns gcd of x and y */
+    int gcd (int x, int y)
+    {
+         int g;
+         if (x &lt 0)
+    	  x = -x;
+         if (y &lt 0)
+    	  y = -y;
+         if (x &#43; y == 0)
+    	  ERROR;
+         g = y;
+         while (x &gt 0) {
+    	  g = x;
+    	  x = y % x;
+    	  y = g;
+         }
+         return g;
+    }
+</PRE>
+<!-- END CODE //-->
+<P>This algorithm can be generalized to return the gcd of an array of <I>m</I> numbers:</P>
+<!-- CODE //-->
+<PRE>
+    /* returns the gcd of x1, x2...xm */
+    int multiple_gcd (int m, int *x)
+    {
+         size_t i;
+         int g;
+
+         if (m &lt 1)
+    	       return 0;
+         g = x[0];
+         for (i=1; i&ltm; &#43;&#43;i) {
+    	       g = gcd(g, x[i]);
+    /* optimization, since for random x[i], g==1 60% of the time: */
+    	        if (g == 1)
+    	             return 1;
+         }
+         return g;
+    }
+</PRE>
+<!-- END CODE //-->
+<P><FONT SIZE="+1"><B><I>Inverses Modulo a Number</I></B></FONT></P>
+<P>Remember inverses? The multiplicative inverse of 4 is 1/4, because 4*1/4 = 1. In the modulo world, the problem is more complicated:
+</P>
+<DL>
+<DD>4*x &#8801; 1 (mod 7)
+</DL>
+<P>This equation is equivalent to finding an <I>x</I> and <I>k</I> such that</P>
+<DL>
+<DD>4<I>x</I> = 7<I>k</I> &#43; 1
+</DL>
+<P>where both <I>x</I> and <I>k</I> are integers.</P>
+<P>The general problem is finding an <I>x</I> such that</P>
+<DL>
+<DD>1 = (<I>a*x</I>) mod <I>n</I>
+</DL>
+<P>This is also written as
+</P>
+<DL>
+<DD><I>a</I> <SUP><SMALL>-1</SMALL></SUP> &#8801; x (mod <I>n</I>)
+</DL>
+<P>The modular inverse problem is a lot more difficult to solve. Sometimes it has a solution, sometimes not. For example, the inverse of 5, modulo 14, is 3. On the other hand, 2 has no inverse modulo 14.
+</P>
+<P>In general, <I>a</I><SUP><SMALL>-1</SMALL></SUP> &#8801; <I>x</I> (mod <I>n</I>) has a unique solution if <I>a</I> and <I>n</I> are relatively prime. If <I>a</I> and <I>n</I> are not relatively prime, then <I>a-1</I> &#8801; <I>x</I> (mod <I>n</I>) has no solution. If <I>n</I> is a prime number, then every number from 1 to <I>n</I>- 1 is relatively prime to <I>n</I> and has exactly one inverse modulo <I>n</I> in that range.</P><P><BR></P>
+<CENTER>
+<TABLE BORDER>
+<TR>
+<TD><A HREF="11-05.html">Previous</A></TD>
+<TD><A HREF="../ewtoc.html">Table of Contents</A></TD>
+<TD><A HREF="11-07.html">Next</A></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+[an error occurred while processing this directive]
+<!-- all of the reference materials (books) have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- BEGIN SUB FOOTER -->
+		<br><br>
+		</TD>
+    </TR>
+	</TABLE>
+
+		
+	<table width="640" border=0 cellpadding=0 cellspacing=0>
+		<tr>
+		<td align="left" width=135><img src="/images/white.gif" width=100 height="1" alt="" border="0"></td>
+		
+		
+<!-- END SUB FOOTER -->
+
+<!-- all of the books have the footer and subfoot reveresed -->
+<!-- reference_subfoot = footer -->
+<!-- reference_footer = subfoot -->
+
+<!-- FOOTER -->
+			
+		<td width="515" align="left" bgcolor="#FFFFFF">
+<font face="arial, helvetica" size="1"><b><a href="/products.html"><font color="#006666">Products</font></a>&nbsp;|&nbsp; <a href="/contactus.html"><font color="#006666">Contact Us</font></a>&nbsp;|&nbsp; <a href="/aboutus.html"><font color="#006666">About Us</font></a>&nbsp;|&nbsp; <a href="http://www.earthweb.com/corporate/privacy.html" target="_blank"><font color="#006666">Privacy</font></a> &nbsp;|&nbsp; <a href="http://www.itmarketer.com/" target="_blank"><font color="#006666">Ad Info</font></a> &nbsp;|&nbsp; <a href="/"><font color="#006666">Home</font></a></b>
+		<br><br>
+		
+		Use of this site is subject to certain <a href="/agreement.html">Terms &amp; Conditions</a>, <a href="/copyright.html">Copyright &copy; 1996-1999 EarthWeb Inc.</a><br> 
+All rights reserved.  Reproduction whole or in part in any form or medium without express written permision of EarthWeb is prohibited.</font><p>
+</td>
+		</tr>
+</table>
+</BODY>
+</HTML>
+
+<!-- END FOOTER -->
+

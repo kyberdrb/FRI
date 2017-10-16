@@ -1,0 +1,24 @@
+BODY {
+	COLOR: #000000; FONT-FAMILY: Arial,Helvetica,sans-serif; BACKGROUND-COLOR: #ffffff
+}
+P {
+	MARGIN-TOP: 5px; MARGIN-BOTTOM: 10px; TEXT-INDENT: 20pt; TEXT-ALIGN: justify
+}
+.menu_table {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; FONT-SIZE: 12px; MARGIN-LEFT: auto; BORDER-LEFT: #aaaaaa 1px solid; WIDTH: 300px; MARGIN-RIGHT: 0px; BORDER-BOTTOM: #aaaaaa 1px solid; TEXT-ALIGN: left
+}
+.menu_table TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+.img_divl {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 3px; FLOAT: left; PADDING-BOTTOM: 3px; MARGIN: 3px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #cccccc 1px solid; TEXT-ALIGN: center
+}
+.img_divr {
+	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 3px; FLOAT: right; PADDING-BOTTOM: 3px; MARGIN: 3px; BORDER-LEFT: #cccccc 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #cccccc 1px solid; TEXT-ALIGN: center
+}
+IMG {
+	MARGIN: 3px
+}
+UNKNOWN {
+	PADDING-RIGHT: 13px; BACKGROUND: url(external.png) no-repeat right center
+}
