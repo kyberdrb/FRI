@@ -1,0 +1,56 @@
+Galloisove polia
+
+kodujeme cele bajty (konkretne 256 bitov = 64 bajtov), nie jednotlive znaky
+
+scitanie poynomov je iba bitovy XOR (^); odcitanie je to iste
+nasobenie polynomov - x^2*(a(x)) = x (x a(x))
+
+m(x) musi byt ireducibilny polynom
+m(x) = x^8 + x^4 + x^3 + x + 1 => 
+
+inverzny prvok: vyskusame vsetky kombinacie
+
+==================================================================
+
+Hillova sifra
+
+-polyalfabeticka sifra
+-ako kluc si zvolim stvorcovu maticu; musi byt regularna (determinant musi byt nielen rozne od nuly, ale aj sa nesmie rovnat delitelovi modula napr. 26)
+-sifrovanie: vynasobim kluc (maticu) ju stlpcovym vektorom p, ktory obsahuje znaky plaintextu
+-vsetko robim modulo 26
+c = K * p
+p = K^(-1) * c => potrebujem inverznu maticu
+
+Mapovanie:
+FRIDAY -> PQCFKU
+(F, R) -> (P, Q) t.j. (5, 17) -> (15, 16)
+(I, D) -> (C, F) t.j. (8, 3)  -> (2, 5)
+(A, Y) -> (K, U) t.j. (0, 24) -> (10, 20)
+
+5 * k11 + 17 * k12                      = 15
+                    5 * k21 + 17 * k22  = 16
+8 * k11 + 3 * k12                       = 2
+                    8 * k21 + 3 * k22   = 5
+0 * k11 + 24 * k12                      = 10
+                    0 * k21 + 24 * k22  = 20
+
+
+niektore rovnice su linearne zavisle (hint: posledne dve)
+
+SLR
+5  17  0  0
+0  0   5  17
+8  3   0  0
+0  0   8  3
+
+nezname prvky matice
+k11
+k12
+k21
+k22
+
+vysledny vektor:
+15
+16
+2
+5
