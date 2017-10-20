@@ -1,0 +1,7 @@
+Prednaska 5 krypto:
+  generovanie nahodnych cisel: johnsonov sum, geigen mullerov pocitac -> spolahlivo generuje naozaj nahodne cisla, ale su nerovnomerne rozdelene, co je nevhodne pre kryptoalgoritmy - existuju metody na zrovnomernenie vyhenerovanych hodnot
+  -generatory nahodnych cisel v pocitacoch a prekladacoch (linearne kongruencne generatory a ine kongruencne) su dobre na simulaciu a modelovanie, ale velmi nevhodne na kryptograficke algoritmy
+  -odhalenie kryptografickeho algoritmu nesmie ohrozit bezpecnost pouzivatela - utajieny musi byt jedine kluc
+  -generator rc4 je autonomny automat - na zaklade vnutorneho stavu generuje nahodny vystup bez nutnosti vstupnych udajov
+  -pozriet si kryptograficke testy
+  -oprava: monobit test (slide 23) - 10000-346 < n1 < 10000+346
