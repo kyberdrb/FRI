@@ -3,6 +3,7 @@ IK = suma od 'A' do 'Z' (pi)^2
 
 IK je priblizne = (ni / N) * ([ni-1] / [N-1])
 ni je pocetnost iteho pismena abecedy v texte
+N je pocet pismen abecedy
 
 Utok hrubou silou pri viegenerovskej sifre je neefektivny.
 Kassisky prelomil viegenerovsku sifru. Spoliehal sa na to, ze sa niektore sekvencie pismen vyskytuje viackrat.
