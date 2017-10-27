@@ -1,0 +1,1 @@
+40% zo 100 Mbps vystupnej kapacity ide pre LLQ, t.j. 40 Mbps; zvysna kapacita 100-40 = 60 Mbps sa deli medzi CBWFQ fronty

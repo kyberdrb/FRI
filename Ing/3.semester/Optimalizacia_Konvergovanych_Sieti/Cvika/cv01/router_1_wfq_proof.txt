@@ -1,0 +1,26 @@
+R1(config-if)#do sh interfaces s0/1/0
+Serial0/1/0 is up, line protocol is up
+  Hardware is GT96K Serial
+  Internet address is 10.0.12.1/24
+  MTU 1500 bytes, BW 128 Kbit/sec, DLY 20000 usec,
+     reliability 255/255, txload 109/255, rxload 1/255
+  Encapsulation HDLC, loopback not set
+  Keepalive set (10 sec)
+  CRC checking enabled
+  Last input 00:00:03, output 00:00:09, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 13877
+  Queueing strategy: Class-based queueing
+  Output queue: 0/1000/0 (size/max total/drops)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     20362 packets input, 1231849 bytes, 0 no buffer
+     Received 1034 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     46408 packets output, 29683561 bytes, 0 underruns
+     0 output errors, 0 collisions, 4 interface resets
+     3 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+     16 carrier transitions
+     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
