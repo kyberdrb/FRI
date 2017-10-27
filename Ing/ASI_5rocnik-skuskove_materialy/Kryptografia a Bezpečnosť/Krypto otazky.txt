@@ -1,5 +1,0 @@
-- Aké sú 4 vlastnosti hashovacích funkcií.
-- Vysvetli narodeninovı útok.
-- Popísa tvorbu hashu.
-- Èo je digitálny podpis.
-- Diffie - Hellmanova vımena k¾úèov.
