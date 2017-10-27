@@ -1,0 +1,47 @@
+---
+heat_template_version: 2016-04-08
+
+description: sample template
+
+parameters:
+  Cvicenie:
+    description: Cislo cvicenia
+    type: string
+    default: cv3
+
+  AvailibilityZone:
+    description: Availability zone
+    type: string
+    default: any
+
+  Flavor:
+    description: Flavor
+    type: string
+    default: Linux
+
+  Image:
+    description: image
+    type: string
+    default: cirros
+
+  Network:
+    description: Network
+    type: string
+    default: ext-net
+
+resources:
+  Instance:
+    type: OS::Nova::Server
+    properties:
+      #name: instance-cv3
+      name: { list_join: [ '-', [ { get_param: 'Cvicenie' }, 'instance' ] ] }
+      availability_zone: { get_param: 'AvailibilityZone' }
+      flavor: { get_param: 'Flavor' }
+      image: { get_param: 'Image' }
+      networks: 
+        - network: { get_param: 'Network' }
+      user_data: |
+        #!/bin/bash
+        apt-get update -y
+      user_data_format: RAW
+

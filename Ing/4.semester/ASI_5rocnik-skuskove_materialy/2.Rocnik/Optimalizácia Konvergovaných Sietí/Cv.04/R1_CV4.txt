@@ -1,0 +1,141 @@
+R1(config)#do show run
+Building configuration...
+
+Current configuration : 1933 bytes
+!
+! Last configuration change at 07:42:56 UTC Mon Oct 17 2016
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+dot11 syslog
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+license udi pid CISCO1841 sn FCZ104612C6
+!
+redundancy
+!
+!
+!
+class-map match-any Tok1
+ match access-group 101
+class-map match-all Tok2
+ match access-group 102
+class-map match-all Tok3
+ match access-group 103
+!
+policy-map Znacka-out
+ class Tok1
+  bandwidth percent 50
+ class Tok2
+  bandwidth percent 20
+ class Tok3
+  bandwidth percent 20
+policy-map Znacka
+ class Tok1
+  set dscp af11
+ class Tok2
+  set dscp af21
+ class Tok3
+  set dscp af31
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ description >> Ku PC1 <<
+ ip address 10.0.1.1 255.255.255.0
+ duplex auto
+ speed auto
+ service-policy input Znacka
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ description >> Ku R2 <<
+ bandwidth 128
+ ip address 10.0.12.1 255.255.255.0
+ clock rate 128000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+interface BRI0/1/0
+ no ip address
+ encapsulation hdlc
+ shutdown
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip route 10.0.2.0 255.255.255.0 10.0.12.2
+ip route 10.0.12.0 255.255.255.0 10.0.12.2
+!
+!
+!
+access-list 101 permit udp any any eq 9001
+access-list 102 permit udp any any eq 9002
+access-list 103 permit udp any any eq 9003
+!
+control-plane
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+ logging synchronous
+line vty 0 4
+ logging synchronous
+ login
+ transport input none
+line vty 5 15
+ logging synchronous
+ login
+ transport input none
+!
+scheduler allocate 20000 1000
+!
+end
