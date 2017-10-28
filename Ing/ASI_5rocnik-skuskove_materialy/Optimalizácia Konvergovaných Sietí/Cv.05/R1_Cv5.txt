@@ -1,0 +1,149 @@
+
+R1(config)#do show run
+Building configuration...
+
+Current configuration : 2090 bytes
+!
+! Last configuration change at 01:53:27 UTC Mon Jan 2 2006
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+dot11 syslog
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+license udi pid CISCO1841 sn FCZ094912XY
+!
+redundancy
+!
+!
+controller DSL 0/1/0
+!
+!
+class-map match-all TokUDP1
+ match access-group 105
+class-map match-all TokTCP4
+ match access-group 104
+class-map match-all TokTCP3
+ match access-group 103
+class-map match-all TokTCP2
+ match access-group 102
+class-map match-any TokTCP1
+ match access-group 101
+!
+policy-map politikaWFQ
+ class TokTCP1
+  bandwidth percent 25
+  fair-queue
+ class TokTCP2
+  bandwidth percent 25
+  fair-queue
+ class TokUDP1
+  bandwidth percent 25
+  fair-queue
+ class class-default
+  bandwidth percent 25
+  fair-queue
+  random-detect
+  random-detect ecn
+
+policy-map Znacka
+ class TokTCP1
+  set dscp af11
+ class TokTCP2
+  set dscp af12
+ class TokTCP3
+  set dscp af31
+ class TokTCP4
+  set dscp af33
+ class TokUDP1
+  set dscp af21
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.1.1 255.255.255.0
+ duplex auto
+ speed auto
+ service-policy input Znacka
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ bandwidth 128
+ ip address 10.0.12.1 255.255.255.0
+ clock rate 128000
+ service-policy output politikaWFQ
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip route 10.0.0.0 255.255.0.0 10.0.12.2
+!
+!
+!
+access-list 101 permit tcp any any eq 9006
+access-list 102 permit tcp any any eq 9002
+access-list 103 permit tcp any any eq 9003
+access-list 104 permit tcp any any eq 9004
+access-list 105 permit udp any any eq 9005
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+scheduler allocate 20000 1000
+!
+end
