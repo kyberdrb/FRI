@@ -1,0 +1,11 @@
+ma zmysel pri ipv6 robit port forwarding? (pre link-local)
+netreba, lebo zakaznik dostane (vacsinou) ipv6 rozsah verejnych adries
+
+ldp vytvarea spojenia medzi neighborami; ldp si postavi tcp session medzi neighborami medzi ktorymi si signalizuje, ale zatial je to implementovane uba pre ibv4, nie pre ipv6
+
+6PE - IPv6 provider edge router rozsirenie - ipv6 next hop, ktory asociujeme s nejakym LSPckom
+6VPE - podbne ako 6PE rozsirenie, ale implementovane pre VRF
+
+6PE a 6VPE umoznuje pripajat IPv6 zakaznikov ku uz existujucej IPv4 sieti providera
+
+SPRINGv6 - ziadne mpls ani mp-bgp, ale si v ramci interneho smerovacieho protokolu vymienat labely

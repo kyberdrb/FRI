@@ -1,0 +1,21 @@
+ena
+conf t
+hostname CE2
+no ip domain-lookup
+username admin privil 15 secret admin
+line con 0
+  login local
+  logging syn
+  exec-time 120
+line vty 0 15
+  privilege level 15
+  no login
+int e0/0
+  ip addr 100.0.1.2 255.255.255.252
+  no shut
+int e0/1
+  ip add 100.0.10.1 255.255.255.252
+  no sh
+int lo0
+  ip addr 10.255.255.20 255.255.255.255
+  no shut

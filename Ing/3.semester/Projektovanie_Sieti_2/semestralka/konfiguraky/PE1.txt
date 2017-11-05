@@ -1,0 +1,9 @@
+cli
+configure
+set system root-authentication plain-text-password
+commit
+set interfaces vtnet2 unit 0 family inet address 100.0.3.1/30
+set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
+commit
+run show interfaces terse
+quit

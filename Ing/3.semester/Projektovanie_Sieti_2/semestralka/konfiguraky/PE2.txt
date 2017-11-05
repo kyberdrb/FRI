@@ -1,0 +1,53 @@
+ena
+conf t
+hostname PE2
+no ip domain-lookup
+username admin privil 15 secret admin
+line con 0
+  login local
+  logging syn
+  exec-time 120
+line vty 0 15
+  privilege level 15
+  no login
+int e0/3
+  ip addr 10.0.1.2 255.255.255.252
+  ip router isis
+  no shut
+int e0/1
+  ip add 10.0.2.2 255.255.255.252
+  ip router isis
+  no sh
+int e0/2
+  ip addr 10.0.3.2 255.255.255.252
+  ip router isis
+  no shut
+int lo0
+  ip addr 10.255.255.2 255.255.255.255
+  ip router isis
+  no shut
+router isis
+  net 49.0001.0102.5525.5002.00
+  passive-interface lo0
+  redistribute static
+  is-type level-2
+  metric-style wide
+  exit
+
+
+router bgp 110
+  bgp router-id 10.255.255.2
+  neighbor 10.255.255.3 remote-as 110
+  neighbor 10.255.255.3 update-source lo0
+  neighbor 10.255.255.3 next-hop-self
+  neighbor 10.255.255.4 remote-as 110
+  neighbor 10.255.255.4 update-source lo0
+  neighbor 10.255.255.4 next-hop-self
+  neighbor 200.110.255.249 remote-as 3401
+  neighbor 200.110.255.254 remote-as 4502
+  network 10.255.255.2 mask 255.255.255.255
+  network 200.110.0.0 mask 255.255.255.128
+  aggregate-address 200.110.0.0 255.255.0.0 summary-only
+  no auto-summary
+  no sync
+  bgp log-neighbor-changes
