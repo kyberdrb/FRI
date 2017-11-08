@@ -1,0 +1,9 @@
+krypto cv07 - blokove sifry
+    feistellovho typu
+    -vsetky data sa zasifruju v niektorych kolach; kolo musi mat vlastny kluc
+    -musi me mat tolko kol, aby boli vysledne data navzajom nezavisle
+    -model sifrovania je navrhnuty tak, aby sifrovanie aj desifrovanie boli nezavusle na funkcii f
+    -sifrovanie a desifrovanie je to iste, meni sa len poradie pouzitia klucov
+    -sifra DES
+    -konfuzia, difuzia
+    -pohrat sa s feistellovymi siframi, funkciou f, s boxy, funkcia f by mala byt zlozitejsia a mala by vyuzivat rovnomerne vsetky s boxy (idealne)
