@@ -1,9 +1,45 @@
+Juniper
+JunOS 17.3
+
+====================================
+
+Basic
+
 cli
 configure
 set system root-authentication plain-text-password
+commit
+delete chassis auto-image-upgrade
 commit
 set interfaces vtnet2 unit 0 family inet address 100.0.3.1/30
 set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
 commit
 run show interfaces terse
-quit
+
+====================================
+
+IS-IS
+
+set security forwarding-options family iso mode packet-based
+set interfaces ge-1/2/0 unit 0 description nejaky_description
+set interfaces ge-1/2/0 unit 0 family inet address 10.0.0.1/30
+set interfaces ge-1/2/0 unit 0 family iso
+set interfaces lo0 unit 0 family inet address 192.168.0.1/32
+set interfaces lo0 unit 0 family iso address 49.0002.0192.0168.0001.00
+set protocols isis interface ge-1/2/0.0
+set protocols isis interface lo0.0
+
+Zdroj:
+  https://www.juniper.net/documentation/en_US/junos/topics/example/routing-protocol-is-is-security-configuring-cli.html
+
+====================================
+
+iBGP
+
+Junos for Cisco Engineers (str. 45; Juniper - str. 48; overenie str. 51)
+
+====================================
+
+eBGP
+
+Junos for Cisco Engineers (str. 35; Juniper - str. 39; overenie str. 45)
