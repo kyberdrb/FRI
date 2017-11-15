@@ -3,23 +3,38 @@ JunOS 17.3
 
 ====================================
 
-Basic
+Zakladna konfiguracia
+
+-vsetky hesla su "juniper123"
 
 cli
 configure
 set system root-authentication plain-text-password
 commit
+set system login user andrej class super-user full-name "Andrej" authentication plain-text-password
+commit
+set system login user marian class operator full-name "Marian" authentication plain-text-password
+commit
 delete chassis auto-image-upgrade
+commit
+set system services ssh
 commit
 set interfaces vtnet2 unit 0 family inet address 100.0.3.1/30
 set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
 commit
 run show interfaces terse
+run show configuration system services
+
+Zdroje:
+  https://kb.juniper.net/InfoCenter/index?page=content&id=KB10902
+  https://kb.juniper.net/InfoCenter/index?page=content&id=KB10083&actp=METADATA
+  https://kb.juniper.net/InfoCenter/index?page=content&id=KB29838 => aj tak SSH pristup nejde
 
 ====================================
 
 IS-IS
 
+configure
 set security forwarding-options family iso mode packet-based
 set interfaces ge-1/2/0 unit 0 description nejaky_description
 set interfaces ge-1/2/0 unit 0 family inet address 10.0.0.1/30
@@ -28,6 +43,9 @@ set interfaces lo0 unit 0 family inet address 192.168.0.1/32
 set interfaces lo0 unit 0 family iso address 49.0002.0192.0168.0001.00
 set protocols isis interface ge-1/2/0.0
 set protocols isis interface lo0.0
+commit and-quit
+
+# Overenie
 
 Zdroj:
   https://www.juniper.net/documentation/en_US/junos/topics/example/routing-protocol-is-is-security-configuring-cli.html
@@ -36,10 +54,55 @@ Zdroj:
 
 iBGP
 
-Junos for Cisco Engineers (str. 45; Juniper - str. 48; overenie str. 51)
+configure
+set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
+set interfaces lo0.0 family inet address 1.1.1.1/32
+commit and-quit
+show configuration interfaces
+
+Zdroje:
+  Junos for Cisco Engineers (str. 45; Juniper - str. 48; overenie str. 51)
 
 ====================================
 
 eBGP
+
+configure
+set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
+set interfaces lo0.0 family inet address 1.1.1.1/32
+commit and-quit
+show configuration interfaces
+
+#Nastavime eBGP peering
+
+configure
+set routing-options autonomous-system 65001
+set protocols bgp group EBGP neighbor 10.42.12.2 peer-as 65002
+commit and-quit
+show configuration routing-options
+show configuration protocols bgp
+show bgp neighbor 10.42.12.2 | match Established
+
+#Ohlasime prefixy eBGP peerovi
+
+configure
+edit policy-options policy-statement EBGP_ADVERTISE_LOOPBACK
+set term ADVERTISE_LO0 from protocol direct
+set term ADVERTISE_LO0 from route-filter 1.1.1.1/32 exact
+set term ADVERTISE_LO0 then accept
+top
+show configuration policy-options
+configure
+set protocols bgp group EBGP neighbor 10.42.12.2 export EBGP_ADVERTISE_LOOPBACK
+commit and-quit
+
+#Overenie BGP procesu
+
+show configuration protocols bgp
+show bgp summary
+show route receive-protocol bgp 10.42.12.2
+show route protocol bgp
+
+
 
 Junos for Cisco Engineers (str. 35; Juniper - str. 39; overenie str. 45)
