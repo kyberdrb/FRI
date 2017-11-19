@@ -34,18 +34,22 @@ Zdroje:
 
 IS-IS
 
+#Konfiguracia
+
 configure
 set security forwarding-options family iso mode packet-based
-set interfaces ge-1/2/0 unit 0 description nejaky_description
-set interfaces ge-1/2/0 unit 0 family inet address 10.0.0.1/30
-set interfaces ge-1/2/0 unit 0 family iso
-set interfaces lo0 unit 0 family inet address 192.168.0.1/32
-set interfaces lo0 unit 0 family iso address 49.0002.0192.0168.0001.00
-set protocols isis interface ge-1/2/0.0
+set interfaces vtnet3 unit 0 description to_PE2
+set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
+set interfaces vtnet3 unit 0 family iso
+set interfaces lo0 unit 0 family inet address 10.255.255.1/32
+set interfaces lo0 unit 0 family iso address 49.0001.0102.5525.5001.00
 set protocols isis interface lo0.0
+set protocols isis interface vtnet3.0
 commit and-quit
 
 # Overenie
+  show isis interface brief
+  show isis interface detail
 
 Zdroj:
   https://www.juniper.net/documentation/en_US/junos/topics/example/routing-protocol-is-is-security-configuring-cli.html
