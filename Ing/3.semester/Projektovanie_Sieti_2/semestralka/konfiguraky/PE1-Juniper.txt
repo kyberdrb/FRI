@@ -32,24 +32,19 @@ Zdroje:
 
 ====================================
 
-IS-IS
+OSPF
 
 #Konfiguracia
 
 configure
-set security forwarding-options family iso mode packet-based
-set interfaces vtnet3 unit 0 description to_PE2
-set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
-set interfaces vtnet3 unit 0 family iso
-set interfaces lo0 unit 0 family inet address 10.255.255.1/32
-set interfaces lo0 unit 0 family iso address 49.0001.0102.5525.5001.00
-set protocols isis interface lo0.0
-set protocols isis interface vtnet3.0
+set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
+set interfaces fe-0/0/1.0 family inet address 10.42.13.1/24
+set interfaces lo0.0 family inet address 1.1.1.1/32Chapter 2:  Basic Configuration
 commit and-quit
 
 # Overenie
-  show isis interface brief
-  show isis interface detail
+  show ospf interface brief
+  show ospf interface detail
 
 Zdroj:
   https://www.juniper.net/documentation/en_US/junos/topics/example/routing-protocol-is-is-security-configuring-cli.html
@@ -107,6 +102,13 @@ show bgp summary
 show route receive-protocol bgp 10.42.12.2
 show route protocol bgp
 
-
-
 Junos for Cisco Engineers (str. 35; Juniper - str. 39; overenie str. 45)
+
+====================================
+
+MPLS
+
+set interfaces ge-0/0/0 unit 0 family mpls
+set protocols mpls interface ge-0/0/0
+set protocols ldp interface ge-0/0/0
+
