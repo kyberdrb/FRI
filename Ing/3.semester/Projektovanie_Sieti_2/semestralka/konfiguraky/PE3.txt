@@ -1,30 +1,154 @@
 ena
 conf t
+!
+! Last configuration change at 14:36:15 CET Mon Nov 20 2017 by admin
+!
+version 15.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
 hostname PE3
-no ip domain-lookup
-username admin privil 15 secret admin
+!
+boot-start-marker
+boot-end-marker
+!
+aqm-register-fnf
+!
+!
+no aaa new-model
+clock timezone CET 1 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!         
+!
+!
+!
+!
+username admin privilege 15 secret 5 $1$.3mT$tewBBTL6cPOMwSs6noxP9.
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.255.255.3 255.255.255.255
+!
+interface Ethernet0/0
+ ip address 100.0.1.1 255.255.255.252
+!
+interface Ethernet0/1
+ ip address 10.0.2.1 255.255.255.252
+ ip ospf network point-to-point
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1
+ network 10.0.2.0 0.0.0.3 area 0
+ network 10.255.255.3 0.0.0.0 area 0
+ network 100.0.1.0 0.0.0.3 area 0
+!
+router bgp 330
+ bgp log-neighbor-changes
+ neighbor 10.255.255.2 remote-as 330
+ neighbor 10.255.255.2 update-source Loopback0
+ neighbor 100.0.1.2 remote-as 65002
+ !
+ address-family ipv4
+  network 10.255.255.3 mask 255.255.255.255
+  neighbor 10.255.255.2 activate
+  neighbor 10.255.255.2 next-hop-self
+  neighbor 100.0.1.2 activate
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!         
+!
+!
+!
+!
 line con 0
-  login local
-  logging syn
-  exec-time 120
-line vty 0 15
-  privilege level 15
-  no login
-int e0/0
-  ip addr 100.0.1.1 255.255.255.252
-  no shut
-int e0/1
-  ip add 10.0.2.1 255.255.255.252
-  ip router isis
-  no sh
-int lo0
-  ip addr 10.255.255.3 255.255.255.255
-  ip router isis
-  no shut
-router isis
-  net 49.0001.0102.5525.5003.00
-  passive-interface lo0
-  redistribute static
-  is-type level-2
-  metric-style wide
-  exit
+ exec-timeout 120 0
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end
