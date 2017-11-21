@@ -17,13 +17,14 @@ set system login user marian class operator full-name "Marian" authentication pl
 commit
 delete chassis auto-image-upgrade
 commit
-set system services ssh
-commit
+#set system services ssh
+#commit
+set interfaces lo0.0 family inet address 10.255.255.1/32
 set interfaces vtnet2 unit 0 family inet address 100.0.3.1/30
 set interfaces vtnet3 unit 0 family inet address 10.0.1.1/30
 commit
 run show interfaces terse
-run show configuration system services
+#run show configuration system services
 
 Zdroje:
   https://kb.juniper.net/InfoCenter/index?page=content&id=KB10902
@@ -35,29 +36,38 @@ Zdroje:
 OSPF
 
 #Konfiguracia
-
-configure
-set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
-set interfaces fe-0/0/1.0 family inet address 10.42.13.1/24
-set interfaces lo0.0 family inet address 1.1.1.1/32Chapter 2:  Basic Configuration
-commit and-quit
+  configure
+  set routing-options router-id 10.255.255.1
+  set protocols ospf area 0 interface lo0.0 passive
+  set protocols ospf area 0 interface vtnet3.0
+  commit and-quit
 
 # Overenie
-  show ospf interface brief
-  show ospf interface detail
+  show ospf neighbor
+  show ospf interface brief | match lo0.0
+  show route protocol ospf terse 10.255.255.1
+  show ospf overview | match "Router ID"
 
 Zdroj:
-  https://www.juniper.net/documentation/en_US/junos/topics/example/routing-protocol-is-is-security-configuring-cli.html
+  Junos for Cisco Engineers (str. 20; Juniper - str. 28; overenie str. 31-35)
 
 ====================================
 
 iBGP
 
-configure
-set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
-set interfaces lo0.0 family inet address 1.1.1.1/32
-commit and-quit
-show configuration interfaces
+#Konfiguracia
+  configure
+  set routing-options autonomous-system 330
+  set protocols bgp group IBGP type internal neighbor 10.255.255.2 local-address 10.255.255.1
+
+#Overenie
+  show configuration routing-options autonomous-system
+
+  # Na PE1
+  show bgp neighbor 10.255.255.2 | match Established
+
+  # Na PE2
+  show bgp neighbor 10.255.255.1 | match Established
 
 Zdroje:
   Junos for Cisco Engineers (str. 45; Juniper - str. 48; overenie str. 51)
@@ -66,49 +76,47 @@ Zdroje:
 
 eBGP
 
-configure
-set interfaces fe-0/0/0.0 family inet address 10.42.12.1/24
-set interfaces lo0.0 family inet address 1.1.1.1/32
-commit and-quit
-show configuration interfaces
+#Konfiguracia
+  #Nastavime eBGP peering
+  configure
+  set routing-options autonomous-system 330
+  set protocols bgp group EBGP neighbor 100.0.3.2 peer-as 65001
+  commit and-quit
 
-#Nastavime eBGP peering
+  #Ohlasime prefixy eBGP peerovi
+  configure
+  edit policy-options policy-statement EBGP_ADVERTISE_LOOPBACK
+  set term ADVERTISE_LO0 from protocol direct
+  set term ADVERTISE_LO0 from route-filter 10.255.255.1/32 exact
+  set term ADVERTISE_LO0 then accept
+  top
+  configure
+  set protocols bgp group EBGP neighbor 100.0.3.2 export EBGP_ADVERTISE_LOOPBACK
+  commit and-quit
 
-configure
-set routing-options autonomous-system 65001
-set protocols bgp group EBGP neighbor 10.42.12.2 peer-as 65002
-commit and-quit
-show configuration routing-options
-show configuration protocols bgp
-show bgp neighbor 10.42.12.2 | match Established
+#Overenie
+  #Nastavime eBGP peering
+    show configuration routing-options
+    show configuration protocols bgp
 
-#Ohlasime prefixy eBGP peerovi
+  #Ohlasime prefixy eBGP peerovi
+    show bgp neighbor 100.0.3.2 | match Established
+    show configuration policy-options
+    show configuration protocols bgp
+    show bgp summary
+    show route receive-protocol bgp 10.42.12.2
+    show route protocol bgp
 
-configure
-edit policy-options policy-statement EBGP_ADVERTISE_LOOPBACK
-set term ADVERTISE_LO0 from protocol direct
-set term ADVERTISE_LO0 from route-filter 1.1.1.1/32 exact
-set term ADVERTISE_LO0 then accept
-top
-show configuration policy-options
-configure
-set protocols bgp group EBGP neighbor 10.42.12.2 export EBGP_ADVERTISE_LOOPBACK
-commit and-quit
-
-#Overenie BGP procesu
-
-show configuration protocols bgp
-show bgp summary
-show route receive-protocol bgp 10.42.12.2
-show route protocol bgp
-
-Junos for Cisco Engineers (str. 35; Juniper - str. 39; overenie str. 45)
+Junos for Cisco Engineers (str. 35; Juniper - str. 39-44; overenie str. 40-45)
 
 ====================================
 
 MPLS
 
-set interfaces ge-0/0/0 unit 0 family mpls
-set protocols mpls interface ge-0/0/0
-set protocols ldp interface ge-0/0/0
+set interfaces vtnet2 unit 0 family mpls
+set interfaces vtnet3 unit 0 family mpls
+set protocols mpls interface vtnet2
+set protocols mpls interface vtnet3
+set protocols ldp interface vtnet2
+set protocols ldp interface vtnet3
 
