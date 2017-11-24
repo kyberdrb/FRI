@@ -1,1 +1,1 @@
-technologie mldp a rsvp-te nemusia fungovat v ramci interoperability Cisco a Juniper
+technologie mldp (Cisco) a rsvp-te (Juniper) nemusia fungovat v ramci interoperability Cisco a Juniper

@@ -1,0 +1,1 @@
+-po skonceni prace na cviceni treba v "/etc/network/interfaces" zakomentovat vsetko, co sa tyka rozhrania "eth1".

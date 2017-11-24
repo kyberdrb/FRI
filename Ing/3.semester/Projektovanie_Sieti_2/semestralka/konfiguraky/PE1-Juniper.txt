@@ -66,9 +66,6 @@ iBGP
   # Na PE1
   show bgp neighbor 10.255.255.2 | match Established
 
-  # Na PE2
-  show bgp neighbor 10.255.255.1 | match Established
-
 Zdroje:
   Junos for Cisco Engineers (str. 45; Juniper - str. 48; overenie str. 51)
 
@@ -83,6 +80,11 @@ eBGP
   set protocols bgp group EBGP neighbor 100.0.3.2 peer-as 65001
   commit and-quit
 
+  #Overenie - Nastavime eBGP peering
+    show configuration routing-options
+    show configuration protocols bgp
+    show bgp neighbor 100.0.3.2 | match Established
+
   #Ohlasime prefixy eBGP peerovi
   configure
   edit policy-options policy-statement EBGP_ADVERTISE_LOOPBACK
@@ -90,21 +92,22 @@ eBGP
   set term ADVERTISE_LO0 from route-filter 10.255.255.1/32 exact
   set term ADVERTISE_LO0 then accept
   top
+  commit and-quit
+  
+  #Overenie politiky (policy)
+    show configuration policy-options
+  
+  #Configure the policy as an export policy under the BGP neighbor on R1
   configure
   set protocols bgp group EBGP neighbor 100.0.3.2 export EBGP_ADVERTISE_LOOPBACK
   commit and-quit
 
-#Overenie
-  #Nastavime eBGP peering
-    show configuration routing-options
-    show configuration protocols bgp
-
-  #Ohlasime prefixy eBGP peerovi
+  #Overenie - Ohlasime prefixy eBGP peerovi
     show bgp neighbor 100.0.3.2 | match Established
     show configuration policy-options
     show configuration protocols bgp
     show bgp summary
-    show route receive-protocol bgp 10.42.12.2
+    show route receive-protocol bgp 100.0.3.2
     show route protocol bgp
 
 Junos for Cisco Engineers (str. 35; Juniper - str. 39-44; overenie str. 40-45)
