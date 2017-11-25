@@ -1,0 +1,13 @@
+Zdroje na TFTP
+
+https://www.cyberciti.biz/faq/install-configure-tftp-server-ubuntu-debian-howto/
+  -v casti "Configuration" zadat adresar "/home/student/Shared"
+  -vytvorime subor pozadovanej velkosti v spomenutom adresari (vid https://unix.stackexchange.com/questions/101332/generate-file-of-a-certain-size)
+    
+     cd /home/student/Shared
+     fallocate -l 1M <nazov suboru>
+
+  -prejdeme na klienta a stiahneme subor (podla navodu https://mohammadthalif.wordpress.com/2010/03/05/installing-and-testing-tftpd-in-ubuntudebian/)
+    
+     tftp <ip adresa tftp servera>
+     get <nazov suboru>
