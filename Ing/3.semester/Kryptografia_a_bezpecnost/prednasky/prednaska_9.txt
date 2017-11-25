@@ -1,0 +1,5 @@
+umocnovanie na x^d pre velke d
+  pouzivame medzivysledky, ktore nasledne vynasobime
+  x^6 = x^2 × x^4
+    
+rsa algoritmus bude na skuske: ako a preco funguje
