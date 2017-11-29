@@ -1,8 +1,6 @@
 ena
 conf t
 !
-! Last configuration change at 14:36:15 CET Mon Nov 20 2017 by admin
-!
 version 15.4
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -23,7 +21,7 @@ no mmi auto-configure
 no mmi pvc
 mmi snmp-timeout 180
 !
-!
+!         
 !
 !
 !
@@ -41,11 +39,12 @@ ip cef
 no ipv6 cef
 !
 multilink bundle-name authenticated
+mpls label protocol ldp
+!
 !
 !
 !
 !         
-!
 !
 !
 !
@@ -72,10 +71,12 @@ interface Loopback0
 !
 interface Ethernet0/0
  ip address 100.0.1.1 255.255.255.252
+ mpls ip
 !
 interface Ethernet0/1
  ip address 10.0.2.1 255.255.255.252
  ip ospf network point-to-point
+ mpls ip
 !
 interface Ethernet0/2
  no ip address
@@ -89,7 +90,7 @@ interface Serial1/0
  no ip address
  shutdown
  serial restart-delay 0
-!
+!         
 interface Serial1/1
  no ip address
  shutdown
@@ -131,12 +132,13 @@ no ip http secure-server
 !
 !
 !
+mpls ldp router-id Loopback0 force
 !
 control-plane
 !
-!
-!
 !         
+!
+!
 !
 !
 !

@@ -11,6 +11,7 @@ hostname CE1
 boot-start-marker
 boot-end-marker
 !
+aqm-register-fnf
 !
 !
 no aaa new-model
@@ -21,7 +22,7 @@ no mmi pvc
 mmi snmp-timeout 180
 !
 !
-!         
+!
 !
 !
 !
@@ -41,10 +42,10 @@ multilink bundle-name authenticated
 !
 !
 !
-!
-!
-!
 !         
+!
+!
+!
 !
 username admin privilege 15 secret 5 $1$CVyA$bML/HonfKcnoqrGX1rm7e1
 !
@@ -68,8 +69,7 @@ interface Loopback0
  ip address 10.255.255.10 255.255.255.255
 !
 interface Ethernet0/0
- no ip address
- shutdown
+ ip address 100.0.30.1 255.255.255.252
 !
 interface Ethernet0/1
  ip address 100.0.3.2 255.255.255.252
@@ -102,6 +102,12 @@ interface Serial1/3
  shutdown
  serial restart-delay 0
 !
+router bgp 65001
+ bgp log-neighbor-changes
+ network 10.255.255.10 mask 255.255.255.255
+ network 100.0.30.0 mask 255.255.255.252
+ neighbor 100.0.3.1 remote-as 330
+!
 ip forward-protocol nd
 !
 !
@@ -113,7 +119,7 @@ no ip http secure-server
 !
 control-plane
 !
-!         
+!
 !
 !
 !
@@ -128,6 +134,6 @@ line aux 0
 line vty 0 4
  login
  transport input none
-!
+!         
 !
 end

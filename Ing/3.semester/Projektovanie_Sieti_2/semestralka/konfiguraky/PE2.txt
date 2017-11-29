@@ -1,8 +1,6 @@
 ena
 conf t
 !
-! Last configuration change at 14:17:20 CET Mon Nov 20 2017
-!
 version 15.4
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -23,7 +21,7 @@ no mmi auto-configure
 no mmi pvc
 mmi snmp-timeout 180
 !
-!
+!         
 !
 !
 !
@@ -44,9 +42,9 @@ multilink bundle-name authenticated
 !
 !
 !
+!
+!
 !         
-!
-!
 !
 !
 redundancy
@@ -67,7 +65,7 @@ redundancy
 !
 interface Loopback0
  ip address 10.255.255.2 255.255.255.255
-!         
+!
 interface Ethernet0/0
  no ip address
  shutdown
@@ -138,7 +136,7 @@ ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
-!
+!         
 !
 !
 !

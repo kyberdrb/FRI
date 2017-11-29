@@ -1,0 +1,152 @@
+ena
+conf t
+!
+version 15.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname PE1
+!
+boot-start-marker
+boot-end-marker
+!
+aqm-register-fnf
+!
+!
+no aaa new-model
+clock timezone CET 1 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!         
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+mpls label protocol ldp
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.255.255.1 255.255.255.255
+!
+interface Ethernet0/0
+ ip address 100.0.3.1 255.255.255.252
+ mpls ip
+!
+interface Ethernet0/1
+ ip address 10.0.1.1 255.255.255.252
+ ip ospf network point-to-point
+ mpls ip
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1
+ network 10.0.1.0 0.0.0.3 area 0
+ network 10.255.255.1 0.0.0.0 area 0
+ network 100.0.3.0 0.0.0.3 area 0
+!
+router bgp 330
+ bgp log-neighbor-changes
+ neighbor 10.255.255.2 remote-as 330
+ neighbor 10.255.255.2 update-source Loopback0
+ neighbor 100.0.3.2 remote-as 65001
+ !
+ address-family ipv4
+  network 10.255.255.1 mask 255.255.255.255
+  neighbor 10.255.255.2 activate
+  neighbor 10.255.255.2 next-hop-self
+  neighbor 100.0.3.2 activate
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+mpls ldp router-id Loopback0 force
+!
+control-plane
+!
+!
+!
+!         
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+!
+end

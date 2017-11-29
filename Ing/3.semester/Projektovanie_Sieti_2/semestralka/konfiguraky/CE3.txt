@@ -1,8 +1,6 @@
 ena
 conf t
 !
-! Last configuration change at 15:46:39 CET Tue Nov 7 2017 by admin
-!
 version 15.4
 service timestamps debug datetime msec
 service timestamps log datetime msec
