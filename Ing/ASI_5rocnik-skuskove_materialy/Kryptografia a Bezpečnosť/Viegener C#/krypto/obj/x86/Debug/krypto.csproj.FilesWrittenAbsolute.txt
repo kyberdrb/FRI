@@ -1,0 +1,16 @@
+/home/ydyote/Documents/krypto/krypto/krypto/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/sk_ascii.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/text1.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/text2.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/krypto.exe.mdb
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/krypto.exe
+/home/ydyote/Documents/krypto/krypto/krypto/obj/x86/Debug/krypto.exe
+/home/ydyote/Documents/krypto/krypto/krypto/obj/x86/Debug/krypto.exe.mdb
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/test1.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/test2.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/test3.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/test4.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/sprava_enc_otp.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/text1_enc.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/text2_enc.txt
+/home/ydyote/Documents/krypto/krypto/krypto/bin/Debug/externalFiles/text3_enc.txt
