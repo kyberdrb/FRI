@@ -1,0 +1,70 @@
+Kultan prednaska (SDN):
+  SDN pojmy:
+  -netflow - statistiky
+  -snmp - monitoring
+  -openflow (pre switche a sdn, ) / netconf yang (transakcny, pre routre)
+  
+  management/forwarding/control plane => vsd/vsc/nsg (vrs)
+  vsd tvori abstrakciu na sieti - management
+  vsc - nokia xr (operacny system) - control
+  vrs - openvswitch - transport
+  
+  vsd komunikuje s vsc cez vsc
+  vsc komunikuje s vrs cez of-tls
+  
+  -vxlan - l3 technologia; ku existujucemu ramcu prilepime novu l2, l3, l4 aj vxlan znacku; vlany pre virtualky; hypervisor to dalej forwarduje konkretnym virtualkam
+  -vxlan umoznuje migrovat virtualky
+  
+  architektury datovych centier:
+    -end of rack top of rack
+    -spine and leaf - vela leaf switchov pripojenych ku niekolkym spine switchom; spine switche sa pripajaju na data center gateway (dcg)
+    
+    openvswitch (ovs) - vie zapuzdrovat do vxlan
+    
+    typy virtualizacie
+    l1 - esxi
+    l2 - virtualbox
+    kvm je specificke: je typu l1/l2
+    
+    openstack: viem cez en ovladat vsetky virtualky
+      neutron - management openvswitchu
+      sriov
+      dpdk
+      vsphere
+      
+      nokia nuage - rozsirenyopenvswitch (l2 aj l3)
+      opensource riesenia zlyhavaju na technickej podpore, pretosi firmy kupuju komercne riesenia
+      umoznuje robit qos na urovni aplikacii pomocou vxlan
+      
+      sdn acl - robia sa podla zon (dns zona, http servery zona, ...)
+        potom sa robia iba prepojenia medzi zonami
+        
+    bgp
+    -routovaci protokol buducnosti,
+    
+    openstack - nad kvm, hlavne cli
+    vmware - vlastna virtualizacia, hlavne klikacka
+    
+    sd wan - automatizacia napr na prepojenie pobociek
+    -umoznuje menit routing na zaklade aplikacie podla kriteria
+    
+    rest api - komunikacia http (get, push, post, ...)
+    nuage ma nad rest api bindnigy pre javu a python - programovanie sdn
+    
+    sdn server/box je obycajny pocitac s x86 procesorom (napr. intel atom) - lavnejsie
+    -rychla konfiguracia sdn servera
+    
+    applications signature qos/firewall
+    
+    matej.kultan@nokia.com
+    
+    -DU - pozriet si tieto pojmy (cca 45min), napisat 2-3 vety o kazdom pojme a poslat to na mail do decembra - dalsie stretko 18.1.2018: 
+      -VNF - virtual network function + 3 priklady pre sd-wan (implementacie vo firmach)
+      -NFV - network function virtualization + 3 priklady (jeden z nich ke route reflector)
+      -openstack - 5min video
+      -ansible a ansible tower - 5min video
+      -go
+      -python
+      -rest api
+      -openflow
+      -porovnanie (for dummies) kvm, vmware, hyperv, xen
