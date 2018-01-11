@@ -13,13 +13,13 @@ namespace PrudovaSifra
         static void Main(string[] args)
         {
            var text = Reader.Read(Reader.text1);
-        //    Parallel.For(0, 100000, i =>
-        //    {
-        //        Console.WriteLine(i);
-        //        var decryptor = new StreamCipher();
-        //        var freqA = new Freq(false);
-        //        decryptor.AttackTry(text, i, freqA, 0.02);
-        //    });
+           Parallel.For(0, 100000, i =>
+           {
+               Console.WriteLine(i);
+               var decryptor = new StreamCipher();
+               var freqA = new Freq(false);
+               decryptor.AttackTry(text, i, freqA, 0.02);
+           });
 
             // for (int i = 0; i <= 100000; i++)
             // {
@@ -45,11 +45,6 @@ namespace PrudovaSifra
                 file.WriteLine();
                 file.WriteLine(d.Decrypt(finalKey, text));
             }
-            // using (System.IO.StreamWriter file = 
-            //     new System.IO.StreamWriter(decryptedTextPath, true))
-            // {
-            //     file.WriteLine(d.Decrypt(finalKey, text));
-            // }
         }
     }
 
