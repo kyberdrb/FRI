@@ -12,28 +12,44 @@ namespace PrudovaSifra
     {
         static void Main(string[] args)
         {
-            var text = Reader.Read(Reader.text1);
-//            Parallel.For(0, 100000, i =>
-//            {
-//                var decryptor = new StreamCipher();
-//                var freqA = new Freq(false);
-//                decryptor.AttackTry(text, i, freqA, 0.02);
-//            });
+           var text = Reader.Read(Reader.text1);
+        //    Parallel.For(0, 100000, i =>
+        //    {
+        //        Console.WriteLine(i);
+        //        var decryptor = new StreamCipher();
+        //        var freqA = new Freq(false);
+        //        decryptor.AttackTry(text, i, freqA, 0.02);
+        //    });
 
-            for(i = 0; i <= 100000, i++)
-            {
-                var decryptor = new StreamCipher();
-                var freqA = new Freq(false);
-                decryptor.AttackTry(text, i, freqA, 0.02);
-            }
+            // for (int i = 0; i <= 100000; i++)
+            // {
+            //     Console.WriteLine(i);
+            //     var decryptor = new StreamCipher();
+            //     var freqA = new Freq(false);
+            //     decryptor.AttackTry(text, i, freqA, 0.02);
+            // }
 
-            Console.WriteLine("Brutal force attack done -> now you can show all text");
+            Console.WriteLine("Brute-force attack done!");
+            Console.WriteLine("Enter the KEY to show all text");
             var finalKey = int.Parse(Console.ReadLine());
             var d = new StreamCipher();
             d.WriteDecText(text, finalKey);
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
+            var decryptedTextPath = @"./decrypted_text.txt";
+            System.IO.File.WriteAllText(decryptedTextPath, "File:\t" + Reader.text1);
+            using (System.IO.StreamWriter file = 
+                new System.IO.StreamWriter(decryptedTextPath, true))
+            {
+                file.WriteLine();
+                file.WriteLine("Key:\t" + finalKey);
+                file.WriteLine();
+                file.WriteLine();
+                file.WriteLine(d.Decrypt(finalKey, text));
+            }
+            // using (System.IO.StreamWriter file = 
+            //     new System.IO.StreamWriter(decryptedTextPath, true))
+            // {
+            //     file.WriteLine(d.Decrypt(finalKey, text));
+            // }
         }
     }
 
@@ -170,7 +186,7 @@ namespace PrudovaSifra
             return (double)_My_randx / 217728.0;
         }
 
-        private string Decrypt(long paKey, string paCipherText)
+        public string Decrypt(long paKey, string paCipherText)
         {
             // nastav random seed - toto je hodnota kluca
             my_seed(paKey);
