@@ -1,0 +1,6 @@
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\bin\Debug\PrudovaSifra.exe.config
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\bin\Debug\PrudovaSifra.exe
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\bin\Debug\PrudovaSifra.pdb
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\obj\Debug\PrudovaSifra.csprojResolveAssemblyReference.cache
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\obj\Debug\PrudovaSifra.exe
+C:\Users\Slavo\Source\Repos\PrudovaSifra\PrudovaSifra\obj\Debug\PrudovaSifra.pdb
