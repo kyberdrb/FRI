@@ -12,51 +12,98 @@ namespace PrudovaSifra
     {
         static void Main(string[] args)
         {
-           var text = Reader.Read(Reader.text1);
-           Parallel.For(0, 100000, i =>
-           {
-               Console.WriteLine(i);
-               var decryptor = new StreamCipher();
-               var freqA = new Freq(false);
-               decryptor.AttackTry(text, i, freqA, 0.02);
-           });
+            if (args.Length < 1 || args.Length > 2) {
+                Console.WriteLine("Bad number of arguments!");
+                Console.WriteLine("Usage:");
+                Console.WriteLine("mono Program.exe " + 
+                    "<encrypted_text_file> [decrypted_text_file]");
+                Console.WriteLine("The argument [decrypted_text_file] is " +
+                    "optional. If [decrypted_text_file] is not provided, " +
+                    "decrypted file will be located in the same directory "+
+                    "with the same name as the encrypted file, only with " +
+                    "appended '.decrypted' extension.");
+                return;
+            }
 
-            // for (int i = 0; i <= 100000; i++)
-            // {
-            //     Console.WriteLine(i);
-            //     var decryptor = new StreamCipher();
-            //     var freqA = new Freq(false);
-            //     decryptor.AttackTry(text, i, freqA, 0.02);
+            var encryptedTextFile = args[0];
+            var decryptedTextFile = string.Empty;
+            if (args.Length == 1) {
+                decryptedTextFile = encryptedTextFile + ".decrypted";
+            } else if (args.Length == 2) {
+                decryptedTextFile = args[1];
+            }
+
+            var encryptedText = read(encryptedTextFile);
+            var charProbabilitiesInOrigLang = 
+                new CharProbabilitiesOfLang("english");
+            var variance = 0.02;
+
+            // for (int key = 0; key <= 100000; key++) {
+            //     var streamCipher = new StreamCipher();
+            //     var decryptedText = 
+            //         streamCipher.DecryptText(
+            //             key,
+            //             encryptedText
+            //         );
+
+            //     var freqAnalysisOfText = 
+            //         new FreqAnalysisOfText(
+            //             charProbabilitiesInOrigLang);
+                
+            //     if  (freqAnalysisOfText.ComputeDifference(
+            //             decryptedText) <= variance
+            //         )
+            //         Console.WriteLine(
+            //             "Key: "+ key + " -> " + 
+            //             decryptedText.Substring(0, 60));
             // }
 
+            Parallel.For(0, 100000, key => {
+                var streamCipher = new StreamCipher();
+                var decryptedText = 
+                    streamCipher.DecryptText(
+                        key,
+                        encryptedText
+                    );
+
+                var freqAnalysisOfText = 
+                    new FreqAnalysisOfText(
+                        charProbabilitiesInOrigLang);
+                
+                if  (freqAnalysisOfText.ComputeDifference(
+                        decryptedText) <= variance
+                    )
+                    Console.WriteLine(
+                        "Key: "+ key + " -> " + 
+                        decryptedText.Substring(0, 60));
+            });
+
             Console.WriteLine("Brute-force attack done!");
-            Console.WriteLine("Enter the KEY to show all text");
+            Console.WriteLine("Enter the KEY to show the entire text");
+
             var finalKey = int.Parse(Console.ReadLine());
-            var d = new StreamCipher();
-            d.WriteDecText(text, finalKey);
-            var decryptedTextPath = @"./decrypted_text.txt";
-            System.IO.File.WriteAllText(decryptedTextPath, "File:\t" + Reader.text1);
-            using (System.IO.StreamWriter file = 
-                new System.IO.StreamWriter(decryptedTextPath, true))
-            {
-                file.WriteLine();
-                file.WriteLine("Key:\t" + finalKey);
-                file.WriteLine();
-                file.WriteLine();
-                file.WriteLine(d.Decrypt(finalKey, text));
-            }
+            var finalStreamCipher = new StreamCipher();
+            var finalDecryptedText = 
+                finalStreamCipher.DecryptText(
+                    finalKey, 
+                    encryptedText
+                );
+            Console.WriteLine(finalDecryptedText);
+
+            saveDecryptedTextToFile(
+                encryptedTextFile,
+                decryptedTextFile,
+                finalKey,
+                finalDecryptedText);
+            
+            Console.WriteLine();
+            Console.WriteLine("********************************************************************************");
+            Console.WriteLine("Decrypted text is located in:");
+            Console.WriteLine(decryptedTextFile);
+            Console.WriteLine("********************************************************************************");
         }
-    }
 
-    public class Reader
-    {
-        public const string text1 = @"./EncryptedTexts/encText1.txt";
-        public const string text2 = @"./EncryptedTexts/encText2.txt";
-        public const string text3 = @"./EncryptedTexts/encText3.txt";
-        public const string text4 = @"./EncryptedTexts/encText4.txt";
-
-        public static string Read(string paPath)
-        {
+        private static string read(string paPath) {
             string readContents;
             using (var streamReader = new StreamReader(paPath))
             {
@@ -64,82 +111,90 @@ namespace PrudovaSifra
             }
             return readContents;
         }
-    }
 
-    public class Freq
-    {
-        public Dictionary<char, double> FreqBase { get; }
-
-        public Freq(bool paIsInSlovak)
+        private static void saveDecryptedTextToFile(
+            string paEncryptedTextFile,
+            string paDecryptedTextFile,
+            long paFinalKey,
+            string paFinalDecryptedText)
         {
-            if (paIsInSlovak)
+            System.IO.File.WriteAllText(paDecryptedTextFile, "File:\t" + paEncryptedTextFile);
+            using (System.IO.StreamWriter file = 
+                new System.IO.StreamWriter(paDecryptedTextFile, true))
             {
-                FreqBase = new Dictionary<char, double>()
-                {
-                    {'A', 0.1116},
-                    {'B', 0.0178},
-                    {'C', 0.0246},
-                    {'D', 0.0376},
-                    {'E', 0.0931},
-                    {'F', 0.0017},
-                    {'G', 0.0018},
-                    {'H', 0.0248},
-                    {'I', 0.0575},
-                    {'J', 0.0216},
-                    {'K', 0.0396},
-                    {'L', 0.0438},
-                    {'M', 0.0358},
-                    {'N', 0.0595},
-                    {'O', 0.0954},
-                    {'P', 0.0301},
-                    {'Q', 0.0000},
-                    {'R', 0.0471},
-                    {'S', 0.0612},
-                    {'T', 0.0572},
-                    {'U', 0.0331},
-                    {'V', 0.0460},
-                    {'W', 0.0000},
-                    {'X', 0.0003},
-                    {'Y', 0.0267},
-                    {'Z', 0.0306}
-                };
-            }
-            else
-            {
-                FreqBase = new Dictionary<char, double>()
-                {
-                    {'A', 0.0804 },
-                    {'B', 0.0154 },
-                    {'C', 0.0306 },
-                    {'D', 0.0399 },
-                    {'E', 0.1251},
-                    {'F', 0.0230},
-                    {'G', 0.0196},
-                    {'H', 0.0549},
-                    {'I', 0.0726},
-                    {'J', 0.0016},
-                    {'K', 0.0067},
-                    {'L', 0.0414},
-                    {'M', 0.0253},
-                    {'N', 0.0709},
-                    {'O', 0.0760},
-                    {'P', 0.0200},
-                    {'Q', 0.0011},
-                    {'R', 0.0612},
-                    {'S', 0.0654},
-                    {'T', 0.0925},
-                    {'U', 0.0271},
-                    {'V', 0.0099},
-                    {'W', 0.0192},
-                    {'X', 0.0019},
-                    {'Y', 0.0173},
-                    {'Z', 0.0009}
-                };
+                file.WriteLine();
+                file.WriteLine("Key:\t" + paFinalKey);
+                file.WriteLine();
+                file.WriteLine();
+                file.WriteLine(paFinalDecryptedText);
             }
         }
+    }
 
-        public bool FreqTest(string paText, double paAverageDiff)
+    public class StreamCipher {
+        private long _My_randx;
+
+        private double My_rand()
         {
+            // prechod do dalsieho stavu generatora
+            _My_randx = (84589* _My_randx + 45989) % 217728;
+            return (double)_My_randx / 217728.0;
+        }
+
+        private void my_seed(long paS)
+        {
+            _My_randx = paS;
+        }
+
+        public string DecryptText(
+            long paKey,
+            string paEncryptedText)
+        {
+            // nastav random seed - toto je hodnota kluca
+            my_seed(paKey);
+
+            int indexOfEncryptedChar, indexOfStreamCipherChar, indexOfDecryptedChar;
+            char currChar;
+            double myRandNum;
+            StringBuilder decryptedText = new StringBuilder(String.Empty);
+            foreach (var ch in paEncryptedText)
+            {
+                currChar = char.ToUpper(ch);
+                if (currChar >= 'A' && currChar <= 'Z')
+                {
+                    indexOfEncryptedChar = currChar - 'A';
+                    myRandNum = My_rand();
+                    indexOfStreamCipherChar = (int) (26 * myRandNum);
+
+                    // aby sme zasifrovany znak odsifrovali,
+                    // musime k indexu sifrovaneho znaku pripocitat
+                    // opacny prvok znaku sifry "streamCipherChar"
+                    // vzhladom na modulo 26
+                    indexOfDecryptedChar = 
+                        (   indexOfEncryptedChar
+                            + 
+                            (26 - indexOfStreamCipherChar)
+                        ) % 26;
+                    decryptedText.Append((char) ('A' + indexOfDecryptedChar));
+                }
+                else
+                {
+                    decryptedText.Append(currChar);
+                }
+            }
+            return decryptedText.ToString();
+        }
+    }
+
+    public class FreqAnalysisOfText {
+        CharProbabilitiesOfLang freqHistogram;
+
+        public FreqAnalysisOfText(
+            CharProbabilitiesOfLang paFreqHistogram) {
+            freqHistogram = paFreqHistogram;
+        }
+
+        public double ComputeDifference(string paText) {
             int charSum = 0;
             var charCounts = new Dictionary<char, int>();
 
@@ -157,67 +212,117 @@ namespace PrudovaSifra
                 }
             }
 
-            var diff = charCounts.Sum(charCount => Math.Abs((charCount.Value / (double) charSum) - FreqBase[charCount.Key]));
+            var diff =
+                charCounts.Sum(charCount => 
+                    Math.Abs(
+                        (charCount.Value / (double) charSum) - 
+                        freqHistogram.ProbValueOfCharKey(charCount.Key)
+                    )
+                );
 
-            return (diff / FreqBase.Count) <= paAverageDiff;
+            return (diff / freqHistogram.AlphabetSize());
         }
     }
 
-    public class StreamCipher
-    {
-        private long _My_randx;
+    public class CharProbabilitiesOfLang {
+        private Dictionary<char, double> FreqBase;
 
-        private void my_seed(long paS)
+        public CharProbabilitiesOfLang(string paLang)
         {
-            _My_randx = paS;
-        }
-
-        private double My_rand()
-            /* generuje nahodne cislo v intervale <0,1) */
-        {
-            /* prechod do dalsieho stavu generatora (LL na konci cisla znamena typ long long)*/
-            _My_randx = (84589* _My_randx + 45989) % 217728;
-            /* vypocet navratovej hodnoty */
-            return (double)_My_randx / 217728.0;
-        }
-
-        public string Decrypt(long paKey, string paCipherText)
-        {
-            // nastav random seed - toto je hodnota kluca
-            my_seed(paKey);
-
-            int c, k, p;
-            char currChar;
-            var result = string.Empty;
-            foreach (var ch in paCipherText)
+            switch (paLang)
             {
-                currChar = char.ToUpper(ch);
-                if (currChar >= 'A' && currChar <= 'Z')
-                {
-                    c = currChar - 'A';
-                    k = (int) (26 * My_rand());
-                    p = (c + (26 - k)) % 26;
-                    result += (char) ('A' + p);
-                }
-                else
-                {
-                    result += currChar;
-                }
+                case "slovak":
+                    generateForSlovak();
+                    break;
+
+                case "english":
+                    generateForEnglish();
+                    break;
+                    
+                default:
+                    generateForEnglish();
+                    break;
             }
-            return result;
         }
 
-        public void AttackTry(string paText, long paKey, Freq paActFreq, double paMaxAwgDiff)
-        {
-            var resStr = Decrypt(paKey, paText);
-            if (paActFreq.FreqTest(resStr, paMaxAwgDiff))
-                Console.WriteLine("Key:"+ paKey + " -> " + resStr.Substring(0, 60));
+        public double ProbValueOfCharKey(char paChar) {
+            return FreqBase[paChar];
         }
 
-        public void WriteDecText(string paText, long paKey)
-        {
-            Console.WriteLine(Decrypt(paKey, paText));
+        public int AlphabetSize() {
+            return FreqBase.Count;
         }
-    }   
+
+        private void generateForSlovak() {
+            FreqBase = new Dictionary<char, double>()  {
+                        {'A', 0.1116},
+                        {'B', 0.0178},
+                        {'C', 0.0246},
+                        {'D', 0.0376},
+                        {'E', 0.0931},
+                        {'F', 0.0017},
+                        {'G', 0.0018},
+                        {'H', 0.0248},
+                        {'I', 0.0575},
+                        {'J', 0.0216},
+                        {'K', 0.0396},
+                        {'L', 0.0438},
+                        {'M', 0.0358},
+                        {'N', 0.0595},
+                        {'O', 0.0954},
+                        {'P', 0.0301},
+                        {'Q', 0.0000},
+                        {'R', 0.0471},
+                        {'S', 0.0612},
+                        {'T', 0.0572},
+                        {'U', 0.0331},
+                        {'V', 0.0460},
+                        {'W', 0.0000},
+                        {'X', 0.0003},
+                        {'Y', 0.0267},
+                        {'Z', 0.0306}
+                    };
+        }
+
+        private void generateForEnglish() {
+            FreqBase = new Dictionary<char, double>()  {
+                        {'A', 0.0804 },
+                        {'B', 0.0154 },
+                        {'C', 0.0306 },
+                        {'D', 0.0399 },
+                        {'E', 0.1251},
+                        {'F', 0.0230},
+                        {'G', 0.0196},
+                        {'H', 0.0549},
+                        {'I', 0.0726},
+                        {'J', 0.0016},
+                        {'K', 0.0067},
+                        {'L', 0.0414},
+                        {'M', 0.0253},
+                        {'N', 0.0709},
+                        {'O', 0.0760},
+                        {'P', 0.0200},
+                        {'Q', 0.0011},
+                        {'R', 0.0612},
+                        {'S', 0.0654},
+                        {'T', 0.0925},
+                        {'U', 0.0271},
+                        {'V', 0.0099},
+                        {'W', 0.0192},
+                        {'X', 0.0019},
+                        {'Y', 0.0173},
+                        {'Z', 0.0009}
+                    };
+        }
+    }
 }
 
+// Sources:
+// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/main-and-command-args/
+// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/command-line-building-with-csc-exe
+// https://www.dotnetperls.com/stringbuilder
+// https://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx
+// https://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx
+// https://www.dotnetperls.com/string-switch
+// https://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx
+// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/main-and-command-args/command-line-arguments
