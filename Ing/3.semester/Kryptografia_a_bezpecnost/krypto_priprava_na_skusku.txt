@@ -1,0 +1,65 @@
+Sifra
+  -Princip
+  -Utok
+
+MONOALFABETICKE
+Caesar
+Afinna
+  -k1 a modulo m musia byt nesudelitelne (NSD = 1)
+  -ciphertext only attack
+  -known plaintext attack
+
+POLYALFABETICKE
+Viegenere
+  -kasiski test na odhad dlzky hesla
+  -friedmanov test
+  -INDEX KOINCIDENCIE
+    -cislo, ktore hovori, ako velmi sa rozdelenie pravdepodobnosti znakov v texte odlisuje od rovnomerneho rozdelenia
+    -pravdep., ze 2 nahodne vybrane znaky z jazyka budu zhodne
+    -vypocet: presne, odhadom
+Hillovska
+  -known plaintext attack
+
+PRUDOVE
+Vernamova (One time pad)
+  -utok pri pouziti rovnakeho prudu klucov
+  -synchronizacny utok
+
+GENERATORY
+  -Lineárny kongruenčný generátor
+  -Kvadratický kongruenčný generátor
+  -Kubický kongruenčný generátor
+  -RC4
+
+Vsetky predchadzajuce sifrovacie algoritmy boli SYMETRICKE.
+
+NESYMETRICKE ALGORITMY
+  -Princip nesymetrickych sifier
+  -pekna prezentacia o asymetrickych sifrach
+    http://slideplayer.com/slide/4849278/
+ 
+RSA
+  -princip
+  -utok
+
+HASHOVACIE FUNKCIE
+  -ucel hashovania
+  -narodeninovy paradox
+  -narodeninovy utok
+  -princip hashovania
+MD4
+  .princip
+MD5
+SHA-1
+
+Digitalny podpis
+  -generovanie podpisu z celej spravy
+  -generovanie podpisu len z hashu spravy
+  -casova znacka
+
+DIFFIE-HELLMANOVA VYMENA KLUCOV
+  -princip
+  -utok man-in-the-middle
+
+Pristupove hesla
+  -utoky: slovnikove, MD5 utok
