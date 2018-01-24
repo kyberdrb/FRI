@@ -1,0 +1,76 @@
+-VNF - Virtual Network Function + 3 priklady pre SD-WAN (implementacie vo firmach)
+  -pouzitie SDN vo WAN
+  -vyhody: jednoduchsia sprava sietovych uzlov, efektivnejsie smerovanie
+  -http://searchsdn.techtarget.com/definition/SD-WAN-software-defined-WAN
+
+-NFV - Network Function Virtualization (stadard) + 3 priklady (jeden z nich ke Route Reflector)
+  -rozdelenie sietovych funkcii (napr. DNS, firewall, VPN) a ich presmerovanie z
+  (drahsieho) dedikovaneho hardveru na (lacnejsie) virtualne servery
+  -na to, aby sme mohli zariadenie vyuzivat v NFV, musi mat podporu od vyrobcu
+  -http://www.ciena.com/insights/articles/What-is-NFV-prx.html
+  -https://www.youtube.com/watch?v=xGZaZTnvR9A
+
+-OpenStack (Canonical)
+  -sada nastrojov na spravu "cloud" prostredia
+  -https://opensource.com/resources/what-is-openstack
+  -https://www.youtube.com/watch?v=lM2wwYDLB2M
+
+-Ansible (RedHat)
+  -open-source nastroj na automatizaciu opakovanych uloh 
+  -https://www.youtube.com/watch?v=SsiZPAYTaO4
+
+-Ansible Tower (RedHat)
+  -plateny nastroj; front-end ku Ansible
+  -https://www.youtube.com/watch?v=SsiZPAYTaO4
+
+-GO (Google)
+  -programovaci jazyk
+  -kladie doraz na konkurenciu a vykon
+  -vhodny na back-end (front-end vyuzitie je skor experimentalne)
+  -https://medium.com/@kevalpatel2106/why-should-you-learn-go-f607681fad65
+  -https://vimeo.com/49718712
+
+-Python
+  -open-source multiplatformovy interpretacny programovaci jazyk vhodny na rozlicne ucely
+  -https://www.youtube.com/watch?v=9by46AAqz70
+
+-REST API
+  -standardizovany sposob komunikacie medzi front-endom (client-side) a back-endom (server-side) cez internet
+  -https://www.youtube.com/watch?v=7YcW25PHnAA
+
+-OpenFlow
+  -protokol na spristupnenie Forwarding Plane (preposielacej vrstvy) smerovacov alebo prepinacov cez internet
+  -https://en.wikipedia.org/wiki/OpenFlow
+  -https://www.youtube.com/watch?v=l25Ukkmk6Sk
+
+-porovnanie KVM, VMware, Hyper-V, Xen
+  -KVM
+    -open-source typ 1 hypervizor 
+    -je sucastou Linux jadra
+    -https://wiki.archlinux.org/index.php/KVM
+    -https://serverfault.com/questions/855094/is-kvm-a-type-1-or-type-2-hypervisor
+  -VMware
+    -typ 2 hypervizory: VMware Workstation, VMware Fusion
+    -typ 1 hypervizory: VMware ESXi
+    -https://www.vmware.com/products/personal-desktop-virtualization.html
+    -https://www.vmware.com/products/esxi-and-esx.html
+  -Hyper-V (Microsoft)
+    -typ 1 hypervizor
+    -je sucastou v operacnych systemov Microsoft Windows
+    -https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/
+  -Xen (Citrix)
+    -open-source typ 1 hypervizor
+    -https://wiki.xenproject.org/wiki/Xen_Project_Software_Overview
+  -Porovnania
+    -http://searchservervirtualization.techtarget.com/feature/Whats-the-difference-between-Type-1-and-Type-2-hypervisors
+    -http://searchservervirtualization.techtarget.com/definition/hosted-hypervisor-Type-2-hypervisor
+    -https://www.flexiant.com/2014/02/12/hypervisor-comparison-kvm-xen-vmware-hyper-v/
+    -https://onapp.com/2016/09/06/hypervisor-choice-xen-or-kvm/
+
+
+
+
+
+
+Odoslat na:
+matej.kultan@nokia.com
