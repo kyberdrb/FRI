@@ -1,6 +1,23 @@
-Sifra
-  -Princip
-  -Utok
+SYMETRICKE SIFRY
+  -princip
+BLOKOVE SIFRY
+Kryptosystemy Feistelovho typu
+  -princip
+DES
+  -princip
+  -schema, generovanie klucov, s-boxy
+  -utoky:
+    -brute-force
+    -diferencialna kryptoanalyza
+    -linearna kryptoanalyza
+    -pokusy o predlzenie kluca
+3DES
+  -rovnaky, ako DES, len dlzka kluca sa strojnasobila
+GOST
+  -princip:
+    -velkost bloku
+    -dlzka kluca
+    -pocet kol
 
 MONOALFABETICKE
 Caesar
@@ -14,32 +31,39 @@ Viegenere
   -kasiski test na odhad dlzky hesla
   -friedmanov test
   -INDEX KOINCIDENCIE
-    -cislo, ktore hovori, ako velmi sa rozdelenie pravdepodobnosti znakov v texte odlisuje od rovnomerneho rozdelenia
+    -cislo, ktore hovori, ako velmi sa rozdelenie pravdepodobnosti znakov v texte
+     odlisuje od rovnomerneho rozdelenia
     -pravdep., ze 2 nahodne vybrane znaky z jazyka budu zhodne
     -vypocet: presne, odhadom
 Hillovska
   -known plaintext attack
 
 PRUDOVE
+  -princip
+    https://www.youtube.com/watch?v=W39KqX0ZTbU
+    https://www.youtube.com/watch?v=DA8f8FHuE9I
+    https://www.youtube.com/watch?v=_XBQeAnjjwk
+
 Vernamova (One time pad)
   -utok pri pouziti rovnakeho prudu klucov
   -synchronizacny utok
 
-GENERATORY
-  -Lineárny kongruenčný generátor
-  -Kvadratický kongruenčný generátor
-  -Kubický kongruenčný generátor
-  -RC4
+LFSR =
+Line Feedback Shift Register =
+Linearny posuvny register
+  -princip
+    https://www.rocq.inria.fr/secret/Anne.Canteaut/MPRI/chapter3.pdf
+  -utok: ak pozname 2n vystupnych bitov, 
 
-Vsetky predchadzajuce sifrovacie algoritmy boli SYMETRICKE.
 
-NESYMETRICKE ALGORITMY
+NESYMETRICKE SIFRY
   -Princip nesymetrickych sifier
-  -pekna prezentacia o asymetrickych sifrach
     http://slideplayer.com/slide/4849278/
- 
 RSA
   -princip
+  Public Key Cryptography: RSA Encryption Algorithm
+    https://www.youtube.com/watch?v=wXB-V_Keiu8
+    https://www.youtube.com/watch?v=_bRVA5b4sb4
   -utok
 
 HASHOVACIE FUNKCIE
@@ -53,8 +77,8 @@ MD5
 SHA-1
 
 Digitalny podpis
-  -generovanie podpisu z celej spravy
-  -generovanie podpisu len z hashu spravy
+  -princip
+    https://www.youtube.com/watch?v=9vVJ3sEEueU
   -casova znacka
 
 DIFFIE-HELLMANOVA VYMENA KLUCOV
@@ -63,3 +87,13 @@ DIFFIE-HELLMANOVA VYMENA KLUCOV
 
 Pristupove hesla
   -utoky: slovnikove, MD5 utok
+
+
+GENERATORY
+  -Lineárny kongruenčný generátor
+  -Kvadratický kongruenčný generátor
+  -Kubický kongruenčný generátor
+  -RC4
+  -Geiger-Mullerov pocitac
+  -Teplotne fluktuacie
+  -Meranie vytazenia velmi zamenstnaneho servera
