@@ -2,6 +2,7 @@
   -pouzitie SDN vo WAN
   -vyhody: jednoduchsia sprava sietovych uzlov, efektivnejsie smerovanie
   -http://searchsdn.techtarget.com/definition/SD-WAN-software-defined-WAN
+  -https://www.networkcomputing.com/networking/top-4-sd-wan-myths/1072744350
 
 -NFV - Network Function Virtualization (stadard) + 3 priklady (jeden z nich ke Route Reflector)
   -rozdelenie sietovych funkcii (napr. DNS, firewall, VPN) a ich presmerovanie z
