@@ -1,0 +1,97 @@
+1) PIM SSM as PE-CE protokol
+
+V tomto scenári zákazník používa PIM-SSM a poskytovateľ používa BGP na výmenu C-Route. Najprv PE smerovače potrebujú nájsť ostatné relevantné PE, ktoré sú súčasťou rovnakej MVPN inštancie, čo je možné dosiahnuť Auto-Discovery protokolom.
+
+Auto-Discovery a MI-PMSI P-Tunel
+
+Každý PE ohlasuje cez BGP cestu typu Intra-AS I-PMSI AD. Tieto cestu sú rozsahom obmedzené na jeden AS a sú prijaté všetkými ostatnými zúčastnenými PE v rovnakej inštancii MVPN. BGP trasa typu 1 obsahuje o.i. aj atribút "Tunel PMSI", ktorý udáva, aký typ tunelu bude PE používať na zapuzdrenie C-MCAST prevádzky.
+
+https://packetpushers.net/wp-content/uploads/2014/12/Fig.1.jpg
+(obr. 1)
+
+Na obr. 1 každá PE ohlasuje cestu typu 1 a rozosiela ju ostatným PE so zhodným Route Target. To umožňuje každému PE vedieť o každom ďalšom PE, ktorý je zúčastnený v inštancii MVPN, vrátane toho, aký typ tunelu bude používať na zapuzdrenie C-MCAST prevádzky. V závislosti od typu tunela dôjde k signalizácii nastavenia P-Tunelu medzi PE. V nižšie uvedenom príklade je použitý P2MP mLDP protokol. Cieľom nastavenia P tunelov je poskytnúť službu ekvivalentnú predvolenému MDT (Multicast Deployment) t.j. akýkoľvek PE môže poslať C-MCAST prevádzku na akékoľvek iné zúčastnené PE.
+
+Signalizácia C-MCAST
+
+Nech PE na strane prijímača dostane (C-S, C-G) Join správu. V príklade nižšie je (1.1.1.1, 232.1.1.1). Keď prijímací PE nadviaže PIM spojenie, vykoná vyhľadávanie v smerovacej tabuľke pre 1.1.1.1 a zistí, že PE1 je ďalším hopom na dosiahnutie zdroja (1.1.1.1). Oba smerovače PE2 a PE3 vygenerujú BGP cestu typu 7 s atribútmi (C-S, C-G) vrátane Route Target nastavený na PE1.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.2.jpg
+(obr. 2)
+
+Obidva PE smerovače vygenerujú rovnakú cestu typu 7 (s výnimkou ID iniciátora), ktorá bude odoslaná do RR. Ako možno očakávať, RR bude odrážať iba tú najlepšiu cestu a v našom príklade si zvolí PE3 ako najlepšiu cestu, odrážajúc iba túto cestu k PE1. Keďže sa zhoduje s cieľovou cestou, PE1 akceptuje cestu a pošle správu PIM Join na CE1. Teraz zdroj vie, že má záujem o prijímače cez tunel poskytovateľa a tunel MI-PMSI (predvolený MDT). Zdroj začne odosielať prevádzkovateľovi skupinovú prevádzku. PE1 získava údaje C-MCAST a pošle ich do P-Tunelu, čo je v tomto prípade P2MP mLDP.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.3.jpg
+(obr. 3)
+
+Nastavenie S-PMSI
+Prijímajúce PE v systéme S-PMSI, ktoré majú záujem o určitý (C-S, C-G), dostávajú iba C-Multicast prevádzku zo zdroja. Aby sa to dosiahlo, zdrojový PE musí informovať prijímajúce PE, že sa chystá použiť nový P-tunel pre (C-S, C-G) a príslušný prijímajúci PE sa musí pripojiť ku novému P-tunelu. Akonáhle sa to stane, zdrojové PE prepne údaje C-Multicast do nového P-Tunelu.
+
+MI-PMSI (predvolené MDT) na prepínanie S-PMSI (dátové MDT) je možné nakonfigurovať s rôznymi kritériami, ako sú limitovanie prenosovej rýchlosti (podobne ako pri Draft Rosen). Nech v našom prípade je prepnutie z MI-PMSI na S-PMSI nakonfigurované pri prijatí prvého paketu. PE1 pošle ďalšiu BGP cestu typu 3 (S-PMSI) všetkým PE, čím sa ohlasuje ako zdrojový smerovač (Root PE) nového P-tunelu, ktorý bude odosielať (1.1.1.1, 232.1.1.1). Po obdržaní tejto aktualizácie sa PEs so zainteresovanými prijímačmi pripoja k novému P-tunelu (P2MP mLDP). PE1 potom prepne C-MCAST prevádzku z MI-PMSI (predvolené MDT) na S-PMSI (Data MDT). Tak dostanú skupinovú premávku iba zainteresované prijímajúce PE.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.4.jpg
+(obr. 4)
+
+Na obr. 4 prvý PE1 ohlasuje BGP cestu typu 3 (S-PMSI) na všetky zainteresované PE. Potom PE2 a PE3 signalizujú pripojenie s selektívnym P-stromom začínajúcim v PE1. Tak vedia, že majú záujem o prijímače. PE4 sa nebude pripojiť k Selective P-Tree, pretože nemá žiadne zainteresované prijímače pre (C-1.1.1.1, C-232.1.1.1). Po nastavení stromu PE1 sa po určitom intervale prenos C-Multicast prepne z MI-PMSI na S-PMSI.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.5.jpg
+(obr. 5)
+
+Signalizácia mLDP (P-Tunnel) je iniciovaná nadol smerom k upstream PE, ktorá je analogická tomu, ako funguje signalizácia multicast. Akonáhle zainteresované prijímajúce PE vedia o Root PE, iniciujú mLDP signalizáciu smerom k Root PE. Na rozdiel od mLDP, P2MP RSVP-TE signalizácia je iniciovaná Root PE smerom ku koncovým PE. V prípade, že chce poskytovateľ vytvoriť službu S-PMSI pomocou tunelu P2MP RSVP-TE, je problém. Nech na obr. 4 je vytvorená P-tunel typu P2MP RSVP-TE. Najprv PE1 ohlási cestu typu 3 (S-PMSI) na každý PE, ktorá ich informuje o tom, že je Root PE. Ale PE1 ešte nepozná zainteresovaných príjemcov PE, takže nie je schopný iniciovať P2MP RSVP-TE pre zainteresované prijímajúce PE. Tento problém je možné vyriešiť pomocou cesty BGP typu 4 Leaf AD. Na obr. 6 PE1 ohlasuje BGP cestu typu 3 s nastaveným príznakom "Leaf Info Required". Keď prijímajúce PE získajú túto cestu, relevantné PE (PE2 a PE3) reagujú odoslaním BGP cesty typu 4 Leaf AD. Akonáhle PE1 objaví koncové smerovače, signalizuje to správou P2MP RSVP LSP.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.6.jpg
+(obr. 6)
+
+2) PIM-SM mód ako PE-CE protokol
+Proces PIM-SM je oveľa komplikovanejší v porovnaní s PIM-SSM vďaka zdroju a prijímačom, ktoré sa spočiatku stretli v RP a potom sa prepínali na SPT. Umiestnenie C-RP je vždy veľmi dôležité. Existujú dva spôsoby konfigurácie PIM-SM.
+
+a) PE má vedomosti o aktívnych C-zdrojoch: Existujú dva spôsoby, ako môže PE vedieť o C-zdrojoch.
+-Jeden z PE routerov funguje ako plne funkčný zákaznícky RP (C-RP) pre túto MVPN.
+-Vytvorí sa MSDP relácia medzi PE smerovačom a zákazníckym RP (C-RP) na prenos informácií o zdrojoch skupinového vysielania.
+
+Keď sa PE dozvie cestu k novému zdroju skupinového vysielania niektorou z vyššie uvedených metód v rámci svojej MVPN inštancie, vytvorí cestu Source Active D-D. Táto cesta je odoslaná všetkým ostatným PE, ktoré k nim majú pripojenú jednu alebo viac MVPN lokalít. Nasledujúce PE s (*, C-G) prijímačmi vytvoria (C-S, C-G) Source Tree Join cesty smerom ku zdrojovému PE. Z pohľadu poskytovateľa je tento prístup jednoduchý, ale z pohľadu zákazníka je problém s oboma prístupmi t.j. poskytovateľ zasahuje do domény zákazníka.
+
+(Marian)
+b) Pripojenie signalizácie (*, C-G) cez BGP: Ak PE má prijímače po prúde (*, C-G), pošle trasu zdieľaného stromu na upstream PE na ceste k C-RP. Budeme pokrývať možnosť b, pretože je zložitejšia a pravdepodobne zaujímavejšia. Na obrázku 7 je C-zdroj umiestnený za PE1 a C-RP sa nachádza na inom mieste ako na zdroji. C-prijímače sú za PE2 a PE3.
+
+Auto-Discovery a MI-PMSI P-Tunel
+
+Postup automatického zisťovania a MI-PMSI bude podobný tomu, čo sme videli pre PIM-SSM. Po tomto kroku by každý PE vedel o ďalších relevantných PE a bude nastavený tunel MI-PMSI (predvolený MDT). V tomto bode preteká cez MI-PMSI akýkoľvek riadiaci letový riadok C-Multicast, ako napríklad RP reklamy (Auto-RP, BSR). To umožní, aby sa PE dozvedeli o RP.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.7.jpg
+(obr. 7)
+
+C-MCAST signalizácia
+
+Keď PE získajú spojenie (C - *, C - G), vytvárajú spojenie spoločného stromu spojenia BGP smerom k PE, kde sa nachádza RP. Na obr. 8, keď PE2 a PE3 prijímajú spojenie PIM pre (*, 225.1.1.1), vykonajú vyhľadávanie adresy RP, ktorá je za znakom " PE2 a PE3 vytvárajú združený stromový spoj BGP (Typ trasy 6) s Cieľom trasy nastaveným na hodnotu PE4. PE4 sa prijíma trasa a posiela PIM Join (*, 225.1.1.1) do RP. V tomto momente RP si je vedomý toho, že za záujmom sú zainteresované prijímače.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.8.jpg
+(obr. 8)
+
+(~Marian)
+
+Na obr. 9 sú vyznačené jednotlivé kroky, keď zdroj začne preposielať skupinovú prevádzku. (1) Keď zdroj (1.1.1.1) začne odosielať prevádzku na G = 225.1.1.1, (2) prvý hopový smerovač CE1 informuje RP o existencii zdroja zaslaním registračnej správy (PIM Register) (C-S, C-G) na RP. Keď RP dostane správu PIM Register, generuje správu (3) PIM Join (1.1.1.1, 225.1.1.1) smerom k CE1. (4) PE4 generuje Source Tree Join BGP cestu smerom k PE1 po prijatí správy PIM Join z RP. (5) Keď PE1 prijíme cestu Source Tree Join (cestu na pripojenie sa k zdrojovému stromu), pošle správu PIM Join (1.1.1.1, 225.1.1.1) na CE1.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.9.jpg
+(obr. 9)
+
+(Marian)
+
+(6)PE1 also generates a Source Active A-D route as a result of receiving a Source Tree Join C-multicast route from PE4 for (1.1.1.1, 225.1.1.1) which is propagated to all the PEs of the MVPN. Type 5 BGP Source Active A-D routes are only applicable to PIM-SM. A PE will only generate a Source Active Route when it (PE1) creates a (C-S,C-G) state as a result of receiving a C-multicast route for (C-S,C-G) from some other PE(PE4). It also requires that the C-G(225.1.1.1) group is an ASM group, and the PE(PE1) that creates the state MUST originate a Source Active A-D route.
+
+Na obr. 10 vytvárajú PE2 a PE3 zdrojový stromový spoj (1.1.1.1.225.1.1.1) zameraný na PE1 ako odpoveď na cestu typu A zdroj A-D. PE2 a PE3 generujú zdrojové stromové spojenia, pretože vidia "zhodu" s trasou Source Active A-D. Zhoda sa považuje, keď sa cesta (CS, CG) Source Active AD zhoduje s danou položkou (C - *, CG) a ak CG je rovnaké a PE má pôvodnú trasu zdieľaného stromu C-multicast pre rovnaké CG ,
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.10.jpg
+(obr. 10)
+
+(~Marian)
+
+V tomto bode PE2 a PE3 začnú prijímať premádzku priamo z PE1.
+
+https://packetpushers.net/wp-content/uploads/2014/12/mVPNFig.11.jpg
+(obr. 11)
+
+Postup pri manipulácii s PIM-SM je v porovnaní s PIM-SSM oveľa komplikovanejší. Je možné súčasne odosielať pakety (C-S, C-G) na PMSI aj lokálnym PE pripojeným k zdroju, aj PE pripojeným k lokalite obsahujúcej C-RP. To by viedlo k prechodne zbytočnej prevádzke na chrbticovú sieť poskytovateľa. Avšak žiadne duplicity sa nedoručia na zákaznícke koncové zariadenia prihlásené na odber C-G, pretože PE po ceste nadol odmietnu paket.
+
+Záver
+
+NG MVPN Framework stavia na Rosen Draft a oddeľuje riadiace a dátové plány. Videli sme, ako môže poskytovateľ používať BGP na výmenu C-Route spolu s rôznymi možnosťami pre budovanie P-tunelov. Pozerali sme tiež na rôzne typy BGP Route pre výmenu C-Route a preskúmali niektoré scenáre pomocou PIM-SSM a PIM-SM pre protokoly PE-CE. V budúcich pozíciách sa budeme zaoberať pojmom agregácie a porovnáme rôzne technológie P-Tunnel.
