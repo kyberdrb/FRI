@@ -1,0 +1,143 @@
+3.1.1 Obmedzenia Draft-Rosen
+  -nerozsiruje MPLS infrastrukturu - namiesto toho je Draft-Rosen nasadena ako vrstva navyse ako paralelna infrastruktura
+  -operator sa musi pozerat aj na unicastovu, aj na multicastovu prevadzku
+  -narocnejsia implementacia QoS politik - jedna pre znackovanu, dalsia pre neznackovanu premavku
+  -narocny na skalovatelnost - Draft-Rosen MVPNs are represented as an emulated LAN. Each MVPN has a logical PIM interface,  and  will  form  an  adjacency  to  every  other  PIM  interface  across  PE  routers  within  the  same  MVPN. This is illustrated in  Figure 3.1.
+ This results in an explosion in the number of PIM adjacencies over the Emulated LAN that PIM 
+creates,  which  has  a  direct  bearing  on  the  scalability  of  the  network
+  -smerovace poskytovatela si musia pamatat stavove informacie o prevadzke kazdeho zakaznika
+  -Draft-Rosen nevie agregovat multicastove stromy - kazda MVPN ma svoj vlastny strom
+
+3.2
+Vyhody Next-Generation MVPN
+
+1.
+           Single  layer  for  both  MPLS  VPN  unicast  and  multicast  traffi  c.  This  ideally  means  that  we  now  
+want to label switch multicast traffi c within a VPN.  
+2.
+       Single  or  unifi
+ ed control plane for both unicast and multicast traffi c. In other words, use BGP for 
+unicast and multicast traffi c instead of relying on additional protocol machinery.  
+3.
+      Overcome the limitations of using an Emulated LAN for each customer multicast VPN negating 
+the limitations of PIM.  
+4.
+           Have  the  ability  to  choose  more  than  one  data  plane  mechanism.  We  are  now  looking  at  using  
+schemes other than or in addition to GRE encapsulation. Free the Provider layer from any sort of 
+state machinery needed for the transport of multicast VPNs.  
+5.
+      Provide an option to have traffi c transported to the intended receiver only. This would be similar 
+to Data MDT in Draft-Rosen without the need for a Data MDT.  
+6.
+      Provide a road map for aggregation of customer multicast traffi
+ c.  
+7.
+       Create  a  standards-based  and  interoperable  solution.    
+
+
+3.2.1 Terminologia
+  The  following  terms  will  be  used  throughout  this  chapter,  and  their  defi  nitions  are  provided  in  this  
+section. Detailed explanations for each of these terms will be provided in the subsequent sections of 
+this chapter.
+●
+Branch  LSR:
+    A  label  switching  router  (LSR)  with  more  than  one  directly  connected  down-
+stream LSR.  
+●
+Bud LSR:
+  An egress LSR with one or more directly connected downstream LSRs.  
+●
+Egress  LSR:
+    One  of  many  potential  destinations  of  the  P2MP  Data  plane  (LSP).  Egress  LSRs  
+may also be referred to as leaf nodes or leaves.  
+●
+Ingress LSR:
+  LSR connected to the C-MCAST Source.  
+●
+P2MP tree:
+  Ordered set of LSRs that comprise the path of a P2MP LSP between the ingress LSR 
+to all of its egress LSRs.  
+●
+P2MP-ID  (P2ID):
+    A  unique  identifi  er  of  a  P2MP  TE  LSP,  which  is  constant  for  the  whole  LSP  
+regardless of the number of branches and/or leaves.  
+
+
+
+3.3 NG-MVPN CONTROL PLANE
+
+NG-MVPN pouziva BGP na signalizaciu -> jednoduchsie na administraciu, rychlejsie, podpora IPv4 aj IPv6
+Ulohy BGP v NG-MVPN:
+●
+        Auto-discovery of PE routers within a given NG-MVPN instance.  
+●
+             Exchange  of  Data  plane  (from  this  point  onward  the  Data  plane  will  be  referred  to  as  Provider-
+Tunnel  or  P-tunnel)  information  between  Provider  Edge  routers.  In  the  context  of  NG-MVPN,  
+details on the type and identifi er of the tunnel used for transmitting C-MCAST traffi c is advertised 
+from the ingress PE to all relevant egress PE routers.  
+●
+             Exchange  of  C-MCAST  routing  information.  All  joins  from  the  Customer  domain  (CE  routers)  
+are announced to the relevant PE routers within a context of a given NG-MVPN.  
+
+
+CE routre stale pouzivaju PIM medzi CE-PE, podobne ako pri Draft Rosen.
+NG-MVPN dokaze nahradit existujuce nasadenie Draft-Rosen v poskytovatelovej sieti bez zmeny infrastruktury.
+BGP control plane introduces  a  new  BGP  address  family  called  MCAST-VPN  for  supporting  
+NG-MVPN control plane operations. 
+
+ A PE router that participates in a BGP-based NG-MVPN network is required to send a BGP update 
+message  that  contains  an  MCAST-VPN  NLRI,  which  contains  route  type,  length,  and  variable  fi
+ elds 
+(illustrated in detail a little later in this chapter  ). The value of the variable fi
+ eld depends on the route 
+type. Seven types of NG-MVPN BGP routes, also known as MVPN routes, are specifi
+ ed. The fi rst fi
+ ve 
+route types are called auto-discovery (AD) MVPN routes. This chapter also refers to Type 1–5 routes 
+as non-C-multicast MVPN routes. Type 6 and Type 7 routes are called C-multicast MVPN routes. 
+
+
+
+3.3.1 Vsupne a vystupne PE smerovače
+
+  The  term  Ingress  PE  router  refers  to  a  PE  router  that  has  an  active  C-MCAST  source  for  a  given  
+NG-MVPN. Egress PE routers are referred also as leaf nodes. This indicates that they are end points 
+for a given C-MCAST traffi
+ c fl
+ ow. One of the advantages of the NG-MVPN architecture is the abil-
+ity to designate a PE router as a “Sender and Receiver” site or “Receiver Only” site. The former is an 
+indication of the specifi ed PE router to be able to both originate and receive C-MCAST traffi
+ c, while 
+the latter is only able to receive traffic.
+
+
+
+3.3.2   Provider Multicast Service Interface
+Provider Multicast Service Interface = PMSI
+
+he PMSI distinguishes between services and the transport mechanism (P-tunnels) 
+that  support  and  realize  the  concept.  When  a  PE  gives  a  packet  to  PMSI,  the  underlying  transport  
+mechanism,  P-tunnels,  delivers  the  packet  to  some  or  all  of  the  other  PEs.  A  PMSI  is  a  conceptual  
+“overlay”  on  the  Provider  network  with  the  following  property:  a  PE  in  a  given  MVPN  can  give  a  
+packet  to  the  PMSI,  and  the  packet  will  be  delivered  to  some  or  all  of  the  other  PEs  in  the  MVPN,  
+such  that  any  PE  receiving  the  packet  will  be  able  to  determine  the  MVPN  to  which  the  packet  
+belongs  . For instance, an Ingress PE router may wish to send C-MCAST traffi c only to given set of 
+PE  routers  who  express  interest  for  the  traffi  c  or  send  it  to  all  PE  routers  that  participate  in  a  given  
+MVPN—irrespective  of  whether  they  have  interested  receivers  or  not.  This  is  achieved  by  attaching  
+an appropriate PMSI attribute to the BGP routes. 
+ The various PMSI types are
+●
+ Inclusive  PMSI  (I-PMSI)  
+●
+ Selective  PMSI  (S-PMSI)  
+
+I-PMSI
+  all traffic from the Ingress PE router is delivered to every other PE router participating in a given NG-MVPN. This 
+behavior can be compared to the operation of the Default MDT in a Draft-Rosen MVPN. 
+
+S-PMSI
+  Subset  of  the  I-PMSI,  because  a  packet  is  delivered to a subset of PE routers that is participating in a given MVPN. 
+This behavior can be compared to the Data MDT in Draft-Rosen. 
+
+Format atributu PMSI Tunel (vid obr. 3.2)
+
