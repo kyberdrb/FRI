@@ -1,0 +1,91 @@
+3.4.3 
+(2. odstavec)
+
+RSVP-TE P2MP LSP sa môžu použiť na signalizáciu tunelov I-PMSI a S-PMSI. Ak VPN používa inkluzívny P-tunel, 
+odosielateľ PE signalizuje jeden P2MP LSP pre VPN. Ak je VPN nakonfigurovaná na používanie selektívnych P-tunelov, 
+odosielateľ PE signalizuje P2MP LSP pre každý nakonfigurovaný tunel. Odosielajúce (vstupné) a prijímace (výstupné) PE
+hrajú rôzne úlohy v nastavení P2MP LSP. Odosielajúce PE sú zodpovedné hlavne za iniciovanie nadradeného P2MP LSP
+a s ním spojené sub-LSP tunely. Prijímajúce PE sú zodpovedné za vytvorenie stavu, z ktorého môžu preposielať
+pakety prijaté cez sub-LSP do správnej VRF tabuľky (prepojenie P-tunela s VRF).
+
+
+
+3.4.3.1 Nastavenie inkluzívneho P2MP LSP tunela
+(1. odstavec)
+
+P2MP LSP a prislúchajúce sub-LSP tunely sú signalizované vstupným PE. Informácie o
+P2MP LSP sa ohlasujú na výstupné PE v atribúte PMSI prostredníctvom BGP. Vstupný smerovač PE signalizuje
+P2MP sub-LSP tak, že začne odosielať P2MP RSVP PATH správy smerom k výstupným PE.
+Vstupný PE sa o identite výstupných PE dozvie z ciest typu 1 inštalovaných v jeho MVPN tabuľke. 
+Každá správa RSVP PATH nesie S2L_Sub_LSP objekt spolu s objektom relácie P2MP (Session P2MP). 
+Objekt S2L_Sub_LSP nesie 4-bajtovú IP adresu cieľového (výstupného) sub-LSP.
+Sub-LSP tunely prislúchajúce ku P2MP LSP môžu byť signalizované automaticky systémom alebo cez
+statickú sub-LSP konfiguráciu. V prípade automatickej signalizácie si systém sám vyberá názov
+pre každý P2MP LSP a s ním spojené sub-LSP tunely.
+
+Pre lepšie pochopenie P2MP LSP a sub-LSP tunelov viď (Fig. 3.29 -> Obr. 2)
+
+(Opis Fig. 3.29 -> Obr. 2)
+
+Tunel P2MP                                              S2L sub-LSP 
+-Obsahuje jeden alebo viac P2MP LSP                     -Je jedna cesta P2MP LSP - od koreňového uzla (root)
+-Zdieľanie rovnakých koreňových a listových uzlov       po koncový uzol (leaf)
+-Podporuje rezerváciu zdrojov                           -P2PP LSP obsahuje viac S2L sub-LSP, jeden pre každý
+-Jednosmerný                                            koncový uzol (leaf)
+
+
+3.4.3.2
+(str. 186)
+
+Prvá časť konfigurácie aktivuje IGP, BGP a MPLS Traffic Engineering.
+Router PE používa LDP na unicastovú prevádzku, zatiaľ čo RSVP-TE konfigurujeme pre multicast VPN prenos.
+V tomto príklade bol RSVP-TE vybraný ako P-tunel, pretože ponúka funkcie ako Rýchle presmerovanie prevádzky
+cez MPLS (MPLS Fast Re-route) a garantovanie prenosovej rýchlosti, ktoré môžu byť použité multicastovými P2MP LSP.
+
+Tunely poskytovateľa RSVP-TE môžu byť vytvorené dvomi spôsobmi:
+(1) použitím statickej konfigurácie, kde sa P2MP LSP vytvorí okamžite aj bez spojenia s MVPN inštanciou
+(2) použitím získaných informácií o členstve a dynamickej šablóny, ktorá sa vytvorí, ak je priradená k 
+MVPN inštancii. Dynamický LSP umožňuje použiť špecifické obmedzenia definované v LSP šablóne
+pre viac ako jednu MVPN, čo znižuje komplexnosť konfigurácie. Vo všetkých našich príkladoch je použitá
+dynamická šablóna.
+
+Konfigurácia BGP v hlavnej inštancii (v rámci protokolov) je konfigurovaná ako adresná skupina
+"inet-mvpn" k "inet-vpn". Adresná skupina "inet-mvpn" umožňuje BGP protokolu na PE smerovačoch 
+aktivovať podporou multicastových rozšírení. Tak sa medzi PE smerovačmu zaistí automatické vyhľadanie
+(Auto-Discovery) informácií o MVPN účastníkoch a výmena zákazníckych multicast ciest bez nutnosti
+Full-Mesh medzi PE smerovačmi.
+
+"Smerovanie-inštancia" je konfigurácia VRF špecifická pre zákazníka pre danú BGP/MPLS L3VPN.
+V tomto prípade sa vykonávajú konfigurácie MVPN špecifické pre zákazníka (viď obr. 3.43 - v konfigurácií vyššie).
+P-tunel (RSVP-TE P2MP šablóna) je spojený so smerovacou inštanciou pre multicastovú prevádzku.
+Potom konfigurujeme protokol PIM ako smerovací protokol medzi CE-PE.
+PE1 v tomto prípade funguje ako C-RP pre MVPN inštanciu.
+
+Posledným krokom je povoliť protokol MVPN na inštancii služby L3 VPN.
+Táto konfigurácia sa tiež používa na nastavenie pravidiel, aby sa správne identifikovali a spracovali rôzne BGP správy
+na vytvorenie multicast smerovacej tabuľky (viď obr. 3.44 - v konfigurácií nižšie).
+
+
+
+3.4.3.2.1
+(str. 194)
+
+Na vybraných výpisoch z PE1 overíme smerovaciu tabuľku MVPN.
+Podrobnosti o cieľových komunitách a stave ohlásených trás sú zobrazené na obrázku 3.53 (Výpis 6,7).
+
+Po kontrole riadiacej vrstvy pre trasy typu 5 a typu 7 sú potrebné ďalšie kroky overovanie dátovej roviny, aby sa zaistilo, že prenos bude prenesený cez RSVP-TE P2MP LSP tunely.
+Výstup zobrazuje prenos prechádzajúci cez LSP, ktorý je overený prírastkami počtu paketov a bajtov, čo 
+sa dá overiť tak, ako je uvedené na obrázku 3.54 (Výpis 8).
+
+Ďalej skontrolujeme multicastovú smerovaciu tabuľku pre MVPN inštanciu.
+Prevádzka bola presmerovaná párom C-MCAST-Source a C-MCAST-Group.
+Multicastová skupina je "239.1.1.1.".
+Výystup znázornený na obrázok 3.55 (Výpise 9) označuje preposielaný multicast záznam pre túto skupinu.
+Záznam je identifikovaný zdrojom C-MCAST a podrobnosťami o prevádzke; počítadlo paketov sa zvyšuje a 
+stav trasy je v stave "aktívne".
+
+Ďalší užitočný príkaz je uvedený na obrázku 3.56 (Výpis 10), ktorý overí C-MCAST toky a
+príslušný P-tunel a typ, ktorý používa.
+
+Na obrázku 3.57 (Výpis 11) sú uvedené informácie o PIM na PE1, z ktorých vyplýva,
+že PE1 je C-RP.
