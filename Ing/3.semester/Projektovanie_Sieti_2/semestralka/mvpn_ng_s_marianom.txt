@@ -89,3 +89,44 @@ príslušný P-tunel a typ, ktorý používa.
 
 Na obrázku 3.57 (Výpis 11) sú uvedené informácie o PIM na PE1, z ktorých vyplýva,
 že PE1 je C-RP.
+
+
+
+
+3.5 SUMMARY (Zaver)
+
+NG-MVPN poskytuje nový rozmer v poskytovaní multicast služieb cez konvergovanú IP / MPLS infraštruktúru. Riadiaca rovina BGP poskytuje prostredie na vytvorenie nových typov služieb vo forme MVPN smerovacích informácií. NG-MVPN je v dnes vyspelá technológia, ktorá je celosvetovo používaná.
+
+
+
+ZOZNAM SKRATIEK
+
+VPN - Virtual Private Network
+NG MVPN - Next Generation Multicast VPN
+MPLS - Multiprotocol Label Switching
+PE - Provider Edge smerovač
+CE - Customer Edge smerovač
+P - Provider smerovač vo vnútri siete
+C-Route - Customer Route
+C-MCAST - Client Multicast
+GRE-tunel - Generic Router Encapsulation tunel
+P-tunel - Provider tunel
+PIM - Protocol Independent Multicast
+PIM-SM - PIM Sparse Mode
+PIM-SMM - PIM Source Specific Multicast
+PIM-BIDIR - PIM Birectional
+BGP - Border Gateway Protocol
+MBGP - Multiprotocol BGP
+MDT - Multicast Distribution Tree
+RSVP-TE - Ressource Reservation Protocol - Traffic Engineering
+IP - Internet Protocol
+PMSI - Provider Multicast Service Interface
+I-PMSI - Inclusive PMSI
+S-PMSI - Selective PMSI
+P2MP - Point to Multipoint
+LDP - Label Discovery Protocol
+AD - Auto-Discovery
+C-RP - Customer Rendezvous (randevú) Point
+LSP - Link State Protocol
+VRF - Virtual Route Forwarding
+QoS - Quality of Service
