@@ -130,3 +130,4 @@ C-RP - Customer Rendezvous (randevú) Point
 LSP - Link State Protocol
 VRF - Virtual Route Forwarding
 QoS - Quality of Service
+RD - Route Distinguisher
