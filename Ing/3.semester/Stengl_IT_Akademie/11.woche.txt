@@ -1,0 +1,26 @@
+25/a2
+1 - nicht einig
+2 - einig (verlegen in einem anderen zimmer)
+3 - einig
+4 - einig
+
+Genosse - sudruh
+Fräulein - slecna (ale berie sa ako urazka, ak ma zena cca nad 30)
+Cadetafel - organizovane stretnutie v kaviarni
+
+1e,c
+2b
+3a
+4d
+
+Casy pouzite v protokole:
+Passiv 
+Futur
+Imperativ
+  Benotigte Dokumente konnen/sollen/mussen auf die lokale Festplatte gespeichert werden.
+
+Probleme
+-kompatibilitat zwischen der alten und der neuen versio der software
+-serverversicherung
+
+business-wissen.de
