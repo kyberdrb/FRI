@@ -1,0 +1,177 @@
+# Konfiguracne prikazy treba kopirovat do Juniper telnet konzoly
+# vzdy po jednom riadku, aby nacital vzdy cely prikaz, inak nemusi
+# vlozit cely riadok
+
+# Vymazanie predchadzajucej konfiguracie
+
+cli
+configure
+load factory-default
+set system root-authentication plain-text-password
+commit
+
+
+
+
+# Uvodne nastavenia
+
+set system host-name PE1
+commit
+
+
+
+
+# Configuring Interfaces
+
+# fe-0/1/0 nahradene za ge-0/0/1
+# at-0/2/0 nahradene za ge-0/0/0
+
+set interfaces lo0 unit 0 family inet address 192.168.7.1/32 primary
+set interfaces ge-0/0/1 unit 0 family inet address 10.0.67.14/30
+# set at-0/2/0 atm-options pic-type atm1
+# set at-0/2/0 atm-options vpi 0 maximum-vcs 256
+# set at-0/2/0 unit 0 vci 0.128
+# set at-0/2/0 unit 0 family inet address 10.0.78.5/32 destination 10.0.78.6
+set interfaces ge-0/0/0 unit 0 family inet address 10.0.78.5/30
+commit
+
+# Overenie
+run show interfaces terse
+
+
+
+
+# Configuring OSPF
+
+set protocols ospf area 0.0.0.0 interface ge-0/0/0
+set protocols ospf area 0.0.0.0 interface lo0.0
+commit
+
+# Overenie
+run show ospf interfaces
+
+set protocols ospf traffic-engineering shortcuts
+commit
+
+# Overenie
+run show ospf overview
+run show configuration protocols ospf
+
+
+
+
+# Configuring BGP
+
+set routing-options autonomous-system 0.65010
+commit
+
+# Overenie
+run show configuration routing-options
+
+set protocols bgp group group-mvpn type internal
+set protocols bgp group group-mvpn local-address 192.168.7.1
+set protocols bgp group group-mvpn family inet-vpn unicast
+set protocols bgp group group-mvpn family inet-mvpn signaling
+set protocols bgp group group-mvpn neighbor 192.168.9.1
+set protocols bgp group group-mvpn neighbor 192.168.8.1
+commit
+
+# Overenie
+run show bgp group
+
+set policy-options policy-statement bgp-to-ospf from protocol bgp
+set policy-options policy-statement bgp-to-ospf then accept
+commit
+
+# Overenie
+run show policy bgp-to-ospf
+
+
+
+
+# Configuring RSVP
+
+set protocols rsvp interface ge-0/0/1.0
+set protocols rsvp interface ge-0/0/0.0
+commit
+
+# Overenie
+run show configuration protocols rsvp
+
+
+
+
+# Configuring MPLS
+
+set protocols mpls label-switched-path to-pe2 to 192.168.9.1
+set protocols mpls interface ge-0/0/1.0
+set protocols mpls interface ge-0/0/0.0
+set protocols mpls interface lo0.0
+commit
+
+# Overenie
+run show configuration protocols mpls
+
+set interfaces ge-0/0/0 unit 0 family mpls
+commit
+
+# Overenie
+run show mpls interface
+
+
+
+
+# Configuring the VRF Routing Instance
+# Konfiguracia VRF a PIM musia byt ulozene naraz, nie postupne,
+# lebo VRF vyzaduje route distinguisher, ktory vyzaduje route target.
+# VRF je konfigurovana ako "mvpn", takze vyzaduje aj konfiguraciu PIM
+
+set routing-instances vpn-a instance-type vrf
+set routing-instances vpn-a interface lo0.1
+set routing-instances vpn-a interface ge-0/0/1.0
+set routing-instances vpn-a protocols ospf export bgp-to-ospf
+set routing-instances vpn-a protocols ospf area 0.0.0.0 interface all
+set routing-instances vpn-a route-distinguisher 65010:1
+set routing-instances vpn-a vrf-target target:2:1
+set routing-instances vpn-a protocols mvpn
+set interfaces lo0 unit 1 family inet address 10.10.47.101/32
+
+# Configuring PIM
+
+set routing-instances vpn-a protocols pim interface lo0.1 mode sparse
+set routing-instances vpn-a protocols pim interface lo0.1 version 2
+set routing-instances vpn-a protocols pim interface ge-0/0/1.0 mode sparse
+set routing-instances vpn-a protocols pim interface ge-0/0/1.0 version 2
+commit
+
+# Overenie VRF
+run show configuration routing-instances vpn-a
+
+# Overenie lo0.1
+show interfaces terse
+
+# Overenie PIM
+run show pim interfaces instance vpn-a
+
+
+
+
+# Configuring the Provider Tunnel
+
+set routing-instances vpn-a provider-tunnel rsvp-te label-switched-path-template default-template
+commit
+
+# Overenie
+run show configuration routing-instances vpn-a
+
+
+
+
+# Configuring the Rendezvous Point
+
+set routing-instances vpn-a protocols pim rp local address 10.10.47.101
+set routing-instances vpn-a protocols pim rp local group-ranges 224.1.1.1/32
+commit
+
+# Overenie
+run show pim rps instance vpn-a
