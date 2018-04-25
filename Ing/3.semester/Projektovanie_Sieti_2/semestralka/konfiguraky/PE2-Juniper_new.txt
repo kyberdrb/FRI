@@ -15,7 +15,7 @@ commit
 
 # Uvodne nastavenia
 
-set system host-name PE1
+set system host-name PE2
 commit
 
 
@@ -24,15 +24,11 @@ commit
 # Configuring Interfaces
 
 # fe-0/1/0 nahradene za ge-0/0/1
-# at-0/2/0 nahradene za ge-0/0/0
+# at-0/2/1 nahradene za ge-0/0/2
 
-set interfaces lo0 unit 0 family inet address 192.168.7.1/32 primary
-set interfaces ge-0/0/1 unit 0 family inet address 10.0.67.14/30
-# set at-0/2/0 atm-options pic-type atm1
-# set at-0/2/0 atm-options vpi 0 maximum-vcs 256
-# set at-0/2/0 unit 0 vci 0.128
-# set at-0/2/0 unit 0 family inet address 10.0.78.5/32 destination 10.0.78.6
-set interfaces ge-0/0/0 unit 0 family inet address 10.0.78.5/30
+set interfaces lo0 unit 0 family inet address 192.168.9.1/32 primary
+set interfaces ge-0/0/1 unit 0 family inet address 10.0.90.13/30
+set interfaces ge-0/0/2 unit 0 family inet address 10.0.89.6/30
 commit
 
 # Overenie
@@ -43,8 +39,8 @@ run show interfaces terse
 
 # Configuring OSPF
 
-set protocols ospf area 0.0.0.0 interface ge-0/0/0.0
 set protocols ospf area 0.0.0.0 interface lo0.0
+set protocols ospf area 0.0.0.0 interface ge-0/0/2.0
 commit
 
 # Overenie
@@ -56,6 +52,7 @@ commit
 # Overenie
 run show ospf overview
 run show configuration protocols ospf
+run show configuration protocols ospf traffic-engineering
 
 
 
@@ -69,10 +66,10 @@ commit
 run show configuration routing-options
 
 set protocols bgp group group-mvpn type internal
-set protocols bgp group group-mvpn local-address 192.168.7.1
+set protocols bgp group group-mvpn local-address 192.168.9.1
 set protocols bgp group group-mvpn family inet-vpn unicast
 set protocols bgp group group-mvpn family inet-mvpn signaling
-set protocols bgp group group-mvpn neighbor 192.168.9.1
+set protocols bgp group group-mvpn neighbor 192.168.7.1
 set protocols bgp group group-mvpn neighbor 192.168.8.1
 commit
 
@@ -93,7 +90,7 @@ run show policy bgp-to-ospf
 # Configuring RSVP
 
 set protocols rsvp interface ge-0/0/1.0
-set protocols rsvp interface ge-0/0/0.0
+set protocols rsvp interface ge-0/0/2.0
 commit
 
 # Overenie
@@ -104,17 +101,17 @@ run show configuration protocols rsvp
 
 # Configuring MPLS
 
-set protocols mpls label-switched-path to-pe2 to 192.168.9.1
+set protocols mpls label-switched-path to-pe1 to 192.168.7.1
 set protocols mpls interface ge-0/0/1.0
-set protocols mpls interface ge-0/0/0.0
+set protocols mpls interface ge-0/0/2.0
 set protocols mpls interface lo0.0
 commit
 
 # Overenie
 run show configuration protocols mpls
-run show route label-switched-path to-pe2
+run show route label-switched-path to-pe1
 
-set interfaces ge-0/0/0 unit 0 family mpls
+set interfaces ge-0/0/2 unit 0 family mpls
 commit
 
 # Overenie
@@ -133,10 +130,10 @@ set routing-instances vpn-a interface lo0.1
 set routing-instances vpn-a interface ge-0/0/1.0
 set routing-instances vpn-a protocols ospf export bgp-to-ospf
 set routing-instances vpn-a protocols ospf area 0.0.0.0 interface all
-set routing-instances vpn-a route-distinguisher 65010:1
+set routing-instances vpn-a route-distinguisher 65010:2
 set routing-instances vpn-a vrf-target target:2:1
 set routing-instances vpn-a protocols mvpn
-set interfaces lo0 unit 1 family inet address 10.10.47.101/32
+set interfaces lo0 unit 1 family inet address 10.10.47.100/32
 
 # Configuring PIM
 
@@ -171,8 +168,7 @@ run show configuration routing-instances vpn-a
 
 # Configuring the Rendezvous Point
 
-set routing-instances vpn-a protocols pim rp local address 10.10.47.101
-set routing-instances vpn-a protocols pim rp local group-ranges 224.1.1.1/32
+set routing-instances vpn-a protocols pim rp static address 10.10.47.101
 commit
 
 # Overenie
