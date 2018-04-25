@@ -1,0 +1,104 @@
+# Konfiguracne prikazy treba kopirovat do Juniper telnet konzoly
+# vzdy po jednom riadku, aby nacital vzdy cely prikaz, inak nemusi
+# vlozit cely riadok
+
+# Vymazanie predchadzajucej konfiguracie
+
+cli
+configure
+load factory-default
+set system root-authentication plain-text-password
+commit
+
+
+
+
+# Uvodne nastavenia
+
+set system host-name P
+commit
+
+
+
+
+# Configuring Interfaces
+
+# at-0/2/0 nahradene za ge-0/0/0
+# at-0/2/1 nahradene za ge-0/0/2
+
+set interfaces lo0 unit 0 family inet address 192.168.8.1/32 primary
+set interfaces ge-0/0/0 unit 0 family inet address 10.0.78.6/30
+set interfaces ge-0/0/2 unit 0 family inet address 10.0.89.5/30
+commit
+
+# Overenie
+run show interfaces terse
+
+
+
+
+# Configuring OSPF
+
+set protocols ospf area 0.0.0.0 interface lo0.0
+set protocols ospf area 0.0.0.0 interface all
+set protocols ospf area 0.0.0.0 interface fxp0 disable
+commit
+
+# Overenie
+run show ospf interface
+
+set protocols ospf traffic-engineering shortcuts
+commit
+
+# Overenie
+run show ospf overview
+run show configuration protocols ospf
+
+
+
+
+# Configuring BGP
+
+set routing-options autonomous-system 0.65010
+commit
+
+user@PE2# set protocols bgp group group-mvpn type internal
+user@PE2# set protocols bgp group group-mvpn local-address 192.168.9.1
+user@PE2# set protocols bgp group group-mvpn family inet-vpn unicast
+user@PE2# set protocols bgp group group-mvpn family inet-mvpn signaling
+user@PE2# set protocols bgp group group-mvpn neighbor 192.168.7.1
+user@PE2# set protocols bgp group group-mvpn neighbor 192.168.8.1
+commit
+
+# Overenie BGP konfiguracie
+run show configuration protocols bgp
+run show bgp group
+
+# Overenie autonomneho systemu
+run show configuration routing-options
+
+
+
+
+# Configuring RSVP
+
+set protocols rsvp interface ge-0/0/0.0
+set protocols rsvp interface ge-0/0/2.0
+commit
+
+# Overenie
+run show configuration protocols rsvp
+
+
+
+
+# Configuring MPLS
+
+set protocols mpls interface ge-0/0/0.0
+set protocols mpls interface ge-0/0/2.0
+set interfaces ge-0/0/0 unit 0 family mpls
+set interfaces ge-0/0/2 unit 0 family mpls
+commit
+
+# Overenie
+run show mpls interface
