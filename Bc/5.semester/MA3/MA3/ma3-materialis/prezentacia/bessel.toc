@@ -1,7 +1,0 @@
-\beamer@endinputifotherversion {3.07pt}
-\select@language {slovak}
-\beamer@sectionintoc {1}{Besselove funkcie}{3}{0}{1}
-\beamer@sectionintoc {2}{Besselova funkcia prv\IeC {\'e}ho druhu: $J_{\alpha }$}{6}{0}{2}
-\beamer@sectionintoc {3}{Besselova funkcia druh\IeC {\'e}ho druhu: $Y_{\alpha }$}{10}{0}{3}
-\beamer@sectionintoc {4}{Hankelove funkcie}{13}{0}{4}
-\beamer@sectionintoc {5}{Modifikovan\IeC {\'e} Besselove funkcie}{14}{0}{5}
