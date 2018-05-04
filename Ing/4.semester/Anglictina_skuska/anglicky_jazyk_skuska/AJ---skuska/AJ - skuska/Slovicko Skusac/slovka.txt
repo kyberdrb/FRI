@@ -1,0 +1,188 @@
+flicker
+blikať
+fatigue
+únava
+clarity
+čirosť,jasnosť
+luminace
+svietivosť
+invoice
+faktúra,účet
+ink
+atrament,tuš,farba
+beam
+lúč
+powder
+prášok
+fuse
+splynúť,spojiť sa,zlúčiť
+printout
+výtlačok
+peripheral
+periféria
+capture
+zachytiť
+flatbed scanner
+plochý scanner
+hand-held scanner
+ručný scanner
+flash memory card
+pamäťová karta
+to alter images
+upravovať obrázky
+to express in
+vyjadrovať v
+headset
+slúchadlo s mikrofónom
+printout
+výtlačok
+print spooler
+manipulačný program dokumentov na tlač
+dot-matrix printer
+ihličková tlačiareň
+pin
+ihlička
+impact printing
+mechanická tlač
+inked ribbon
+atramentová páska
+self-copying paper
+kopirák
+ink-jet printer
+atramentová tlačiareň
+cartridge
+náplň do tlačiarne
+page description language
+jazyk na popis strán
+imagesetter
+osvitová jednotka
+visual display unit (VDU)
+zobrazovacia jednotka (VDU)
+to take into account
+brať do úvahy
+Cathode Ray Tube
+CRT
+electron guns
+elektrónové delá
+primary colour
+základná farba
+coated with
+pokrytý niečím
+substance
+látka, materiál
+phosphor
+luminofor
+to emit radiation
+vyžarovať žiarenie
+Liquid Crystal Display
+LCD
+Thin Film Transistor
+TFT
+dot pitch
+veľkosť bodu
+luminance
+svetlosť
+brightness
+jas
+colour depth
+farebná hĺbka
+refresh rate
+obnovovacia frekvencia
+eye fatigue
+únava očí
+Digital Light Processing proj.
+DLP projektor
+access time
+prístupová doba
+transfer rate
+prenosová rýchlosť
+internal hard drive
+vnútorný pevný disk
+portable hard drive
+prenosný pevný disk
+to make a backup
+urobiť zálohu
+Digital Verstaile Disc
+DVD
+portable DVD player
+prenosný DVD prehrávač
+non-volatile memory
+stála pamäť
+spreadsheet program
+tabuľkový procesor
+cell
+bunka
+formulae
+vzorec
+equation
+rovnica
+relational database
+relačná databáza
+to perform a query
+spustiť dotaz
+wireframe
+drôtový model
+contour lines
+obrysové čiary
+Desktop Publishing
+DTP
+virus propagation
+šírenie vírusov
+fraud
+podvod
+theft
+krádež
+cyberstalking
+obťažovanie na internete
+abuse
+zneužívanie
+harassment
+obťažovanie
+to exploit security flaws
+využiť bezpečnostné diery
+self-contained
+samostatný
+malicious programs
+škodlivé programy
+disguised
+zamaskovaný
+innocent-looking file
+nevinne vyzerajúci súbor
+wireless fidelity
+Wi-Fi
+fibre-optic cable
+optický kábel
+backbone
+chrbtica
+to pay the bills
+platiť účty
+schedule the payments
+naplánovať platby
+transfer the funds
+previesť peniaze
+check account balance
+skontrolovať stav účtu
+to trade stocks
+obchodovať s akciami
+two-factor authentication
+dvojfaktorová autentifikácia
+transaction auth. number
+TAN
+security token
+bezpečnostný token
+physical trait	
+fyzický znak
+Central Processing Unit
+CPU
+control unit
+riadiaca jednotka
+arithmetic and logic unit
+ALU
+bus
+zbernica
+expansion slots
+rozširujúce sloty
+to expand the RAM
+rozšíriť RAM
+
+

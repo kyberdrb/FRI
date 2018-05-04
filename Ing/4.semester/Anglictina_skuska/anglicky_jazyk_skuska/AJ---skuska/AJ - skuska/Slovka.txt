@@ -1,0 +1,84 @@
+printout			vıtlaèok
+peripheral			periféria
+capture				zachyti
+flatbed scanner			plochı scanner
+hand-held scanner		ruènı scanner
+flash memory card		pamäová karta
+to alter images			upravova obrázky
+to express in			vyjadrova v
+headset				slúchadlo s mikrofónom
+print spooler			manipulaènı program dokumentov na tlaè
+dot-matrix printer		ihlièková tlaèiareò
+pin				ihlièka
+impact printing			mechanická tlaè
+inked ribbon			atramentová páska
+self-copying paper		kopirák
+ink-jet printer			atramentová tlaèiareò
+cartridge			náplò do tlaèiarne
+page description language 	jazyk na popis strán
+imagesetter			osvitová jednotka
+visual display unit (VDU)	zobrazovacia jednotka (VDU)
+to take into account		bra do úvahy
+Cathode Ray Tube		CRT
+electron guns			elektrónové delá
+primary colour			základná farba
+coated with			pokrytı nieèím
+substance			látka, materiál
+phosphor			luminofor
+to emit radiation		vyarova iarenie
+Liquid Crystal Display		LCD
+Thin Film Transistor		TFT
+flicker				blikanie
+dot pitch			ve¾kos bodu
+luminance			svetlos
+brightness			jas
+colour depth			farebná håbka
+refresh rate			obnovovacia frekvencia
+eye fatigue			únava oèí
+Digital Light Processing proj.	DLP projektor
+access time			prístupová doba
+transfer rate			prenosová rıchlos
+internal hard drive		vnútornı pevnı disk
+portable hard drive		prenosnı pevnı disk
+to make a backup		urobi zálohu
+Digital Verstaile Disc		DVD
+portable DVD player		prenosnı DVD prehrávaè
+non-volatile memory		stála pamä
+spreadsheet program		tabu¾kovı procesor
+cell				bunka
+formulae			vzorec
+equation			rovnica
+relational database		relaèná databáza
+to perform a query		spusti dotaz
+wireframe			drôtovı model
+contour lines			obrysové èiary
+Desktop Publishing		DTP
+virus propagation		šírenie vírusov
+fraud				podvod
+theft				kráde
+cyberstalking			obaovanie na internete
+abuse				zneuívanie
+harassment			obaovanie
+to exploit security flaws	vyui bezpeènostné diery
+self-contained			samostatnı
+malicious programs		škodlivé programy
+disguised			zamaskovanı
+innocent-looking file		nevinne vyzerajúci súbor
+wireless fidelity		Wi-Fi
+fibre-optic cable		optickı kábel
+backbone			chrbtica
+to pay the bills		plati úèty
+schedule the payments		naplánova platby
+to transfer funds		previes peniaze
+to check account balance	skontrolova stav úètu
+to trade stocks			obchodova s akciami
+two-factor authentication	dvojfaktorová autentifikácia
+transaction auth. number	TAN
+security token			bezpeènostnı token
+physical trait			fyzickı znak
+Central Processing Unit		CPU
+control unit			riadiaca jednotka
+arithmetic and logic unit	ALU
+bus				zbernica
+expansion slots			rozširujúce sloty
+to expand the RAM		rozšíri RAM
