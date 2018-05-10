@@ -64,8 +64,8 @@ Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topol�
 
 ![Topológia](obrazky/topologia.png)
 
-1. V nastaveniach Edit->Preferences sme zaškrtli Start cli a IP Base sme nastavili na 10.0.0.0/24.
-1. Po kliknutím a podržaním pravého tlačítka na koncových zariadeniach sme otvorili ponuku Properties a nastavili im IP adresy podľa adresácie:
+1. V nastaveniach *Edit -> Preferences* sme zaškrtli *Start cli* a *IP Base* sme nastavili na 10.0.0.0/24.
+1. Kliknutím a podržaním pravého tlačidla na koncových zariadeniach sa otvorí kontextové menu, z ktorého zvolíme možnosť *Properties*. Zariadeniam nastavíme adresáciu podľa nižšie uvedenej tabuľky.
 
     Zariadenie | IP adresa/Maska
     --- | --- | ---
@@ -73,12 +73,15 @@ Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topol�
     h2 | 10.0.0.2/24
     h3 | 10.0.0.3/24
 
-1. Kontrolér c1 nastavíme podľa obrázka. (stlačíme pravé tlačítko myši na kontrolér a vyberieme properties).
+1. Kontrolér *c1* nastavíme podľa obrázka. Stlačíme a podržíme pravé tlačítko myši na kontroléri a vyberieme *Properties*).
 
 ![Topológia](obrazky/controller_konfig.png)
 
 1. Spustili sme topológiu cez Run -> Run.
 1. Ako zaklad svojej prace sme pouzili POX radic a firewall modul.
+
+        cd
+        git clone https://github.com/rakeshdatta/SDN_Firewall.git
 1.  Otvoríme si ďalšiu SSH reláciu na mininet pomocou putty, prihlasíme sa a dostaneme sa do zložky kontroléra pox príkazom:
 mininet@mininet-vm:~$ cd /home/mininet/pox/.
 1.  Spustíme POX kontrolér, ktorý bude plniť úlohu L3 SDN firewallu: mininet@mininet-vm:~/pox$ ./myacl start
