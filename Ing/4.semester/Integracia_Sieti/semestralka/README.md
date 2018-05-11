@@ -59,7 +59,7 @@
         sudo /home/mininet/mininet/examples/miniedit.py
 1. V grafickom rozhraní klikneme v menu riadku na *File->Open* a otvoríme súbor [semkaTOPO.mn](semkaTOPO.mn) v adresári `/home/mininet/`. Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*.
 
-Súbory typu `*.mn` môžeme upravovať v textovom editore, napr.
+Súbory typu `*.mn` môžeme upravovať ako *sudo* v textovom editore, napr. príkazom:
 
         sudo vim /home/mininet/semkaTOPO.mn
 Po otvorení súboru s topológiou vidíme, že súbor je napísaný vo formáte JSON. Jednotlivé kľúčové slová definujú objekty resp. prvky v topológii. Manuálna úprava súboru je užitočná vtedy, keď chceme spresniť súradnice, na ktorých sú umiestnené jednotlivé prvky topológie, čím môžeme docieliť lepší vzhľad topológie.
@@ -125,9 +125,9 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
 
 
 
+**??? OVERIT !!!**
 
-
-        cd
+        cd /home/mininet/pox/pox/
         git clone https://github.com/kyberdrb/SDN_Firewall.git
 1.  Otvoríme si ďalšiu SSH reláciu na mininet pomocou Putty, prihlasíme sa a dostaneme sa do zložky kontroléra pox príkazom:
 mininet@mininet-vm:~$ cd /home/mininet/pox/.
