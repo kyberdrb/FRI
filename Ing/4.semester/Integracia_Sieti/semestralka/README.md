@@ -107,15 +107,21 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
         h2 -> h3 h1 
         h1 -> h3 h2 
         *** Results: 0% dropped (6/6 received)
-1. **TODO DOROBIT - blizsie popisat kroky** Potom, ako bola overená funkčnosť topológie,
+1. Potom, ako bola overená funkčnosť topológie, ju môžeme zavrieť:
 
-* miniedit ssh -> quit
-* miniedit gui -> stop (POX sa ukonci tiez)
-* miniedit gui -> zavriet okno
+    1. Najprv v Miniedit SSH relácii zadáme do `mininet>` príkazového riadku príkaz
+
+            quit
+    1. Potom v Miniedit GUI klikneme v ľavom dolnom rohu na tlačidlo *Stop*. Mininet topológia sa zastaví a POX radiť sa ukončí tiež.
+    1. Nakoniec zatvoríme okno Miniedit GUI.
+
+    Topológiu musíme pred opätovným spustením vypnúť vyššie uvedenou postupnosťou krokov! Vyhneme sa tak zbytočným komplikáciám.
+
+    Nedodržanie poradia týchto krokov môže viesť ku zamrznutiu Mininet SSH relácie, ku nepredvídateľnému správaniu a/alebo k pádu Mininet procesu.
 
 ## Nasadenie modulu pre SDN firewall do SDN radiča POX
 **TODO - PREROBIT! funkcionality POX firewallu, ako klonovat repo z mojho gitu do mininet VM, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
-1. Po ukončení radiča ho môžeme znova spustiť, tentokrát ale s nami vytvoreným modulom pre firewall. Pri vytváraní SDN firewall modulu sme ako základ použili už vytvorený firewall modul pre POX radič - [SDN_Firewall](https://github.com/rakeshdatta/SDN_Firewall).
+1. Po ukončení radiča ho znova spustíme, tentokrát ale s nami vytvoreným SDN firewall modulom. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall modul pre POX radič](https://github.com/rakeshdatta/SDN_Firewall), ktorého autorom je Rakesh Datta.
 
 
 
