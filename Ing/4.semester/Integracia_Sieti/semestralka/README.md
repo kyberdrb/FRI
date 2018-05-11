@@ -60,7 +60,7 @@
         
     otvoríme *Mininedit* - grafické rozhranie nástroja *Mininet*
 1. V grafickom rozhraní klikneme v menu riadku na *File->Open* a otvoríme súbor  [/home/mininet/semkaTOPO.mn](semkaTOPO.mn)  
-Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topológia obsahuje 3 koncové zariadenia (h1,h2,h3), prepínač (s1) a radič (c1).
+Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch - s1) a SDN radič (Controller - c1) (ďalej len *radič*).
 
 ![Topológia](obrazky/topologia.png)
 
@@ -68,21 +68,25 @@ Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topol�
 1. Kliknutím a podržaním pravého tlačidla na koncových zariadeniach sa otvorí kontextové menu, z ktorého zvolíme možnosť *Properties*. Zariadeniam nastavíme adresáciu podľa nižšie uvedenej tabuľky.
 
     Zariadenie | IP adresa/Maska
-    --- | --- | ---
+    --- | ---
     h1 | 10.0.0.1/24
     h2 | 10.0.0.2/24
     h3 | 10.0.0.3/24
 
-1. Kontrolér *c1* nastavíme podľa obrázka. Stlačíme a podržíme pravé tlačítko myši na kontroléri a vyberieme *Properties*).
+1. Radič *c1* nastavíme podľa nižšie uvedeného obrázka. Stlačíme a podržíme pravé tlačítko myši na kontroléri a vyberieme *Properties*).
 
 ![Topológia](obrazky/controller_konfig.png)
 
-1. Spustili sme topológiu cez Run -> Run.
+1. Spustíme radič, v našom prípade POX, v Mininet VM.
+
+        python /home/mininet/pox/pox.py log.level --DEBUG forwarding.l3_learning
+    Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
+1. Spustíme topológiu kliknutím na položku *Run* v menu a zvolíme možnosť *Run*.
 1. Ako zaklad svojej prace sme pouzili POX radic a firewall modul.
 
         cd
         git clone https://github.com/rakeshdatta/SDN_Firewall.git
-1.  Otvoríme si ďalšiu SSH reláciu na mininet pomocou putty, prihlasíme sa a dostaneme sa do zložky kontroléra pox príkazom:
+1.  Otvoríme si ďalšiu SSH reláciu na mininet pomocou Putty, prihlasíme sa a dostaneme sa do zložky kontroléra pox príkazom:
 mininet@mininet-vm:~$ cd /home/mininet/pox/.
 1.  Spustíme POX kontrolér, ktorý bude plniť úlohu L3 SDN firewallu: mininet@mininet-vm:~/pox$ ./myacl start
 1. DALSI POPIS
