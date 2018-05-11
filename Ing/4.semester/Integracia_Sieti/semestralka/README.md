@@ -42,6 +42,9 @@
 
         sudo dhclient eth1
 
+### Vytvorenie topológie
+
+1. Na vytvorenie a prácu s Mininet topológiou je potrebné mať k Mininet VM otvorené 2 SSH relácie: prvá slúži na interakciu s Mininet topológiou prostredníctvom nástroja Miniedit, druhá slúži na manipuláciu s radičom.
 1. Pripojíme sa na Mininet VM pomocou SSH s aktivovanou funkciou *X11 Forwarding*. Prihlásime sa s predvolenými prihlasovacími údajmi.
     1. Vo OS Windows sa na Mininet cez SSH s *X11 Forwarding* funkciou pripojíme pomocou [*Putty*](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Ešte predtým ale musíme nainštalovať [*Xming*](https://sourceforge.net/projects/xming/files/latest/download). *Xming* pridá do *Putty* funkciu *X11 Forwarding*. IP adresu Mininet VM zistíme príkazom “ip a” na rozhraní “eth0”. Po nainštalovaní *Xming* a *Putty* otvoríme *Putty*. V *Putty* aktivujeme v časti *Connection -> SSH -> X11* sme aktivovali *X11 Forwarding* zaškrtnutím políčka "Enable X11 forwarding". Klikneme na 
     1. Na platforme Linux použijeme príkaz
@@ -51,14 +54,9 @@
         resp.
 
             ssh -CY mininet@<IP_adresa_Mininet_VM>
-
-### Vytvorenie topológie
-
-1. Príkazom
+1. V práve otvorenej SSH relácii spustíme nástroj *Miniedit*, čo je grafický nástroj na úpravu Minient topológií.
 
         sudo /home/mininet/mininet/examples/miniedit.py
-        
-    otvoríme *Mininedit* - grafické rozhranie nástroja *Mininet*
 1. V grafickom rozhraní klikneme v menu riadku na *File->Open* a otvoríme súbor  [/home/mininet/semkaTOPO.mn](semkaTOPO.mn)  
 Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch - s1) a SDN radič (Controller - c1) (ďalej len *radič*).
 
@@ -76,6 +74,10 @@ Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*. Topol�
 1. Radič *c1* nastavíme podľa nižšie uvedeného obrázka. Stlačíme a podržíme pravé tlačítko myši na kontroléri a vyberieme *Properties*).
 
 ![Topológia](obrazky/controller_konfig.png)
+
+1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát *X11 Forwarding* cez SSH nie je potrebný.
+
+        ssh mininet@<IP_adresa_Mininet_VM>
 
 1. Spustíme radič, v našom prípade POX, v Mininet VM.
 
