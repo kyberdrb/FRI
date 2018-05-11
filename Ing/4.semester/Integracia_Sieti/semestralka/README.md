@@ -110,7 +110,7 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
 1. **TODO DOROBIT - blizsie popisat kroky** Potom, ako bola overená funkčnosť topológie,
 
 * miniedit ssh -> quit
-* miniedit gui -> stop
+* miniedit gui -> stop (POX sa ukonci tiez)
 * miniedit gui -> zavriet okno
 
 ## Nasadenie modulu pre SDN firewall do SDN radiča POX
