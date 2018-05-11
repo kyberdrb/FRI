@@ -107,9 +107,14 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
         h2 -> h3 h1 
         h1 -> h3 h2 
         *** Results: 0% dropped (6/6 received)
-1. Potom, ako bola overená funkčnosť topológie, ukončíme spustený POX radič tým, že sa prepneme do POX SSH relácie a stlačíme klávesovú skratku `Ctrl+C`.
+1. **TODO DOROBIT - blizsie popisat kroky** Potom, ako bola overená funkčnosť topológie,
 
-# TODO - ODTIALTO PREROBIT! funkcionality POX firewallu, ako klonovat repo z mojho gitu do mininet VM, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu
+* miniedit ssh -> quit
+* miniedit gui -> stop
+* miniedit gui -> zavriet okno
+
+## Nasadenie modulu pre SDN firewall do SDN radiča POX
+**TODO - PREROBIT! funkcionality POX firewallu, ako klonovat repo z mojho gitu do mininet VM, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
 1. Po ukončení radiča ho môžeme znova spustiť, tentokrát ale s nami vytvoreným modulom pre firewall. Pri vytváraní SDN firewall modulu sme ako základ použili už vytvorený firewall modul pre POX radič - [SDN_Firewall](https://github.com/rakeshdatta/SDN_Firewall).
 
 
