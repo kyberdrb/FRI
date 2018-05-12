@@ -75,12 +75,12 @@
         {
             "dest": "s1",
             "opts": {},
-            "src": "h2"
+            "src": "h3"
         },
         {
             "dest": "s1",
             "opts": {},
-            "src": "h3"
+            "src": "h2"
         },
         {
             "dest": "s1",

@@ -42,7 +42,7 @@
 
         sudo dhclient eth1
 
-### Vytvorenie topológie
+### Vytvorenie a práca s topológiou
 
 1. Na vytvorenie a prácu s Mininet topológiou je potrebné mať k Mininet VM otvorené 2 SSH relácie: prvá slúži na interakciu s Mininet topológiou prostredníctvom nástroja Miniedit, druhá slúži na manipuláciu s radičom.
 1. Pripojíme sa na Mininet VM pomocou SSH s aktivovanou funkciou *X11 Forwarding*. Prihlásime sa s predvolenými prihlasovacími údajmi.
@@ -54,21 +54,32 @@
         resp.
 
             ssh -CY mininet@<IP_adresa_Mininet_VM>
+
 1. V práve otvorenej SSH relácii spustíme nástroj *Miniedit*, čo je grafický nástroj na úpravu Minient topológií.
 
         sudo /home/mininet/mininet/examples/miniedit.py
-1. V grafickom rozhraní klikneme v menu riadku na *File->Open* a otvoríme súbor [semkaTOPO.mn](semkaTOPO.mn) v adresári `/home/mininet/`. Tento súbor definuje topológiu použitú pri testovaní *SDN firewall*.
 
-Súbory typu `*.mn` môžeme upravovať ako *sudo* v textovom editore, napr. príkazom:
+1. V grafickom rozhraní klikneme v menu riadku na *File->Open*, a z adresára `/home/mininet/` otvoríme súbor [semkaTOPO.mn](semkaTOPO.mn). Týmto súborom je  definovaná topológia použitá pri testovaní *SDN firewall*.
 
+    Ak tento súbor v spomenutom adresári nie je prítomný, stiahneme si ho z [adresára pre semestrálnu prácu](https://github.com/kyberdrb/FRI/blob/master/Ing/4.semester/Integracia_Sieti/semestralka/semkaTOPO.mn). Na stránke pravým tlačidlom klikneme na *Raw* a z kontextovej ponuky zvolíme možnosť *Save Link As...*. Následne súbor presunieme do adresára `/home/mininet/` na Mininet VM napr. pomocou nástroja *FileZilla*.
+
+    Súbory typu `*.mn` sú textové súbory napísané vo formáte JSON, preto ich môžeme upravovať ako *sudo/root* v textovom editore. Musíme ale otvoriť novú SSH reláciu, keďže po spustení Miniedit GUI v aktuálnej SSH relácií nie je možné zadávať príkazy do príkazového riadku.
+
+        ssh mininet@<IP_adresa_Mininet_VM>
         sudo vim /home/mininet/semkaTOPO.mn
-Po otvorení súboru s topológiou vidíme, že súbor je napísaný vo formáte JSON. Jednotlivé kľúčové slová definujú objekty resp. prvky v topológii. Manuálna úprava súboru je užitočná vtedy, keď chceme spresniť súradnice, na ktorých sú umiestnené jednotlivé prvky topológie, čím môžeme docieliť lepší vzhľad topológie.
 
-Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch - s1) a SDN radič (Controller - c1) (ďalej len *radič*).
+    Jednotlivé kľúčové slová definujú objekty resp. prvky v topológii. Manuálna úprava súboru je užitočná vtedy, keď chceme spresniť súradnice, na ktorých sú umiestnené jednotlivé prvky topológie, čím môžeme docieliť lepší vzhľad topológie.
+
+    Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch - s1) a SDN radič (Controller - c1) (ďalej len *radič*).
 
 ![Topológia](obrazky/topologia.png)
 
-1. V nastaveniach *Edit -> Preferences* sme zaškrtli *Start cli* a *IP Base* sme nastavili na 10.0.0.0/24.
+1. V Mininedit GUI klineme na menu lište na *Edit -> Preferences*. Zmeníme nastavenia takto:
+    * *IP Base*: 10.0.0.0/24
+    * *Default Terminal*: xterm
+    * *Start CLI*: zaškrtnuté
+    * *Default Switch*: Open vSwitch Kernel Mode
+    * *Open vSwitch*: 1.0
 1. Kliknutím a podržaním pravého tlačidla na koncových zariadeniach sa otvorí kontextové menu, z ktorého zvolíme možnosť *Properties*. Zariadeniam nastavíme adresáciu podľa nižšie uvedenej tabuľky.
 
     Zariadenie | IP adresa/Maska
@@ -81,18 +92,56 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
 
 ![Topológia](obrazky/radic_konfiguracia.png)
 
-1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát *X11 Forwarding* cez SSH nie je potrebný.
+1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát nie je potrebné aktivovať *X11 Forwarding* cez SSH.
 
         ssh mininet@<IP_adresa_Mininet_VM>
 
 1. Spustíme radič, v našom prípade POX, v práve otvorenej SSH relácii. Radič zatiaľ spustíme iba na otestovanie, či prepínač preposiela prevádzku, a či je existuje konektivita medzi koncovými zariadeniami.
 
         python /home/mininet/pox/pox.py log.level --DEBUG forwarding.l3_learning &
+
     Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
-1. Spustíme topológiu kliknutím na položku *Run* v menu a zvolíme možnosť *Run*.
-1. V Miniedit SSH relácií zadáme do príkazového riadku `mininet>` príkaz
+
+    Príkaz vygeneruje takýto výstup:
+    
+        [1] 3166
+        ...
+        DEBUG:core:POX 0.2.0 (carp) going up...
+        DEBUG:core:Running on CPython (2.7.6/Oct 26 2016 20:32:47)
+        DEBUG:core:Platform is Linux-4.2.0-27-generic-i686-with-Ubuntu-14.04-trusty
+        DEBUG:forwarding.l3_learning:Up...
+        INFO:core:POX 0.2.0 (carp) is up.
+        DEBUG:openflow.of_01:Listening on 0.0.0.0:6633
+
+    Z výstupu o.i. vyplýva, že radič je spustený v procese, ktorého PID je `3166`, počúva na porte `6633` a načítal modul `forwarding.l3_learning`.
+    
+1. Spustíme topológiu
+    * buď kliknutím na položku *Run* v menu lište a zvolením možnosti *Run*,
+    * alebo kliknutím na tlačidlo *Run* v ľavom dolnom rohu Miniedit GUI.
+
+    Po spustení topológie uvidíme v aktuálnej (POX) SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
+
+        INFO:openflow.of_01:[None 1] closed
+        INFO:openflow.of_01:[00-00-00-00-00-01 2] connected
+
+    Po spustení topológie uvidíme v Miniedit SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
+
+        Build network based on our topology.
+        Getting Hosts and Switches.
+        Getting controller selection:remote
+        ...
+        NOTE: PLEASE REMEMBER TO EXIT THE CLI BEFORE YOU PRESS THE STOP BUTTON. Not exiting will prevent MiniEdit from quitting and will prevent you from starting the network again during this sessoin.
+
+        *** Starting CLI:
+        mininet>
+
+    Výstup obsahuje aj správu `NOTE`, ktorá vysvetľuje, ako správne vypnúť topológiu, inak nebude možné spustiť ju znova. Tomuto problému sa venujeme v ďalších krokoch tohto návodu.
+1. Prepneme sa do Miniedit SSH relácie a do príkazového riadku `mininet>` zadáme príkaz
 
         pingall
+
+    Ten overí konektivitu každého koncového zariadenia ku všetkým ostatným koncovým zariadeniam.
+    
     Nižšie sú uvedené výstupy príkazu `pingall` pred a po spustení radiča.
 
         mininet> pingall
@@ -109,15 +158,23 @@ Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch 
         *** Results: 0% dropped (6/6 received)
 1. Potom, ako bola overená funkčnosť topológie, ju môžeme zavrieť:
 
-    1. Najprv v Miniedit SSH relácii zadáme do `mininet>` príkazového riadku príkaz
+    1. Najprv v Miniedit SSH relácií zadáme do `mininet>` príkazového riadku príkaz
 
             quit
-    1. Potom v Miniedit GUI klikneme v ľavom dolnom rohu na tlačidlo *Stop*. Mininet topológia sa zastaví a POX radiť sa ukončí tiež.
+    1. Prepneme sa do POX SSH relácie a ukončíme proces spustený radičom. Použijeme PID, ktorý sme  zadáme do
+
+            pkill -f pox.py
+
+    1. V Miniedit GUI zastavíme topológiu
+        * buď kliknutím na položku *Run* v menu lište a zvolením možnosti *Stop*,
+        * alebo kliknutím na tlačidlo *Stop* v ľavom dolnom rohu Miniedit GUI.
+
+        Mininet topológia sa zastaví.
     1. Nakoniec zatvoríme okno Miniedit GUI.
 
-    Topológiu musíme pred opätovným spustením vypnúť vyššie uvedenou postupnosťou krokov! Vyhneme sa tak zbytočným komplikáciám.
+    Topológiu musíme pred opätovným spustením vypnúť vyššie uvedenou postupnosťou krokov! Vyhneme sa tak zbytočným komplikáciám s aplikáciou a konektivitou v topológií.
 
-    Nedodržanie poradia týchto krokov môže viesť ku zamrznutiu Mininet SSH relácie, ku nepredvídateľnému správaniu a/alebo k pádu Mininet procesu.
+    Nedodržanie poradia týchto krokov môže viesť aj ku zamrznutiu Mininet SSH relácie, ku nepredvídateľnému správaniu resp. k pádu Mininet procesu.
 
 ## Nasadenie modulu pre SDN firewall do SDN radiča POX
 **TODO - PREROBIT! funkcionality POX firewallu, ako klonovat repo z mojho gitu do mininet VM, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
