@@ -187,6 +187,10 @@
 
     Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `/home/mininet/pox/ext/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `/home/mininet/pox/pox/` a `/home/mininet/pox/ext/`.
 
+    Firewall balíček môže byť naklonovaný do ľubovoľného adresára pre rozširujúce balíčky pre POX radič t.j. `/pox` aj `/ext`. Nakoniec sme si vybrali adresár `/ext`, keďže dokumentácia k POX radiču odporúča použiť spomenutý adresár pred adresárom `/pox` na vlastné rozširujúce balíčky.
+
+    Predpokladáme, že POX radič, konkrétne súbor `pox.py` je umiestnený v domovskom adresári používateľa, t.j. `$HOME/pox/` resp. `~/pox/`. V opačnom prípade spúšťací skript nebude pracovať správne.
+
         cd /home/mininet/pox/ext/
         git clone https://github.com/kyberdrb/sdnfirewall.git
 
@@ -214,6 +218,7 @@
         git -C /home/mininet/pox/pox/firewall pull
 
 Zdroje:  
+* Markdown cheat sheet https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
 * Host-only network adapter explanation https://www.virtualbox.org/manual/ch06.html#network_hostonly
 * X11 Forwarding for SSH in XFCE desktop environment https://bbs.archlinux.org/viewtopic.php?pid=580795#p580795
 * Markdown - automatic item numbering in a numbered list https://stackoverflow.com/questions/12145232/create-an-automatically-numbered-list/12145270#12145270
