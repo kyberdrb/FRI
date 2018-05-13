@@ -176,8 +176,8 @@
 
     Nedodržanie poradia týchto krokov môže viesť aj ku zamrznutiu Mininet SSH relácie, ku nepredvídateľnému správaniu resp. k pádu Mininet procesu.
 
-## Nasadenie modulu pre SDN firewall do SDN radiča POX
-**TODO - PREROBIT! funkcionality POX firewallu, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
+### Nasadenie modulu pre SDN firewall do SDN radiča POX
+
 1. Po ukončení radiča môžeme prejsť k nasadeniu firewall modulu do POX radiča. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall balíček pre POX radič](https://github.com/rakeshdatta/SDN_Firewall). Jeho autorom je Rakesh Datta.
 
     Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `/home/mininet/pox/pox/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `/home/mininet/pox/pox/` a `/home/mininet/pox/ext/`.
@@ -192,6 +192,9 @@
 
         cd /home/mininet/pox/pox/firewall
         ./POX_firewall_launcher.sh start
+
+
+**TODO - PRIDAT: funkcionality POX firewallu, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
 
 1. Aktualizácia firewall balíčka vykonáme stiahnutím najnovšej verzie z nášho GitHub repozitára:
 
