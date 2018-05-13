@@ -96,9 +96,14 @@
 
         ssh mininet@<IP_adresa_Mininet_VM>
 
-1. Spustíme radič, v našom prípade POX, v práve otvorenej SSH relácii. Radič zatiaľ spustíme iba na otestovanie, či prepínač preposiela prevádzku, a či je existuje konektivita medzi koncovými zariadeniami.
+1. Spustíme radič, v našom prípade POX, v práve otvorenej SSH relácii. Radič zatiaľ spustíme iba na otestovanie, či prepínač preposiela prevádzku, a či je existuje konektivita medzi koncovými zariadeniami. Na otestovanie použijeme buď príkaz, ktorý používa L3 prepínač (IP adresy)
 
         python /home/mininet/pox/pox.py log.level --DEBUG forwarding.l3_learning &
+    alebo L2 prepínač (MAC adresy)
+
+        python /home/mininet/pox/pox.py log.level --DEBUG forwarding.l2_learning &
+
+    L2 prepínač funguje v POX radiči rýchlejšie, než L3. Pri L3 prepínači môže pri reštartoch radiča nastať úvodné zdržanie, čo má za následok, že sa prevádzka nemusí preposielať, napr. pri vykonaní príkazu `pingall` v Mininet príkazovom riadku. To je zapríčinené pomalším učením L3 prepínača resp. oneskorenými ARP odpoveďami. Avšak po úvodnom naučení sa všetkých potrebných MAC adries v topológii už L3 prepínač preposiela prevádzku bez zdržania. V prípade príkazu `pingall` sa tento vykoná bez zdržania a za okamih sa úspešne ukončí.
 
     Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
 
@@ -180,9 +185,9 @@
 
 1. Po ukončení radiča môžeme prejsť k nasadeniu firewall modulu do POX radiča. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall balíček pre POX radič](https://github.com/rakeshdatta/SDN_Firewall). Jeho autorom je Rakesh Datta.
 
-    Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `/home/mininet/pox/pox/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `/home/mininet/pox/pox/` a `/home/mininet/pox/ext/`.
+    Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `/home/mininet/pox/ext/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `/home/mininet/pox/pox/` a `/home/mininet/pox/ext/`.
 
-        cd /home/mininet/pox/pox/
+        cd /home/mininet/pox/ext/
         git clone https://github.com/kyberdrb/sdnfirewall.git
 
 1. V Miniedit SSH relácií spustíme Miniedit GUI a otvoríme v ňom súbor s Mininet topológiou `semkaTOPO.mn`.
@@ -190,7 +195,7 @@
         sudo /home/mininet/mininet/examples/miniedit.py
 1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič a spustíme ho príslušným skriptom:
 
-        cd /home/mininet/pox/pox/firewall
+        cd /home/mininet/pox/pox/sdnfirewall
         ./launcher.sh start
 
 
