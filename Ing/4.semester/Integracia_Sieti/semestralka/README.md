@@ -46,7 +46,7 @@
 
 1. Na vytvorenie a prácu s Mininet topológiou je potrebné mať k Mininet VM otvorené 2 SSH relácie: prvá slúži na interakciu s Mininet topológiou prostredníctvom nástroja Miniedit, druhá slúži na manipuláciu s radičom.
 1. Pripojíme sa na Mininet VM pomocou SSH s aktivovanou funkciou *X11 Forwarding*. Prihlásime sa s predvolenými prihlasovacími údajmi.
-    1. Vo OS Windows sa na Mininet cez SSH s *X11 Forwarding* funkciou pripojíme pomocou [*Putty*](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Ešte predtým ale musíme nainštalovať [*Xming*](https://sourceforge.net/projects/xming/files/latest/download). *Xming* pridá do *Putty* funkciu *X11 Forwarding*. IP adresu Mininet VM zistíme príkazom `ip a` na rozhraní “eth0”. Po nainštalovaní *Xming* a *Putty* otvoríme *Putty*. V *Putty* aktivujeme v časti *Connection -> SSH -> X11* sme aktivovali *X11 Forwarding* zaškrtnutím políčka "Enable X11 forwarding". Klikneme na 
+    1. Vo OS Windows sa na Mininet cez SSH s *X11 Forwarding* funkciou pripojíme pomocou [*Putty*](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Ešte predtým ale musíme nainštalovať [*Xming*](https://sourceforge.net/projects/xming/files/latest/download). *Xming* pridá do *Putty* funkciu *X11 Forwarding*. IP adresu Mininet VM zistíme príkazom `ip a` na rozhraní `eth0`. Po nainštalovaní *Xming* a *Putty* otvoríme *Putty*. V *Putty* aktivujeme v časti *Connection -> SSH -> X11* sme aktivovali *X11 Forwarding* zaškrtnutím políčka "Enable X11 forwarding". Klikneme na 
     1. Na platforme Linux použijeme príkaz
 
             ssh -X mininet@<IP_adresa_Mininet_VM>
@@ -72,7 +72,7 @@
 
     Topológia obsahuje 3 koncové zariadenia (Host - h1,h2,h3), prepínač (Switch - s1) a SDN radič (Controller - c1) (ďalej len *radič*).
 
-![Topológia](obrazky/topologia.png)
+    ![Topológia](obrazky/topologia.png)
 
 1. V Mininedit GUI klineme na menu lište na *Edit -> Preferences*. Zmeníme nastavenia takto:
     * *IP Base*: 10.0.0.0/24
@@ -90,7 +90,7 @@
 
 1. Radič *c1* nastavíme podľa nižšie uvedeného obrázka. Stlačíme a podržíme pravé tlačítko myši na kontroléri a vyberieme *Properties*).
 
-![Topológia](obrazky/radic_konfiguracia.png)
+    ![Topológia](obrazky/radic_konfiguracia.png)
 
 1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát nie je potrebné aktivovať *X11 Forwarding* cez SSH.
 
@@ -103,7 +103,7 @@
     Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
 
     Príkaz vygeneruje takýto výstup:
-    
+
         [1] 3166
         ...
         DEBUG:core:POX 0.2.0 (carp) going up...
@@ -178,18 +178,26 @@
 
 ## Nasadenie modulu pre SDN firewall do SDN radiča POX
 **TODO - PREROBIT! funkcionality POX firewallu, ako klonovat repo z mojho gitu do mininet VM, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
-1. Po ukončení radiča ho znova spustíme, tentokrát ale s nami vytvoreným SDN firewall modulom. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall modul pre POX radič](https://github.com/rakeshdatta/SDN_Firewall), ktorého autorom je Rakesh Datta.
+1. Po ukončení radiča môžeme prejsť k nasadeniu firewall modulu do POX radiča. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall balíček pre POX radič](https://github.com/rakeshdatta/SDN_Firewall). Jeho autorom je Rakesh Datta.
 
-
-
-**??? OVERIT !!!**
+    Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `/home/mininet/pox/pox/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `/home/mininet/pox/pox/` a `/home/mininet/pox/ext/`.
 
         cd /home/mininet/pox/pox/
-        git clone https://github.com/kyberdrb/SDN_Firewall.git
-1.  Otvoríme si ďalšiu SSH reláciu na mininet pomocou Putty, prihlasíme sa a dostaneme sa do zložky kontroléra pox príkazom:
-mininet@mininet-vm:~$ cd /home/mininet/pox/.
-1.  Spustíme POX kontrolér, ktorý bude plniť úlohu L3 SDN firewallu: mininet@mininet-vm:~/pox$ ./myacl start
+        git clone https://github.com/kyberdrb/sdnfirewall.git
+
+
+
+1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX:
+
+        cd /home/mininet/pox/pox/firewall
+1.  Spustíme POX kontrolér, ktorý bude plniť úlohu L3 SDN firewallu: 
+
+        ./POX_firewall_launcher.sh start
 1. DALSI POPIS
+
+Aktualizácia firewall modulu
+
+        git pull
 
 Zdroje:  
 * https://www.virtualbox.org/manual/ch06.html#network_hostonly
