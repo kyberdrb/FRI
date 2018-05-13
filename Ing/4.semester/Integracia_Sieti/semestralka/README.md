@@ -44,7 +44,64 @@
 
 ### Vytvorenie a práca s topológiou
 
+**Poradie krokov pri spúšťaní topológie v Miniedit GUI:  
+Spustenie POX radiča -> Spustenie **
+
 1. Na vytvorenie a prácu s Mininet topológiou je potrebné mať k Mininet VM otvorené 2 SSH relácie: prvá slúži na interakciu s Mininet topológiou prostredníctvom nástroja Miniedit, druhá slúži na manipuláciu s radičom.
+1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát nie je potrebné aktivovať *X11 Forwarding* cez SSH.
+
+        ssh mininet@<IP_adresa_Mininet_VM>
+
+1. Spustíme radič, v našom prípade POX, v práve otvorenej SSH relácii. Radič zatiaľ spustíme iba na otestovanie, či prepínač preposiela prevádzku, a či je existuje konektivita medzi koncovými zariadeniami. Na otestovanie použijeme buď príkaz, ktorý používa L3 prepínač (IP adresy)
+
+        python ~/pox/pox.py log.level --DEBUG forwarding.l3_learning &
+    alebo L2 prepínač (MAC adresy)
+
+        python ~/pox/pox.py log.level --DEBUG forwarding.l2_learning &
+
+    Príkaz vygeneruje takýto výstup:
+
+        [1] 3166
+        ...
+        DEBUG:core:POX 0.2.0 (carp) going up...
+        DEBUG:core:Running on CPython (2.7.6/Oct 26 2016 20:32:47)
+        DEBUG:core:Platform is Linux-4.2.0-27-generic-i686-with-Ubuntu-14.04-trusty
+        DEBUG:forwarding.l3_learning:Up...
+        INFO:core:POX 0.2.0 (carp) is up.
+        DEBUG:openflow.of_01:Listening on 0.0.0.0:6633
+
+    Z výstupu o.i. vyplýva, že radič je spustený v procese, ktorého PID je `3166`, počúva na porte `6633` a načítal modul `forwarding.l3_learning`.
+    
+1. Spustíme topológiu v Miniedit GUI
+    * buď kliknutím na položku *Run* v menu lište a zvolením možnosti *Run*,
+    * alebo kliknutím na tlačidlo *Run* v ľavom dolnom rohu Miniedit GUI.
+
+    Po spustení topológie uvidíme v aktuálnej (POX) SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
+
+        INFO:openflow.of_01:[None 1] closed
+        INFO:openflow.of_01:[00-00-00-00-00-01 2] connected
+
+    Po spustení topológie uvidíme v Miniedit SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
+
+        Build network based on our topology.
+        Getting Hosts and Switches.
+        Getting controller selection:remote
+        ...
+        NOTE: PLEASE REMEMBER TO EXIT THE CLI BEFORE YOU PRESS THE STOP BUTTON. Not exiting will prevent MiniEdit from quitting and will prevent you from starting the network again during this sessoin.
+
+        *** Starting CLI:
+        mininet>
+
+    Výstup obsahuje aj správu `NOTE`, ktorá vysvetľuje, ako správne vypnúť topológiu, inak nebude možné spustiť ju znova. Tomuto problému sa venujeme v ďalších krokoch tohto návodu.
+1. Otestujeme konektivitu medzi jednotlivými koncovými zariadeniami vykonaním príkazu
+
+        pingall
+
+    z príkazového riadku `mininet>`.
+
+    Ak sme spustili radič príkazom, ktorý používa L2 prepínač, ten funguje v POX radiči rýchlejšie, než L3 prepínač. Pri L3 prepínači môže pri reštartoch radiča nastať úvodné zdržanie, čo má za následok, že sa prevádzka nemusí preposielať, napr. pri vykonaní príkazu `pingall` v Mininet príkazovom riadku. To je zapríčinené pomalším učením L3 prepínača resp. oneskorenými ARP odpoveďami. Avšak po úvodnom naučení sa všetkých potrebných MAC adries v topológii už L3 prepínač preposiela prevádzku bez zdržania. V prípade príkazu `pingall` sa tento vykoná bez zdržania a za okamih sa úspešne ukončí.
+
+    Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
 1. Pripojíme sa na Mininet VM pomocou SSH s aktivovanou funkciou *X11 Forwarding*. Prihlásime sa s predvolenými prihlasovacími údajmi.
     1. Vo OS Windows sa na Mininet cez SSH s *X11 Forwarding* funkciou pripojíme pomocou [*Putty*](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Ešte predtým ale musíme nainštalovať [*Xming*](https://sourceforge.net/projects/xming/files/latest/download). *Xming* pridá do *Putty* funkciu *X11 Forwarding*. IP adresu Mininet VM zistíme príkazom `ip a` na rozhraní `eth0`. Po nainštalovaní *Xming* a *Putty* otvoríme *Putty*. V *Putty* aktivujeme v časti *Connection -> SSH -> X11* sme aktivovali *X11 Forwarding* zaškrtnutím políčka "Enable X11 forwarding". Klikneme na 
     1. Na platforme Linux použijeme príkaz
@@ -92,55 +149,6 @@
 
     ![Topológia](obrazky/radic_konfiguracia.png)
 
-1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát nie je potrebné aktivovať *X11 Forwarding* cez SSH.
-
-        ssh mininet@<IP_adresa_Mininet_VM>
-
-1. Spustíme radič, v našom prípade POX, v práve otvorenej SSH relácii. Radič zatiaľ spustíme iba na otestovanie, či prepínač preposiela prevádzku, a či je existuje konektivita medzi koncovými zariadeniami. Na otestovanie použijeme buď príkaz, ktorý používa L3 prepínač (IP adresy)
-
-        python ~/pox/pox.py log.level --DEBUG forwarding.l3_learning &
-    alebo L2 prepínač (MAC adresy)
-
-        python ~/pox/pox.py log.level --DEBUG forwarding.l2_learning &
-
-    L2 prepínač funguje v POX radiči rýchlejšie, než L3. Pri L3 prepínači môže pri reštartoch radiča nastať úvodné zdržanie, čo má za následok, že sa prevádzka nemusí preposielať, napr. pri vykonaní príkazu `pingall` v Mininet príkazovom riadku. To je zapríčinené pomalším učením L3 prepínača resp. oneskorenými ARP odpoveďami. Avšak po úvodnom naučení sa všetkých potrebných MAC adries v topológii už L3 prepínač preposiela prevádzku bez zdržania. V prípade príkazu `pingall` sa tento vykoná bez zdržania a za okamih sa úspešne ukončí.
-
-    Ak radič pred spustením celej topológie nespustíme, prepínač pripojený ku radiču nebude preposielať prevádzku, keďže prepínač typu *Switch*, narozdiel od prepínača typu *LegacySwitch*, vyžaduje spustený radič.
-
-    Príkaz vygeneruje takýto výstup:
-
-        [1] 3166
-        ...
-        DEBUG:core:POX 0.2.0 (carp) going up...
-        DEBUG:core:Running on CPython (2.7.6/Oct 26 2016 20:32:47)
-        DEBUG:core:Platform is Linux-4.2.0-27-generic-i686-with-Ubuntu-14.04-trusty
-        DEBUG:forwarding.l3_learning:Up...
-        INFO:core:POX 0.2.0 (carp) is up.
-        DEBUG:openflow.of_01:Listening on 0.0.0.0:6633
-
-    Z výstupu o.i. vyplýva, že radič je spustený v procese, ktorého PID je `3166`, počúva na porte `6633` a načítal modul `forwarding.l3_learning`.
-    
-1. Spustíme topológiu
-    * buď kliknutím na položku *Run* v menu lište a zvolením možnosti *Run*,
-    * alebo kliknutím na tlačidlo *Run* v ľavom dolnom rohu Miniedit GUI.
-
-    Po spustení topológie uvidíme v aktuálnej (POX) SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
-
-        INFO:openflow.of_01:[None 1] closed
-        INFO:openflow.of_01:[00-00-00-00-00-01 2] connected
-
-    Po spustení topológie uvidíme v Miniedit SSH relácií takýto výstup, na konci ktorého sa dostaneme do Mininet príkazového riadku.
-
-        Build network based on our topology.
-        Getting Hosts and Switches.
-        Getting controller selection:remote
-        ...
-        NOTE: PLEASE REMEMBER TO EXIT THE CLI BEFORE YOU PRESS THE STOP BUTTON. Not exiting will prevent MiniEdit from quitting and will prevent you from starting the network again during this sessoin.
-
-        *** Starting CLI:
-        mininet>
-
-    Výstup obsahuje aj správu `NOTE`, ktorá vysvetľuje, ako správne vypnúť topológiu, inak nebude možné spustiť ju znova. Tomuto problému sa venujeme v ďalších krokoch tohto návodu.
 1. Prepneme sa do Miniedit SSH relácie a do príkazového riadku `mininet>` zadáme príkaz
 
         pingall
@@ -187,23 +195,27 @@
 
     Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `~/pox/ext/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `~/pox/pox/` a `~/pox/ext/`.
 
-    Firewall balíček môže byť naklonovaný do ľubovoľného adresára pre rozširujúce balíčky pre POX radič t.j. `/pox` aj `/ext`. Nakoniec sme si vybrali adresár `/ext`, keďže dokumentácia k POX radiču odporúča použiť spomenutý adresár pred adresárom `/pox` na vlastné rozširujúce balíčky.
+    Firewall balíček môže byť naklonovaný do ľubovoľného adresára pre rozširujúce balíčky pre POX radič t.j. `/pox` aj `/ext`. Nakoniec sme si vybrali adresár `/ext`, keďže [dokumentácia k POX radiču](https://github.com/att/pox/blob/master/pox/boot.py) odporúča použiť spomenutý adresár pred adresárom `/pox` na vlastné rozširujúce balíčky.
 
     Predpokladáme, že POX radič, konkrétne súbor `pox.py` je umiestnený v domovskom adresári používateľa, t.j. `$HOME/pox/` resp. `~/pox/`. V opačnom prípade spúšťací skript nebude pracovať správne.
 
         cd ~/pox/ext/
         git clone https://github.com/kyberdrb/sdnfirewall.git
 
-1. V Miniedit SSH relácií spustíme Miniedit GUI a otvoríme v ňom súbor s Mininet topológiou `semkaTOPO.mn`.
-
-        sudo ~/mininet/examples/miniedit.py
 1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič a spustíme ho príslušným skriptom:
 
         cd ~/pox/ext/sdnfirewall
         ./launcher.sh start
+1. V Miniedit SSH relácií spustíme Miniedit GUI a otvoríme v ňom súbor s Mininet topológiou `semkaTOPO.mn`.
+
+        sudo ~/mininet/examples/miniedit.py
 
 
 **TODO - PRIDAT: funkcionality POX firewallu, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
+
+1. Terminály všetkých koncových zariadení otvoríme z príkazového riadku `mininet>` príkazom
+
+        xterm h1 h2 h3
 
 1. Zmena pravidiel si vyžaduje reštart radiča príkazom
 
@@ -229,3 +241,6 @@ Zdroje:
 * Print exit status of the last executed command http://tldp.org/LDP/abs/html/exit-status.html
 * Print variable value with printf in Bash http://wiki.bash-hackers.org/commands/builtin/printf
 * Functions in Bash https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
+* Properly working with a file in Python http://www.pythonforbeginners.com/files/with-statement-in-python and  https://stackoverflow.com/questions/40416072/reading-file-using-relative-path-in-python-project/40416154
+* Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
+* Návod na používanie Mininet VM s rôznymi radičmi (aj POX, Floodlight a pod.) https://github.com/mininet/openflow-tutorial/wiki/Create-a-Learning-Switch
