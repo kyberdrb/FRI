@@ -191,18 +191,31 @@
 1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič a spustíme ho príslušným skriptom:
 
         cd /home/mininet/pox/pox/firewall
-        ./POX_firewall_launcher.sh start
+        ./launcher.sh start
 
 
 **TODO - PRIDAT: funkcionality POX firewallu, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
+
+1. Po skončení práce s POX radičom ho ukončíme pomocou spúšťacieho skriptu príkazom
+
+        ./launcher.sh restart
+
+1. Po skončení práce s POX radičom ho ukončíme pomocou spúšťacieho skriptu príkazom
+
+        ./launcher.sh stop
 
 1. Aktualizácia firewall balíčka vykonáme stiahnutím najnovšej verzie z nášho GitHub repozitára:
 
         git -C /home/mininet/pox/pox/firewall pull
 
 Zdroje:  
-* https://www.virtualbox.org/manual/ch06.html#network_hostonly
-* https://bbs.archlinux.org/viewtopic.php?pid=580795#p580795
-* https://stackoverflow.com/questions/12145232/create-an-automatically-numbered-list/12145270#12145270
-* [X11 Forwarding using Putty on Windows](https://www.youtube.com/watch?v=QRsma2vkEQE)
-    
+* Host-only network adapter explanation https://www.virtualbox.org/manual/ch06.html#network_hostonly
+* X11 Forwarding for SSH in XFCE desktop environment https://bbs.archlinux.org/viewtopic.php?pid=580795#p580795
+* Markdown - automatic item numbering in a numbered list https://stackoverflow.com/questions/12145232/create-an-automatically-numbered-list/12145270#12145270
+* X11 Forwarding using Putty on Windows https://www.youtube.com/watch?v=QRsma2vkEQE
+* The 'launcher' shell script has been verified with https://www.shellcheck.net/
+* Switch-case in Bash http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_03.html
+* Print new line with echo in Bash https://stackoverflow.com/questions/8467424/echo-newline-in-bash-prints-literal-n/8467449#8467449
+* Print exit status of the last executed command http://tldp.org/LDP/abs/html/exit-status.html
+* Print variable value with printf in Bash http://wiki.bash-hackers.org/commands/builtin/printf
+* Functions in Bash https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
