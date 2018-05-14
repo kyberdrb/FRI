@@ -242,5 +242,27 @@ Zdroje:
 * Print variable value with printf in Bash http://wiki.bash-hackers.org/commands/builtin/printf
 * Functions in Bash https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
 * Properly working with a file in Python http://www.pythonforbeginners.com/files/with-statement-in-python and  https://stackoverflow.com/questions/40416072/reading-file-using-relative-path-in-python-project/40416154
+* Viacriadkové 'if' podmienky a zreťazenia - riešenie cet spätné lomítko '\' https://stackoverflow.com/questions/181530/styling-multi-line-conditions-in-if-statements/181557#181557
+* Časti Python kódu boli testované na správnu syntax pomocou https://pythonbuddy.com/
+* Písanie formátovanie argumentov vo funkcií https://github.com/python/typing/issues/433
+
 * Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
+
 * Návod na používanie Mininet VM s rôznymi radičmi (aj POX, Floodlight a pod.) https://github.com/mininet/openflow-tutorial/wiki/Create-a-Learning-Switch
+*  How to write a simple own POX component - _handle metódy http://ofworkshop.blogspot.sk/2013/10/how-to-write-simple-own-pox-component.html
+* Learning POX OpenFlow controller : hub implementation - _handle metódy https://haryachyy.wordpress.com/2014/05/29/learning-pox-sdn-controller-hub-py-module/
+* OpenFlow klasifikátory - atribúty, ktoré je možné na prevádzke kontrolovať http://flowgrammable.org/sdn/openflow/classifiers/
+* OpenFlow 1.0 Match štruktúra - slúži porovnávanie parametrov prevádzky http://flowgrammable.org/sdn/openflow/message-layer/match/#tab_ofp_1_0
+* Parametre prevádzky a paketov, s ktorými POX dokáže pracovať https://github.com/att/pox/tree/master/pox/lib/packet
+* POX OpenFlow - priority http://pox-dev.noxrepo.narkive.com/StbumRJo/installing-flow-really-appreciate-your-time
+* OpenFlow 1.0 Message štruktúra http://flowgrammable.org/sdn/openflow/message-layer/flowmod/
+
+
+* Implementácia "swtich-case" mechanizmu pre Python - užitočné na zisťovanie zhody s viacerými protokolmi, transportnými portami a pod. https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python/103081#103081
+
+
+
+* Zisťovanie času, kedy bol súbor naposledy zmenený https://stackoverflow.com/questions/182197/how-do-i-watch-a-file-for-changes/182259#182259
+* Polling - periodické vykonávanie ľubovoľnej operácie, napr. aj sledovanie času poslednej zmeny súboru https://stackoverflow.com/questions/41713234/better-way-to-write-a-polling-function-in-python/41713452#41713452  a  
+https://medium.com/@justiniso/using-the-polling-module-in-python-87052d7da4d9  a  
+https://github.com/justiniso/polling
