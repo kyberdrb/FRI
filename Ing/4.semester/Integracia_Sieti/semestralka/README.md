@@ -244,9 +244,9 @@ Zdroje:
 * Properly working with a file in Python http://www.pythonforbeginners.com/files/with-statement-in-python and  https://stackoverflow.com/questions/40416072/reading-file-using-relative-path-in-python-project/40416154
 * Viacriadkové 'if' podmienky a zreťazenia - riešenie cet spätné lomítko '\' https://stackoverflow.com/questions/181530/styling-multi-line-conditions-in-if-statements/181557#181557
 * Časti Python kódu boli testované na správnu syntax pomocou https://pythonbuddy.com/
-* Písanie formátovanie argumentov vo funkcií https://github.com/python/typing/issues/433
+* Písanie formátovanie argumentov vo funkcií https://github.com/python/typing/issues/433
 
-* Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
+* Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
 
 * Návod na používanie Mininet VM s rôznymi radičmi (aj POX, Floodlight a pod.) https://github.com/mininet/openflow-tutorial/wiki/Create-a-Learning-Switch
 *  How to write a simple own POX component - _handle metódy http://ofworkshop.blogspot.sk/2013/10/how-to-write-simple-own-pox-component.html
