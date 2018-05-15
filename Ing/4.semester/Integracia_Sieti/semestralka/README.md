@@ -228,6 +228,13 @@ Spustenie POX radiča -> Spustenie **
 1. Aktualizácia firewall balíčka vykonáme stiahnutím najnovšej verzie z nášho GitHub repozitára:
 
         git -C ~/pox/ext/sdnfirewall pull
+        ~/pox/ext/sdnfirewall/launcher.sh restart
+
+    resp.
+
+        cd ~/pox/ext/sdnfirewall
+        git pull
+        ./launcher.sh restart
 
 Zdroje:  
 * Markdown cheat sheet https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
@@ -241,12 +248,19 @@ Zdroje:
 * Print exit status of the last executed command http://tldp.org/LDP/abs/html/exit-status.html
 * Print variable value with printf in Bash http://wiki.bash-hackers.org/commands/builtin/printf
 * Functions in Bash https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
-* Properly working with a file in Python http://www.pythonforbeginners.com/files/with-statement-in-python and  https://stackoverflow.com/questions/40416072/reading-file-using-relative-path-in-python-project/40416154
+
+* Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
+
+* Properly working with a file in Python http://www.pythonforbeginners.com/files/with-statement-in-python and  https://stackoverflow.com/questions/40416072/reading-file-using-relative-path-in-python-project/40416154
 * Viacriadkové 'if' podmienky a zreťazenia - riešenie cet spätné lomítko '\' https://stackoverflow.com/questions/181530/styling-multi-line-conditions-in-if-statements/181557#181557
 * Časti Python kódu boli testované na správnu syntax pomocou https://pythonbuddy.com/
 * Písanie formátovanie argumentov vo funkcií https://github.com/python/typing/issues/433
-
-* Reset Mininet prostredia https://github.com/mininet/mininet/issues/737#issuecomment-374834781
+* Python - Vykonanie úlohy po časovom odstupe https://stackoverflow.com/questions/3433559/python-time-delays/3433565#3433565
+* Python - Vykonanie úlohy po časovom odstupe - dokumentácia k modulu "threading.Timer" https://docs.python.org/3/library/threading.html#timer-objects
+* Python - Anonymný Timer https://stackoverflow.com/questions/3393612/run-certain-code-every-n-seconds/3393759#3393759
+* Python - Vlákna a prenos argumentov k nim https://www.saltycrane.com/blog/2008/09/simplistic-python-thread-example/  a  https://stackoverflow.com/questions/5683411/timer-objects-python-with-arguments?rq=1#comment6490538_5683442
+* Python - import modulov http://python-textbok.readthedocs.io/en/1.0/Packaging_and_Testing.html#modules  a  https://stackoverflow.com/questions/4142151/how-to-import-the-class-within-the-same-directory-or-sub-directory/4142178#4142178  a  https://stackoverflow.com/questions/41276067/importing-class-from-another-file/41276151#41276151  a  https://stackoverflow.com/questions/4534438/typeerror-module-object-is-not-callable/4534443#4534443
+* Python - počítanie kontrolných súčtov (hashing/checksums) https://stackoverflow.com/questions/5297448/how-to-get-md5-sum-of-a-string-using-python/5297495#5297495  a  https://pymotw.com/2/hashlib/
 
 * Návod na používanie Mininet VM s rôznymi radičmi (aj POX, Floodlight a pod.) https://github.com/mininet/openflow-tutorial/wiki/Create-a-Learning-Switch
 *  How to write a simple own POX component - _handle metódy http://ofworkshop.blogspot.sk/2013/10/how-to-write-simple-own-pox-component.html
@@ -256,6 +270,7 @@ Zdroje:
 * Parametre prevádzky a paketov, s ktorými POX dokáže pracovať https://github.com/att/pox/tree/master/pox/lib/packet
 * POX OpenFlow - priority http://pox-dev.noxrepo.narkive.com/StbumRJo/installing-flow-really-appreciate-your-time
 * OpenFlow 1.0 Message štruktúra http://flowgrammable.org/sdn/openflow/message-layer/flowmod/
+* OpenFlow - hard_timeout https://www.juniper.net/documentation/en_US/junos/topics/concept/junos-sdn-openflow-flow-entry-timers-overview.html
 
 
 * Implementácia "swtich-case" mechanizmu pre Python - užitočné na zisťovanie zhody s viacerými protokolmi, transportnými portami a pod. https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python/103081#103081
