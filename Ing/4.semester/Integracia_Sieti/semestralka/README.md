@@ -44,9 +44,6 @@
 
 ### Vytvorenie a práca s topológiou
 
-**Poradie krokov pri spúšťaní topológie v Miniedit GUI:  
-Spustenie POX radiča -> Spustenie **
-
 1. Na vytvorenie a prácu s Mininet topológiou je potrebné mať k Mininet VM otvorené 2 SSH relácie: prvá slúži na interakciu s Mininet topológiou prostredníctvom nástroja Miniedit, druhá slúži na manipuláciu s radičom.
 1. Otvoríme novú SSH reláciu k Mininet VM. Tento krát nie je potrebné aktivovať *X11 Forwarding* cez SSH.
 
@@ -202,9 +199,10 @@ Spustenie POX radiča -> Spustenie **
         cd ~/pox/ext/
         git clone https://github.com/kyberdrb/sdnfirewall.git
 
-1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič a spustíme ho príslušným skriptom:
+1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič, zresetujeme Mininet prostredie, aby sme predišli neočakávaným chybám a spustíme radič.
 
         cd ~/pox/ext/sdnfirewall
+        ./launcher.sh clean
         ./launcher.sh start
 1. V Miniedit SSH relácií spustíme Miniedit GUI a otvoríme v ňom súbor s Mininet topológiou `semkaTOPO.mn`.
 
