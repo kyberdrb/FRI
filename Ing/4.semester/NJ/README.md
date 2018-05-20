@@ -1,0 +1,1 @@
+/home/andrej/Documents/cv_a_motivacne_listy_sk_de_en/Bewerbungsanschreiben-ALLGEMEIN.pdf
