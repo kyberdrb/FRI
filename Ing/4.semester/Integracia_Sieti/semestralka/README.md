@@ -186,53 +186,9 @@
 
     Nedodržanie poradia týchto krokov môže viesť aj ku zamrznutiu Mininet SSH relácie, ku nepredvídateľnému správaniu resp. k pádu Mininet procesu.
 
-### Nasadenie modulu pre SDN firewall do SDN radiča POX
+### Nasadenie SDN firewall modulu do SDN radiča POX
 
-1. Po ukončení radiča môžeme prejsť k nasadeniu firewall modulu do POX radiča. Pri vytváraní firewall modulu sme ako základ použili [už vytvorený firewall balíček pre POX radič](https://github.com/rakeshdatta/SDN_Firewall). Jeho autorom je Rakesh Datta.
-
-    Repozitár bol skopírovaný do nášho GitHub účtu, v ktorom sme vykonávali všetky úpravy. Potom bol tento repozitár naklonovaný do adresára `~/pox/ext/`, keďže POX radič hľadá rozširujúce balíčky v podadresároch <br>`pox` a `ext` t.j. <br> `~/pox/pox/` a `~/pox/ext/`.
-
-    Firewall balíček môže byť naklonovaný do ľubovoľného adresára pre rozširujúce balíčky pre POX radič t.j. `/pox` aj `/ext`. Nakoniec sme si vybrali adresár `/ext`, keďže [dokumentácia k POX radiču](https://github.com/att/pox/blob/master/pox/boot.py) odporúča použiť spomenutý adresár pred adresárom `/pox` na vlastné rozširujúce balíčky.
-
-    Predpokladáme, že POX radič, konkrétne súbor `pox.py` je umiestnený v domovskom adresári používateľa, t.j. `$HOME/pox/` resp. `~/pox/`. V opačnom prípade spúšťací skript nebude pracovať správne.
-
-        cd ~/pox/ext/
-        git clone https://github.com/kyberdrb/sdnfirewall.git
-
-1. V POX SSH relácií sa presunieme do adresára firewall balíčka pre POX radič, zresetujeme Mininet prostredie, aby sme predišli neočakávaným chybám a spustíme radič.
-
-        cd ~/pox/ext/sdnfirewall
-        ./launcher.sh clean
-        ./launcher.sh start
-1. V Miniedit SSH relácií spustíme Miniedit GUI a otvoríme v ňom súbor s Mininet topológiou `semkaTOPO.mn`.
-
-        sudo ~/mininet/examples/miniedit.py
-
-
-**TODO - PRIDAT: funkcionality POX firewallu, riadenie POX firewallu skriptom, fw pravidla (csv, uprava pravidiel), testovanie firewallu**
-
-1. Terminály všetkých koncových zariadení otvoríme z príkazového riadku `mininet>` príkazom
-
-        xterm h1 h2 h3
-
-1. Zmena pravidiel si vyžaduje reštart radiča príkazom
-
-        ./launcher.sh restart
-
-1. Po skončení práce s POX radičom ho ukončíme pomocou spúšťacieho skriptu príkazom
-
-        ./launcher.sh stop
-
-1. Aktualizácia firewall balíčka vykonáme stiahnutím najnovšej verzie z nášho GitHub repozitára:
-
-        git -C ~/pox/ext/sdnfirewall pull
-        ~/pox/ext/sdnfirewall/launcher.sh restart
-
-    resp.
-
-        cd ~/pox/ext/sdnfirewall
-        git pull
-        ./launcher.sh restart
+Viď [sdnfirewall](https://github.com/kyberdrb/sdnfirewall)
 
 Zdroje:  
 * Markdown cheat sheet https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables
@@ -259,6 +215,14 @@ Zdroje:
 * Python - Vlákna a prenos argumentov k nim https://www.saltycrane.com/blog/2008/09/simplistic-python-thread-example/  a  https://stackoverflow.com/questions/5683411/timer-objects-python-with-arguments?rq=1#comment6490538_5683442
 * Python - import modulov http://python-textbok.readthedocs.io/en/1.0/Packaging_and_Testing.html#modules  a  https://stackoverflow.com/questions/4142151/how-to-import-the-class-within-the-same-directory-or-sub-directory/4142178#4142178  a  https://stackoverflow.com/questions/41276067/importing-class-from-another-file/41276151#41276151  a  https://stackoverflow.com/questions/4534438/typeerror-module-object-is-not-callable/4534443#4534443
 * Python - počítanie kontrolných súčtov (hashing/checksums) https://stackoverflow.com/questions/5297448/how-to-get-md5-sum-of-a-string-using-python/5297495#5297495  a  https://pymotw.com/2/hashlib/
+* Python - Textová reprezentácia objektu https://stackoverflow.com/questions/43675771/object-to-string-in-python/43675931#43675931  a  https://stackoverflow.com/questions/1436703/difference-between-str-and-repr/2626364#2626364  a  http://brennerm.github.io/posts/python-str-vs-repr.html  a  https://stackoverflow.com/questions/7152312/python-str-for-an-object/7152355#7152355
+* Python - praca s Dictionary http://www.pythonforbeginners.com/dictionary/how-to-use-dictionaries-in-python  a  https://stackoverflow.com/questions/26660654/how-do-i-print-the-key-value-pairs-of-a-dictionary-in-python/26660785#26660785 
+* Python implementácia "swtich-case" mechanizmu pre Python - užitočné na zisťovanie zhody s viacerými protokolmi, transportnými portami a pod. https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python/103081#103081
+* Python - predvolená (default) možnosť získania prvku z Dictionary, ak sa prvok pod daným kľúčom nenašiel https://stackoverflow.com/questions/9358983/dictionaries-and-default-values/9359011#9359011  a  http://www.tutorialspoint.com/python/dictionary_get.htm  
+* Python reťazenie funkcií v triede (Fluent Interface) https://stackoverflow.com/questions/41817578/basic-method-chaining/41817688#41817688  a  https://en.wikipedia.org/wiki/Fluent_interface
+* Python - poradie parametrov s predvolenou hodnotou pri vytvarání inštancie objektu - parametre s predvolenou hodnotou treba umiestniť ako posledné, keďže prvý parameter musí byť "self" https://stackoverflow.com/questions/48370588/syntaxerror-non-default-argument-follows-default-argument-init-related/48370634#48370634
+
+
 
 * Návod na používanie Mininet VM s rôznymi radičmi (aj POX, Floodlight a pod.) https://github.com/mininet/openflow-tutorial/wiki/Create-a-Learning-Switch
 *  How to write a simple own POX component - _handle metódy http://ofworkshop.blogspot.sk/2013/10/how-to-write-simple-own-pox-component.html
@@ -269,9 +233,7 @@ Zdroje:
 * POX OpenFlow - priority http://pox-dev.noxrepo.narkive.com/StbumRJo/installing-flow-really-appreciate-your-time
 * OpenFlow 1.0 Message štruktúra http://flowgrammable.org/sdn/openflow/message-layer/flowmod/
 * OpenFlow - hard_timeout https://www.juniper.net/documentation/en_US/junos/topics/concept/junos-sdn-openflow-flow-entry-timers-overview.html
-
-
-* Implementácia "swtich-case" mechanizmu pre Python - užitočné na zisťovanie zhody s viacerými protokolmi, transportnými portami a pod. https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python/103081#103081
+* Do niektorých OpenFlow parametrov môžem dať aj hodnotu 'None' (platí pre SDN radiče v jazyku Python)http://rlenglet.github.io/openfaucet/match.html
 
 
 
