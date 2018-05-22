@@ -1,0 +1,240 @@
+heat_template_version: pike
+description: v1.0.0 Template for network
+
+parameters:
+  Environment:
+    description: Environment
+    type: string
+    default: test
+
+  SubSubnetCidr1:
+    description: SubSubnetCidr1
+    type: string
+    default: 10.255.0.0/24
+
+  SubSubnetCidr2:
+    description: SubSubnetCidr2
+    type: string
+    default: 10.255.10.0/24
+
+  SubSubnetCidr3:
+    description: SubSubnetCidr3
+    type: string
+    default: 10.255.20.0/24
+
+  AvailabilityZone:
+    description: AvailabilityZone
+    type: string
+    default: any
+
+  Flavor:
+    description: Flavor
+    type: string
+    default: linux
+
+  Image:
+    description: Image
+    type: string
+    default: Debian_9.1.1_amd64_Openstack
+
+  KeyName:
+    description: KeyName
+    type: string
+    default: dvagner-key
+
+resources:
+  Net1:
+    type: OS::Neutron::Net
+    properties:
+      admin_state_up: True
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'network1' ] ] }
+      shared: False
+
+  Net2:
+    type: OS::Neutron::Net
+    properties:
+      admin_state_up: True
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'network2' ] ] }
+      shared: False
+
+  Net3:
+    type: OS::Neutron::Net
+    properties:
+      admin_state_up: True
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'network3' ] ] }
+      shared: False
+
+  Subnet1:
+    type: OS::Neutron::Subnet
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'subnet1' ] ] }
+      cidr: { get_param: SubSubnetCidr1 }
+      dns_nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      enable_dhcp: True
+      network: { get_resource: Net1 }
+
+  Subnet2:
+    type: OS::Neutron::Subnet
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'subnet2' ] ] }
+      cidr: { get_param: SubSubnetCidr2 }
+      dns_nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      enable_dhcp: True
+      network: { get_resource: Net2 }
+
+  Subnet3:
+    type: OS::Neutron::Subnet
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'subnet3' ] ] }
+      cidr: { get_param: SubSubnetCidr3 }
+      dns_nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      enable_dhcp: True
+      network: { get_resource: Net3 }
+
+  Router:
+    type: OS::Neutron::Router
+    properties:
+      admin_state_up: True
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'router' ] ] }
+      external_gateway_info: {
+        enable_snat: True,
+        network: ext-net
+      }
+
+  RouterInterface1:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router: { get_resource: Router }
+      subnet: { get_resource: Subnet1 }
+
+  RouterInterface2:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router: { get_resource: Router }
+      subnet: { get_resource: Subnet2 }
+
+  RouterInterface3:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router: { get_resource: Router }
+      subnet: { get_resource: Subnet3 }
+
+  SecurityGroup1:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'security group1' ] ] }
+      rules:
+        - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "ethertype": IPv4, "protocol": icmp}
+        - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 22,"ethertype": IPv4, "port_range_max": 22, "protocol": tcp}
+
+  SecurityGroup2:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'security group2' ] ] }
+      rules:
+        - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "ethertype": IPv4, "protocol": icmp}
+        - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 22,"ethertype": IPv4, "port_range_max": 22, "protocol": tcp}
+
+  SecurityGroup3:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'security group3' ] ] }
+      rules:
+        - {direction: ingress, remote_ip_prefix: 0.0.0.0/0, ethertype: IPv4, protocol: icmp}
+        - {direction: ingress, remote_ip_prefix: 0.0.0.0/0, port_range_min: 22,ethertype: IPv4, port_range_max: 22, protocol: tcp}
+
+  InstancePort1:
+    type: OS::Neutron::Port
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'instance-port1' ] ] }
+      network: { get_resource: Net1}
+      security_groups:
+        - { get_resource: SecurityGroup1}
+
+  InstancePort2:
+    type: OS::Neutron::Port
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'instance-port2' ] ] }
+      network: { get_resource: Net2}
+      fixed_ips:
+        - ip_address: 10.255.10.2
+      security_groups:
+        - { get_resource: SecurityGroup2}
+
+  InstancePort3:
+    type: OS::Neutron::Port
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'instance-port3' ] ] }
+      network: { get_resource: Net3}
+      fixed_ips:
+        - ip_address: 10.255.20.2
+      security_groups:
+        - { get_resource: SecurityGroup3}
+
+  FloatingIP:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network: ext-net
+
+  FloatingAssociation:
+    type: OS::Neutron::FloatingIPAssociation
+    properties:
+      floatingip_id: { get_resource: FloatingIP }
+      port_id: { get_resource: InstancePort1 }
+
+  JumpBastion:
+    type: OS::Nova::Server
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'JumpBastion' ] ] }
+      availability_zone: { get_param: AvailabilityZone }
+      flavor: { get_param: Flavor }
+      image: { get_param: Image }
+      flavor_update_policy: REPLACE
+      image_update_policy: REPLACE
+      user_data_update_policy: REPLACE
+      key_name: { get_param: KeyName }
+      networks:
+        - port: { get_resource: InstancePort1 }
+      user_data: |
+        #!/bin/bash
+      user_data_format: RAW
+
+  Squid:
+    type: OS::Nova::Server
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'Squid' ] ] }
+      availability_zone: { get_param: AvailabilityZone }
+      flavor: { get_param: Flavor }
+      image: { get_param: Image }
+      flavor_update_policy: REPLACE
+      image_update_policy: REPLACE
+      user_data_update_policy: REPLACE
+      key_name: { get_param: KeyName }
+      networks:
+        - port: { get_resource: InstancePort2 }
+      user_data: |
+        #!/bin/bash
+      user_data_format: RAW
+
+  Apache2:
+    type: OS::Nova::Server
+    properties:
+      name: { list_join: [ '-', [ { get_param: 'Environment' }, 'Apache2' ] ] }
+      availability_zone: { get_param: AvailabilityZone }
+      flavor: { get_param: Flavor }
+      image: { get_param: Image }
+      flavor_update_policy: REPLACE
+      image_update_policy: REPLACE
+      user_data_update_policy: REPLACE
+      key_name: { get_param: KeyName }
+      networks:
+        - port: { get_resource: InstancePort3 }
+      user_data: |
+        #!/bin/bash
+      user_data_format: RAW
