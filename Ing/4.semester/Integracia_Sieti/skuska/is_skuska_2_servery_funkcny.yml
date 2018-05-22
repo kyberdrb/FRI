@@ -1,0 +1,207 @@
+heat_template_version: pike
+description: Skuska
+
+parameters:
+  KeyName:
+    description: KeyName
+    type: string
+    default: hp_4530s
+
+  Environment:
+    description: Environment
+    type: string
+    default: test
+
+  SubSubnetCidr1:
+    description: SubSubnetCidr1
+    type: string
+    default: 10.255.0.0/24
+
+  SubSubnetCidr2:
+    description: SubSubnetCidr2
+    type: string
+    default: 10.255.10.0/24
+
+  AvailabilityZone:
+    description: AvailabilityZone
+    type: string
+    default: compute1
+  
+  Flavor:
+    description: Flavor
+    type: string
+    default: linux
+
+  Image:
+    description: Image
+    type: string
+    default: Debian_9.1.1_amd64_Openstack
+
+
+resources:
+ Net1:
+  type: OS::Neutron::Net
+  properties:
+   admin_state_up: True
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'Siet1' ] ] }
+   shared: False
+   
+ Subnet1:
+  type: OS::Neutron::Subnet
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'subnet1' ] ] }
+   cidr: { get_param: SubSubnetCidr1 }
+   dns_nameservers:
+     - 8.8.8.8
+     - 8.8.4.4
+   enable_dhcp: True
+   network: { get_resource: Net1 }
+
+ Subnet2:
+  type: OS::Neutron::Subnet
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'subnet2' ] ] }
+   cidr: { get_param: SubSubnetCidr2 }
+   dns_nameservers:
+     - 8.8.8.8
+     - 8.8.4.4
+   enable_dhcp: True
+   network: { get_resource: Net1 }
+   
+ Router:
+  type: OS::Neutron::Router
+  properties:
+   admin_state_up: True
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'router' ] ] }
+   external_gateway_info:
+    enable_snat: True
+    network: ext-net
+ 
+ RouterInterface1:
+  type: OS::Neutron::RouterInterface
+  properties:
+   router: { get_resource: Router }
+   subnet: { get_resource: Subnet1 }
+ 
+ RouterInterface2:
+  type: OS::Neutron::RouterInterface
+  properties:
+   router: { get_resource: Router }
+   subnet: { get_resource: Subnet2 }
+
+ SecurityGroup1:
+  type: OS::Neutron::SecurityGroup
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'security group1' ] ] }
+   rules:
+   - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "ethertype": IPv4, "protocol": icmp}
+   - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 22,"ethertype": IPv4, "port_range_max": 22, "protocol": tcp}
+   - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 53,"ethertype": IPv4, "port_range_max": 53, "protocol": udp}
+
+ Server1FloatingIp:
+  type: OS::Neutron::FloatingIP
+  properties:
+   floating_network: ext-net
+  
+ Server1FloatingIpAssociation:
+  depends_on: [ Server1FloatingIp, InstancePort1 ]
+  type: OS::Neutron::FloatingIPAssociation
+  properties:
+   floatingip_id: { get_resource: Server1FloatingIp }
+   port_id: { get_resource: InstancePort1 }
+
+ InstancePort1:
+  type: OS::Neutron::Port
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'instance-port1' ] ] }
+   fixed_ips:
+    - subnet: { get_resource: Subnet1}
+   security_groups:
+    - { get_resource: SecurityGroup1}
+   port_security_enabled: True
+   allowed_address_pairs:
+    - ip_address: 0.0.0.0/0
+   network: { get_resource: Net1 }
+   
+ Server1:
+  type: OS::Nova::Server
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'Server1' ] ] }
+   availability_zone: { get_param: AvailabilityZone }
+   flavor: { get_param: Flavor }
+   image: { get_param: Image }
+   flavor_update_policy: REPLACE
+   image_update_policy: REPLACE
+   user_data_update_policy: REPLACE
+   key_name: { get_param: KeyName }
+   networks:
+    - port: { get_resource: InstancePort1 }
+   user_data:
+    str_replace:
+     template: |
+      #!/bin/bash
+      hostname $Environment-server1
+      #apt-get update
+      #apt-get upgrade
+      #apt-get install bind9 
+     params:
+      $Environment: { get_param: Environment }
+   user_data_format: RAW
+
+ SecurityGroup2:
+  type: OS::Neutron::SecurityGroup
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'security group2' ] ] }
+   rules:
+    - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "ethertype": IPv4, "protocol": icmp}
+    - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 22,"ethertype": IPv4, "port_range_max": 22, "protocol": tcp}
+    - {"direction": ingress, "remote_ip_prefix": 0.0.0.0/0, "port_range_min": 53,"ethertype": IPv4, "port_range_max": 53, "protocol": udp}  
+
+ Server2FloatingIp:
+  type: OS::Neutron::FloatingIP
+  properties:
+   floating_network: ext-net
+
+ Server2FloatingIpAssociation:
+  depends_on: [ Server2FloatingIp, InstancePort2 ]
+  type: OS::Neutron::FloatingIPAssociation
+  properties:
+   floatingip_id: { get_resource: Server2FloatingIp }
+   port_id: { get_resource: InstancePort2 }
+
+ InstancePort2:
+  type: OS::Neutron::Port
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'instance-port2' ] ] }
+   fixed_ips:
+    - subnet: { get_resource: Subnet2}
+   security_groups:
+    - { get_resource: SecurityGroup2}
+   port_security_enabled: True
+   allowed_address_pairs:
+    - ip_address: 0.0.0.0/0
+   network: { get_resource: Net1 }
+   
+ Server2:
+  type: OS::Nova::Server
+  properties:
+   name: { list_join: [ '-', [ { get_param: 'Environment' }, 'Server2' ] ] }
+   availability_zone: { get_param: AvailabilityZone }
+   flavor: { get_param: Flavor }
+   image: { get_param: Image }
+   flavor_update_policy: REPLACE
+   image_update_policy: REPLACE
+   user_data_update_policy: REPLACE
+   key_name: { get_param: KeyName }
+   networks:
+    - port: { get_resource: InstancePort2 }
+   user_data:
+    str_replace:
+     template: |
+      #!/bin/bash
+      hostname $Environment-server2
+      #apt-get update
+      #apt-get upgrade 
+     params:
+      $Environment: { get_param: Environment }
+   user_data_format: RAW
