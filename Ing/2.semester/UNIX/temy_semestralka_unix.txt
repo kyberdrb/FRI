@@ -8,10 +8,14 @@ typ 1: openvz (free vps cz), lxc, docker
 -cloud computing/storage: owncloud, pydio
 -google: cloud synchronization opensource
 -syncthing - (bitsync)
--firewall, iptables
+-firewall, firewalld, iptables
 -kali linux
 -linux from scratch, alpine linux
 -systemd vs vsetko ostatne
+
+-ngrok
+-parrot os - obdoba kali linux (parrot -> web -> vega - skenovanie webstranok na rozne zranitelnosti)
+-black arch - obdoba kali linux
 
 stvrtok je unix od 14:00
 

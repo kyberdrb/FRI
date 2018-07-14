@@ -1,0 +1,2459 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://sclabs.blogspot.sk/2013/03/ccna-lab-packet-tracer-activity-861.html -->
+<html class="v2" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="width=1250" name="viewport">
+
+<script type="text/javascript" async="" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/watch.js"></script><script src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/cb=gapi.loaded_1" async=""></script><script src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript">(function() { var b=window,f="chrome",g="jstiming",k="tick";(function(){function d(a){this.t={};this.tick=function(a,d,c){var e=void 0!=c?c:(new Date).getTime();this.t[a]=[e,d];if(void 0==c)try{b.console.timeStamp("CSI/"+a)}catch(h){}};this[k]("start",null,a)}var a;b.performance&&(a=b.performance.timing);var n=a?new d(a.responseStart):new d;b.jstiming={Timer:d,load:n};if(a){var c=a.navigationStart,h=a.responseStart;0<c&&h>=c&&(b[g].srt=h-c)}if(a){var e=b[g].load;0<c&&h>=c&&(e[k]("_wtsrt",void 0,c),e[k]("wtsrt_","_wtsrt",h),e[k]("tbsd_","wtsrt_"))}try{a=null,
+b[f]&&b[f].csi&&(a=Math.floor(b[f].csi().pageT),e&&0<c&&(e[k]("_tbnd",void 0,b[f].csi().startE),e[k]("tbnd_","_tbnd",c))),null==a&&b.gtbExternal&&(a=b.gtbExternal.pageT()),null==a&&b.external&&(a=b.external.pageT,e&&0<c&&(e[k]("_tbnd",void 0,b.external.startE),e[k]("tbnd_","_tbnd",c))),a&&(b[g].pt=a)}catch(p){}})();b.tickAboveFold=function(d){var a=0;if(d.offsetParent){do a+=d.offsetTop;while(d=d.offsetParent)}d=a;750>=d&&b[g].load[k]("aft")};var l=!1;function m(){l||(l=!0,b[g].load[k]("firstScrollTime"))}b.addEventListener?b.addEventListener("scroll",m,!1):b.attachEvent("onscroll",m);
+ })();</script>
+<meta content="blogger" name="generator">
+<link href="http://sclabs.blogspot.sk/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom" href="http://sclabs.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - RSS" href="http://sclabs.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom" href="http://www.blogger.com/feeds/3484822691435303180/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom" href="http://sclabs.blogspot.com/feeds/6183610253209414429/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/1163241896-ieretrofit.js"></script>
+<![endif]-->
+<link href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/Packet+Tracker+Activity+8.6.1.png" rel="image_src">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>
+SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP): CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1
+</title>
+<link type="text/css" rel="stylesheet" href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/1535467126-widget_css_2_bundle.css">
+<link type="text/css" rel="stylesheet" href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/authorization.css">
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Josh Peterson
+URL:      www.noaesthetic.com
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="keycolor" description="Main Color" type="color" default="#66bbdd"/>
+<Group description="Page Text" selector="body">
+<Variable name="body.font" description="Font" type="font"
+default="normal normal 13px Tahoma,Verdana,Arial, Helvetica, FreeSans, sans-serif"/>
+<Variable name="body.text.color" description="Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Backgrounds" selector=".body-fauxcolumns-outer">
+<Variable name="body.background.color" description="Outer Background" type="color" default="#66bbdd"/>
+<Variable name="content.background.color" description="Main Background" type="color" default="#ffffff"/>
+<Variable name="header.background.color" description="Header Background" type="color" default="transparent"/>
+</Group>
+<Group description="Links" selector=".main-outer">
+<Variable name="link.color" description="Link Color" type="color" default="#2288bb"/>
+<Variable name="link.visited.color" description="Visited Color" type="color" default="#888888"/>
+<Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff"/>
+</Group>
+<Group description="Blog Title" selector=".header h2">
+<Variable name="header.font" description="Font" type="font"
+default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="header.text.color" description="Title Color" type="color" default="#3399bb" />
+</Group>
+<Group description="Blog Description" selector=".header .description">
+<Variable name="description.text.color" description="Description Color" type="color"
+default="#777777" />
+</Group>
+<Group description="Tabs Text" selector=".tabs-inner .widget li a">
+<Variable name="tabs.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="tabs.text.color" description="Text Color" type="color" default="#999999"/>
+<Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#000000"/>
+</Group>
+<Group description="Tabs Background" selector=".tabs-outer .PageList">
+<Variable name="tabs.background.color" description="Background Color" type="color" default="#f5f5f5"/>
+<Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Post Title" selector="h3.post-title, .comments h4">
+<Variable name="post.title.font" description="Font" type="font"
+default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+</Group>
+<Group description="Date Header" selector=".date-header">
+<Variable name="date.header.color" description="Text Color" type="color"
+default="#000000"/>
+<Variable name="date.header.background.color" description="Background Color" type="color"
+default="transparent"/>
+</Group>
+<Group description="Post Footer" selector=".post-footer">
+<Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666"/>
+<Variable name="post.footer.background.color" description="Background Color" type="color"
+default="#f9f9f9"/>
+<Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Gadgets" selector="h2">
+<Variable name="widget.title.font" description="Title Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.title.text.color" description="Title Color" type="color" default="#000000"/>
+<Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999"/>
+</Group>
+<Group description="Images" selector=".main-inner">
+<Variable name="image.background.color" description="Background Color" type="color" default="#ffffff"/>
+<Variable name="image.border.color" description="Border Color" type="color" default="#eeeeee"/>
+<Variable name="image.text.color" description="Caption Text Color" type="color" default="#000000"/>
+</Group>
+<Group description="Accents" selector=".content-inner">
+<Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee"/>
+<Variable name="tabs.border.color" description="Tabs Border Color" type="color" default="#e8e8e8"/>
+</Group>
+<Variable name="body.background" description="Body Background" type="background"
+color="#fafafa" default="$(color) none repeat scroll top left"/>
+<Variable name="body.background.override" description="Body Background Override" type="string" default=""/>
+<Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
+default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
+default="url(http://www.blogblog.com/1kt/simple/body_gradient_tile_light.png)"/>
+<Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner"/>
+<Variable name="content.padding" description="Content Padding" type="length" default="10px"/>
+<Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="10px"/>
+<Variable name="content.shadow.spread" description="Content Shadow Spread" type="length" default="40px"/>
+<Variable name="content.shadow.spread.webkit" description="Content Shadow Spread (WebKit)" type="length" default="5px"/>
+<Variable name="content.shadow.spread.ie" description="Content Shadow Spread (IE)" type="length" default="10px"/>
+<Variable name="main.border.width" description="Main Border Width" type="length" default="0"/>
+<Variable name="header.background.gradient" description="Header Gradient" type="url" default="none"/>
+<Variable name="header.shadow.offset.left" description="Header Shadow Offset Left" type="length" default="-1px"/>
+<Variable name="header.shadow.offset.top" description="Header Shadow Offset Top" type="length" default="-1px"/>
+<Variable name="header.shadow.spread" description="Header Shadow Spread" type="length" default="1px"/>
+<Variable name="header.padding" description="Header Padding" type="length" default="30px"/>
+<Variable name="header.border.size" description="Header Border Size" type="length" default="1px"/>
+<Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="0"/>
+<Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0"/>
+<Variable name="description.text.size" description="Description Text Size" type="string" default="140%"/>
+<Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0" />
+<Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px" />
+<Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
+default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px"/>
+<Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px"/>
+<Variable name="date.header.padding" description="Date Header Padding" type="string" default="inherit"/>
+<Variable name="date.header.letterspacing" description="Date Header Letter Spacing" type="string" default="inherit"/>
+<Variable name="date.header.margin" description="Date Header Margin" type="string" default="inherit"/>
+<Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="2px"/>
+<Variable name="image.border.small.size" description="Image Border Small Size" type="length" default="2px"/>
+<Variable name="image.border.large.size" description="Image Border Large Size" type="length" default="5px"/>
+<Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner"/>
+<Variable name="page.width" description="Page Width" type="string" default="auto"/>
+<Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px"/>
+<Variable name="main.padding" description="Main Padding" type="length" default="15px"/>
+<Variable name="main.padding.top" description="Main Padding Top" type="length" default="5px"/>
+<Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="5px"/>
+<Variable name="paging.background"
+color="#ffffff"
+description="Background of blog paging area" type="background"
+default="transparent none no-repeat scroll top center"/>
+<Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0"/>
+<Variable name="mobile.background.overlay" description="Mobile Background Overlay" type="string"
+default="transparent none repeat scroll top left"/>
+<Variable name="mobile.background.size" description="Mobile Background Size" type="string" default="auto"/>
+<Variable name="mobile.button.color" description="Mobile Button Color" type="color" default="#ffffff" />
+<Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left"/>
+<Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right"/>
+*/
+/* Content
+----------------------------------------------- */
+body {
+font-family: 'ciscosansttregular','Noto Sans', 'sans-serif', 'serif';
+font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #000000;
+background: #fafafa none no-repeat scroll center center;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+a:link {
+text-decoration:none;
+color: #0000ff;
+}
+a:visited {
+text-decoration:none;
+color: #3d85c6;
+}
+a:hover {
+text-decoration:underline;
+color: #d21e00;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent none repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+background: #fafafa none no-repeat scroll center center;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #ffffff;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: #000000 url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.content p::-moz-selection{
+background:#ffff99;
+}
+.content p::selection {
+background:#ffff99;
+}
+::-moz-selection {
+background: #ffff99; /* Firefox */
+}
+h1 {
+border-bottom: 1px solid #AAAAAA;
+color: #000000;
+font-size: 140%;
+font-weight: normal;
+margin: 0;
+padding-top: 0.7em;
+}
+.Header h1 {
+font: normal bold 20px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+text-shadow: 1px 2px 3px rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #ffffff;
+}
+.Header .description {
+font-size: 140%;
+color: #ffffff;
+}
+.header-inner .Header .titlewrapper {
+padding: 10px 30px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 0 solid #e9e9e9;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -0;
+border-top: 0 solid #e9e9e9;
+border-left: 0 solid #e9e9e9;
+border-right: 0 solid #e9e9e9;
+}
+.tabs-inner .widget ul {
+background: #efefef url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #e9e9e9;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+border-left: 1px solid #ffffff;
+border-right: 1px solid #e9e9e9;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #000000;
+background-color: #e8e8e8;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #e8e8e8;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #e8e8e8;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #e8e8e8;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+margin: 1em 0 0  0;
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #000000;
+text-transform: uppercase;
+font-size: 1.3em;
+color: rgb(96, 96, 96);
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #8a8a8a;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+.date-header span {
+background-color: transparent;
+color: #000000;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 5px;
+padding-bottom: 5px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 2px 0;
+}
+h3.post-title, .comments h4 {
+font: normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+margin: .5em 0 0;
+background-color: #FFF8C6;
+color: #00877C;
+padding: 6px;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #e8e8e8;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #000000;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .12);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .12);
+box-shadow: 0 0 0 rgba(0, 0, 0, .12);
+box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+padding: 8px;
+background: none repeat scroll 0% 0% #FFF;
+border: 1px solid #CCC;
+box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #363636;
+background-color: #f4f4f4;
+border-bottom: 1px solid #e8e8e8;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #e8e8e8;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #e8e8e8;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #8a8a8a;
+border-bottom: 1px solid #8a8a8a;
+}
+.comments .comment-thread.inline-thread {
+background-color: #f4f4f4;
+}
+.comments .continue {
+border-top: 2px solid #8a8a8a;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #e8e8e8;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #ffffff;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+padding: 0 40px;
+}
+body.mobile .AdSense {
+margin: 0 -40px;
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #ffffff;
+}
+.mobile-index-contents {
+color: #000000;
+}
+.mobile-link-button {
+background-color: #0000ff;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #e8e8e8;
+color: #000000;
+border-top: 1px solid #e9e9e9;
+border-bottom: 1px solid #e9e9e9;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #e9e9e9;
+}
+.titlewrapper {
+padding: 10px;
+}
+.post-body blockquote {
+background-color: #feffe5;
+color: #000000;
+border-style: dashed;
+border-width: thin;
+font-family: courier new;
+font-size: 13px;
+font-weight: normal;
+margin: 10px 0;
+overflow: auto;
+padding: 10px 10px 10px 10px;
+word-wrap: break-word;
+color: black;
+font-family: Bitstream Vera Sans Mono,monospace,DejaVu Sans Mono,Monaco,Lucida Console,Consolas,Liberation Mono,Courier New;
+border-left: 10px solid #ffc966;
+}
+
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 1122px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1122px;
+max-width: 1122px;
+_width: 1122px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 0px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 0px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("0px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 0px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 0px;
+margin-right: -0px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+--></style>
+<script type="text/javascript">var a="indexOf",b="&m=1",e="(^|&)m=",f="?",g="?m=1";function h(){var c=window.location.href,d=c.split(f);switch(d.length){case 1:return c+g;case 2:return 0<=d[1].search(e)?null:c+b;default:return null}}var k=navigator.userAgent;if(-1!=k[a]("Mobile")&&-1!=k[a]("WebKit")&&-1==k[a]("iPad")||-1!=k[a]("Opera Mini")||-1!=k[a]("IEMobile")){var l=h();l&&window.location.replace(l)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/js/google_top_exp.js"></script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style></head>
+<body class="">
+<div class="navbar section" id="navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/navbar.htm"></iframe></div>
+<script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\0753484822691435303180\46blogName\75SC+Labs+%7C+Networking+notes+(CCNA+R/S,...\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://sclabs.blogspot.com/search\46blogLocale\75en\46v\0752\46homepageUrl\75http://sclabs.blogspot.com/\46targetPostID\0756183610253209414429\46blogPostOrPageUrl\75http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html\46vt\0754449439596147938359',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class="body-fauxcolumns">
+<div class="fauxcolumn-outer body-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="content-fauxcolumns">
+<div class="fauxcolumn-outer content-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content-outer">
+<div class="content-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left content-fauxborder-left">
+<div class="fauxborder-right content-fauxborder-right"></div>
+<div class="content-inner">
+<header>
+<div class="header-outer">
+<div class="header-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left header-fauxborder-left">
+<div class="fauxborder-right header-fauxborder-right"></div>
+<div class="region-inner header-inner">
+<div class="header section" id="header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://sclabs.blogspot.sk/">
+SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP)
+</a>
+</h1>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</header>
+<div class="tabs-outer">
+<div class="tabs-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left tabs-fauxborder-left">
+<div class="fauxborder-right tabs-fauxborder-right"></div>
+<div class="region-inner tabs-inner">
+<div class="tabs section" id="crosscol"><div class="widget PageList" id="PageList1">
+<h2>
+Pages
+</h2>
+<div class="widget-content">
+<ul>
+<li>
+<a href="http://sclabs.blogspot.sk/">
+Home
+</a>
+</li>
+<li>
+<a href="https://www.netacad.com/">
+NetAcad
+</a>
+</li>
+<li>
+<a href="http://sclabs.blogspot.sk/p/routing-protocols-comparison-ad-and.html">
+Routing Protocols Comparison / Subnetting
+</a>
+</li>
+<li>
+<a href="http://sclabs.blogspot.sk/p/to-do.html">
+To do list
+</a>
+</li>
+<li>
+<a href="http://sclabs.blogspot.sk/p/links.html">
+Links
+</a>
+</li>
+<li>
+<a href="http://sclabs.blogspot.sk/p/about.html">
+About
+</a>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=3484822691435303180&widgetType=PageList&widgetId=PageList1&action=editWidget&sectionId=crosscol" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PageList1&quot;));" target="configPageList1" title="Edit">
+<img alt="" height="18" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<div class="tabs section" id="crosscol-overflow"></div>
+</div>
+</div>
+<div class="tabs-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="main-outer">
+<div class="main-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left main-fauxborder-left">
+<div class="fauxborder-right main-fauxborder-right"></div>
+<div class="region-inner main-inner">
+<div class="columns fauxcolumns">
+<div class="fauxcolumn-outer fauxcolumn-center-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-left-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-right-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class="columns-inner">
+<div class="column-center-outer">
+<div class="column-center-inner">
+<div class="main section" id="main"><div class="widget Blog" id="Blog1">
+<div class="blog-posts hfeed">
+<!-- google_ad_section_start(name=default) -->
+
+                                        <div class="date-outer">
+                                      
+
+                                        <div class="date-posts">
+                                      
+<div class="post-outer">
+<div class="post hentry">
+<a name="6183610253209414429"></a>
+<h3 class="post-title entry-title" style="display:inline-block;">
+<span class="post-icons">
+<span class="item-control blog-admin pid-481042607">
+<a href="http://www.blogger.com/post-edit.g?blogID=3484822691435303180&postID=6183610253209414429&from=pencil" title="Edit Post">
+<img alt="" class="icon-action" height="18" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-6183610253209414429">
+<a name="more"></a><b><span style="font-size: large;">PT Activity 8.6.1: CCNA Skills Integration Challenge</span></b><br>
+<br>
+In this comprehensive CCNA skills activity, the XYZ Corporation uses a combination of Frame Relay and PPP for WAN connections. The HQ router provides access to the server farm and the Internet through NAT. HQ also uses a basic firewall ACL to filter inbound traffic. Each Branch router is configured for inter-VLAN routing and DHCP. Routing is achieved through EIGRP as well as static and default routes. The VLANs, VTP, and STP are configured on each of the switched networks. Port security is enabled and wireless access is provided. Your job is to successfully implement all of these technologies, leveraging what you have learned over the four Exploration courses leading up to this culminating activity.
+
+<br>
+<br>
+You are responsible for configuring HQ and the Branch routers, B1, B2, and B3. In addition, you are responsible for configuring every device that attaches to the network through a Branch router. The NewB router represents a new Branch office acquired through a merger with a smaller company. You do not have access to the NewB router. However, you will establish a link between HQ and NewB to provide this new Branch office with access to the internal network and the Internet.<br>
+<br>
+Routers and switches under your administration have no configuration. None of the basic configurations like hostname, passwords, banners, and other general maintenance commands are graded by Packet Tracer and will not be part of the task specification. However, you are expected to configure them, and your instructor may choose to grade these commands.
+
+<br><br><b>Files</b><br>
+- 0% ready - <a href="http://db.tt/nNCR3bhK">http://db.tt/nNCR3bhK</a><br>
+- 83% ready - <a href="http://db.tt/IjCGFILe">http://db.tt/IjCGFILe</a><br>
+- 100 % ready - <a href="http://db.tt/RP96WDdC">http://db.tt/RP96WDdC</a><br>
+<br>
+<b>Topology</b><br>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/Packet+Tracker+Activity+8.6.1.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/Packet+Tracker+Activity+8.6.1.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;"><b><span style="font-size: small;">LAB Topology </span></b></td></tr>
+</tbody></table>
+<span style="font-size: small;"><br><span style="color: #cc0000;"><b><span style="font-size: large;">Task 1: Configure Frame Relay in a Hub-and-Spoke Topology</span></b></span>
+
+
+<br><b>Step 1. Configure the Frame Relay core.</b><br>Use the addressing tables and the following requirements.<br>HQ is the hub router. B1, B2, and B3 are the spokes.<br>&nbsp;- HQ uses a point-to-point subinterface for each of the Branch routers.<br>&nbsp;- B3 must be manually configured to use IETF encapsulation.<br>&nbsp;- The LMI type must be manually configured as q933a for HQ,<br>&nbsp;&nbsp; B1, and B2. B3 uses ANSI.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ(config)#int s0/0/0</span><br>
+<span style="font-size: small;">HQ(config-if)#encapsulation fram</span><br>
+<span style="font-size: small;">HQ(config-if)#frame-relay lmi-type q933a </span><br>
+<span style="font-size: small;">HQ(config-if)#int s0/0/0.43 point-to-point</span><br>
+<span style="font-size: small;">&nbsp;description -=to B3 =-</span><br>
+<span style="font-size: small;">&nbsp;ip address 10.255.255.9 255.255.255.252</span><br>
+<span style="font-size: small;">&nbsp;frame-relay interface-dlci 43</span><br>
+<span style="font-size: small;">HQ(config)#int s0/0/0.42 poi</span><br>
+<span style="font-size: small;">&nbsp;descr&nbsp; -= to B2=-</span><br>
+<span style="font-size: small;">&nbsp;ip add 10.255.255.5 255.255.255.252</span><br>
+<span style="font-size: small;">&nbsp;frame-relay interface-dlci 42 </span><br>
+<span style="font-size: small;">HQ(config)#int s0/0/0.41 po</span><br>
+<span style="font-size: small;">&nbsp;descr -= to B1 =-</span><br>
+<span style="font-size: small;">&nbsp;ip add 10.255.255.1 255.255.255.252</span><br>
+<span style="font-size: small;">&nbsp;fra in 41</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">Router(config)#host B3 </span><br>
+<span style="font-size: small;">B3(config)#int s0/0/0</span><br>
+<span style="font-size: small;">B3(config-if)#desc -= to HQ =-</span><br>
+<span style="font-size: small;">B3(config-if)#no sh</span><br>
+<span style="font-size: small;">B3(config-if)#encapsulation frame-relay ietf </span><br>
+<span style="font-size: small;">B3(config-if)#frame-relay lmi-type ansi </span><br>
+<span style="font-size: small;">B3(config-if)#ip add 10.255.255.10 255.255.255.252</span><br>
+<span style="font-size: small;">B2(config-if)#frame-relay interface-dlci 43</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">Router(config)#host B2</span><br>
+<span style="font-size: small;">B2(config)#int s0/0/0</span><br>
+<span style="font-size: small;">B3(config-if)#desc -= to HQ =-</span><br>
+<span style="font-size: small;">B2(config-if)#no sh</span><br>
+<span style="font-size: small;">B2(config-if)#enc frame-relay</span><br>
+<span style="font-size: small;">B2(config-if)#frame lmi-type q933a</span><br>
+<span style="font-size: small;">B2(config-if)#ip add 10.255.255.6 255.255.255.252</span><br>
+<span style="font-size: small;">B2(config-if)#frame-relay interface-dlci 42</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">Router(config)#hostn B1</span><br>
+<span style="font-size: small;">B1(config)#int s0/0/0</span><br>
+<span style="font-size: small;">B1(config-if)#enc frame-relay </span><br>
+<span style="font-size: small;">B1(config-if)#no sh </span><br>
+<span style="font-size: small;">B1(config-if)#descr -= to HQ =-</span><br>
+<span style="font-size: small;">B1(config-if)#frame-relay lmi-type ansi</span><br>
+<span style="font-size: small;">B1(config-if)#ip add 10.255.255.2 255.255.255.252</span><br>
+<span style="font-size: small;">B2(config-if)#frame-relay interface-dlci 41</span></blockquote>
+<span style="font-size: small;"><br><b>Step 2. Configure the LAN interface on HQ.</b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ(config)#int fa0/0</span><br>
+<span style="font-size: small;">HQ(config-if)#no sh</span><br>
+<span style="font-size: small;">%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up</span><br>
+<span style="font-size: small;">HQ(config-if)#ip add 10.0.1.1 255.255.255.0</span></blockquote>
+<span style="font-size: small;"><br><b>Step 3. Verify that HQ can ping each of the Branch routers.</b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ#ping 10.255.255.2</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 10.255.255.2, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 30/35/40 ms</span><br>
+<br>
+<span style="font-size: small;">HQ#ping 10.255.255.6</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 10.255.255.6, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 20/36/40 ms</span><br>
+<br>
+<span style="font-size: small;">HQ#ping 10.255.255.10</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 10.255.255.10, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 8/22/40 ms</span><br>
+<span style="font-size: small;">HQ#</span></blockquote>
+<span style="font-size: small;"><br><span style="color: #cc0000;"><span style="font-size: large;"><b>Task 2: Configure PPP with CHAP and PAP Authentication</b></span></span><br><b>Step 1. Configure the WAN link from HQ to ISP using PPP encapsulation and CHAP authentication.<br>The CHAP password is ciscochap.</b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ(config)#int Serial0/1/0</span><br>
+<span style="font-size: small;">HQ(config-if)#en</span><br>
+<span style="font-size: small;">HQ(config-if)#encapsulation ppp</span><br>
+<span style="font-size: small;">HQ(config-if)#ip add 209.165.201.1 255.255.255.252</span><br>
+<span style="font-size: small;">HQ(config-if)#no sh</span><br>
+<span style="font-size: small;">HQ(config)#username ISP password ciscochap</span><br>
+<br>
+<span style="font-size: small;">HQ#ping 209.165.201.2</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 209.165.201.2, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 20/20/20 ms</span><br>
+<span style="font-size: small;">HQ#</span></blockquote>
+<span style="font-size: small;"><br><b>Step 2. Configure the WAN link from HQ to NewB using PPP encapsulation and PAP authentication.<br>You need to connect a cable to the correct interfaces. HQ is the DCE side of the link. You choose the clock rate. The PAP password is ciscopap.</b></span><br>
+<blockquote>
+<span style="font-size: small;">HQ(config)#int s0/0/1</span><br>
+<span style="font-size: small;">HQ(config-if)#descr -= to NewB =-</span><br>
+<span style="font-size: small;">HQ(config-if)#clock rate 64000</span><br>
+<span style="font-size: small;">HQ(config-if)#encap ppp</span><br>
+<span style="font-size: small;">HQ(config-if)#ppp authentication pap</span><br>
+<span style="font-size: small;">HQ(config-if)#ip add 10.255.255.253 255.255.255.252</span><br>
+<span style="font-size: small;">HQ(config-if)#no sh</span><br>
+<span style="font-size: small;">HQ(config-if)#ppp pap sent-username HQ password ciscopap</span><br>
+<span style="font-size: small;">HQ(config)#username NewB password ciscopap</span></blockquote>
+<span style="font-size: small;"><br><b>Step 3. Verify that HQ can ping ISP and NewB.</b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ#ping 209.165.201.2</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 209.165.201.2, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 11/15/20 ms</span><br>
+<br>
+<span style="font-size: small;">HQ#ping 10.255.255.254</span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 10.255.255.254, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 9/16/20 ms</span></blockquote>
+<span style="font-size: small;"><br><span style="color: #cc0000;"><b><span style="font-size: large;">Task 3: Configure Static and Dynamic NAT on HQ</span></b></span><br><b>Step 1. Configure NAT.</b><br>Use the following requirements:<br>Allow all addresses for the 10.0.0.0/8 address space to be translated.<br>XYZ Corporation owns the 209.165.200.240/29 address space. The pool, XYZCORP, uses addresses .241 through .245 with a /29 mask.<br>The www.xyzcorp.com website at 10.0.1.2 is registered with the public DNS system at IP address 209.165.200.246.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ(config)#int s0/1/0</span><br>
+<span style="font-size: small;">HQ(config-if)#ip nat out</span><br>
+<span style="font-size: small;">HQ(config-if)#int fa 0/0</span><br>
+<span style="font-size: small;">HQ(config-if)#ip nat in</span><br>
+<span style="font-size: small;">HQ(config-if)#int s0/0/1</span><br>
+<span style="font-size: small;">HQ(config-if)#ip nat in</span><br>
+<br>
+<span style="font-size: small;">HQ(config-if)#int s 0/0/0.41</span><br>
+<span style="font-size: small;">HQ(config-subif)#ip nat in</span><br>
+<span style="font-size: small;">HQ(config-subif)#int s 0/0/0.42</span><br>
+<span style="font-size: small;">HQ(config-subif)#ip nat in</span><br>
+<span style="font-size: small;">HQ(config-subif)#int s 0/0/0.43</span><br>
+<span style="font-size: small;">HQ(config-subif)#ip nat in</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">! for all 10.0.0.0/8 -&gt; dynamic NAT</span><br>
+<span style="font-size: small;">HQ(config)#ip access-list st XYZCORP </span><br>
+<span style="font-size: small;">HQ(config-std-nacl)#permit 10.0.0.0 0.255.255.255</span><br>
+<span style="font-size: small;">HQ(config)#ip nat pool XYZCORP 209.165.200.241 209.165.200.245 netm 255.255.255.248 </span><br>
+<span style="font-size: small;">HQ(config)#ip nat inside source list XYZCORP pool XYZCORP</span><br>
+<br>
+<span style="font-size: small;">! for web site -&gt; static nat</span><br>
+<span style="font-size: small;">HQ(config)#ip nat inside source static 10.0.1.2 209.165.200.246 </span></blockquote>
+<span style="font-size: small;"><br><b>Step 2. Verify NAT is operating by using extended ping.</b><br>From HQ, ping the serial 0/0/0 interface on ISP using the HQ LAN interface as the source address. This ping should succeed.<br>Verify that NAT translated the ping with the show ip nat translations command.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">! before ping only static NAT is showed</span><br>
+<span style="font-size: small;">HQ#sh ip nat translations </span><br>
+<span style="font-size: small;">Pro&nbsp; Inside global&nbsp;&nbsp;&nbsp;&nbsp; Inside local&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Outside local&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Outside global</span><br>
+<span style="font-size: small;">---&nbsp; 209.165.200.246&nbsp;&nbsp; 10.0.1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---</span><br>
+<span style="font-size: small;">HQ#</span><br>
+<span style="font-size: small;">HQ#sh ip int br</span><br>
+<span style="font-size: small;">Interface&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IP-Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OK? Method Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Protocol</span><br>
+<span style="font-size: small;">FastEthernet0/0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.0.1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; YES manual up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; up</span><br>
+<span style="font-size: small;">...</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ# ! extended PING with source interface of LAN interface (could be IP from int fa0/0 also)</span><br>
+<span style="font-size: small;">HQ#ping </span><br>
+<span style="font-size: small;">Protocol [ip]: </span><br>
+<span style="font-size: small;">Target IP address: 209.165.201.2</span><br>
+<span style="font-size: small;">Repeat count [5]: </span><br>
+<span style="font-size: small;">Datagram size [100]: </span><br>
+<span style="font-size: small;">Timeout in seconds [2]: </span><br>
+<span style="font-size: small;">Extended commands [n]: y</span><br>
+<span style="font-size: small;">Source address or interface: fa0/0</span><br>
+<span style="font-size: small;">% Invalid source</span><br>
+<span style="font-size: small;">Source address or interface: fastethernet 0/0</span><br>
+<span style="font-size: small;">% Invalid source</span><br>
+<span style="font-size: small;">Source address or interface: fastethernet0/0</span><br>
+<span style="font-size: small;">Type of service [0]: </span><br>
+<span style="font-size: small;">Set DF bit in IP header? [no]: </span><br>
+<span style="font-size: small;">Validate reply data? [no]: </span><br>
+<span style="font-size: small;">Data pattern [0xABCD]: </span><br>
+<span style="font-size: small;">Loose, Strict, Record, Timestamp, Verbose[none]: </span><br>
+<span style="font-size: small;">Sweep range of sizes [n]: </span><br>
+<span style="font-size: small;">Type escape sequence to abort.</span><br>
+<span style="font-size: small;">Sending 5, 100-byte ICMP Echos to 209.165.201.2, timeout is 2 seconds:</span><br>
+<span style="font-size: small;">Packet sent with a source address of 10.0.1.1</span><br>
+<span style="font-size: small;">!!!!!</span><br>
+<span style="font-size: small;">Success rate is 100 percent (5/5), round-trip min/avg/max = 11/18/20 ms</span><br>
+<span style="font-size: small;">HQ#</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ#sh ip nat translations </span><br>
+<span style="font-size: small;">Pro&nbsp; Inside global&nbsp;&nbsp;&nbsp;&nbsp; Inside local&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Outside local&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Outside global</span><br>
+<span style="font-size: small;">icmp 209.165.200.241:6110.0.1.1:61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2:61&nbsp;&nbsp; 209.165.201.2:61</span><br>
+<span style="font-size: small;">icmp 209.165.200.241:6210.0.1.1:62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2:62&nbsp;&nbsp; 209.165.201.2:62</span><br>
+<span style="font-size: small;">icmp 209.165.200.241:6310.0.1.1:63&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2:63&nbsp;&nbsp; 209.165.201.2:63</span><br>
+<span style="font-size: small;">icmp 209.165.200.241:6410.0.1.1:64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2:64&nbsp;&nbsp; 209.165.201.2:64</span><br>
+<span style="font-size: small;">icmp 209.165.200.241:6510.0.1.1:65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2:65&nbsp;&nbsp; 209.165.201.2:65</span><br>
+<span style="font-size: small;">---&nbsp; 209.165.200.246&nbsp;&nbsp; 10.0.1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---</span><br>
+<span style="font-size: small;">HQ#</span></blockquote>
+<span style="font-size: small;"><br><span style="color: #cc0000;"><span style="font-size: large;"><b>Task 4: Configure Static and Default Routing</b></span></span><br><b>Step 1. Configure HQ with a default route to ISP and a static route to the NewB LAN.</b><br>Use the exit interface as an argument.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">! Default route to ISP via interface Serial0/1/0</span><br>
+<span style="font-size: small;">HQ(config)#ip route 0.0.0.0 0.0.0.0 s0/1/0</span><br>
+<span style="font-size: small;">! Static route to NewB LAN</span><br>
+<span style="font-size: small;">HQ(config)#ip route 10.4.5.0 255.255.255.0 s0/0/1</span></blockquote>
+<span style="font-size: small;"><br><b>Step 2. Configure the Branch routers with a default route to HQ.</b><br>Use the next-hop IP address as an argument.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">B3(config)#ip route 0.0.0.0 0.0.0.0 10.255.255.9</span><br>
+<span style="font-size: small;">B2(config)#ip route 0.0.0.0 0.0.0.0 10.255.255.5</span><br>
+<span style="font-size: small;">B1(config)#ip route 0.0.0.0 0.0.0.0 10.255.255.1</span></blockquote>
+<span style="font-size: small;"><br><b>Step 3. Verify connectivity beyond ISP.</b><br>All three NewB PCs and the NetAdmin PC should be able to ping the www.cisco.com web server.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">NewB-PC3&gt; ping www.cisco.com</span><br>
+<span style="font-size: small;">Pinging 209.165.202.134 with 32 bytes of data:</span><br>
+<span style="background-color: #fff2cc;"><span style="font-size: small;">Request timed out.</span></span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=70ms TTL=125</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=80ms TTL=125</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=80ms TTL=125</span><br>
+<span style="font-size: small;">NewB-PC3&gt;</span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">NetAdmin-PC&gt; ping www.cisco.com</span><br>
+<span style="font-size: small;">Pinging 209.165.202.134 with 32 bytes of data:</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=72ms TTL=126</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=62ms TTL=126</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=80ms TTL=126</span><br>
+<span style="font-size: small;">Reply from 209.165.202.134: bytes=32 time=69ms TTL=126</span><br>
+<span style="font-size: small;">NetAdmin-PC&gt;</span></blockquote>
+<span style="font-size: small;"><br><span style="color: #cc0000;"><span style="font-size: large;"><b>Task 5: Configure Inter-VLAN Routing</b></span></span><br><b>Step 1. Configure each Branch router for inter-VLAN routing.</b><br>Using the addressing table for Branch routers, configure and activate the LAN interface for inter-VLAN routing. VLAN 99 is the native VLAN.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;">B3(config)#int fa0/0</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-if)#no sh</span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config)#int fa 0/0.10</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#enca dot1q 10</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#ip add 10.3.10.1 255.255.255.0</span></span><br>
+<span style="background-color: #fff2cc;"><span style="font-size: small;"><span style="font-size: small;">%LINK-5-CHANGED: Interface FastEthernet0/0.10, changed state to up</span></span></span><br>
+<span style="background-color: #fff2cc;"><span style="font-size: small;"><span style="font-size: small;">%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0.10, changed state to up</span></span></span><span style="font-size: small;"><span style="font-size: small;"><br><br>B3(config)#int fa 0/0.<span style="font-size: small;">20</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#encapsulation dot1Q 20</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#ip add 10.3.20.1 255.255.255.0</span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#int fa0/0.30</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#encapsulation dot1Q 30</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#ip add 10.3.30.1 255.255.255.0</span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#int fa0/0.88</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#encapsulation dot1Q 88</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#ip add 10.3.88.1 255.255.255.0</span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#int fa0/0.99</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#encapsulation dot1Q 99<span style="color: #b00000;"><span style="font-size: small;"><b> native</b></span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3(config-subif)#ip add 10.3.99.1 255.255.255.0</span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"></span></b><span style="font-size: small;">Repeat for Branch Router</span>s B2 and B1<span style="font-size: small;"> wi<span style="font-size: small;">th networ<span style="font-size: small;">k 10.2.x.0/24 and 10.1.x.0/24</span></span></span><br><br><b>Step 2. Verify routing tables.</b><br>Each Branch router should now have six directly connected networks and one static default route.</span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;">B3#sh ip route</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">...</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">Gateway of last resort is 10.255.255.9 to network 0.0.0.0</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp; 10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.10.0/24 is directly connected, FastEthernet0/0.10</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.20.0/24 is directly connected, FastEthernet0/0.20</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.30.0/24 is directly connected, FastEthernet0/0.30</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.88.0/24 is directly connected, FastEthernet0/0.88</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.99.0/24 is directly connected, FastEthernet0/0.99</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.8/30 is directly connected, Serial0/0/0</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">S*&nbsp;&nbsp; 0.0.0.0/0 [1/0] via 10.255.255.9</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">B3#</span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><span style="color: #cc0000;"><span style="font-size: large;"><span style="color: black;"><span style="font-size: small;">&nbsp;</span></span><br>Task 6: Configure and Optimize EIGRP Routing</span></span><br>Step 1. Configure HQ, B1, B2, and B3 with EIGRP.</span></b><span style="font-size: small;"><br>Use AS 100.<br>Disable EIGRP updates on appropriate interfaces.<br>Manually summarize EIGRP routes so that each Branch router only advertises the 10.X.0.0/16 address space to HQ.<br>Note: Packet Tracer does not accurately simulate the benefit of EIGRP summary routes. Routing <span style="font-size: small;">tables will still show all subnets, even though you correctly configured the manual summary.</span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">HQ(config)#router eigrp 100</span><br>
+<span style="font-size: small;">HQ(config-router)#passive-interface s0/1/0</span><br>
+<span style="font-size: small;">HQ(config-router)#passive-interface fa0/0</span><br>
+<span style="font-size: small;">HQ(config-router)#network 10.0.0.0<br><b><span style="font-size: small;">HQ(config-router)# no auto-summary</span></b></span></blockquote>
+<span style="font-size: small;"><span style="font-size: small;"><b>Configure E<span style="font-size: small;">IGRP <span style="font-size: small;">for Branch Routers</span></span></b></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">B3(config)#router eigrp 100</span><br>
+<span style="font-size: small;">B3(config-router)#passive-interface fa0/0</span><br>
+<span style="font-size: small;">B3(config-router)#network 10.0.0.0</span><span style="font-size: small;"><b><span style="font-size: small;"><span style="font-size: small;"><br>B3</span>(config-router)# no auto-summary</span></b></span><br>
+<span style="font-size: small;">! Manual summarization<br>B3(config-router)#int s0/0/0</span><br>
+<span style="font-size: small;">B3(config-if)#<b>ip summary-address eigrp 100 10.3.0.0 255.255.0.0</b></span><br>
+<span style="font-size: small;">%DUAL-5-NBRCHANGE: IP-EIGRP 100: Neighbor 10.255.255.9 (Serial0/0/0) is up: new adjacency</span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;">Step 2. Verify routing tables and connectivity.</span></b><span style="font-size: small;"><br>HQ and the Branch routers should now have complete routing tables.</span><b><br></b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;">HQ#sh ip route</span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">...</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;">Gateway of last resort is 0.0.0.0 to network 0.0.0.0</span></span><br>
+<br>
+<span style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp; 10.0.0.0/8 is variably subnetted, 10 subnets, 4 masks<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.0.1.0/24 is directly connected, FastEthernet0/0<br><span style="background-color: #d9ead3;">D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.1.0.0/16 [90/2172416] via 10.255.255.2, 00:00:04, Serial0/0/0.41<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.0.0/16 [90/2172416] via 10.255.255.6, 00:00:04, Serial0/0/0.42<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.0.0/16 [90/2172416] via 10.255.255.10, 00:00:04, Serial0/0/0.43</span><br>S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.4.5.0/24 is directly connected, Serial0/0/1<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.0/30 is directly connected, Serial0/0/0.41<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.4/30 is directly connected, Serial0/0/0.42<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.8/30 is directly connected, Serial0/0/0.43<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.252/30 is directly connected, Serial0/0/1<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.254/32 is directly connected, Serial0/0/1<br>&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.0/24 is variably subnetted, 2 subnets, 2 masks<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.0/30 is directly connected, Serial0/1/0<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 209.165.201.2/32 is directly connected, Serial0/1/0<br>S*&nbsp;&nbsp; 0.0.0.0/0 is directly connected, Serial0/1/0<br>HQ#</span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;">Routing table for Bra<span style="font-size: small;">nch Routers</span></span></b></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B2#sh ip route</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">...</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Gateway of last resort is 10.255.255.5 to network 0.0.0.0</span></span></span><br>
+<br>
+<span style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp; 10.0.0.0/8 is variably subnetted, 14 subnets, 3 masks<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.0.1.0/24 [90/2172416] via 10.255.255.5, 00:04:36, Serial0/0/0<br><span style="background-color: #d9ead3;">D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.1.0.0/16 [90/2684416] via 10.255.255.5, 00:00:27, Serial0/0/0</span><br><span style="background-color: #d9ead3;">D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.0.0/16 is a summary, 00:47:46, Null0</span><br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.10.0/24 is directly connected, FastEthernet0/0.10<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.20.0/24 is directly connected, FastEthernet0/0.20<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.30.0/24 is directly connected, FastEthernet0/0.30<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.88.0/24 is directly connected, FastEthernet0/0.88<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.2.99.0/24 is directly connected, FastEthernet0/0.99<br><span style="background-color: #d9ead3;">D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.3.0.0/16 [90/2684416] via 10.255.255.5, 00:04:36, Serial0/0/0</span><br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.4.5.0/24 [90/2681856] via 10.255.255.5, 00:04:36, Serial0/0/0<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.0/30 [90/2681856] via 10.255.255.5, 00:04:36, Serial0/0/0<br>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.4/30 is directly connected, Serial0/0/0<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.8/30 [90/2681856] via 10.255.255.5, 00:04:36, Serial0/0/0<br>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.255.255.252/30 [90/2681856] via 10.255.255.5, 00:04:36, Serial0/0/0<br>S*&nbsp;&nbsp; 0.0.0.0/0 [1/0] via 10.255.255.5<br>B2#</span></blockquote>
+<span style="font-size: small;"><span style="font-size: small;">The NetAdmin PC should now be able to ping each VLAN subinterface on each Branch router.</span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">NetAdmin-PC&gt; ping 10.3.10.1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Pinging 10.3.10.1 with 32 bytes of data:</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Reply from 10.3.10.1: bytes=32 time=29ms TTL=254</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Control-C</span></span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">NetAdmin-PC&gt; ping 10.3.20.1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Pinging 10.3.20.1 with 32 bytes of data:</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Reply from 10.3.20.1: bytes=32 time=70ms TTL=254</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Control-C</span></span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">NetAdmin-PC&gt; ping 10.3.30.1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Pinging 10.3.30.1 with 32 bytes of data:</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Reply from 10.3.30.1: bytes=32 time=36ms TTL=254</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Control-C</span></span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">NetAdmin-PC&gt; ping 10.3.88.1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Pinging 10.3.88.1 with 32 bytes of data:</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Reply from 10.3.88.1: bytes=32 time=60ms TTL=254</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Control-C</span></span></span><br>
+<br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">NetAdmin-PC&gt; ping 10.3.99.1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Pinging 10.3.99.1 with 32 bytes of data:</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Reply from 10.3.99.1: bytes=32 time=70ms TTL=254</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Control-C</span></span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><br><span style="font-size: small;"><span style="color: #cc0000;"><span style="font-size: large;">Task 7: Configure VTP, Trunking, the VLAN Interface, and VLANs</span></span><br>The following requirements apply to all three Branches. Configure one set of three switches. Then use the scripts for those switches on the other two sets of switches.<br><br>Step 1. Configure Branch switches with VTP.</span></span></b><span style="font-size: small;"><span style="font-size: small;"><br>BX-S1 is the VTP server. BX-S2 and BX-S3 are VTP clients.<br>The domain name is XYZCORP.<br>The password is xyzvtp.</span></span></span><br>
+<br>
+<b><span style="font-size: small;">On </span><span style="font-size: small;"><span style="font-size: small;"> Switches<span style="font-size: small;"> with </span></span></span><span style="font-size: small;"><span style="font-size: small;">VTP Server</span></span></b><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Switch(config)#hostname B3-S1</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#vtp mode server </span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Device mode already VTP SERVER.</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#vtp domain XYZCORP</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Changing VTP domain name from NULL to XYZCORP</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#vtp password xyzvtp</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Setting device VLAN database password to xyzvtp</span></span></span></blockquote>
+<b><span style="font-size: small;">On </span><span style="font-size: small;"><span style="font-size: small;"> Switches<span style="font-size: small;"> with </span></span></span><span style="font-size: small;"><span style="font-size: small;">VTP <span style="font-size: small;">Client</span></span></span></b><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Switch(config)#host B3-S3</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S3(config)#vtp mode cli</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Setting device to VTP CLIENT mode.</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S3(config)#vtp domain XYZCORP</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Changing VTP domain name from NULL to XYZCORP</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S3(config)#vtp passw xyzvtp</span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">Setting device VLAN database password to xyzvtp </span></span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><span style="font-size: small;"><br>Step 2. Configure trunking on BX-S1, BX-S2, and BX-S3.</span></span></b><span style="font-size: small;"><span style="font-size: small;"><br>Configure the appropriate interfaces in trunking mode and assign VLAN 99 as the native VLAN.</span></span><b><span style="font-size: small;"><span style="font-size: small;"><br></span></span></b><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"></span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><b>Configure on ALL switches (same port numbering) </b></span></span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#int range fastEthernet 0/1 - fastEthernet 0/<b><span style="font-size: small;">5</span></b></span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-if-range)#switchport mode trunk</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-if-range)#switchport native vlan 99</span></span></span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><span style="font-size: small;"><br>Step 3. Configure the VLAN interface and default gateway on BX-S1, BX-S2, and BX-S3.</span></span></b></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><b>Set default-gateway for<span style="font-size: small;"> Switches</span></b></span></span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#ip default-gateway 10.3.99.1</span></span></span></span></blockquote>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><b>Create Vlan interface 99</b><span style="font-size: small;"><b> on ALL Switches and set M<span style="font-size: small;">gmt IP</span></b></span></span></span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#int vlan 99</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-if)#ip add 10.3.99.21 255.255.255.0</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-if)#no sh</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">%LINK-5-CHANGED: Interface Vlan99, changed state to up</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up</span></span></span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><span style="font-size: small;"><br>Step 4. Create the VLANs on BX-S1.</span></span></b><span style="font-size: small;"><span style="font-size: small;"><br>Create and name the VLANs listed in the VLAN Configuration and Port Mappings table on BX-S1 only. VTP advertises the new VLANs to BX-S<b><span style="font-size: small;">2</span></b> and BX-S<span style="font-size: small;">3</span>.</span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><b>Create VLANs</b><span style="font-size: small;"><b> on Switch with VTP Server</b></span></span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config)#vlan 10</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#name Admin</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#vlan 20</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#name Sales</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#vlan 30 </span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#name Production</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#vlan 88</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#name Wireless</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#vlan 99</span></span></span></span><br>
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S1(config-vlan)#name Mgmt&amp;Native</span></span></span></span></blockquote>
+<span style="font-size: small;"><b><span style="font-size: small;"><span style="font-size: small;">Step 5. Verify that VLANs have been sent to BX-S2 and BX-S3.</span></span></b><span style="font-size: small;"><span style="font-size: small;"><br>Use the appropriate commands to verify that S2 and S3 now have the VLANs you created on S1. It may take a few minutes for Packet Tracer to simulate the VTP advertisements. A quick way to force the sending of VTP advertisements is to change one of the client switches to transparent mode and then back to client mode.</span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;"><span style="font-size: small;"><span style="font-size: small;">B3-S2#<b>sh vtp passw</b><br>VTP Password: xyzvtp<br><br>B3-S2#<b>sh vtp status</b><br>VTP Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 2<br>Configuration Revision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 10<br>Maximum VLANs supported locally : 255<br>Number of existing VLANs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 10<br>VTP Operating Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Client<br>VTP Domain Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : XYZCORP<br>VTP Pruning Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Disabled<br>VTP V2 Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Disabled<br>VTP Traps Generation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Disabled<br>MD5 digest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 0x9A 0xEC 0x96 0xF8 0xB9 0x97 0x1B 0x4C <br>Configuration last modified by 10.3.99.21 at 3-1-93 00:47:25<br>B3-S2#<br>B3-S2#<b>sh vlan</b><br>VLAN Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status&nbsp;&nbsp;&nbsp; Ports<br>---- -------------------------------- --------- -------------------------------<br>1&nbsp;&nbsp;&nbsp; default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; Fa0/5, Fa0/6, Fa0/7, Fa0/8<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fa0/9, Fa0/10, Fa0/11, Fa0/12<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fa0/13, Fa0/14, Fa0/15, Fa0/16<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fa0/17, Fa0/18, Fa0/19, Fa0/20<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fa0/21, Fa0/22, Fa0/23, Fa0/24<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gig1/1, Gig1/2<br>10&nbsp;&nbsp; Admin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; <br>20&nbsp;&nbsp; Sales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; <br>30&nbsp;&nbsp; Production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; <br>88&nbsp;&nbsp; Wireless&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; <br>99&nbsp;&nbsp; Mgmt&amp;Native&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active&nbsp;&nbsp;&nbsp; <br>1002 fddi-default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; act/unsup <br>1003 token-ring-default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; act/unsup <br>1004 fddinet-default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; act/unsup <br>1005 trnet-default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; act/unsup <br>B3-S2#</span></span></span></blockquote>
+<blockquote class="tr_bq">
+<span style="font-size: small;">B3-S2#sh interfaces trunk<br>Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Encapsulation&nbsp; Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Native vlan<br>Fa0/1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 802.1q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trunking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 99<br>Fa0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 802.1q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trunking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 99<br>Fa0/3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 802.1q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trunking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 99<br>Fa0/4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 802.1q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trunking&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 99<br>Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vlans allowed on trunk<br>Fa0/1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1005<br>Fa0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1005<br>Fa0/3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1005<br>Fa0/4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1005<br>Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vlans allowed and active in management domain<br>Fa0/1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,10,20,30,88,99<br>Fa0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,10,20,30,88,99<br>Fa0/3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,10,20,30,88,99<br>Fa0/4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,10,20,30,88,99<br>Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vlans in spanning tree forwarding state and not pruned<br>Fa0/1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; none<br>Fa0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; none<br>Fa0/3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,10,20,30,88,99<br>Fa0/4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; none<br>B3-S2#</span></blockquote>
+<span style="font-size: large;"><span style="font-size: small;"><span style="font-size: small;"><b>Verify connectivity</b></span></span></span><br>
+<blockquote class="tr_bq">
+<span style="font-size: small;">&nbsp;&nbsp;&nbsp; <b>NetAdmin-PC&gt;</b>ping 10.3.99.23<br>&nbsp;&nbsp;&nbsp; Pinging 10.3.99.23 with 32 bytes of data:<br>&nbsp;&nbsp;&nbsp; Request timed out.<br>&nbsp;&nbsp;&nbsp; Request timed out.<br>&nbsp;&nbsp;&nbsp; Reply from 10.3.99.23: bytes=32 time=114ms TTL=253<br>&nbsp;&nbsp;&nbsp; Reply from 10.3.99.23: bytes=32 time=60ms TTL=253<br>&nbsp;&nbsp;&nbsp; Ping statistics for 10.3.99.23:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Packets: Sent = 4, Received = 2, Lost = 2 (50% loss),<br>&nbsp;&nbsp;&nbsp; Approximate round trip times in milli-seconds:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Minimum = 60ms, Maximum = 114ms, Average = 87ms<br>&nbsp;&nbsp;&nbsp; <b>NetAdmin-PC&gt;</b></span></blockquote>
+<br>
+<span style="font-size: large;"><a href="http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861_25.html">Continue to part 2</a></span><br>
+<br>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1">
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1.htm" rel="bookmark" title="permanent link">
+<abbr class="published" title="2013-03-25T12:34:00+02:00">
+Monday, March 25, 2013
+</abbr>
+</a>
+</span>
+<span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-2"></div>
+<div class="post-footer-line post-footer-line-3"></div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>
+3 comments
+                                    :
+                                  </h4>
+<div class="comments-content">
+<script async="async" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/comments.js" type="text/javascript"></script>
+<script type="text/javascript">
+                                  (function() {
+                                    var items = [{'id': '3127031912624632357', 'body': 'Your frame relay is misconfigured. DLCIs have local meaning, so the ones at HQ aren\46#39;t necessary the same at the Branch routers. Plus take a look at the cloud. Local DLCIs for branches are 100, 200 and 300\74br /\76/E.T.', 'timestamp': '1364976629761', 'permalink': 'http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment\0751364976629761#c3127031912624632357', 'author': {'name': 'Anonymous', 'avatarUrl': 'http://img1.blogblog.com/img/blank.gif', 'profileUrl': ''}, 'displayTime': 'April 3, 2013 at 11:10 AM', 'deleteclass': 'item-control blog-admin pid-1050096406'}, {'id': '7532112501612325117', 'parentId': '3127031912624632357', 'body': '\46gt; DLCIs have local meaning, so the ones at HQ aren\46#39;t necessary the same at the Branch routers\74br /\76You\46#39;re right, but this doesn\46#39;t mean that they could not be the same.\74br /\76\74br /\76In this case there are 2 DLCI\46#39;s on Branch routers:\74br /\76 - 1 set manualy\74br /\76 - 1 set be LMI auto-sens\74br /\76\74br /\76But if config on FR-Sw is checked, there are really another DLCI : 100/200/300.', 'timestamp': '1364980408492', 'permalink': 'http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment\0751364980408492#c7532112501612325117', 'author': {'name': 'SC', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/04139184178200036747'}, 'displayTime': 'April 3, 2013 at 12:13 PM', 'deleteclass': 'item-control blog-admin pid-481042607'}, {'id': '5397220549615206664', 'body': 'I was wondering say one was to submit a complete version of this packet tracer would they know it&#8217;s not there&#8217;s? Would it be better to copy and paste a running config?', 'timestamp': '1383673979697', 'permalink': 'http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment\0751383673979697#c5397220549615206664', 'author': {'name': 'Anonymous', 'avatarUrl': 'http://img1.blogblog.com/img/blank.gif', 'profileUrl': ''}, 'displayTime': 'November 5, 2013 at 7:52 PM', 'deleteclass': 'item-control blog-admin pid-1750864847'}];
+                                    var msgs = {'loadMore': 'Load more...', 'loading': 'Loading...', 'loaded': 'No more!', 'addComment': 'Add comment', 'reply': 'Reply', 'delete': 'Delete'};
+                                    var config = {'blogId': '3484822691435303180', 'postId': '6183610253209414429', 'feed': 'http://sclabs.blogspot.com/feeds/6183610253209414429/comments/default', 'authorName': 'SC', 'authorUrl': 'http://www.blogger.com/profile/04139184178200036747', 'baseUri': 'http://www.blogger.com', 'maxThreadDepth': 2};
+                                    // <![CDATA[
+                                    var cursor = null;
+                                    if (items && items.length > 0) {
+                                      cursor = parseInt(items[items.length - 1].timestamp) + 1;
+                                    }
+                                    var bodyFromEntry = function(entry) {
+                                      if (entry.gd$extendedProperty) {
+                                        for (var k in entry.gd$extendedProperty) {
+                                          if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+                                            return '<span class="deleted-comment">' + entry.content.$t + '</span>';
+                                          }
+                                        }
+                                      }
+                                      return entry.content.$t;
+                                    }
+                                    var parse = function(data) {
+                                      cursor = null;
+                                      var comments = [];
+                                      if (data && data.feed && data.feed.entry) {
+                                        for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+                                          var comment = {};
+                                          // comment ID, parsed out of the original id format
+                                          var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+                                          comment.id = id ? id[2] : null;
+                                          comment.body = bodyFromEntry(entry);
+                                          comment.timestamp = Date.parse(entry.published.$t) + '';
+                                          if (entry.author && entry.author.constructor === Array) {
+                                            var auth = entry.author[0];
+                                            if (auth) {
+                                              comment.author = {
+                                                name: (auth.name ? auth.name.$t : undefined),
+                                                profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                                                avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                                              };
+                                            }
+                                          }
+                                          if (entry.link) {
+                                            if (entry.link[2]) {
+                                              comment.link = comment.permalink = entry.link[2].href;
+                                            }
+                                            if (entry.link[3]) {
+                                              var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                                              if (pid && pid[1]) {
+                                                comment.parentId = pid[1];
+                                              }
+                                            }
+                                          }
+                                          comment.deleteclass = 'item-control blog-admin';
+                                          if (entry.gd$extendedProperty) {
+                                            for (var k in entry.gd$extendedProperty) {
+                                              if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                                                comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                                              } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                                                comment.displayTime = entry.gd$extendedProperty[k].value;
+                                              }
+                                            }
+                                          }
+                                          comments.push(comment);
+                                        }
+                                      }
+                                      return comments;
+                                    };
+                                    var paginator = function(callback) {
+                                      if (hasMore()) {
+                                        var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+                                        if (cursor) {
+                                          url += '&published-min=' + new Date(cursor).toISOString();
+                                        }
+                                        window.bloggercomments = function(data) {
+                                          var parsed = parse(data);
+                                          cursor = parsed.length < 50 ? null
+                                          : parseInt(parsed[parsed.length - 1].timestamp) + 1
+                                          callback(parsed);
+                                          window.bloggercomments = null;
+                                        }
+                                        url += '&callback=bloggercomments';
+                                        var script = document.createElement('script');
+                                        script.type = 'text/javascript';
+                                        script.src = url;
+                                        document.getElementsByTagName('head')[0].appendChild(script);
+                                      }
+                                    };
+                                    var hasMore = function() {
+                                      return !!cursor;
+                                    };
+                                    var getMeta = function(key, comment) {
+                                      if ('iswriter' == key) {
+                                        var matches = !!comment.author
+                                        && comment.author.name == config.authorName
+                                        && comment.author.profileUrl == config.authorUrl;
+                                        return matches ? 'true' : '';
+                                      } else if ('deletelink' == key) {
+                                        return config.baseUri + '/delete-comment.g?blogID='
+                                        + config.blogId + '&postID=' + comment.id;
+                                      } else if ('deleteclass' == key) {
+                                        return comment.deleteclass;
+                                      }
+                                      return '';
+                                    };
+                                    var replybox = null;
+                                    var replyUrlParts = null;
+                                    var replyParent = undefined;
+                                    var onReply = function(commentId, domId) {
+                                      if (replybox == null) {
+                                        // lazily cache replybox, and adjust to suit this style:
+                                        replybox = document.getElementById('comment-editor');
+                                        if (replybox != null) {
+                                          replybox.height = '250px';
+                                          replybox.style.display = 'block';
+                                          replyUrlParts = replybox.src.split('#');
+                                        }
+                                      }
+                                      if (replybox && (commentId !== replyParent)) {
+                                        document.getElementById(domId).insertBefore(replybox, null);
+                                        replybox.src = replyUrlParts[0]
+                                        + (commentId ? '&parentID=' + commentId : '')
+                                        + '#' + replyUrlParts[1];
+                                        replyParent = commentId;
+                                      }
+                                    };
+                                    var hash = (window.location.hash || '#').substring(1);
+                                    var startThread, targetComment;
+                                    if (/^comment-form_/.test(hash)) {
+                                      startThread = hash.substring('comment-form_'.length);
+                                    } else if (/^c[0-9]+$/.test(hash)) {
+                                      targetComment = hash.substring(1);
+                                    }
+                                    // Configure commenting API:
+                                    var configJso = {
+                                      'maxDepth': config.maxThreadDepth
+                                    };
+                                    var provider = {
+                                      'id': config.postId,
+                                      'data': items,
+                                      'loadNext': paginator,
+                                      'hasMore': hasMore,
+                                      'getMeta': getMeta,
+                                      'onReply': onReply,
+                                      'rendered': true,
+                                      'initComment': targetComment,
+                                      'initReplyThread': startThread,
+                                      'config': configJso,
+                                      'messages': msgs
+                                    };
+                                    var render = function() {
+                                      if (window.goog && window.goog.comments) {
+                                        var holder = document.getElementById('comment-holder');
+                                        window.goog.comments.render(holder, provider);
+                                      }
+                                    };
+                                    // render now, or queue to render when library loads:
+                                    if (window.goog && window.goog.comments) {
+                                      render();
+                                    } else {
+                                      window.goog = window.goog || {};
+                                      window.goog.comments = window.goog.comments || {};
+                                      window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+                                      window.goog.comments.loadQueue.push(render);
+                                    }
+                                  })();
+                                  // ]]>
+</script>
+<div id="comment-holder">
+
+<div id="bc_0_4C" kind="c"><div id="bc_0_4CT"><div id="bc_0_3T" class="comment-thread" kind="r" t="0" u="0"><ol id="bc_0_3TB"><li id="bc_0_1B" class="comment" kind="b"><div class="avatar-image-container"><img src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/anon36.png"></div><div id="c3127031912624632357" class="comment-block"><div id="bc_0_1M" class="comment-header" kind="m"><cite class="user">Anonymous</cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment=1364976629761#c3127031912624632357">April 3, 2013 at 11:10 AM</a></span></div><p id="bc_0_1MC" class="comment-content">Your frame relay is misconfigured. DLCIs have local meaning, so the ones at HQ aren't necessary the same at the Branch routers. Plus take a look at the cloud. Local DLCIs for branches are 100, 200 and 300<br>/E.T.</p><span id="bc_0_1MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1050096406"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=3484822691435303180&postID=3127031912624632357">Delete</a></span></span></div><div id="bc_0_1BR" class="comment-replies"><span id="bc_0_1b+seedn2_vD" kind="d"><div id="bc_0_0T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_0TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_0TA" class="thread-arrow"></span><span id="bc_0_0TN" class="thread-count"><span id="bc_0_0TNT" style="display: none;"></span><span id="bc_0_0TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_0TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_0TC" class="thread-chrome thread-expanded"><div><li id="bc_0_0B" class="comment" kind="b"><div class="avatar-image-container"><img src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/b36-rounded.png"></div><div id="c7532112501612325117" class="comment-block"><div id="bc_0_0M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/04139184178200036747">SC</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment=1364980408492#c7532112501612325117">April 3, 2013 at 12:13 PM</a></span></div><p id="bc_0_0MC" class="comment-content">&gt; DLCIs have local meaning, so the ones at HQ aren't necessary the same at the Branch routers<br>You're right, but this doesn't mean that they could not be the same.<br><br>In this case there are 2 DLCI's on Branch routers:<br> - 1 set manualy<br> - 1 set be LMI auto-sens<br><br>But if config on FR-Sw is checked, there are really another DLCI : 100/200/300.</p><span id="bc_0_0MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-481042607"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=3484822691435303180&postID=7532112501612325117">Delete</a></span></span></div><div id="bc_0_0BR" class="comment-replies"></div><div id="bc_0_0B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_0I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_0T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_1B_box" class="comment-replybox-single"></div></li><li id="bc_0_2B" class="comment" kind="b"><div class="avatar-image-container"><img src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/anon36.png"></div><div id="c5397220549615206664" class="comment-block"><div id="bc_0_2M" class="comment-header" kind="m"><cite class="user">Anonymous</cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html?showComment=1383673979697#c5397220549615206664">November 5, 2013 at 7:52 PM</a></span></div><p id="bc_0_2MC" class="comment-content">I was wondering say one was to submit a complete version of this packet tracer would they know it’s not there’s? Would it be better to copy and paste a running config?</p><span id="bc_0_2MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1750864847"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=3484822691435303180&postID=5397220549615206664">Delete</a></span></span></div><div id="bc_0_2BR" class="comment-replies"></div><div id="bc_0_2B_box" class="comment-replybox-single"></div></li></ol><div id="bc_0_3I" class="continue" kind="ci" style="display: none;"><a href="javascript:;" target="_self">Add comment</a></div><div id="bc_0_3T_box" class="comment-replybox-thread"><iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="260px" id="comment-editor" name="comment-editor" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/comment-iframe.htm" width="100%" style="display: block;"></iframe></div><div id="bc_0_3L" class="loadmore loaded" kind="rb"><a href="javascript:;" target="_self">Load more...</a></div></div></div></div></div>
+</div>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=3484822691435303180&postID=6183610253209414429&blogspotRpcToken=1411036" id="comment-editor-src"></a>
+
+<script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/313381681-comment_from_post_iframe.js"></script>
+<script type="text/javascript">
+                                    BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html', '17769885554629758866');
+                                  </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+</div>
+
+                                      </div></div>
+                                    
+<!-- google_ad_section_end -->
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://sclabs.blogspot.sk/2013/03/ccna-lab-packet-tracer-activity-861_25.html" id="Blog1_blog-pager-newer-link" title="Newer Post">
+Newer Post
+</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://sclabs.blogspot.sk/2013/01/ccna-security-final-exam.html" id="Blog1_blog-pager-older-link" title="Older Post">
+Older Post
+</a>
+</span>
+<a class="home-link" href="http://sclabs.blogspot.sk/">
+Home
+</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://sclabs.blogspot.com/feeds/6183610253209414429/comments/default" target="_blank" type="application/atom+xml">
+Post Comments
+                                      (
+                                      Atom
+                                      )
+                                    </a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+</div></div>
+</div>
+</div>
+<div class="column-left-outer">
+<div class="column-left-inner">
+<aside>
+</aside>
+</div>
+</div>
+<div class="column-right-outer">
+<div class="column-right-inner">
+<aside>
+</aside>
+</div>
+</div>
+</div>
+<div style="clear: both"></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class="main-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<footer>
+<div class="footer-outer">
+<div class="footer-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left footer-fauxborder-left">
+<div class="fauxborder-right footer-fauxborder-right"></div>
+<div class="region-inner footer-inner">
+<div class="foot section" id="footer-1"></div>
+<table border="0" cellpadding="0" cellspacing="0" class="section-columns columns-3">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="foot section" id="footer-2-1"><div class="widget BlogArchive" id="BlogArchive1">
+<h2>
+Archive
+</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2015-01-01T00:00:00%2B02:00&updated-max=2016-01-01T00:00:00%2B02:00&max-results=1">
+2015
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2015_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2014-01-01T00:00:00%2B02:00&updated-max=2015-01-01T00:00:00%2B02:00&max-results=31">
+2014
+</a>
+<span class="post-count" dir="ltr">
+                (
+                31
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2014_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">
+                (
+                6
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2014_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">
+                (
+                3
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2014_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">
+                (
+                16
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2014_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2014_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+                ▼&nbsp;
+              </span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2013-01-01T00:00:00%2B02:00&updated-max=2014-01-01T00:00:00%2B02:00&max-results=26">
+2013
+</a>
+<span class="post-count" dir="ltr">
+                (
+                26
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">
+                (
+                6
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_09_01_archive.html">
+September
+</a>
+<span class="post-count" dir="ltr">
+                (
+                7
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+                ▼&nbsp;
+              </span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+<ul class="posts">
+<li>
+<a href="http://sclabs.blogspot.sk/2013/03/ccna-lab-packet-tracer-activity-861_25.html">
+CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] p...
+</a>
+</li>
+<li>
+<a href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1.htm">
+CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] p...
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2013_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">
+                (
+                3
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2012-01-01T00:00:00%2B02:00&updated-max=2013-01-01T00:00:00%2B02:00&max-results=17">
+2012
+</a>
+<span class="post-count" dir="ltr">
+                (
+                17
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_11_01_archive.html">
+November
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_10_01_archive.html">
+October
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_09_01_archive.html">
+September
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_06_01_archive.html">
+June
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2012_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2011-01-01T00:00:00%2B02:00&updated-max=2012-01-01T00:00:00%2B02:00&max-results=16">
+2011
+</a>
+<span class="post-count" dir="ltr">
+                (
+                16
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2011_12_01_archive.html">
+December
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2011_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2011_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2011_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">
+                (
+                5
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2011_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/search?updated-min=2010-01-01T00:00:00%2B02:00&updated-max=2011-01-01T00:00:00%2B02:00&max-results=37">
+2010
+</a>
+<span class="post-count" dir="ltr">
+                (
+                37
+                )
+              </span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_08_01_archive.html">
+August
+</a>
+<span class="post-count" dir="ltr">
+                (
+                4
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_07_01_archive.html">
+July
+</a>
+<span class="post-count" dir="ltr">
+                (
+                8
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_06_01_archive.html">
+June
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_05_01_archive.html">
+May
+</a>
+<span class="post-count" dir="ltr">
+                (
+                2
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_04_01_archive.html">
+April
+</a>
+<span class="post-count" dir="ltr">
+                (
+                7
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_03_01_archive.html">
+March
+</a>
+<span class="post-count" dir="ltr">
+                (
+                7
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_02_01_archive.html">
+February
+</a>
+<span class="post-count" dir="ltr">
+                (
+                7
+                )
+              </span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+                  ►&nbsp;
+                
+</span>
+</a>
+<a class="post-count-link" href="http://sclabs.blogspot.sk/2010_01_01_archive.html">
+January
+</a>
+<span class="post-count" dir="ltr">
+                (
+                1
+                )
+              </span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=3484822691435303180&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=footer-2-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" target="configBlogArchive1" title="Edit">
+<img alt="" height="18" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+</td>
+<td class="columns-cell">
+<div class="foot section" id="footer-2-2"></div>
+</td>
+<td class="columns-cell">
+<div class="foot section" id="footer-2-3"><div class="widget HTML" id="HTML1">
+<h2 class="title">
+StatCounter
+</h2>
+<div class="widget-content">
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=6719158; 
+var sc_invisible=0; 
+var sc_security="b1691940"; 
+</script>
+<script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/counter.js"></script><span class="statcounter"><a class="statcounter" href="http://www.statcounter.com/" target="_blank"><img src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/t.php" alt="StatCounter - Free Web Tracker and Counter" border="0"></a></span>
+
+<noscript>&lt;div class="statcounter"&gt;&lt;a title="blogspot stats" href="http://statcounter.com/blogger/" target="_blank"&gt;&lt;img class="statcounter" src="http://c.statcounter.com/6719158/0/b1691940/0/" alt="blogspot stats" /&gt;&lt;/a&gt;&lt;/div&gt;</noscript>
+<!-- End of StatCounter Code -->
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=3484822691435303180&widgetType=HTML&widgetId=HTML1&action=editWidget&sectionId=footer-2-3" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML1&quot;));" target="configHTML1" title="Edit">
+<img alt="" height="18" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript">
+          (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20901280 = new Ya.Metrika({id:20901280, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class="foot section" id="footer-3"><div class="widget Attribution" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Powered by <a href="http://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=3484822691435303180&widgetType=Attribution&widgetId=Attribution1&action=editWidget&sectionId=footer-3" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Attribution1&quot;));" target="configAttribution1" title="Edit">
+<img alt="" height="18" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="footer-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class="content-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+      window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+                                                                  }, 10);
+    </script>
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/2131577651-widgets.js"></script>
+<script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV2";window['blogger_blog_id'] = '3484822691435303180';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d3484822691435303180','//sclabs.blogspot.sk/2013/03/ccna-lab-packet-tracer-activity-861.html','3484822691435303180');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '3484822691435303180', 'bloggerUrl': 'http://www.blogger.com', 'title': 'SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP)', 'pageType': 'item', 'postId': '6183610253209414429', 'url': 'http://sclabs.blogspot.sk/2013/03/ccna-lab-packet-tracer-activity-861.html', 'canonicalUrl': 'http://sclabs.blogspot.com/2013/03/ccna-lab-packet-tracer-activity-861.html', 'canonicalHomepageUrl': 'http://sclabs.blogspot.com/', 'homepageUrl': 'http://sclabs.blogspot.sk/', 'blogspotFaviconUrl': 'http://sclabs.blogspot.sk/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1', 'pageTitle': 'SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP): CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom\42 href\75\42http://sclabs.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - RSS\42 href\75\42http://sclabs.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom\42 href\75\42http://www.blogger.com/feeds/3484822691435303180/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42SC Labs | Networking notes (CCNA R/S, CCNA Sec, CCNP) - Atom\42 href\75\42http://sclabs.blogspot.com/feeds/6183610253209414429/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'postImageThumbnailUrl': 'http://3.bp.blogspot.com/-KqaJTLMQPRg/UVAn-yWP-CI/AAAAAAAACks/g4D9tMvp8TI/s72-c/Packet+Tracker+Activity+8.6.1.png', 'postImageUrl': 'http://3.bp.blogspot.com/-KqaJTLMQPRg/UVAn-yWP-CI/AAAAAAAACks/g4D9tMvp8TI/s1600/Packet+Tracker+Activity+8.6.1.png', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var b\75window,f\75\42chrome\42,g\75\42jstiming\42,k\75\42tick\42;(function(){function d(a){this.t\75{};this.tick\75function(a,d,c){var e\75void 0!\75c?c:(new Date).getTime();this.t[a]\75[e,d];if(void 0\75\75c)try{b.console.timeStamp(\42CSI/\42+a)}catch(h){}};this[k](\42start\42,null,a)}var a;b.performance\46\46(a\75b.performance.timing);var n\75a?new d(a.responseStart):new d;b.jstiming\75{Timer:d,load:n};if(a){var c\75a.navigationStart,h\75a.responseStart;0\74c\46\46h\76\75c\46\46(b[g].srt\75h-c)}if(a){var e\75b[g].load;0\74c\46\46h\76\75c\46\46(e[k](\42_wtsrt\42,void 0,c),e[k](\42wtsrt_\42,\42_wtsrt\42,h),e[k](\42tbsd_\42,\42wtsrt_\42))}try{a\75null,\nb[f]\46\46b[f].csi\46\46(a\75Math.floor(b[f].csi().pageT),e\46\0460\74c\46\46(e[k](\42_tbnd\42,void 0,b[f].csi().startE),e[k](\42tbnd_\42,\42_tbnd\42,c))),null\75\75a\46\46b.gtbExternal\46\46(a\75b.gtbExternal.pageT()),null\75\75a\46\46b.external\46\46(a\75b.external.pageT,e\46\0460\74c\46\46(e[k](\42_tbnd\42,void 0,b.external.startE),e[k](\42tbnd_\42,\42_tbnd\42,c))),a\46\46(b[g].pt\75a)}catch(p){}})();b.tickAboveFold\75function(d){var a\0750;if(d.offsetParent){do a+\75d.offsetTop;while(d\75d.offsetParent)}d\75a;750\76\75d\46\46b[g].load[k](\42aft\42)};var l\75!1;function m(){l||(l\75!0,b[g].load[k](\42firstScrollTime\42))}b.addEventListener?b.addEventListener(\42scroll\42,m,!1):b.attachEvent(\42onscroll\42,m);\n })();\74/script\076', 'mobileHeadScript': '', 'ieCssRetrofitLinks': '\74!--[if IE]\76\74script type\75\42text/javascript\42 src\75\42https://www.blogger.com/static/v1/jsbin/1163241896-ieretrofit.js\42\76\74/script\76\n\74![endif]--\076', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/76f25a6f2e06af76', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'skin', 'data': {'vars': {'content_padding': '10px', 'paging_background': 'transparent none no-repeat scroll top center', 'image_border_small_size': '2px', 'body_background_gradient_cap': 'none', 'tabs_selected_background_color': '#e8e8e8', 'body_rule_color': '#e8e8e8', 'header_shadow_spread': '3px', 'header_shadow_offset_left': '1px', 'header_padding': '30px', 'link_visited_color': '#3d85c6', 'mobile_background_size': 'auto', 'post_title_font': 'normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'tabs_text_color': '#444444', 'date_header_margin': 'inherit', 'header_background_gradient': 'url(http://www.blogblog.com/1kt/simple/gradients_light.png)', 'header_bottom_border_size': '0', 'content_shadow_spread_webkit': '5px', 'header_shadow_offset_top': '2px', 'mobile_button_color': '#ffffff', 'widget_title_font': 'normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'main_section_margin': '15px', 'keycolor': '#010101', 'content_shadow_spread': '40px', 'image_background_color': '#ffffff', 'header_font': 'normal bold 20px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'header_background_color': '#000000', 'main_border_width': '0', 'main_padding': '15px', 'tabs_border_color': '#e9e9e9', 'image_text_color': '#000000', 'description_text_size': '140%', 'post_footer_background_color': '#f4f4f4', 'body_background_gradient_tile': 'none', 'page_width': 'auto', 'tabs_background_gradient': 'url(http://www.blogblog.com/1kt/simple/gradients_light.png)', 'mobile_background_overlay': 'transparent none repeat scroll top left', 'main_padding_bottom': '5px', 'tabs_background_color': '#efefef', 'image_border_large_size': '5px', 'post_margin_bottom': '2px', 'body_background_override': '', 'tabs_margin_side': '30px', 'link_hover_color': '#d21e00', 'description_text_color': '#ffffff', 'body_text_color': '#000000', 'content_padding_horizontal': '10px', 'endSide': 'right', 'page_width_selector': '.region-inner', 'date_header_padding': 'inherit', 'post_footer_text_color': '#363636', 'startSide': 'left', 'date_header_color': '#000000', 'tabs_font': 'normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'post_footer_border_color': '#e8e8e8', 'body_font': 'normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'footer_bevel': '0', 'tabs_bevel_border_width': '1px', 'date_header_background_color': 'transparent', 'content_shadow_spread_ie': '10px', 'widget_title_text_color': '#000000', 'header_border_horizontalsize': '0', 'image_border_color': '#e8e8e8', 'tabs_border_width': '1px', 'content_background_color': '#ffffff', 'link_color': '#0000ff', 'header_text_color': '#ffffff', 'date_header_letterspacing': 'inherit', 'tabs_margin_top': '0', 'main_padding_top': '5px', 'header_border_size': '0', 'tabs_selected_text_color': '#000000', 'content_background_color_selector': '.content-inner', 'body_background_color': '#fafafa', 'widget_alternate_text_color': '#8a8a8a'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList1', 'crosscol', null, document.getElementById('PageList1'), {'title': 'Pages', 'links': [{'href': 'http://sclabs.blogspot.sk/', 'title': 'Home', 'isCurrentPage': false}, {'href': 'https://www.netacad.com/', 'title': 'NetAcad', 'isCurrentPage': false}, {'href': 'http://sclabs.blogspot.sk/p/routing-protocols-comparison-ad-and.html', 'title': 'Routing Protocols Comparison / Subnetting', 'isCurrentPage': false, 'id': '3387069539974616170'}, {'href': 'http://sclabs.blogspot.sk/p/to-do.html', 'title': 'To do list', 'isCurrentPage': false, 'id': '5460409445615404046'}, {'href': 'http://sclabs.blogspot.sk/p/links.html', 'title': 'Links', 'isCurrentPage': false, 'id': '2360595350132505733'}, {'href': 'http://sclabs.blogspot.sk/p/about.html', 'title': 'About', 'isCurrentPage': false, 'id': '1133354399887855861'}], 'mobile': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'footer-2-1', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', null, document.getElementById('Attribution1'), {'attribution': 'Powered by \74a href\75\47http://www.blogger.com\47 target\75\47_blank\47\76Blogger\74/a\76.'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'footer-2-3', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/3077300817-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3904812905-lightbox_bundle.css'}, 'displayModeFull'));
+</script>
+
+<link type="text/css" rel="stylesheet" href="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/3904812905-lightbox_bundle.css"><script type="text/javascript" src="./SC Labs   Networking notes (CCNA R S, CCNA Sec, CCNP)  CCNA Lab Packet Tracer Activity 8.6.1 [Resolved] part 1_files/3077300817-lbx.js"></script></body></html>
